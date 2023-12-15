@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+	<h1>Ex01.html의 내용은 다 훔쳤습니다.</h1>
 </body>
 </html>
