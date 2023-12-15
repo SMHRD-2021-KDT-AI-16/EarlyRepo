@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h1>Ex01.html의 내용은 다 훔쳐서 없앴습니다</h1>
+
+	괴도x 내용은 다 훔쳐간다!
 </body>
 </html>
