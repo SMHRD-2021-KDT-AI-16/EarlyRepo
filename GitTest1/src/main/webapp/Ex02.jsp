@@ -7,8 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-   <h1>가벼운 끝말잇기 게임 어떠심요?</h1>
-   <h4> 누룩!!!! </h4>
-   
+
+	괴도x 내용은 다 훔쳐간다!
 </body>
 </html>
