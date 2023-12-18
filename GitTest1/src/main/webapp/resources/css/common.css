@@ -88,7 +88,7 @@
 }
 
 /* campland-N2 [ZblQ6CQKFd] */
-.campland-N2 { overflow: hidden; background-color: var(--line-color4); }
+.campland-N2 { overflow: hidden; background-color: white }
 .campland-N2 .footer-container { padding: 1.8rem 5rem 2.4rem 5rem; }
 .campland-N2 .footer-top { display: flex; justify-content: space-between; position: relative; margin-bottom: 1.6rem; }
 .campland-N2 .footer-logo { text-align: center; margin-bottom: 0; }
