@@ -3,9 +3,9 @@
 /* campland-N3 [dsLQ6cqkcE] */
 .campland-N3 .contents-container { overflow: hidden; }
 .campland-N3 .contents-swiper { position: relative; }
-.campland-N3 .swiper-wrapper { width: 100%; height: calc(100vh - 8rem); }
+.campland-N3 .swiper-wrapper { width: 100%; height: calc(70vh - 7rem); }
 .campland-N3 .swiper-slide { position: relative; }
-.campland-N3 .contents-backimg { width: 100%; height: 100%; object-fit: cover; }
+.campland-N3 .contents-backimg { width: 100%; height: 100%; object-fit: contain; }
 .campland-N3 .contents-slide-group { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); z-index: 1; padding: 0 2.4rem; text-align: center; }
 .campland-N3 .textset { text-align: left; }
 .campland-N3 .textset-tit { color: var(--text-color6); }
