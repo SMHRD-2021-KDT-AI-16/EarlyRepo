@@ -34,67 +34,34 @@
         </h1>
       </div>
       <div class="header-center">
-        <ul class="header-member">
-          <li>
-            <a href="javascript:void(0)">로그인</a>
-          </li>
-          <li>
-            <a href="javascript:void(0)">회원가입</a>
-          </li>
-        </ul>
+        
         <ul class="header-gnblist">
           <li class="header-gnbitem">
-            <a class="header-gnblink" href="javascript:void(0)">
+          </li>
+          <li class="header-gnbitem">
+            <a class="header-gnblink" href="map.html">
+              <span>집찾기</span>
+            </a>
+          </li>
+          
+          <li class="header-gnbitem">
+            <a class="header-gnblink" href="board.html">
+              <span>부동산 게시판</span>
             </a>
           </li>
           <li class="header-gnbitem">
-            <a class="header-gnblink" href="javascript:void(0)">
-              <span>시설소개</span>
+            <a class="header-gnblink" href="Chat.html">
+              <span>동네 채팅</span>
             </a>
           </li>
-          <li class="header-gnbitem">
-            <ul class="header-sublist">
-              <li class="header-subitem">
-                <a class="header-sublink" href="javascript:void(0)">
-                  <span>공지사항</span>
-                </a>
-              </li>
-              <li class="header-subitem">
-                <a class="header-sublink" href="javascript:void(0)">
-                  <span>자주묻는질문</span>
-                </a>
-              </li>
-            </ul>
-          </li>
-          <li class="header-gnbitem">
-            <a class="header-gnblink" href="javascript:void(0)">
-              <span>이용후기</span>
-            </a>
-          </li>
-          <li class="header-gnbitem">
-            <a class="header-gnblink" href="javascript:void(0)">
-              <span>오시는 길</span>
-            </a>
-          </li>
-          <li class="header-gnbitem">
-            <ul class="header-sublist">
-              <li class="header-subitem">
-                <a class="header-sublink" href="javascript:void(0)">
-                  <span>빠른예약</span>
-                </a>
-              </li>
-              <li class="header-subitem">
-                <a class="header-sublink" href="javascript:void(0)">
-                  <span>예약조회</span>
-                </a>
-              </li>
+      
             </ul>
           </li>
         </ul>
       </div>
       <div class="header-right">
         <div class="header-utils">
-          <a href="javascript:void(0);" class="btn-profile header-utils-btn">
+          <a href="login.html" class="btn-profile header-utils-btn">
             <img src="../resources/icons/ico_profile_black.svg" alt="검색">
           </a>
           <button class="btn-search header-utils-btn">
@@ -114,55 +81,123 @@
       <div class="contents-inner">
         <div class="contents-container">
           <div class="textset textset-sub textset-center">
-            <h2 class="textset-tit">회원정보​<br></h2>
+            <h2 class="textset-tit">자산정보​<br></h2>
           </div>
           <ul class="contents-list">
-            <li class="contents-item">
+			  
+			<li class="contents-item">
               <h6 class="form-tit form-tit-deco">
-                <span></span>연소득입력
+                <span></span>나이
               </h6>
               <div class="form-wrap">
                 <div class="inputset inputset-round">
-                  <input type="text" class="inputset-input form-control" aria-label="내용" placeholder="본인 소득을 입력해주세요.">
-                  <input type="text" class="inputset-input form-control" aria-label="내용" placeholder="배우자 소득을 입력해주세요.">
+                  <input type="text" class="inputset-input form-control" aria-label="내용" placeholder="만나이를 입력해주세요.(숫자만)">
+                  
+                </div>	
+              </div>
+            </li>
+            
+            <li class="contents-item">
+              <h6 class="form-tit form-tit-deco">
+                <span></span>주택보유여부 <br> (단위: 만원)
+              </h6>
+              <div class="form-wrap">
+                <div class="inputset inputset-round">
+                  <input type="text" class="inputset-input form-control" aria-label="내용" placeholder="본인이 보유하신 주택이 있다면 주택의 금액을 입력해주세요. 없다면 0으로 입력!! (숫자만)">
+                  <input type="text" class="inputset-input form-control" aria-label="내용" placeholder="배우자가 보유하신 주택이 있다면 주택의 금액을 입력해주세요. 없다면 0으로 입력!! (숫자만)">
+                  
+                </div>	
+              </div>
+            </li>
+            
+            
+              
+			  
+            <li class="contents-item">
+              <h6 class="form-tit form-tit-deco">
+                <span></span>연소득입력<br> (단위: 만원)
+              </h6>
+              <div class="form-wrap">
+                <div class="inputset inputset-round">
+                  <input type="text" class="inputset-input form-control" aria-label="내용" placeholder="본인 소득을 입력해주세요. ">
+                  <input type="text" class="inputset-input form-control" aria-label="내용" placeholder="배우자 소득을 입력해주세요. ">
                   
                 </div>	
               </div>
             </li>
             <li class="contents-item">
               <h6 class="form-tit form-tit-deco">
-                <span></span>부채입력
+                <span></span>순자산 <br>(단위: 만원)
               </h6>
               <div class="form-wrap">
                 <div class="inputset inputset-round">
-                  <input type="text" class="inputset-input form-control" aria-label="내용" placeholder="본인 부채를 입력해주세요">
-                  <input type="text" class="inputset-input form-control" aria-label="내용" placeholder="배우자 부채를 입력해주세요">
+                  <input type="text" class="inputset-input form-control" aria-label="내용" placeholder="본인의 현금, 주식, 채권, 퇴직연금에서 부채를 뺀 금액을 입력해주세요. (숫자만)">
+                  <input type="text" class="inputset-input form-control" aria-label="내용" placeholder="배우자본인의 현금, 주식, 채권, 퇴직연금에서 부채를 뺀 금액을 입력해주세요.">
                 </div>
               </div>
             </li>
-            <li class="contents-item">
+            
+               
+              <li class="contents-item">
               <h6 class="form-tit form-tit-deco">
-                <span></span>비밀번호 확인
+                <span></span>부양가족 수
               </h6>
               <div class="form-wrap">
                 <div class="inputset inputset-round">
-                  <input type="password" class="inputset-input form-control" aria-label="내용" placeholder="비밀번호를 다시 입력해주세요.">
+                  <input type="text" class="inputset-input form-control" aria-label="내용" placeholder="부양하는 가족 수를 입력해주세요(본인제외)">
                 </div>
               </div>
             </li>
+            
             <li class="contents-item">
               <h6 class="form-tit form-tit-deco">
-                <span></span>휴대폰 번호
+                <span></span>중복대출여부
               </h6>
               <div class="form-wrap">
                 <div class="inputset inputset-round">
-                  <input type="text" class="inputset-input form-control" aria-label="내용" placeholder="- 없이 입력해주세요.">
+                  <input type="radio"  name="loan", value="loan0">  대출 받았어요.
+                  <input type="radio"  name="loan", value="loan1">  대출없어요.
                 </div>
               </div>
             </li>
+            
             <li class="contents-item">
               <h6 class="form-tit form-tit-deco">
-                <span></span>이메일
+                <span></span>최초주택구입
+              </h6>
+              <div class="form-wrap">
+                <div class="inputset inputset-round">
+                  <input type="radio"  name="firstloan", value="fisrtloan0">  집 산 적 있어요.
+                  <input type="radio"  name="firstloan", value="firstloan1">  한번도 안 사봤어요.
+                </div>
+              </div>
+            </li>
+            
+            <li class="contents-item">
+              <h6 class="form-tit form-tit-deco">
+                <span></span>신용도
+              </h6>
+              <div class="form-wrap">
+                <div class="inputset inputset-round">
+                  <input type="text" class="inputset-input form-control" aria-label="내용" placeholder="본인의 신용점수를 입력해주세요(모르시면 0)">
+                </div>
+              </div>
+            </li>
+            
+            <li class="contents-item">
+              <h6 class="form-tit form-tit-deco">
+                <span></span>결혼기간
+              </h6>
+              <div class="form-wrap">
+                <div class="inputset inputset-round">
+                  <input type="text" class="inputset-input form-control" aria-label="내용" placeholder="결혼기간을 입력해주세요. (숫자만)">
+                </div>
+              </div>
+            </li>
+            
+            <li class="contents-item">
+              <h6 class="form-tit form-tit-deco">
+                <span></span>중복대출여부
               </h6>
               <div class="form-wrap">
                 <div class="inputset inputset-round">
