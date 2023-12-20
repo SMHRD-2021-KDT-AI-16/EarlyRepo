@@ -70,6 +70,8 @@
 	<!-- [E]campland-N1 -->
 	<main class="th-layout-main ">
 		<!-- [S]campland-N24 -->
+		<form method="post" action="http://localhost:8083/GitTest2/Login.do">
+			
 		<div class="campland-N24" data-bid="oULq6dgKXB">
 			<div class="contents-inner">
 				<div class="contents-container">
@@ -78,20 +80,22 @@
 							<h2 class="textset-tit">일반 로그인</h2>
 						</div>
 						<div class="inputset inputset-round">
-							<input type="text" class="inputset-input form-control" aria-label="내용"
+							<input name="id" type="text" class="inputset-input form-control" aria-label="내용"
 								placeholder="아이디를 입력해주세요.">
 						</div>
 						<div class="inputset inputset-round">
-							<input type="password" class="inputset-input form-control" aria-label="내용"
+							<input name="pw" type="password" class="inputset-input form-control" aria-label="내용"
 								placeholder="비밀번호를 입력해주세요.">
 						</div>
 						<div class="checkset">
 							<input id="checkset-a-1-1" class="checkset-input input-fill input-round" type="checkbox"
 								value="">
-							<label class="checkset-label" for="checkset-a-1-1"></label>
-							<span class="checkset-text">아이디 저장</span>
 						</div>
-						<a href="javascipt:void(0);" class="btnset btnset-round">로그인</a>
+							
+						<input type="submit" class="btnset btnset-round" value="로그인">
+							
+						</form>
+						
 						<ul class="contents-list">
 							<li class="contents-item">
 								<a href="javascipt:void(0);">아이디 찾기</a>

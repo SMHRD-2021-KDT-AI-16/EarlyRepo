@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 1. 문법 정의(어떤 태그 사용할 건지 정의) : mapper태그 사용하겠다. -->
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 2. mapper : 안쪽에 sql구문을 작성할 수 있는 공간 namespace : 중복이 되지 않게 선언 >> DAO와 
+	이름 일치시키자 -->
+<mapper namespace="com.early.db.DAO">
+	<insert id="join" parameterType="com.early.model.MemberVO">
+		insert into member(ID, PW, NICK)
+		values (#{id}, #{pw}, #{nick})
+	</insert>
+	<select id="login" parameterType="com.early.model.MemberVO"
+		resultType="com.early.model.MemberVO">
+		SELECT * FROM member
+		WHERE ID = #{id}
+		AND PW = #{pw}
+	</select>
+	 <select id="idCheck" parameterType="String" resultType="boolean">
+		SELECT case when count(*)>0 then 1
+					else 0
+			   end result
+		FROM MEMBER
+		WHERE id=#{id}	   		
+	</select>
+	
+
+</mapper>

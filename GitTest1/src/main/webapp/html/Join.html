@@ -69,6 +69,9 @@
 	<!-- [E]campland-N1 -->
 	<main class="th-layout-main ">
 		<!-- [S]campland-N25 -->
+		<!-- 회원 가입 페이지-->
+		<form method="post" action="http://localhost:8083/GitTest2/Join.do">
+			
 		<div class="campland-N25" data-bid="EJlQ6DHEUz" id="">
 			<div class="contents-inner">
 				<div class="contents-container">
@@ -82,19 +85,52 @@
 							</h6>
 							<div class="form-wrap">
 								<div class="inputset inputset-round">
-									<input type="text" class="inputset-input form-control" aria-label="내용"
-										placeholder="아이디를 입력해주세요.">
+									<input name="id"  id="inputE" type="text" class="inputset-input form-control" aria-label="내용"
+										placeholder="아이디를 입력해주세요." >
 								</div>
-								<button type="button" class="btnset btnset-round">중복확인</button>
+								<input type="button"  class="btnset btnset-round" onclick="checkE()" value="중복확인">
 							</div>
 						</li>
+						<script src="jquery-3.7.1.min.js"></script>
+						<script type="text/javascript">
+							function checkE() {
+							var inputE = $("#inputE").val();
+							console.log(inputE);
+					
+							$.ajax( {
+								// 어디로 요청할건지?
+								url :'http://localhost:8083/GitTest2/IdCheckService.do',		
+								// 요청할 데이터(json,{key : value})
+					
+					    		data : {'inputE': inputE},
+					   		 // 요청방식
+					   		 type : 'get',
+					    		// 요청 성공할 경우 무엇을할지?
+					    		success : function (data) {
+									if(data=='true'){
+										alert("사용 할 수 없는 아이디입니다")
+									}else if(data=='false'){
+										alert("사용 할 수 있는 아이디입니다")
+									}
+								},
+								// 요청 실패시
+								error : function () {
+									alert("통신 실패");
+								}
+						
+							});
+							}
+						</script>
+			
+			
+			
 						<li class="contents-item">
 							<h6 class="form-tit form-tit-deco">
 								<span></span>비밀번호
 							</h6>
 							<div class="form-wrap">
 								<div class="inputset inputset-round">
-									<input type="password" class="inputset-input form-control" aria-label="내용"
+									<input name="pw" type="password" class="inputset-input form-control" aria-label="내용"
 										placeholder="비밀번호를 입력해주세요">
 								</div>
 							</div>
@@ -116,7 +152,7 @@
 							</h6>
 							<div class="form-wrap">
 								<div class="inputset inputset-round">
-									<input type="text" class="inputset-input form-control" aria-label="내용"
+									<input name="nick" type="text" class="inputset-input form-control" aria-label="내용"
 										placeholder="닉네임을 입력해주세요.">
 								</div>
 							</div>
@@ -129,11 +165,14 @@
 						</div>
 						<div class="contents-confirm">
 							<a href="login.html" class="btnset btnset-round btnset-line btnset-black">돌아가기</a>
-							<a href="Main.html" class="btnset btnset-round">회원가입</a>
+							
+							<input type="submit" class="btnset btnset-round" value="회원가입">
 						</div>
 				</div>
 			</div>
 		</div>
+		
+		</form>
 		<!-- [E]campland-N25 -->
 	</main>
 	<!-- [S]campland-N2 -->
