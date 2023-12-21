@@ -32,7 +32,7 @@ public class LoginService implements Command{
 		
 		HttpSession session = request.getSession();
 		session.setAttribute("member", result);
-
+		System.out.println("test");
 		return "redirect:/GoMain.do";
 	
 		
