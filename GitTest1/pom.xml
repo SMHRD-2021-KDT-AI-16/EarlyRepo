@@ -7,6 +7,13 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
 	<dependencies>
+		<!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<version>1.18.30</version>
+			<scope>provided</scope>
+		</dependency>
 		<!-- 3. jsp에서 간단하게 java코드를 tag로 사용할 수 
 		있게끔 도와주는 라이브러리 
 		java standard tag library >> el이랑 짝꿍처럼 사용함. -->

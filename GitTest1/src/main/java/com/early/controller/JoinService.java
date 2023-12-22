@@ -35,7 +35,7 @@ public class JoinService implements Command {
 		if(row>0) {
 			request.setAttribute("id", id);
 		
-			return "redirect:/GoMain.do";
+			return "redirect:/GoWelcome.do";
 		
 		}else {
 			

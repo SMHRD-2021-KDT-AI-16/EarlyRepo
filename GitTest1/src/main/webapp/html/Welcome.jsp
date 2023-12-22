@@ -21,6 +21,16 @@
 	<link rel="stylesheet" href="../resources/css/template.css">
 	<link rel="stylesheet" href="../resources/css/common.css">
 	<link rel="stylesheet" href="../resources/css/style.css">
+	<style>
+		.iconset-icon {
+			display: block;
+			margin: auto;
+			width: 100px;
+			height: 100px;
+			overflow: hidden;
+			position: relative;
+		}
+	</style>
 </head>
 
 <body>
@@ -70,52 +80,28 @@
 	</header>
 	<!-- [E]campland-N1 -->
 	<main class="th-layout-main ">
-		<!-- [S]campland-N24 -->
-		<form method="post" action="http://localhost:8083/GitTest1/Login.do">
-			
-		<div class="campland-N24" data-bid="oULq6dgKXB">
+		<!-- [S]campland-N26 -->
+		<div class="campland-N26" data-bid="zYlQFw2bYu" id="">
 			<div class="contents-inner">
-				<div class="contents-container">
-					<div class="contents-top">
-						<div class="textset textset-center">
-							<h2 class="textset-tit">일반 로그인</h2>
-						</div>
-						<div class="inputset inputset-round">
-							<input name="id" type="text" class="inputset-input form-control" aria-label="내용"
-								placeholder="아이디를 입력해주세요.">
-						</div>
-						<div class="inputset inputset-round">
-							<input name="pw" type="password" class="inputset-input form-control" aria-label="내용"
-								placeholder="비밀번호를 입력해주세요.">
-						</div>
-						<div class="checkset">
-							<input id="checkset-a-1-1" class="checkset-input input-fill input-round" type="checkbox"
-								value="">
-						</div>
-							
-						<input type="submit" class="btnset btnset-round" value="로그인">
-						
-							
-						
-						</form>
-						
-						<ul class="contents-list">
-							<li class="contents-item">
-								<a href="javascipt:void(0);">아이디 찾기</a>
-							</li>
-							<li class="contents-item">
-								<a href="javascipt:void(0);">비밀번호 찾기</a>
-							</li>
-							<li class="contents-item">
-								<a href="Join.jsp">회원가입</a>
-							</li>
-						</ul>
+				<div class="contents-container container-md">
+					<div class="textset textset-center">
+						<img class="iconset-icon" src="../resources/icons/ico_check_illust.svg" alt="가입완료 아이콘">
 					</div>
-
+					<div class="textset textset-center">
+						<h2 class="textset-tit">
+							<span>하티 회원</span>이 되신 것을 환영합니다!
+						</h2>
+						<p class="textset-desc">
+							가입이 완료되었습니다.
+							<br>
+							뒤로 돌아가서 다시 로그인해주세요.
+						</p>
+						<a href="login.jsp" class="btnset btnset-round">로그인하러 가기</a>
+					</div>
 				</div>
 			</div>
 		</div>
-		<!-- [E]campland-N24 -->
+		<!-- [E]campland-N26 -->
 	</main>
 	<!-- [S]campland-N2 -->
 	<footer class="campland-N2" data-bid="Ojlq6dgkyD">

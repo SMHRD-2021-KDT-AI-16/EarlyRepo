@@ -15,6 +15,7 @@ import com.early.controller.IdCheckService;
 import com.early.controller.JoinService;
 import com.early.controller.LoginService;
 import com.early.controller.LogoutService;
+import com.early.controller.UpdateService;
 
 /**
  * Servlet implementation class FrontController
@@ -54,6 +55,10 @@ public class FrontController extends HttpServlet {
 				com = new IdCheckService();
 			}else if (path.equals("Logout.do")) {
 				com = new LogoutService();
+			}else if (path.equals("Update.do")) {
+				com = new UpdateService();
+			}else if (path.equals("DeleteMember.do")) {
+				com = new UpdateService();
 			}
 			
 			

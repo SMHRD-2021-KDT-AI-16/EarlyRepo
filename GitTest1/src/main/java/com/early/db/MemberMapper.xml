@@ -25,5 +25,16 @@
 		WHERE id=#{id}	   		
 	</select>
 	
+	<update id="update" parameterType="com.early.model.MemberVO">
+		UPDATE MEMBER SET
+		PW=#{pw}, NICK=#{NICK} WHERE ID=#{id}
+	</update>
+	
+	<delete id="deleteMember" parameterType="String">
+		delete from member where ID=#{id}
+	
+	</delete>
+	
+	
 
 </mapper>
