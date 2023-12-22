@@ -14,6 +14,7 @@ import com.early.controller.Command;
 import com.early.controller.IdCheckService;
 import com.early.controller.JoinService;
 import com.early.controller.LoginService;
+import com.early.controller.LogoutService;
 
 /**
  * Servlet implementation class FrontController
@@ -42,7 +43,7 @@ public class FrontController extends HttpServlet {
 		// 3. path값이 어떤 요청이냐에 따라서 다른 기능 수행
 		if (path.contains("Go")) {
 			// Go + 파일이름 + .do
-			finalpath = path.replaceAll("Go", "").replaceAll(".do", ".html");
+			finalpath = path.replaceAll("Go", "").replaceAll(".do", ".jsp");
 		} else {
 			if (path.equals("Join.do")) {
 				// 4. 일반 클래스 파일에게 일 시키는 작업
@@ -51,10 +52,14 @@ public class FrontController extends HttpServlet {
 				com = new LoginService();
 			} else if (path.equals("IdCheckService.do")) {
 				com = new IdCheckService();
-				System.out.println(com);
+			}else if (path.equals("Logout.do")) {
+				com = new LogoutService();
 			}
+			
+			
+			System.out.println("com값 : "+com);
 
-			finalpath = path.replaceAll(".do", ".html");
+			finalpath = path.replaceAll(".do", ".jsp");
 			System.out.println("1번 :" + finalpath);
 			finalpath = com.execute(request, response);
 
@@ -65,7 +70,7 @@ public class FrontController extends HttpServlet {
 			if (finalpath.contains("redirect:/")) {
 				// response.sendRedirect(finalpath.substring(11));
 				response.sendRedirect(
-						finalpath.replaceAll("redirect:/", "html/").replaceAll(".do", ".html").replaceAll("Go", ""));
+						finalpath.replaceAll("redirect:/", "html/").replaceAll(".do", ".jsp").replaceAll("Go", ""));
 				System.out.println("2번" + finalpath);
 			} else {
 				RequestDispatcher rd = request.getRequestDispatcher("html/" + finalpath);
