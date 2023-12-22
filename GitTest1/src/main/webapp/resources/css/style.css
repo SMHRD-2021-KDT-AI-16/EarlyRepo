@@ -3,7 +3,7 @@
 /* campland-N3 [dsLQ6cqkcE] */
 .campland-N3 .contents-container { overflow: hidden; }
 .campland-N3 .contents-swiper { position: relative; }
-.campland-N3 .swiper-wrapper { width: 100%; height: calc(70vh - 7rem); }
+.campland-N3 .swiper-wrapper { width: 100%; height: calc(100vh - 7rem); }
 .campland-N3 .swiper-slide { position: relative; }
 .campland-N3 .contents-backimg { width: 100%; height: 100%; object-fit: cover; }
 .campland-N3 .contents-slide-group { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); z-index: 1; padding: 0 2.4rem; text-align: center; }
@@ -84,7 +84,7 @@
 .campland-N6 .contents-container { overflow: hidden; }
 .campland-N6 .imageset { position: relative; z-index: -1; max-width: 68rem; height: 29rem; margin-bottom: -9.4rem; }
 .campland-N6 .contents-swiper { position: relative; }
-.campland-N6 .swiper-wrapper { width: 100%; }
+.campland-N6 .swiper-wrapper { width: 50%; }
 .campland-N6 .swiper-slide { position: relative; }
 .campland-N6 .contents-backimg { width: 100%; height: 100%; object-fit: cover; }
 .campland-N6 .contents-slide-group { position: absolute; top: 0; right: 0; z-index: 1; width: 50%; height: 100%; background-color: rgba(17, 17, 17, 0.7); padding: 8rem; }
