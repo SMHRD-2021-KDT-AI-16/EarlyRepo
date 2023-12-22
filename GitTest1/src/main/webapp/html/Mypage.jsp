@@ -21,6 +21,13 @@
 	<link rel="stylesheet" href="../resources/css/template.css">
 	<link rel="stylesheet" href="../resources/css/common.css">
 	<link rel="stylesheet" href="../resources/css/style.css">
+	<style type="text/css">
+	
+		#test{
+			display: inline-block;
+		}
+	</style>
+	
 </head>
 
 <body>
@@ -120,8 +127,14 @@
 							</form>
 
 						<div class="contents-button">
-							<button class="btnset btnset-round" type="button">로그아웃</button>
-							<button class="btnset btnset-round" type="button">회원탈퇴</button>
+						<form action="http://localhost:8083/GitTest1/Logout.do" id="test">
+							<input class="btnset btnset-round" type="submit" value="로그아웃">
+						</form>
+						<form action="http://localhost:8083/GitTest1/DeleteMember.do">
+							<input class="btnset btnset-round" type="submit" value="회원탈퇴">
+						</form>
+							
+							
 						</div>
 					</div>
 				</div>

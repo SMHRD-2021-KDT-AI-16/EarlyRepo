@@ -31,10 +31,15 @@
 		user_pw=#{user_pw}, user_nick=#{user_nick} WHERE user_id=#{user_id}
 	</update>
 	
+	
 	<delete id="deleteMember" parameterType="String">
 		delete from tb_user where user_id=#{user_id}
 	</delete>
-	
+	<select id="selectAll" resultType="com.early.model.MemberVO">
+		SELECT user_id, user_PW, user_NICK,joined_at
+		FROM tb_user
+		WHERE user_id != 'admin'
+	</select>
 	
 	
 
