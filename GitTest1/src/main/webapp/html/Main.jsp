@@ -71,11 +71,11 @@
 								<a href="login.jsp" class="btnset btnset-round">로그인</a>
 							</c:if>
 								<c:if test="${member!=null }">
-									<c:if test="${member.id!='admin' }">
+									<c:if test="${member.user_id!='admin' }">
 										<a href="Mypage.jsp">개인정보수정</a>
 									</c:if>
 									
-									<c:if test="${member.id=='admin' }">
+									<c:if test="${member.user_id=='admin' }">
 										<a href="SelectAll.do">회원관리</a>
 									</c:if>	
 							</c:if>

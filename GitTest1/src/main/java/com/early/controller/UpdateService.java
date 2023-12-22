@@ -19,9 +19,9 @@ public class UpdateService implements Command {
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
-		String id = request.getParameter("id");
-		String pw = request.getParameter("pw");
-		String nick = request.getParameter("nick");
+		String user_id = request.getParameter("user_id");
+		String user_pw = request.getParameter("user_pw");
+		String user_nick = request.getParameter("user_nick");
 		
 		
 
@@ -31,13 +31,13 @@ public class UpdateService implements Command {
 		// (2) 세션 영역안에 있는 member 이름표 데이터 꺼내오기
 		MemberVO sessionvo = (MemberVO) session.getAttribute("member");
 		// (3) email값만 꺼내오기
-		sessionvo.getId();
+		sessionvo.getUser_id();
 
 		// 4. 꺼내온 데이터 들을 하나로 묶어주기
 		MemberVO vo = new MemberVO();
 		
-		vo.setPw(pw);
-		vo.setNick(nick);
+		vo.setUser_pw(user_pw);
+		vo.setUser_nick(user_nick);
 	
 
 		// 5. DAO 생성하기
@@ -51,8 +51,8 @@ public class UpdateService implements Command {
 		if (row > 0) {
 		
 			// sessionVO 영역 안에 있는 데이터 변경 방식 사용
-			sessionvo.setPw(pw);
-			sessionvo.setNick(nick);
+			sessionvo.setUser_pw(user_pw);
+			sessionvo.setUser_nick(user_nick);
 			
 			
 		}

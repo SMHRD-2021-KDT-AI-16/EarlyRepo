@@ -81,11 +81,11 @@
 							<h2 class="textset-tit">일반 로그인</h2>
 						</div>
 						<div class="inputset inputset-round">
-							<input name="id" type="text" class="inputset-input form-control" aria-label="내용"
+							<input name="user_id" type="text" class="inputset-input form-control" aria-label="내용"
 								placeholder="아이디를 입력해주세요.">
 						</div>
 						<div class="inputset inputset-round">
-							<input name="pw" type="password" class="inputset-input form-control" aria-label="내용"
+							<input name="user_pw" type="password" class="inputset-input form-control" aria-label="내용"
 								placeholder="비밀번호를 입력해주세요.">
 						</div>
 						<div class="checkset">

@@ -19,12 +19,13 @@ public class LoginService implements Command{
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
-		String id = request.getParameter("id");
-		String pw = request.getParameter("pw");
+		String user_id = request.getParameter("user_id");
+		String user_pw = request.getParameter("user_pw");
 		
 		MemberVO vo = new MemberVO();
-		vo.setId(id);
-		vo.setPw(pw);
+		vo.setUser_id(user_id);
+		vo.setUser_pw(user_pw);
+		
 		
 		DAO dao = new DAO();
 		
@@ -32,7 +33,7 @@ public class LoginService implements Command{
 		
 		HttpSession session = request.getSession();
 		session.setAttribute("member", result);
-		System.out.println("test");
+		
 		return "redirect:/GoMain.do";
 	
 		

@@ -38,7 +38,7 @@ public class FrontController extends HttpServlet {
 		String uri = request.getRequestURI();
 		String cp = request.getContextPath();
 		String path = uri.substring(cp.length() + 1);
-		System.out.println(path);
+		
 		request.setCharacterEncoding("utf-8");
 
 		String finalpath = null;

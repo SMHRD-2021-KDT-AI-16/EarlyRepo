@@ -18,9 +18,11 @@ public class DAO {
 
 	public MemberVO login(MemberVO vo) {
 		SqlSession sqlsession = factory.openSession();
-
+		System.out.println("id는 :"+vo.getUser_id());
+		
 		MemberVO result = sqlsession.selectOne("login", vo);
-
+		
+		System.out.println("결과 : "+result.getUser_id());
 		sqlsession.close();
 
 		return result;
@@ -29,45 +31,45 @@ public class DAO {
 	public boolean idCheck(String inputE) {
 		boolean checkE = false;
 		SqlSession sqlSession = factory.openSession(true);
-
 		try {
 			checkE = sqlSession.selectOne("idCheck", inputE);
-
 		}catch(Exception e) {
-			
 		}finally {
-
 			sqlSession.close();
 		}
-
 		return checkE;
 	}
-
+		
 	public int update(MemberVO vo) {
 		// 1. 연결객체 빌려오기
 		SqlSession sqlSession = factory.openSession(true);
-
+		
 		// 2. 연결객체 사용하기
 		int row = sqlSession.update("update", vo);
-
+		
 		// 3. 연결객체 반납하기
 		sqlSession.close();
-
+		
 		// 4. 결과 반환하기
 		return row;
-
 	}
+		
 
-	public int deleteMember(String id) {
+	public int deleteMember(String user_id) {
 		// 메세지 전체 삭제
-
+		
 		SqlSession session = factory.openSession(true);
-
-		int cnt = session.delete("deleteMember", id);
+		
+		int cnt = session.delete("deleteMember", user_id);
 		session.close();
-
+		
 		return cnt;
 	}
+			
+
+
+
+
 
 
 }

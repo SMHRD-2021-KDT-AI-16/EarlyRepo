@@ -94,7 +94,7 @@
 						<p class="textset-desc">
 							가입이 완료되었습니다.
 							<br>
-							뒤로 돌아가서 다시 로그인해주세요.
+							가입하신 아이디로 로그인해주세요.
 						</p>
 						<a href="login.jsp" class="btnset btnset-round">로그인하러 가기</a>
 					</div>

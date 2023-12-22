@@ -110,9 +110,9 @@
 							</h6>
 							<div class="form-wrap">
 								<div class="inputset inputset-round">
-									<input name="nick" type="text" class="inputset-input form-control" aria-label="내용"
+									<input name="user_nick" type="text" class="inputset-input form-control" aria-label="내용"
 										placeholder="닉네임을 입력해주세요.">
-									<input name="pw" type="password" class="inputset-input form-control" aria-label="내용"
+									<input name="user_pw" type="password" class="inputset-input form-control" aria-label="내용"
 										placeholder="비밀번호를 입력해주세요.">
 									<input type="submit" value="회원정보수정" class="btnset btnset-round">
 								</div>

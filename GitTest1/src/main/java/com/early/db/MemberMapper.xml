@@ -9,32 +9,32 @@
 <mapper namespace="com.early.db.MemberMapper">
 
 	<insert id="join" parameterType="com.early.model.MemberVO">
-		insert into member(ID, PW, NICK)
-		values (#{id}, #{pw}, #{nick})
+		insert into tb_user(user_ID, user_PW, user_NICK,joined_at, user_type)
+		values (#{user_id}, #{user_pw}, #{user_nick},sysdate,'N')
 	</insert>
 	<select id="login" parameterType="com.early.model.MemberVO"
 		resultType="com.early.model.MemberVO">
-		SELECT * FROM member
-		WHERE ID = #{id}
-		AND PW = #{pw}
+		SELECT * FROM TB_USER 
+		WHERE USER_ID = #{user_id} 
+		AND USER_PW = #{user_pw}
 	</select>
 	 <select id="idCheck" parameterType="String" resultType="boolean">
 		SELECT case when count(*)>0 then 1
 					else 0
 			   end result
-		FROM MEMBER
-		WHERE id=#{id}	   		
+		FROM tb_user
+		WHERE user_id=#{user_id}	   		
 	</select>
 	
 	<update id="update" parameterType="com.early.model.MemberVO">
-		UPDATE MEMBER SET
-		PW=#{pw}, NICK=#{nick} WHERE ID=#{id}
+		UPDATE tb_user SET
+		user_pw=#{user_pw}, user_nick=#{user_nick} WHERE user_id=#{user_id}
 	</update>
 	
 	<delete id="deleteMember" parameterType="String">
-		delete from member where ID=#{id}
-	
+		delete from tb_user where user_id=#{user_id}
 	</delete>
+	
 	
 	
 
