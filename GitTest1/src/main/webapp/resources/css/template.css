@@ -40,12 +40,12 @@
   --text-color3: #505050;
   --text-color4: #777777;
   --text-color5: #999999;
-  --text-color6: #ffffff;
+  --text-color6: rgb(0, 0, 0);
   --bg-color: var(--highlight-bg1);
   --line-color1: #e1e1e1;
   --line-color2: #F0F0F6;
   --line-color3: #E5E5EC;
-  --line-color4: #242424;
+  --line-color4: rgb(255, 255, 255);
   --ff: "Roboto", "Noto Sans KR", sans-serif;
   --ff-ko: "Noto Sans KR", sans-serif;
   --ff-en: "Roboto", sans-serif;
@@ -108,7 +108,7 @@
 /* Reset */
 *,
 *::before,
-*::after { margin: 1; padding: 0; box-sizing: border-box; }
+*::after { margin: 0; padding: 0; box-sizing: border-box; }
 html { font-size: 62.5%; /* 16px * 0.625 = 10px */ }
 body { margin: 0; font-family: var(--ff); font-weight: 400; font-size: var(--fs-p3); line-height: var(--lh-p3); letter-spacing: var(--letter-spacing); color: var(--body-color); background-color: var(--body-bg); -webkit-text-size-adjust: 100%; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); }
 hr { margin: 1rem 0; color: inherit; border: 0; border-top: 1px solid; opacity: 0.25; }
