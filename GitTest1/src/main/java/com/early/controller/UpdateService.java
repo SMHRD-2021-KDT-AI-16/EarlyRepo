@@ -19,23 +19,16 @@ public class UpdateService implements Command {
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
-		String user_id = request.getParameter("user_id");
+		HttpSession session = request.getSession();
 		String user_pw = request.getParameter("user_pw");
 		String user_nick = request.getParameter("user_nick");
 		
+		MemberVO user = (MemberVO)session.getAttribute("member");
+		String user_id = user.getUser_id();
 		
-
-		// 3. 세션 영역 안에 있는 이메일 데이터 꺼내오기
-		// (1) 세션 꺼내오기
-		HttpSession session = request.getSession();
-		// (2) 세션 영역안에 있는 member 이름표 데이터 꺼내오기
-		MemberVO sessionvo = (MemberVO) session.getAttribute("member");
-		// (3) email값만 꺼내오기
-		sessionvo.getUser_id();
-
-		// 4. 꺼내온 데이터 들을 하나로 묶어주기
+	// 4. 꺼내온 데이터 들을 하나로 묶어주기
 		MemberVO vo = new MemberVO();
-		
+		vo.setUser_id(user_id);
 		vo.setUser_pw(user_pw);
 		vo.setUser_nick(user_nick);
 	
@@ -51,8 +44,8 @@ public class UpdateService implements Command {
 		if (row > 0) {
 		
 			// sessionVO 영역 안에 있는 데이터 변경 방식 사용
-			sessionvo.setUser_pw(user_pw);
-			sessionvo.setUser_nick(user_nick);
+			user.setUser_pw(user_pw);
+			user.setUser_nick(user_nick);
 			
 			
 		}

@@ -34,6 +34,7 @@ public class LoginService implements Command{
 		HttpSession session = request.getSession();
 		session.setAttribute("member", result);
 		
+		
 		return "redirect:/GoMain.do";
 	
 		

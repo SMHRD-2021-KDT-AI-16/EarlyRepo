@@ -72,16 +72,15 @@
 							</c:if>
 								<c:if test="${member!=null }">
 									<c:if test="${member.user_id!='admin' }">
-										<a href="Mypage.jsp">개인정보수정</a>
+										<a href="Mypage.jsp" class="badgeset badgeset-fill badgeset-border badgeset-round badgeset-primary" >개인정보수정</a>
 									</c:if>
 									
 									<c:if test="${member.user_id=='admin' }">
-										<a href="SelectAll.do">회원관리</a>
+										<a href="SelectAll.jsp" class="badgeset badgeset-fill badgeset-border badgeset-round badgeset-primary">회원관리</a>
 									</c:if>	
 							</c:if>
 									
-								
-					
+											
 					<button class="btn-search header-utils-btn">
 						<img src="../resources/icons/ico_search_black.svg" alt="검색">
 					</button>
