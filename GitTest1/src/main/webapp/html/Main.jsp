@@ -72,7 +72,7 @@
 							</c:if>
 								<c:if test="${member!=null }">
 									<c:if test="${member.id!='admin' }">
-										<a href="Goupdate.do">개인정보수정</a>
+										<a href="Mypage.jsp">개인정보수정</a>
 									</c:if>
 									
 									<c:if test="${member.id=='admin' }">
