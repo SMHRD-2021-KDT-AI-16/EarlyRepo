@@ -1,53 +1,50 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- 1. 어떤 문법을 사용할 건지 정의 : schema
-		schema란? xml파일 안에서 정보들(태그들)의 집합
-		dtd란? document type definition()
-		>> mybatis의 config(모양)를 만들어 줄수 있는 것들을 정의하는 집합을 로드함
-		 -->
+<!-- 1. 어떤 문법을 사용할 건지 정의 : schema schema란? xml파일 안에서 정보들(태그들)의 집합 dtd란? document 
+	type definition() >> mybatis의 config(모양)를 만들어 줄수 있는 것들을 정의하는 집합을 로드함 -->
 <!DOCTYPE configuration
   PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-config.dtd">
-  
-<!-- 2. configuration : mybatis 연결 설정을 정의하는 태그 -->		
+
+<!-- 2. configuration : mybatis 연결 설정을 정의하는 태그 -->
 <configuration>
 
+	<properties resource="com/early/db/db.properties">
+	</properties>
+	<typeAliases>
+		<typeAlias type="com.early.model.boardVO" alias="Board" />
+	</typeAliases>
 
+	<!-- 3. environments : 연결할 db들에 대한 정보를 기술하는 태그 default = 기본이되는 db설정 -->
+	<environments default="development">
 
+		<!-- 4. environment : db "한개"에 대한 정보 id= db의 식별자 -->
+		<environment id="development">
 
-<!-- 3. environments :  연결할 db들에 대한 정보를 기술하는 태그 
-						default = 기본이되는 db설정 -->
-  <environments default="development">
-  
-<!-- 4. environment : db "한개"에 대한 정보 
-					id= db의 식별자 -->  
-    <environment id="development">
-    
-<!-- 5. transactionManager : commit, rollback을 누가 할건지 정해주는 공간
-   							type
-   							 1)"JDBC">> mybatis 자체적으로 commit, rollback 결정 
-   							 2) "MANAGED" >> container에서 commit, rollback 결정-->
-      <transactionManager type="JDBC"/>
-      
-<!-- 6. dataSource == Connection 객체 생성
-			property : dataSource안에 들어가는 필드값
-			type attribute
-			- POOLED : DBCP(DataBase Connection Pool)
-					 : Connection객체를 미리 생성하고 요청이 들어올때마다 빌려주기 
-			- UNPOOLED : 요청이 들어올때마다 Connection객체를 생성 -->			
-      <dataSource type="POOLED">
-        <property name="driver" value="oracle.jdbc.driver.OracleDriver"/>
-        <property name="url" value="jdbc:oracle:thin:@localhost:1521:xe"/>
-        <property name="username" value="service"/>
-        <property name="password" value="12345"/>
-      </dataSource>
-    </environment>
-  </environments>
-  
-<!--/////////////// DB 관련 ///////////////////  -->
-  
-<!-- 7. mappers : mapper 태그를 여러개 넣어 줄수 있다 -->
-  <mappers>
-<!-- 8. mapper : SQL구문을 가지고 있는 파일의 경로를 잡아주는 태그 >> 수정하러 와야함 -->
-    <mapper resource="com/early/db/MemberMapper.xml"/>
-  </mappers>
+			<!-- 5. transactionManager : commit, rollback을 누가 할건지 정해주는 공간 type 1)"JDBC">> 
+				mybatis 자체적으로 commit, rollback 결정 2) "MANAGED" >> container에서 commit, rollback 
+				결정 -->
+			<transactionManager type="JDBC" />
+
+			<!-- 6. dataSource == Connection 객체 생성 property : dataSource안에 들어가는 필드값 
+				type attribute - POOLED : DBCP(DataBase Connection Pool) : Connection객체를 
+				미리 생성하고 요청이 들어올때마다 빌려주기 - UNPOOLED : 요청이 들어올때마다 Connection객체를 생성 -->
+			<dataSource type="POOLED">
+				<property name="driver"
+					value="oracle.jdbc.driver.OracleDriver" />
+				<property name="url"
+					value="jdbc:oracle:thin:@localhost:1521:xe" />
+				<property name="username" value="service" />
+				<property name="password" value="12345" />
+			</dataSource>
+		</environment>
+	</environments>
+
+	<!--/////////////// DB 관련 /////////////////// -->
+
+	<!-- 7. mappers : mapper 태그를 여러개 넣어 줄수 있다 -->
+	<mappers>
+		<!-- 8. mapper : SQL구문을 가지고 있는 파일의 경로를 잡아주는 태그 >> 수정하러 와야함 -->
+		<mapper resource="com/early/db/MemberMapper.xml" />
+		<mapper resource="com/early/db/BoardMapper.xml" />
+	</mappers>
 </configuration>

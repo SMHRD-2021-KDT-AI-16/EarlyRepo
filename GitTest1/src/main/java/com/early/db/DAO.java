@@ -31,7 +31,7 @@ public class DAO {
 		SqlSession sqlSession = factory.openSession(true);
 		
 		try {
-		checkE = sqlSession.selectOne("idCheck", inputE);
+			checkE = sqlSession.selectOne("idCheck", inputE);
 		}catch(Exception e) {
 			
 		}finally {

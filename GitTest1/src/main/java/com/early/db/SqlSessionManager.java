@@ -27,7 +27,7 @@ public class SqlSessionManager {
 		try {
 			inputStream = Resources.getResourceAsStream(resource);
 			// 3. 파일을 읽어서 inputStream 생성
-
+			System.out.println("inputSt"+inputStream);
 			sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
 			// 4. DBCP(== sqlSessionFactory) 생성
 			// Connection == sqlSession

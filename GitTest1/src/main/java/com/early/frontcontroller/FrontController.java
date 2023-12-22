@@ -14,6 +14,7 @@ import com.early.controller.Command;
 import com.early.controller.IdCheckService;
 import com.early.controller.JoinService;
 import com.early.controller.LoginService;
+import com.early.controller.BoardListService;
 
 /**
  * Servlet implementation class FrontController
@@ -34,7 +35,7 @@ public class FrontController extends HttpServlet {
 		String uri = request.getRequestURI();
 		String cp = request.getContextPath();
 		String path = uri.substring(cp.length() + 1);
-
+		System.out.println(path);
 		request.setCharacterEncoding("utf-8");
 
 		String finalpath = null;
@@ -52,8 +53,11 @@ public class FrontController extends HttpServlet {
 			} else if (path.equals("IdCheckService.do")) {
 				com = new IdCheckService();
 				System.out.println(com);
+			}else if (path.equals("listService.do")) { 
+				com = new BoardListService();
+				System.out.println("com : "+com);
 			}
-
+			
 			finalpath = path.replaceAll(".do", ".html");
 			System.out.println("1번 :" + finalpath);
 			finalpath = com.execute(request, response);
