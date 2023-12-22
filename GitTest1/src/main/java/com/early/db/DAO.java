@@ -32,9 +32,11 @@ public class DAO {
 
 		try {
 			checkE = sqlSession.selectOne("idCheck", inputE);
-		} catch (Exception e) {
 
-		} finally {
+		}catch(Exception e) {
+			
+		}finally {
+
 			sqlSession.close();
 		}
 

@@ -6,7 +6,8 @@
 
 <!-- 2. mapper : 안쪽에 sql구문을 작성할 수 있는 공간 namespace : 중복이 되지 않게 선언 >> DAO와 
 	이름 일치시키자 -->
-<mapper namespace="com.early.db.DAO">
+<mapper namespace="com.early.db.MemberMapper">
+
 	<insert id="join" parameterType="com.early.model.MemberVO">
 		insert into member(ID, PW, NICK)
 		values (#{id}, #{pw}, #{nick})

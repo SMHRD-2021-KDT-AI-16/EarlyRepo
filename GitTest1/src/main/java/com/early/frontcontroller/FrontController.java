@@ -16,6 +16,8 @@ import com.early.controller.JoinService;
 import com.early.controller.LoginService;
 import com.early.controller.LogoutService;
 import com.early.controller.UpdateService;
+import com.early.controller.BoardListService;
+
 
 /**
  * Servlet implementation class FrontController
@@ -36,7 +38,7 @@ public class FrontController extends HttpServlet {
 		String uri = request.getRequestURI();
 		String cp = request.getContextPath();
 		String path = uri.substring(cp.length() + 1);
-
+		System.out.println(path);
 		request.setCharacterEncoding("utf-8");
 
 		String finalpath = null;
@@ -59,12 +61,15 @@ public class FrontController extends HttpServlet {
 				com = new UpdateService();
 			}else if (path.equals("DeleteMember.do")) {
 				com = new UpdateService();
+				System.out.println(com);
+			}else if (path.equals("listService.do")) { 
+				com = new BoardListService();
+				System.out.println("com : "+com);
 			}
-			
-			
 			System.out.println("com값 : "+com);
 
 			finalpath = path.replaceAll(".do", ".jsp");
+
 			System.out.println("1번 :" + finalpath);
 			finalpath = com.execute(request, response);
 
