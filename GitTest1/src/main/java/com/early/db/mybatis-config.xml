@@ -44,5 +44,6 @@
 		<!-- 8. mapper : SQL구문을 가지고 있는 파일의 경로를 잡아주는 태그 >> 수정하러 와야함 -->
 		<mapper resource="com/early/db/MemberMapper.xml" />
 		<mapper resource="com/early/db/BoardMapper.xml" />
+		<mapper resource="com/early/db/mapMapper.xml" />
 	</mappers>
 </configuration>

@@ -5,8 +5,8 @@
   
 <mapper namespace="com.early.db.BoardMapper">
 	
-	<select id="allBoard" resultType="Board">
-		select * from C_FORUM
+	<select id="getAllBoard" resultType="com.early.model.NoticeBoardVO">
+		select * from tb_FORUM where loc = #{loc}
 	</select>
 
 </mapper>

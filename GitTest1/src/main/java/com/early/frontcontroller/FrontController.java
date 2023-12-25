@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.early.controller.Command;
 import com.early.controller.DelMemberService;
+import com.early.controller.GetApartService;
+import com.early.controller.GetNoticeBoardService;
 import com.early.controller.IdCheckService;
 import com.early.controller.JoinService;
 import com.early.controller.LoginService;
@@ -20,17 +22,24 @@ import com.early.controller.UpdateService;
 import com.early.controller.BoardListService;
 
 
-/**
- * Servlet implementation class FrontController
- */
 @WebServlet("*.do")
 public class FrontController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	HashMap<String, Command> map = new HashMap<>();
 
-	public FrontController() {
-		super();
+	@Override
+	public void init() throws ServletException {
+		super.init();
+		
+		map.put("Join.do", new JoinService());
+		map.put("IdCheckService.do", new IdCheckService());
+		map.put("Login.do", new LoginService());
+		map.put("Logout.do", new LogoutService());
+		map.put("Update.do", new UpdateService());
+		map.put("DeleteMember.do", new DelMemberService());
+		map.put("getApart.do", new GetApartService());
+		map.put("html/notice_Board.do", new GetNoticeBoardService());
 	}
 
 	
@@ -39,7 +48,9 @@ public class FrontController extends HttpServlet {
 		String uri = request.getRequestURI();
 		String cp = request.getContextPath();
 		String path = uri.substring(cp.length() + 1);
-		
+		System.out.println("uri : "+uri);
+		System.out.println("cp : "+cp);
+		System.out.println("path : "+path);
 		request.setCharacterEncoding("utf-8");
 
 		String finalpath = null;
@@ -49,44 +60,40 @@ public class FrontController extends HttpServlet {
 			// Go + 파일이름 + .do
 			finalpath = path.replaceAll("Go", "").replaceAll(".do", ".jsp");
 		} else {
-			if (path.equals("Join.do")) {
-				// 4. 일반 클래스 파일에게 일 시키는 작업
-				com = new JoinService();
-			} else if (path.equals("Login.do")) {
-				com = new LoginService();
-			} else if (path.equals("IdCheckService.do")) {
-				com = new IdCheckService();
-			}else if (path.equals("Logout.do")) {
-				com = new LogoutService();
-			}else if (path.equals("Update.do")) {
-				com = new UpdateService();
-			}else if (path.equals("DeleteMember.do")) {
-				System.out.println("들어옴?");
-				com = new DelMemberService();
-				
-			}else if (path.equals("listService.do")) { 
-				com = new BoardListService();
-			}
 
-			finalpath = path.replaceAll(".do", ".jsp");
-
-			
+			com = map.get(path);
+			//System.out.println("1번 :" + finalpath);
+			System.out.println("com : "+com);
 			finalpath = com.execute(request, response);
 
 		}
 
 		// 5. 페이지 이동(2가지)
 		if (finalpath != null) {
+			System.out.println("finalpath : "+finalpath);
+			
 			if (finalpath.contains("redirect:/")) {
-				// response.sendRedirect(finalpath.substring(11));
-				response.sendRedirect(
-						finalpath.replaceAll("redirect:/", "html/").replaceAll(".do", ".jsp").replaceAll("Go", ""));
-				System.out.println("2번" + finalpath);
-			} else {
-				RequestDispatcher rd = request.getRequestDispatcher("html/" + finalpath);
+				finalpath = finalpath.replace("redirect:/", "html/");
+				System.out.println("finalpath2 : "+finalpath);
+				
+				if(finalpath.contains(".do")) {
+					finalpath = finalpath.replaceAll(".do", ".jsp");
+					System.out.println("finalpath3 : "+finalpath);
+					
+					if(finalpath.contains("Go")) {
+						finalpath = finalpath.replaceAll("Go", "");
+						System.out.println("finalpath4 : "+finalpath);
+					}
+				}
+				System.out.println("finalpath5 : "+finalpath);
+				response.sendRedirect(finalpath);
+			}
+			else {
+				System.out.println("finalpath6 : "+finalpath);
+				RequestDispatcher rd = request.getRequestDispatcher(finalpath);
 				rd.forward(request, response);
 			}
-		}
+		}		
 
 	}
 
