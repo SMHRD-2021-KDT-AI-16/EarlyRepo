@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.early.db.mapMapper">
+
+	<select id="getApart" parameterType="String" resultType="com.early.model.ApartVO">
+		SELECT * FROM tb_apartment WHERE apt_loc LIKE '%'||#{name}||'%'
+	</select>
+	
+	<select id="getApart2" parameterType="String" resultType="com.early.model.ApartVO">
+		SELECT * FROM tb_apartment WHERE apt_loc LIKE '%'||#{name}||'%'
+	</select>
+
+</mapper>
