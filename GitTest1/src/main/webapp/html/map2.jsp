@@ -24,8 +24,59 @@
 	<link rel="stylesheet" href="../resources/css/style.css">
 	<link rel="stylesheet" href="../resources/css/map.css">
 	<style>
-		
-		
+        #customOverlay {
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 250px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 999;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        #titleText {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 16px;
+        }
+
+        #customList {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .customListItem {
+            margin-bottom: 10px;
+        }
+
+        .customButton {
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-top: 16px;
+        }
+
+        .customButton img {
+            width: 12px;
+            height: 12px;
+            margin-right: 5px;
+        }
+
+        .customButton:hover {
+            background-color: #0056b3;
+        }
 	</style>
 </head>
 
@@ -193,26 +244,20 @@
 					        customOverlay.setMap(null);
 					    });  */
 					    
-					    kakao.maps.event.addListener(polygon, 'click', function(mouseEvent) {
-					    	addr = name;
-					    	var content = '<div class = "overlaybox">'+
-							  '<div class="title_text">'+name+'</div>'+
-							      '<ul>'+
-								      '<li>'+
-									      '<button onclick="detail_map()">지역상세보기</button>'+
-									  '</li>'+
-									  '<li>'+
-									  	  '<form action ="notice_Board.do"><button name="loc" value="'+name+'">지역게시판</button></form>'+
-									  '</li>'+
-									  '<li>'+
-										  '<form action =""><button>지역채팅</button></form>'+
-									  '</li>'+
-								  '</ul>'+
-							  '</div>';
-							customOverlay.setContent(content);
-							customOverlay.setPosition(mouseEvent.latLng);
-							customOverlay.setMap(map);
-						});
+					    kakao.maps.event.addListener(polygon, 'click', function (mouseEvent) {
+				            addr = name;
+				            var content = '<div id="customOverlay">' +
+				                '<div id="titleText">' + name + '</div>' +
+				                '<ul id="customList">' +
+				                '<li class="customListItem"><button class="customButton" onclick="detail_map()">지역상세보기</button></li>' +
+				                '<li class="customListItem"><form action="notice_Board.do"><button class="customButton" name="loc" value="' + name + '">지역게시판</button></form></li>' +
+				                '<li class="customListItem"><form action=""><button class="customButton">지역채팅</button></form></li>' +
+				                '</ul>' +
+				                '</div>';
+				            customOverlay.setContent(content);
+				            customOverlay.setPosition(mouseEvent.latLng);
+				            customOverlay.setMap(map);
+				        });
 					}
 					
 					//kakao.maps.event.addListener(map, 'zoom_changed', function() {        
@@ -256,54 +301,60 @@
 					}
 					
 					function getData(){
-						$.ajax({
-							/* url : 'http://localhost:8083/GitTest2/GetApartinfoService?name='+addr, */
-							url : 'http://localhost:8083/GitTest2/getApart.do?name='+addr,
-							contentType: 'text/plain; charset=UTF-8', // Specify UTF-8
-							success:function(result){
-								var itemList = result.split(';');
-								//itemList.remove(4);
-								console.log('List from server:', itemList);
-								
-								for (let i = 0; i < itemList.length-1; i+=2){
-									let j = i+1;
-									console.log("j : ",itemList[j]);
-									var geocoder = new kakao.maps.services.Geocoder();
-								
-									// 주소로 좌표를 검색
-									geocoder.addressSearch(itemList[i], function(result, status) {
+		                  $.ajax({
+		                     /* url : 'http://localhost:8083/GitTest2/GetApartinfoService?name='+addr, */
+		                     url : 'http://localhost:8083/GitTest1/getApart.do?name='+addr,
+		                     contentType: 'text/plain; charset=UTF-8', // Specify UTF-8
+		                     success:function(result){
+		                        var itemList = result.split(';');
+		                        //itemList.remove(4);
+		                        console.log('List from server:', itemList);
+		                        
+		                        for (let i = 0; i < itemList.length-1; i+=2){
+		                           let j = i+1;
+		                           console.log("j : ",itemList[j]);
+		                           var geocoder = new kakao.maps.services.Geocoder();
+		                        
+		                           // 주소로 좌표를 검색
+		                           geocoder.addressSearch(itemList[i], function(result, status) {
 
-								     	// 정상적으로 검색
-								     	if (status === kakao.maps.services.Status.OK) {
+		                                // 정상적으로 검색
+		                                if (status === kakao.maps.services.Status.OK) {
 
-								        	var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+		                                   var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
 
-								        	// 결과값으로 받은 위치를 마커로 표시
-								        	var marker = new kakao.maps.Marker({
-								           		map: map,
-								            	position: coords
-								        	});
+		                                   // 결과값으로 받은 위치를 마커로 표시
+		                                   var marker = new kakao.maps.Marker({
+		                                         map: map,
+		                                       position: coords
+		                                   });
 
-								        	// 인포윈도우로 장소에 대한 설명을 표시
-								        	var infowindow = new kakao.maps.InfoWindow({
-								            	content: '<div style="width:150px;text-align:center;padding:6px 0;">'+itemList[j]+'</div>'
-								        	});
-								        	
-								        infowindow.open(map, marker);
+		                                   
+		                                   var iwContent = '<div style="width:150px;text-align:center;padding:6px 0;">'+itemList[j]+'</div>', // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
+		                                    iwRemoveable = true; // removeable 속성을 ture 로 설정하면 인포윈도우를 닫을 수 있는 x버튼이 표시됩니다
+		                                    
+		                                   var infowindow = new kakao.maps.InfoWindow({
+		                                       content: iwContent,
+		                                       removable : iwRemoveable
+		                                   });
+		                        
+		                                   kakao.maps.event.addListener(marker, 'click', function() {
+		                                      // 마커 위에 인포윈도우를 표시합니다
+		                                      infowindow.open(map, marker);  
+		                                   });
 
-								    	} 
-									})
-								}
-								 
-								
-							},
-							error:function(){
-								
-							}
-						})
-						
-					}
-					
+		                                 } 
+		                           })
+		                        }
+		                         
+		                        
+		                     },
+		                     error:function(){
+		                        
+		                     }
+		                  })
+		                  
+		               }
 					function change_LatLng(itemList){
 						var geocoder = new kakao.maps.services.Geocoder();
 						
