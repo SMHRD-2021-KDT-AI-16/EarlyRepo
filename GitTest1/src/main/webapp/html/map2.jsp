@@ -76,7 +76,24 @@
 
         .customButton:hover {
             background-color: #0056b3;
+            
         }
+        
+        .overlay {
+    		position:fixed;
+    		right: -900px;
+    		top: 10px;
+    		width:100px;
+    		height: 100px;
+		    background: #fff;
+    		border:1px solid #ccc;
+    		border-radius: 5px;
+    		padding:5px;
+    		font-size:12px;
+		    text-align: center;
+    		white-space: pre;
+    		word-wrap: break-word;
+		}
 	</style>
 </head>
 
@@ -328,27 +345,28 @@
 		                                         map: map,
 		                                       position: coords
 		                                   });
-
 		                                   
-		                                   var iwContent = '<div style="width:150px;text-align:center;padding:6px 0;">'+itemList[j]+'</div>', // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
-		                                    iwRemoveable = true; // removeable 속성을 ture 로 설정하면 인포윈도우를 닫을 수 있는 x버튼이 표시됩니다
-		                                    
-		                                   var infowindow = new kakao.maps.InfoWindow({
-		                                       content: iwContent,
-		                                       removable : iwRemoveable
-		                                   });
-		                        
-		                                   kakao.maps.event.addListener(marker, 'click', function() {
-		                                      // 마커 위에 인포윈도우를 표시합니다
-		                                      infowindow.open(map, marker);  
-		                                   });
+		                                   let content = document.createElement('div');
+								        	content.className = 'overlay';
+								        	content.innerHTML = '<div id="test" style="width:150px;text-align:center;padding:6px 0;">'+itemList[j]+'</div>';
+								            
+								
+								        	kakao.maps.event.addListener(marker, 'click', function() {
+										        
+								        		let CustomOverlay2 = new kakao.maps.CustomOverlay({
+									        		map: map,
+									        		position: coords,
+									        	    content: content
+									        	});
+										  	});
+								     
 
-		                                 } 
-		                           })
-		                        }
-		                         
-		                        
-		                     },
+								    	} 
+									})
+								}
+								 
+								
+							},
 		                     error:function(){
 		                        
 		                     }
