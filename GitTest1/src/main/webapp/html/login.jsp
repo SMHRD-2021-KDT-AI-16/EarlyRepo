@@ -38,7 +38,7 @@
 				<ul class="header-gnblist">
 					<li class="header-gnbitem">
 					</li>
-					<li lass="header-gnbitem">
+					<li class="header-gnbitem">
 						<a class="header-gnblink" href="map.jsp">
 							<span>집찾기</span>
 						</a>

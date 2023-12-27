@@ -60,7 +60,7 @@
 
         .customButton {
             background-color: #007BFF;
-            color: #fff;
+            color: #fafafa;
             border: none;
             padding: 10px 20px;
             cursor: pointer;
@@ -94,6 +94,7 @@
     		white-space: pre;
     		word-wrap: break-word;
 		}
+				
 	</style>
 </head>
 
@@ -110,74 +111,157 @@
 			</div>
 			<div class="header-center">
 				<ul class="header-gnblist">
+					
 					<li class="header-gnbitem">
-					</li>
-					<li class="header-gnbitem">
-						<a class="header-gnblink" href="javascript:void(0)">
-							<span>시설소개</span>
+						<a class="header-gnblink" href="map.jsp">
+							<span>집찾기</span>
 						</a>
 					</li>
 					<li class="header-gnbitem">
-						<ul class="header-sublist">
-							<li class="header-subitem">
-								<a class="header-sublink" href="javascript:void(0)">
-									<span>공지사항</span>
-								</a>
-							</li>
-							<li class="header-subitem">
-								<a class="header-sublink" href="javascript:void(0)">
-									<span>자주묻는질문</span>
-								</a>
-							</li>
-						</ul>
-					</li>
-					<li class="header-gnbitem">
-						<a class="header-gnblink" href="javascript:void(0)">
-							<span>이용후기</span>
+						<a class="header-gnblink" href="board.jsp">
+							<span>부동산 게시판</span>
 						</a>
 					</li>
 					<li class="header-gnbitem">
-						<a class="header-gnblink" href="javascript:void(0)">
-							<span>오시는 길</span>
+						<a class="header-gnblink" href="Chat.jsp">
+							<span>동네 채팅</span>
 						</a>
 					</li>
-					<li class="header-gnbitem">
-						<ul class="header-sublist">
-							<li class="header-subitem">
-								<a class="header-sublink" href="javascript:void(0)">
-									<span>빠른예약</span>
-								</a>
-							</li>
-							<li class="header-subitem">
-								<a class="header-sublink" href="javascript:void(0)">
-									<span>예약조회</span>
-								</a>
-							</li>
-						</ul>
-					</li>
+					
 				</ul>
 			</div>
 			<div class="header-right">
 				<div class="header-utils">
-					<a href="javascript:void(0);" class="btn-profile header-utils-btn">
-						<img src="../resources/icons/ico_profile_black.svg" alt="검색">
+					<a href="login.jsp" class="btn-profile header-utils-btn">
+						<img src="../resources/icons/ico_profile_black.svg" >
 					</a>
-					<button class="btn-search header-utils-btn">
-						<img src="../resources/icons/ico_search_black.svg" alt="검색">
-					</button>
-					<button class="btn-moclose header-utils-btn">
-						<img src="../resources/icons/ico_close_m_black.svg" alt="닫기">
-					</button>
+					<a href="Profile.jsp" class="btn-search header-utils-btn">
+						<img src="../resources/icons/ico_search_black.svg" >
+					</a>
+					
 				</div>
 			</div>
 		</div>
 	</header>
 
-	<main class="th-layout-main ">
+	<main class="th-layout-main">
 		<div id="total_div">
-			<div id="left_div">
+			<div id="left_div">       <!-- 왼쪽 자산정보 입력창 -->
+		   
+		       <div class="textset textset-sub textset-center">
+				  <h5 class="textset-tit">당신의 능력으로 살 수있는 집을 알려드려요​<br></h5>
+			   </div>
+		   
+		   		<ul class="contents-list">
+		   		
+		   				<li class="contents-item">
+							<h6 class="form-tit form-tit-deco">
+								<span></span>집 사본적?
+							</h6>
+							<div class="form-wrap">
+								<div class="inputset inputset-round" align=center>
+									<input type="radio" name="firstloan"  value="fisrtloan0"> 있어요
+									<input type="radio" name="firstloan"  value="firstloan1"> 없어요
+								</div>
+							</div>
+						</li>
+						
+						<li class="contents-item">
+							<h6 class="form-tit form-tit-deco">
+								<span></span> 현재 집이 있나요?
+							</h6>
+							<div class="form-wrap">
+								<div class="inputset inputset-round" align=center>
+									<input type="radio" name="firstloan" value="fisrtloan0"> 있어요
+									<input type="radio" name="firstloan" value="firstloan1"> 없어요
+								</div>
+							</div>
+						</li>
+		   		
+						<li class="contents-item">
+							<h6 class="form-tit form-tit-deco">
+								<span></span>나이
+							</h6>
+							<div class="form-wrap">
+								  <div class="selectset selectset-round selectset-md">
+                  					  <select name="age" class="selectset-toggle btn" >
+                						    <option value="under24">24세이하</option>
+                             				<option value="over24">25세~30세</option>
+                      					    <option value="over28">31세~36세</option>
+                      					    <option value="over34">36세이상</option>
+             						 </select>
+               					  </div>
+               				</div>	  
+						</li>
+						
+						<li class="contents-item">
+							<h6 class="form-tit form-tit-deco">
+								<span></span>부양가족수
+							</h6>
+							<div class="form-wrap">
+								  <div class="selectset selectset-round selectset-md">
+                  					  <select name="family" class="selectset-toggle btn" >
+                						    <option value="family1">혼자살아요</option>
+                             				<option value="family2">2인</option>
+                      					    <option value="family3">3인</option>
+                      					    <option value="family4">4인이상</option>
+             						 </select>
+               					  </div>
+               				</div>	  
+						</li>
+
+						
+						
+						<li class="contents-item">
+							<h6 class="form-tit form-tit-deco">
+								<span></span>연소득입력(만원)
+							</h6>
+							<div class="form-wrap">
+								<div class="form-wrap">
+								  <div class="selectset selectset-round selectset-md">
+                  					  <select name="salary" class="selectset-toggle btn" >
+                						    <option value="under2000">2000만원 이하</option>
+                             				<option value="over2000">2000~3000만원</option>
+                      					    <option value="over3000">3000만원~4000만원</option>
+                      					    <option value="over4000">4000만원~5000만원</option>
+                      					    <option value="over5000">5000만원~6000만원</option>
+                      					    <option value="over6000">6000만원~7000만원</option>
+                      					    <option value="over7000">7000만원 이상</option>
+                      					    
+             						 </select>
+               					  </div>
+               				</div>	  
+							</div>
+						</li>
+
+						<li class="contents-item">
+							<h6 class="form-tit form-tit-deco">
+								<span></span>구매여유자금(만원)
+							</h6>
+							<div class="form-wrap">
+								<div class="form-wrap">
+								  <div class="selectset selectset-round selectset-md">
+                  					  <select name="spare_funds" class="selectset-toggle btn" >
+                						    <option value="under2000">2000만원 이하</option>
+                             				<option value="over2000">2000~3000만원</option>
+                      					    <option value="over3000">3000만원~4000만원</option>
+                      					    <option value="over4000">4000만원~5000만원</option>
+                      					    <option value="over5000">5000만원~6000만원</option>
+                      					    <option value="over6000">6000만원~7000만원</option>
+                      					    <option value="over7000">7000만원 이상</option>
+             						 </select>
+               					  </div>
+               				  </div>	  
+						 </div>
+						</li>
+					<br>
+					<div class="contents-confirm" align=center>
+						<button class="btnset btnset-round">결과보기</button>
+					</div>
+
+				</ul>	
 		
-			</div>
+			</div>      <!-- 왼쪽 자산정보 입력창 닫기 -->
 			
 			<div id="mid_div">
 			<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
@@ -404,6 +488,149 @@
 			</div>
 			
 		</div>
+		
+		<!-- [S]campland-N15 -->
+    <div class="campland-N15" data-bid="crlQNCwqYB">
+      <div class="contents-inner">
+        <div class="contents-container container-md">
+          <div class="textset textset-sub">
+            <h2 class="textset-tit">부동산 게시판</h2> 
+          </div>
+          
+          <div class="cardset-wrap">
+            <a href="javascipt:void(0);" class="cardset">
+              <figure class="cardset-figure">
+                <img class="cardset-img" src="../resources/images/베장미.png" >
+              </figure>
+              <div class="cardset-body">
+                
+                <p class="cardset-desc">
+                  구임규
+                  <br>
+                 
+              </div>
+            </a>
+            <a href="javascipt:void(0);" class="cardset">
+              <figure class="cardset-figure">
+                <img class="cardset-img" src="../resources/images/직방.png" >
+              </figure>
+              <div class="cardset-body">
+                
+                <p class="cardset-desc">
+                  좋아보이지만 다 사진빨이에요.
+                 
+                </p>
+              </div>
+            </a>
+            <a href="javascipt:void(0);" class="cardset">
+              <figure class="cardset-figure">
+                <img class="cardset-img" src="../resources/images/apart.png" >
+              </figure>
+              <div class="cardset-body">
+                
+                <p class="cardset-desc">
+                  돈 벌어서 넓은 집으로!!
+                  
+                </p>
+              </div>
+            </a>
+            
+            <a href="javascipt:void(0);" class="cardset">
+              <figure class="cardset-figure">
+                <img class="cardset-img" src="../resources/images/프로젝트하는나의모습.png" >
+              </figure>
+              <div class="cardset-body">
+                
+                <p class="cardset-desc">
+                  정신아 돌아와줘
+                  
+                </p>
+              </div>
+            </a>
+            <a href="javascipt:void(0);" class="cardset">
+              <figure class="cardset-figure">
+                <img class="cardset-img" src="../resources/images/apart.png" >
+              </figure>
+              <div class="cardset-body">
+                
+                <p class="cardset-desc">
+                  이제 어려운 작업만 남았다!!
+                  
+                </p>
+              </div>
+            </a>
+            <a href="javascipt:void(0);" class="cardset">
+              <figure class="cardset-figure">
+                <img class="cardset-img" src="../resources/images/고양이빵.png" >
+              </figure>
+              <div class="cardset-body">
+                
+                <p class="cardset-desc">
+                  고양이빵
+                  
+                </p>
+              </div>
+            </a>
+            
+            <a href="javascipt:void(0);" class="cardset">
+              <figure class="cardset-figure">
+                <img class="cardset-img" src="../resources/images/고양이빵.png" >
+              </figure>
+              <div class="cardset-body">
+                
+                <p class="cardset-desc">
+                  고양이빵
+                  
+                </p>
+              </div>
+            </a>
+            
+             <a href="javascipt:void(0);" class="cardset">
+              <figure class="cardset-figure">
+                <img class="cardset-img" src="../resources/images/고양이빵.png" >
+              </figure>
+              <div class="cardset-body">
+                
+                <p class="cardset-desc">
+                  고양이빵
+                  
+                </p>
+              </div>
+            </a>
+             <a href="javascipt:void(0);" class="cardset">
+              <figure class="cardset-figure">
+                <img class="cardset-img" src="../resources/images/고양이빵.png" >
+              </figure>
+              <div class="cardset-body">
+                
+                <p class="cardset-desc">
+                  고양이빵
+                  
+                </p>
+              </div>
+            </a>
+             <a href="javascipt:void(0);" class="cardset">
+              <figure class="cardset-figure">
+                <img class="cardset-img" src="../resources/images/고양이빵.png" >
+              </figure>
+              <div class="cardset-body">
+                
+                <p class="cardset-desc">
+                  고양이빵
+                  
+                </p>
+              </div>
+            </a>
+            
+            
+            
+          </div>  <!-- 게시판 글 영역 -->
+        </div>
+      </div>
+    </div>
+    <!-- [E]campland-N15 -->
+	
+		
 	</main>
 
 	<footer class="campland-N2" data-bid="akLQ6d2RkW">

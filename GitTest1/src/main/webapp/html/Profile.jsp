@@ -37,8 +37,7 @@
 			<div class="header-center">
 
 				<ul class="header-gnblist">
-					<li class="header-gnbitem">
-					</li>
+					
 					<li class="header-gnbitem">
 						<a class="header-gnblink" href="map.jsp">
 							<span>집찾기</span>
@@ -68,9 +67,7 @@
 					<button class="btn-search header-utils-btn">
 						<img src="../resources/icons/ico_search_black.svg" alt="검색">
 					</button>
-					<button class="btn-moclose header-utils-btn">
-						<img src="../resources/icons/ico_close_m_black.svg" alt="닫기">
-					</button>
+					
 				</div>
 			</div>
 		</div>
@@ -83,115 +80,77 @@
 				<div class="contents-container">
 					<div class="textset textset-sub textset-center">
 						<h2 class="textset-tit">자산정보​<br></h2>
+						<h4>더 정확한 대출금액을 알려드립니다. </h4>
 					</div>
-					<ul class="contents-list">
+					<ul class="contents-list">  <!-- 자산정보 입력창 시작 -->
 
+						
+						<li class="contents-item">
+							<h6 class="form-tit form-tit-deco">
+								<span></span>집 사본적
+							</h6>
+							<div class="form-wrap">
+								<div class="inputset inputset-round" align=left>
+									<input type="radio" name="firstloan"  value="fisrtloan0"> 있어요    
+									<input type="radio" name="firstloan"  value="firstloan1"> 없어요
+								</div>
+							</div>
+						</li>
+						
+						<li class="contents-item">
+							<h6 class="form-tit form-tit-deco">
+								<span></span> 현재 집이
+							</h6>
+							<div class="form-wrap">
+								<div class="inputset inputset-round" >
+									<input type="radio" name="now_home" value="now_home0"> 있어요
+									<input type="radio" name="now_home" value="now_home1"> 없어요
+								</div>
+							</div>
+						</li>
+			
+						<li class="contents-item">
+							<h6 class="form-tit form-tit-deco">
+								<span></span>현재 대출이
+							</h6>
+							<div class="form-wrap">
+								<div class="inputset inputset-round">
+									<input type="radio" name="loan"  value="loan0"> 있어요
+									<input type="radio" name="loan"  value="loan1"> 없어요
+								</div>
+							</div>
+						</li>
+		   		
 						<li class="contents-item">
 							<h6 class="form-tit form-tit-deco">
 								<span></span>나이
 							</h6>
 							<div class="form-wrap">
-								<div class="inputset inputset-round">
-									<input type="text" class="inputset-input form-control" aria-label="내용"
-										placeholder="만나이를 입력해주세요.(숫자만)">
-
-								</div>
-							</div>
+								  <div class="selectset selectset-round selectset-md">
+                  					  <select name="age" class="selectset-toggle btn" >
+                						    <option value="under24">24세이하</option>
+                             				<option value="over24">25세~30세</option>
+                      					    <option value="over28">31세~36세</option>
+                      					    <option value="over34">36세이상</option>
+             						 </select>
+               					  </div>
+               				</div>	  
 						</li>
-
+						
 						<li class="contents-item">
 							<h6 class="form-tit form-tit-deco">
-								<span></span>주택보유여부 <br> (단위: 만원)
+								<span></span>부양가족수
 							</h6>
 							<div class="form-wrap">
-								<div class="inputset inputset-round">
-									<input type="text" class="inputset-input form-control" aria-label="내용"
-										placeholder="본인이 보유하신 주택이 있다면 주택의 금액을 입력해주세요. 없다면 0으로 입력!! (숫자만)">
-									<input type="text" class="inputset-input form-control" aria-label="내용"
-										placeholder="배우자가 보유하신 주택이 있다면 주택의 금액을 입력해주세요. 없다면 0으로 입력!! (숫자만)">
-
-								</div>
-							</div>
-						</li>
-
-
-
-
-						<li class="contents-item">
-							<h6 class="form-tit form-tit-deco">
-								<span></span>연소득입력<br> (단위: 만원)
-							</h6>
-							<div class="form-wrap">
-								<div class="inputset inputset-round">
-									<input type="text" class="inputset-input form-control" aria-label="내용"
-										placeholder="본인 소득을 입력해주세요. ">
-									<input type="text" class="inputset-input form-control" aria-label="내용"
-										placeholder="배우자 소득을 입력해주세요. ">
-
-								</div>
-							</div>
-						</li>
-						<li class="contents-item">
-							<h6 class="form-tit form-tit-deco">
-								<span></span>순자산 <br>(단위: 만원)
-							</h6>
-							<div class="form-wrap">
-								<div class="inputset inputset-round">
-									<input type="text" class="inputset-input form-control" aria-label="내용"
-										placeholder="본인의 현금, 주식, 채권, 퇴직연금에서 부채를 뺀 금액을 입력해주세요. (숫자만)">
-									<input type="text" class="inputset-input form-control" aria-label="내용"
-										placeholder="배우자본인의 현금, 주식, 채권, 퇴직연금에서 부채를 뺀 금액을 입력해주세요.">
-								</div>
-							</div>
-						</li>
-
-
-						<li class="contents-item">
-							<h6 class="form-tit form-tit-deco">
-								<span></span>부양가족 수
-							</h6>
-							<div class="form-wrap">
-								<div class="inputset inputset-round">
-									<input type="text" class="inputset-input form-control" aria-label="내용"
-										placeholder="부양하는 가족 수를 입력해주세요(본인제외)">
-								</div>
-							</div>
-						</li>
-
-						<li class="contents-item">
-							<h6 class="form-tit form-tit-deco">
-								<span></span>중복대출여부
-							</h6>
-							<div class="form-wrap">
-								<div class="inputset inputset-round">
-									<input type="radio" name="loan" , value="loan0"> 대출 받았어요.
-									<input type="radio" name="loan" , value="loan1"> 대출없어요.
-								</div>
-							</div>
-						</li>
-
-						<li class="contents-item">
-							<h6 class="form-tit form-tit-deco">
-								<span></span>최초주택구입
-							</h6>
-							<div class="form-wrap">
-								<div class="inputset inputset-round">
-									<input type="radio" name="firstloan" , value="fisrtloan0"> 집 산 적 있어요.
-									<input type="radio" name="firstloan" , value="firstloan1"> 한번도 안 사봤어요.
-								</div>
-							</div>
-						</li>
-
-						<li class="contents-item">
-							<h6 class="form-tit form-tit-deco">
-								<span></span>신용도
-							</h6>
-							<div class="form-wrap">
-								<div class="inputset inputset-round">
-									<input type="text" class="inputset-input form-control" aria-label="내용"
-										placeholder="본인의 신용점수를 입력해주세요(모르시면 0)">
-								</div>
-							</div>
+								  <div class="selectset selectset-round selectset-md">
+                  					  <select name="family" class="selectset-toggle btn" >
+                						    <option value="family1">혼자살아요</option>
+                             				<option value="family2">2인</option>
+                      					    <option value="family3">3인</option>
+                      					    <option value="family4">4인이상</option>
+             						 </select>
+               					  </div>
+               				</div>	  
 						</li>
 
 						<li class="contents-item">
@@ -199,35 +158,81 @@
 								<span></span>결혼기간
 							</h6>
 							<div class="form-wrap">
-								<div class="inputset inputset-round">
-									<input type="text" class="inputset-input form-control" aria-label="내용"
-										placeholder="결혼기간을 입력해주세요. (숫자만)">
-								</div>
-							</div>
+								  <div class="selectset selectset-round selectset-md">
+                  					  <select name="marriage" class="selectset-toggle btn" >
+                						    <option value="marriage0">3개월이내 결혼예정</option>
+                             				<option value="marriage6">7년미만</option>
+                      					    <option value="marriage7">7년이상</option>
+                      					    
+             						 </select>
+               					  </div>
+               				</div>	  
 						</li>
 
 						<li class="contents-item">
 							<h6 class="form-tit form-tit-deco">
-								<span></span>중복대출여부
+								<span></span>신용등급<br>(모르시면 5등급)
 							</h6>
 							<div class="form-wrap">
-								<div class="inputset inputset-round">
-									<input type="text" class="inputset-input form-control" aria-label="내용">
-								</div>
-								<div class="selectset selectset-round">
-									<button class="selectset-toggle btn" type="button">
-										<span>선택해주세요</span>
-									</button>
-								</div>
+								  <div class="selectset selectset-round selectset-md">
+                  					  <select name="grade" class="selectset-toggle btn" >
+                						    <option value="grade1">1등급 (900~1000점)</option>
+                             				<option value="grade2">2등급 (870~899점)</option>
+                      					    <option value="grade3">3등급 (840~869점)</option>
+                      					    <option value="grade4">4등급 (805~839점)</option>
+                      					    <option value="grade5">5등급 (750~804점)</option>
+                      					    <option value="grade6">6등급 (665~749점)</option>
+                      					    <option value="grade7">6등급 이상</option>
+             						 </select>
+               					  </div>
+               				</div>	  
+						</li>		
+
+						<li class="contents-item">
+							<h6 class="form-tit form-tit-deco">
+								<span></span>연 소득 <br>(부부합산)
+							
+							</h6>
+							<div class="form-wrap">
+								  <div class="selectset selectset-round selectset-md">
+                  					  <select name="income" class="selectset-toggle btn" >
+											<option value="income1">2억원 이상</option>	                  					  
+                						    <option value="income1">1억 ~ 1억5천만원</option>	                  					  
+                						    <option value="income1">1억3천 ~ 1억5천만원</option>	                  					  
+                						    <option value="income1">1억 ~ 1억3천만원</option>
+                             				<option value="income2">8천 ~ 1억원</option>
+                      					    <option value="income3">6천 ~ 8천만원</option>
+                      					    <option value="income4">4천 ~ 6천만원</option>
+                      					    <option value="income5">2천 ~ 4천만원</option>
+                      					    <option value="income6">2천만원 이하</option>
+                      					    
+             						 </select>
+               					  </div>
+               				</div>	 	
+						</li>
+						<li class="contents-item">
+							<h6 class="form-tit form-tit-deco">
+								<span></span>주택 구매<br>여유 자금
+							</h6>
+							<div class="form-wrap">
+								  <div class="selectset selectset-round selectset-md">
+                  					  <select name="funds" class="selectset-toggle btn" >
+                						    <option value="funds1">1억원 이상</option>
+                             				<option value="funds2">8천 ~ 1억원</option>
+                      					    <option value="funds3">6천 ~ 8천만원</option>
+                      					    <option value="funds4">4천 ~ 6천만원</option>
+                      					    <option value="funds5">2천 ~ 4천만원</option>
+                      					    <option value="funds6">2천만원 이하</option>
+                      					    
+             						 </select>
+               					  </div>
+               				</div>	 	
 							</div>
 						</li>
+
+																		
 					</ul>
-					<div class="contents-bottom">
-						<div class="checkset">
-							<input id="checkset-a-1-1" class="checkset-input input-fill input-round" type="checkbox"
-								value="">
-						</div>
-					</div>
+					
 					<div class="contents-confirm">
 						<a href="javascript:void(0);" class="btnset btnset-round btnset-line btnset-black">돌아가기</a>
 						<a href="javascript:void(0);" class="btnset btnset-round">결과</a>
@@ -236,8 +241,9 @@
 			</div>
 		</div>
 		<!-- [E]campland-N25 -->
+		
+		
 	</main>
-	<!-- [S]campland-N2 -->
 	<footer class="campland-N2" data-bid="oolq6dhEvp">
 		<div class="footer-container container-lg">
 			<div class="footer-top">
