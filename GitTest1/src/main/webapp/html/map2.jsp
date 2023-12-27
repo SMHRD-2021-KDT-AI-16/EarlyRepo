@@ -84,8 +84,6 @@
     		right: -900px;
     		top: 10px;
     		width:100px;
-    		height: 100px;
-		    background: #fff;
     		border:1px solid #ccc;
     		border-radius: 5px;
     		padding:5px;
@@ -94,6 +92,11 @@
     		white-space: pre;
     		word-wrap: break-word;
 		}
+		#menu_wrap {position:fixed;top:0;left:100em;bottom:0;width:250px;margin:absolute; padding:5px;overflow-y:absolute;background:rgba(255, 255, 255, 0.7);z-index: 1;font-size:12px;border-radius: 10px;}
+		#menu_wrap hr {display: block; height: 1px;border: 0; border-top: 2px solid #5F5F5F;margin:3px 0;}
+		#menu_wrap .option{text-align: center;}
+		#menu_wrap .option p {margin:10px 0;}  
+		#menu_wrap .option button {margin-left:5px;}
 	</style>
 </head>
 
@@ -118,20 +121,6 @@
 						</a>
 					</li>
 					<li class="header-gnbitem">
-						<ul class="header-sublist">
-							<li class="header-subitem">
-								<a class="header-sublink" href="javascript:void(0)">
-									<span>공지사항</span>
-								</a>
-							</li>
-							<li class="header-subitem">
-								<a class="header-sublink" href="javascript:void(0)">
-									<span>자주묻는질문</span>
-								</a>
-							</li>
-						</ul>
-					</li>
-					<li class="header-gnbitem">
 						<a class="header-gnblink" href="javascript:void(0)">
 							<span>이용후기</span>
 						</a>
@@ -141,20 +130,6 @@
 							<span>오시는 길</span>
 						</a>
 					</li>
-					<li class="header-gnbitem">
-						<ul class="header-sublist">
-							<li class="header-subitem">
-								<a class="header-sublink" href="javascript:void(0)">
-									<span>빠른예약</span>
-								</a>
-							</li>
-							<li class="header-subitem">
-								<a class="header-sublink" href="javascript:void(0)">
-									<span>예약조회</span>
-								</a>
-							</li>
-						</ul>
-					</li>
 				</ul>
 			</div>
 			<div class="header-right">
@@ -162,12 +137,6 @@
 					<a href="javascript:void(0);" class="btn-profile header-utils-btn">
 						<img src="../resources/icons/ico_profile_black.svg" alt="검색">
 					</a>
-					<button class="btn-search header-utils-btn">
-						<img src="../resources/icons/ico_search_black.svg" alt="검색">
-					</button>
-					<button class="btn-moclose header-utils-btn">
-						<img src="../resources/icons/ico_close_m_black.svg" alt="닫기">
-					</button>
 				</div>
 			</div>
 		</div>
@@ -241,26 +210,6 @@
 					    
 					    polygons.push(polygon);
 					    
-					    /* kakao.maps.event.addListener(polygon, 'mouseover',function(mouseEvent){
-					    	console.log('작동!');
-					    	
-					    	polygon.setOptions({fillColor: '#09f'});
-					    	//customOverlay.setContent('<div>'+name+'</div>');
-					    	customOverlay.setPosition(mouseEvent.latLng);
-					    	customOverlay.setMap(map);
-					    });
-					    
-					    kakao.maps.event.addListener(polygon, 'mousemove', function(mouseEvent) {
-					        
-					        customOverlay.setPosition(mouseEvent.latLng); 
-					    });
-
-					    
-					    kakao.maps.event.addListener(polygon, 'mouseout', function() {
-					        polygon.setOptions({fillColor: '#fff'});
-					        customOverlay.setMap(null);
-					    });  */
-					    
 					    kakao.maps.event.addListener(polygon, 'click', function (mouseEvent) {
 				            addr = name;
 				            var content = '<div id="customOverlay">' +
@@ -276,26 +225,7 @@
 				            customOverlay.setMap(map);
 				        });
 					}
-					
-					//kakao.maps.event.addListener(map, 'zoom_changed', function() {        
-					    // 지도의 현재 레벨을 얻어옵니다
-					    //level = map.getLevel();
 
-						//if(level > 3){
-							//for (var i = 0, len = areas.length; i < len; i++) {
-					    		//displayArea(areas[0]);
-							//}
-
-						//}else {
-							//for (var i = 0, len = areas.length; i < len; i++) {
-					    	//	map;
-
-							//}
-						//}
-					    
-					//});
-					
-					
 					function detail_map(){
 						//console.log('1. name : ',name);
 						getData();
@@ -317,62 +247,59 @@
 						}
 					}
 					
-					function getData(){
-		                  $.ajax({
-		                     /* url : 'http://localhost:8083/GitTest2/GetApartinfoService?name='+addr, */
-		                     url : 'http://localhost:8083/GitTest1/getApart.do?name='+addr,
-		                     contentType: 'text/plain; charset=UTF-8', // Specify UTF-8
-		                     success:function(result){
-		                        var itemList = result.split(';');
-		                        //itemList.remove(4);
-		                        console.log('List from server:', itemList);
-		                        
-		                        for (let i = 0; i < itemList.length-1; i+=2){
-		                           let j = i+1;
-		                           console.log("j : ",itemList[j]);
-		                           var geocoder = new kakao.maps.services.Geocoder();
-		                        
-		                           // 주소로 좌표를 검색
-		                           geocoder.addressSearch(itemList[i], function(result, status) {
+					function getData() {
+					    $.ajax({
+					        url: 'http://localhost:8083/GitTest1/getApart.do?name=' + addr,
+					        contentType: 'text/plain; charset=UTF-8',
+					        success: function (result) {
+					            var itemList = result.split(';');
+					            
+					            for (let i = 0; i < itemList.length - 1; i += 2) {
+					                let j = i + 1;
 
-		                                // 정상적으로 검색
-		                                if (status === kakao.maps.services.Status.OK) {
+					                var geocoder = new kakao.maps.services.Geocoder();
 
-		                                   var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+					                geocoder.addressSearch(itemList[i], function (result, status) {
+					                    if (status === kakao.maps.services.Status.OK) {
+					                        var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
 
-		                                   // 결과값으로 받은 위치를 마커로 표시
-		                                   var marker = new kakao.maps.Marker({
-		                                         map: map,
-		                                       position: coords
-		                                   });
-		                                   
-		                                   let content = document.createElement('div');
-								        	content.className = 'overlay';
-								        	content.innerHTML = '<div id="test" style="width:150px;text-align:center;padding:6px 0;">'+itemList[j]+'</div>';
-								            
-								
-								        	kakao.maps.event.addListener(marker, 'click', function() {
-										        
-								        		let CustomOverlay2 = new kakao.maps.CustomOverlay({
-									        		map: map,
-									        		position: coords,
-									        	    content: content
-									        	});
-										  	});
-								     
+					                        // 서버에서 추가 데이터를 가져오기
+					                        var additionalData = getDataForMarker(itemList[i]);
 
-								    	} 
-									})
-								}
-								 
-								
-							},
-		                     error:function(){
-		                        
-		                     }
-		                  })
-		                  
-		               }
+					                        var marker = new kakao.maps.Marker({
+					                            map: map,
+					                            position: coords
+					                        });
+
+					                        let content = document.createElement('div');
+					                        content.innerHTML = '<div id="menu_wrap" style="height:70em; width:350px;text-align:center;padding:6px 0;"><h1>'
+					                        	+ itemList[j] + '</h1><br>'
+					                            + additionalData + '<br>'
+					                            +                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      
+					                            '</div>';
+
+					                        kakao.maps.event.addListener(marker, 'click', function () {
+					                            let CustomOverlay2 = new kakao.maps.CustomOverlay({
+					                                map: map,
+					                                position: coords,
+					                                content: content
+					                            });
+					                        });
+					                    }
+					                });
+					            }
+					        },
+					        error: function () {
+					            console.error('Error fetching data from server.');
+					        }
+					    });
+					}
+
+					// 서버에서 추가 데이터 가져오는 함수
+					function getDataForMarker(name) {
+					    return name;
+					}
+
 					function change_LatLng(itemList){
 						var geocoder = new kakao.maps.services.Geocoder();
 						
@@ -408,63 +335,7 @@
 
 	<footer class="campland-N2" data-bid="akLQ6d2RkW">
 		<div class="footer-container container-lg">
-			<div class="footer-top">
-				<h1 class="footer-logo">
-					<a href="javascript:void(0)">
-						<img src="../resources/images/img_logo_white.png" alt="로고">
-					</a>
-				</h1>
-				<ul class="footer-menulist">
-					<li class="footer-menuitem">
-						<a href="javascript:void(0)">
-							<span>이용약관</span>
-						</a>
-					</li>
-					<li class="footer-menuitem">
-						<a href="javascript:void(0)">
-							<span>개인정보처리방침</span>
-						</a>
-					</li>
-					<li class="footer-menuitem">
-						<a href="javascript:void(0)">
-							<span>푸터메뉴1</span>
-						</a>
-					</li>
-					<li class="footer-menuitem">
-						<a href="javascript:void(0)">
-							<span>푸터메뉴2</span>
-						</a>
-					</li>
-				</ul>
-				<ul class="footer-snslist">
-					<li class="footer-snsitem">
-						<a class="footer-snslink" href="javascript:void(0)">
-							<img src="../resources/icons/ico_instagram_lightgrey.svg" alt="인스타그램">
-						</a>
-					</li>
-					<li class="footer-snsitem">
-						<a class="footer-snslink" href="javascript:void(0)">
-							<img src="../resources/icons/ico_youtube_lightgrey.svg" alt="유튜브">
-						</a>
-					</li>
-					<li class="footer-snsitem">
-						<a class="footer-snslink" href="javascript:void(0)">
-							<img src="../resources/icons/ico_facebook_lightgrey.svg" alt="페이스북">
-						</a>
-					</li>
-					<li class="footer-snsitem">
-						<a class="footer-snslink" href="javascript:void(0)">
-							<img src="../resources/icons/ico_kakao_lightgrey.svg" alt="카카오톡">
-						</a>
-					</li>
-				</ul>
-			</div>
 			<div class="footer-bottom">
-				<h2 class="footer-logo">
-					<a href="javascript:void(0)">
-						<img src="../resources/images/img_logo_white.png" alt="로고">
-					</a>
-				</h2>
 				<div class="footer-txt">
 					<p> 서울시 영등포구 선유로70 우리벤처타운2 705호 </p>
 					<p>
