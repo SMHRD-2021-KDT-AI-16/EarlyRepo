@@ -35,7 +35,7 @@ public class LoginService implements Command{
 		session.setAttribute("member", result);
 		
 		
-		return "redirect:/GoMain.do";
+		return "redirect:/GoMainPage.do";
 	
 		
 	}

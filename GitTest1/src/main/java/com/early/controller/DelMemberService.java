@@ -35,7 +35,7 @@ public class DelMemberService implements Command {
 			session.invalidate();
 		}
 			
-		return "redirect:/GoMain.do";
+		return "redirect:/GoMainPage.do";
 		
 		
 		

@@ -49,7 +49,7 @@ public class UpdateService implements Command {
 			
 			
 		}
-		return "redirect:/GoMain.do";
+		return "redirect:/GoMainPage.do";
 
 	}
 

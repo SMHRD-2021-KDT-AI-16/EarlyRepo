@@ -38,7 +38,7 @@ public class GetNoticeBoardService implements Command {
 
 		session.setAttribute("NoticeAllboard", jArray);
 		
-		return "board123.jsp";
+		return "board.jsp";
 	}
 
 }

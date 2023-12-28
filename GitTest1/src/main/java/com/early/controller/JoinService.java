@@ -39,7 +39,7 @@ public class JoinService implements Command {
 		
 		}else {
 			
-			return "redirect:/GoMain.do";
+			return "redirect:/GoMainPage.do";
 		}
 
 		
