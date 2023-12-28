@@ -25,25 +25,24 @@
 
 <body>
 	<!-- [S]campland-N1 -->
-	<header class="campland-N1" data-bid="jGLq6DHesX" id="">
+	<header class="campland-N1" data-bid="RMlQ6deKn4" id="">
 		<div class="header-container container-lg">
 			<div class="header-left">
 				<h1 class="header-title">
-					<a href="Main.jsp">
+					<a href="MainPage.jsp">
 						<img src="../resources/images/img_logo.png" alt="로고">
 					</a>
 				</h1>
 			</div>
 			<div class="header-center">
-
 				<ul class="header-gnblist">
-					
 					<li class="header-gnbitem">
-						<a class="header-gnblink" href="map.jsp">
-							<span>집찾기</span>
+					</li>
+					<li class="header-gnbitem">
+						<a class="header-gnblink" href="MainPage.jsp">
+							<span>홈</span>
 						</a>
 					</li>
-
 					<li class="header-gnbitem">
 						<a class="header-gnblink" href="board.jsp">
 							<span>부동산 게시판</span>
@@ -54,9 +53,6 @@
 							<span>동네 채팅</span>
 						</a>
 					</li>
-
-				</ul>
-				</li>
 				</ul>
 			</div>
 			<div class="header-right">
@@ -67,10 +63,6 @@
 					<button class="btn-search header-utils-btn">
 						<img src="../resources/icons/ico_search_black.svg" alt="검색">
 					</button>
-					
-				</div>
-			</div>
-		</div>
 	</header>
 	<!-- [E]campland-N1 -->
 	<main class="th-layout-main ">
@@ -241,68 +233,10 @@
 			</div>
 		</div>
 		<!-- [E]campland-N25 -->
-		
-		
 	</main>
 	<footer class="campland-N2" data-bid="oolq6dhEvp">
 		<div class="footer-container container-lg">
-			<div class="footer-top">
-				<h1 class="footer-logo">
-					<a href="javascript:void(0)">
-						<img src="../resources/images/img_logo_white.png" alt="로고">
-					</a>
-				</h1>
-				<ul class="footer-menulist">
-					<li class="footer-menuitem">
-						<a href="javascript:void(0)">
-							<span>이용약관</span>
-						</a>
-					</li>
-					<li class="footer-menuitem">
-						<a href="javascript:void(0)">
-							<span>개인정보처리방침</span>
-						</a>
-					</li>
-					<li class="footer-menuitem">
-						<a href="javascript:void(0)">
-							<span>푸터메뉴1</span>
-						</a>
-					</li>
-					<li class="footer-menuitem">
-						<a href="javascript:void(0)">
-							<span>푸터메뉴2</span>
-						</a>
-					</li>
-				</ul>
-				<ul class="footer-snslist">
-					<li class="footer-snsitem">
-						<a class="footer-snslink" href="javascript:void(0)">
-							<img src="../resources/icons/ico_instagram_lightgrey.svg" alt="인스타그램">
-						</a>
-					</li>
-					<li class="footer-snsitem">
-						<a class="footer-snslink" href="javascript:void(0)">
-							<img src="../resources/icons/ico_youtube_lightgrey.svg" alt="유튜브">
-						</a>
-					</li>
-					<li class="footer-snsitem">
-						<a class="footer-snslink" href="javascript:void(0)">
-							<img src="../resources/icons/ico_facebook_lightgrey.svg" alt="페이스북">
-						</a>
-					</li>
-					<li class="footer-snsitem">
-						<a class="footer-snslink" href="javascript:void(0)">
-							<img src="../resources/icons/ico_kakao_lightgrey.svg" alt="카카오톡">
-						</a>
-					</li>
-				</ul>
-			</div>
 			<div class="footer-bottom">
-				<h2 class="footer-logo">
-					<a href="Main.jsp">
-						<img src="../resources/images/img_logo_white.png" alt="로고">
-					</a>
-				</h2>
 				<div class="footer-txt">
 					<p> 전남 목포시 산정로212번길 13 (구, 청호중학교) </p>
 					<p>

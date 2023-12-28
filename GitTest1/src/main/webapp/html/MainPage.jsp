@@ -102,11 +102,11 @@
 
 <body>
 	<!-- [S]campland-N1 -->
-	<header class="campland-N1" data-bid="Dplq6d2rH9" id="">
+	<header class="campland-N1" data-bid="RMlQ6deKn4" id="">
 		<div class="header-container container-lg">
 			<div class="header-left">
 				<h1 class="header-title">
-					<a href="javascript:void(0)">
+					<a href="MainPage.jsp">
 						<img src="../resources/images/img_logo.png" alt="로고">
 					</a>
 				</h1>
@@ -114,8 +114,10 @@
 			<div class="header-center">
 				<ul class="header-gnblist">
 					<li class="header-gnbitem">
-						<a class="header-gnblink" href="map.jsp">
-							<span>집찾기</span>
+					</li>
+					<li class="header-gnbitem">
+						<a class="header-gnblink" href="MainPage.jsp">
+							<span>홈</span>
 						</a>
 					</li>
 					<li class="header-gnbitem">
@@ -128,20 +130,17 @@
 							<span>동네 채팅</span>
 						</a>
 					</li>
+				</ul>
 			</div>
 			<div class="header-right">
 				<div class="header-utils">
 					<a href="login.jsp" class="btn-profile header-utils-btn">
-						<img src="../resources/icons/ico_profile_black.svg" >
+						<img src="../resources/icons/ico_profile_black.svg" alt="검색">
 					</a>
-					<a href="Profile.jsp" class="btn-search header-utils-btn">
-						<img src="../resources/icons/ico_search_black.svg" >
-					</a>
-				</div>
-			</div>
-		</div>
+					<button class="btn-search header-utils-btn">
+						<img src="../resources/icons/ico_search_black.svg" alt="검색">
+					</button>
 	</header>
-
 	<main class="th-layout-main">
 		<div id="total_div">
 			<div id="left_div">       <!-- 왼쪽 자산정보 입력창 -->
@@ -207,9 +206,6 @@
                					  </div>
                				</div>	  
 						</li>
-
-						
-						
 						<li class="contents-item">
 							<h6 class="form-tit form-tit-deco">
 								<span></span>연소득입력(만원)
@@ -590,18 +586,19 @@
 		
 	</main>
 
-	<footer class="campland-N2" data-bid="akLQ6d2RkW">
+<!-- [S]campland-N2 -->
+	<footer class="campland-N2" data-bid="mMlq6dEKQC">
 		<div class="footer-container container-lg">
 			<div class="footer-bottom">
 				<div class="footer-txt">
-					<p> 서울시 영등포구 선유로70 우리벤처타운2 705호 </p>
+					<p> 전남 목포시 산정로212번길 13 (구, 청호중학교) </p>
 					<p>
-						<span>T. 070-8872-8874</span>
-						<span>E. help@openfield.co.kr</span>
+						<span>T. 062-655-3510</span>
+						<span>E. smhrd@smhrd.or.kr</span>
 					</p>
 				</div>
 				<div class="footer-txt">
-					<p>2022 BY TEMPLATEHOUSE. ALL RIGHTS RESEVED</p>
+					<p>2023 BY TEMPLATEHOUSE. ALL RIGHTS RESEVED</p>
 				</div>
 			</div>
 		</div>
