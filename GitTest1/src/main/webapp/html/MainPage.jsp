@@ -39,8 +39,7 @@
 			</div>
 			<div class="header-center">
 				<ul class="header-gnblist">
-					<li class="header-gnbitem">
-					</li>
+					<li class="header-gnbitem"></li>
 					<li class="header-gnbitem">
 						<a class="header-gnblink" href="MainPage.jsp">
 							<span>홈</span>
@@ -60,22 +59,23 @@
 			</div>
 			<div class="header-right">
 				<div class="header-utils">
-					 <c:if test="${member==null }">
-                        <a href="login.jsp"><img src="../resources/icons/LOGIN.png"></a>
-                     </c:if>
-                     <c:if test="${member!=null }">
-                           <c:if test="${member.user_id!='admin' }">
-                              <a href="Mypage.jsp"><img src="../resources/icons/ico_profile_black.png" ></a>
-                           </c:if>
-                           <c:if test="${member.user_id!='admin' }">
-                              <a href="http://localhost:8083/GitTest1/Logout.do"><img src="../resources/icons/LOGOUT.png" ></a>
-                           </c:if>
-                           <c:if test="${member.user_id=='admin' }">
-                              <a href="SelectAll.do">회원관리</a>
-                           </c:if>   
-                     </c:if>
-                  </div>
+					<c:if test="${member==null }">
+                    	<a href="login.jsp"><img src="../resources/icons/LOGIN.png"></a>
+                    </c:if>
+                    <c:if test="${member!=null }">
+                    	<c:if test="${member.user_id!='admin' }">
+                        	<a href="Mypage.jsp"><img src="../resources/icons/ico_profile_black.png" ></a>
+                        </c:if>
+                        <c:if test="${member.user_id!='admin' }">
+                        	<a href="http://localhost:8083/GitTest1/Logout.do"><img src="../resources/icons/LOGOUT.png" ></a>
+                        </c:if>
+                        	<c:if test="${member.user_id=='admin' }">
+                            <a href="SelectAll.do">회원관리</a>
+                        </c:if>   
+                    </c:if>
                 </div>
+            </div>
+       </div>
 	</header>
 	<main class="th-layout-main">
 		<div id="total_div">

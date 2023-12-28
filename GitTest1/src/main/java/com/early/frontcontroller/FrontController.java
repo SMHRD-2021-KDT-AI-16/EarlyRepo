@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.early.controller.ApartSearchService;
 import com.early.controller.Command;
 import com.early.controller.DelMemberService;
 import com.early.controller.GetApartService;
@@ -19,8 +20,7 @@ import com.early.controller.JoinService;
 import com.early.controller.LoginService;
 import com.early.controller.LogoutService;
 import com.early.controller.UpdateService;
-import com.early.controller.ApartSearchService;
-import com.early.controller.BoardListService;
+import com.early.controller.WriteBoardService;
 
 
 @WebServlet("*.do")
@@ -42,6 +42,7 @@ public class FrontController extends HttpServlet {
 		map.put("getApart.do", new GetApartService());
 		map.put("html/notice_Board.do", new GetNoticeBoardService());
 		map.put("getApartSearch.do", new ApartSearchService());
+		map.put("writeboard.do", new WriteBoardService());
 	}
 
 	

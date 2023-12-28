@@ -8,5 +8,9 @@
 	<select id="getAllBoard" resultType="com.early.model.NoticeBoardVO">
 		select * from tb_FORUM where loc = #{loc}
 	</select>
+	
+	<insert id="writeBoard" parameterType="com.early.model.NoticeBoardVO">
+		insert into tb_forum (f_content, f_file, user_id, loc) values (,,,)
+	</insert>
 
 </mapper>
