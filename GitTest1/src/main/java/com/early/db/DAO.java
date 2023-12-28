@@ -57,10 +57,10 @@ public class DAO {
 	}
 
 	public int deleteMember(String user_id) {
-		// 메세지 전체 삭제
-
+		
 		SqlSession session = factory.openSession(true);
-
+		System.out.println("test2 : "+user_id);
+		
 		int cnt = session.delete("deleteMember", user_id);
 		System.out.println("암ㄴ어ㅏㅁㄴㅇ");
 		System.out.println("cnt출력:" + cnt);

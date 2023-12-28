@@ -35,6 +35,7 @@
 	<delete id="deleteMember" parameterType="String">
 		delete from tb_user where user_id=#{user_id}
 	</delete>
+	
 	<select id="selectAll" resultType="com.early.model.MemberVO">
 		SELECT user_id, user_PW, user_NICK,joined_at
 		FROM tb_user
