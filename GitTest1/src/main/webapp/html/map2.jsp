@@ -129,7 +129,6 @@
 							<span>동네 채팅</span>
 						</a>
 					</li>
-				</ul>
 			</div>
 			<div class="header-right">
 				<div class="header-utils">
@@ -292,8 +291,8 @@
 							name = val.properties.ADM_NM; // json에 있는 한글이름
 							
 							displayArea2(coordinates, name);
-							console.log('test = ',name);
-							console.log('test2 = ',coordinates);
+							//console.log('test = ',name);
+							//console.log('test2 = ',coordinates);
 						})
 					})			
 					
@@ -353,6 +352,7 @@
 						}
 						customOverlay.setMap(null);
 						polygons = [];
+						
 					}
 					
 					
