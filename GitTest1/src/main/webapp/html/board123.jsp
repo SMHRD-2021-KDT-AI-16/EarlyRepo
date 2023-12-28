@@ -71,6 +71,32 @@
 		.inner_content{
 			height: 100px;
 		}
+		.myButton {
+	box-shadow:inset 0px 0px 0px 0px #ffffff;
+	background:linear-gradient(to bottom, #f9f9f9 5%, #e9e9e9 100%);
+	background-color:#f9f9f9;
+	border-radius:6px;
+	border:1px solid #dcdcdc;
+	display:inline-block;
+	cursor:pointer;
+	color:#666666;
+	font-family:Arial;
+	font-size:15px;
+	font-weight:bold;
+	padding:8px 21px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #ffffff;
+	margin-left: 200px;
+}
+.myButton:hover {
+	background:linear-gradient(to bottom, #e9e9e9 5%, #f9f9f9 100%);
+	background-color:#e9e9e9;
+}
+.myButton:active {
+	position:relative;
+	top:1px;
+}
+		
 	</style>
 </head>
 
@@ -138,8 +164,8 @@
 		</div>
 		<!-- [E]campland-N8 -->
 		<!-- [S]campland-N15 -->
-		<div class="contents-confirm"align ="center">
-			<a href="Write.jsp" class="btnset btnset-round btnset-line btnset-black">게시글 작성</a>
+		<div class="contents-confirm">
+			<a href="Write.jsp" class="myButton">게시글 작성</a>
 		</div>
 		<table id="table_content">
 			<tr>
@@ -255,57 +281,6 @@
 	<!-- [S]campland-N2 -->
 	<footer class="campland-N2" data-bid="mMlq6dEKQC">
 		<div class="footer-container container-lg">
-			<div class="footer-top">
-				<h1 class="footer-logo">
-					<a href="javascript:void(0)">
-						<img src="../resources/images/img_logo_white.png" alt="로고">
-					</a>
-				</h1>
-				<ul class="footer-menulist">
-					<li class="footer-menuitem">
-						<a href="javascript:void(0)">
-							<span>이용약관</span>
-						</a>
-					</li>
-					<li class="footer-menuitem">
-						<a href="javascript:void(0)">
-							<span>개인정보처리방침</span>
-						</a>
-					</li>
-					<li class="footer-menuitem">
-						<a href="javascript:void(0)">
-							<span>푸터메뉴1</span>
-						</a>
-					</li>
-					<li class="footer-menuitem">
-						<a href="javascript:void(0)">
-							<span>푸터메뉴2</span>
-						</a>
-					</li>
-				</ul>
-				<ul class="footer-snslist">
-					<li class="footer-snsitem">
-						<a class="footer-snslink" href="javascript:void(0)">
-							<img src="../resources/icons/ico_instagram_lightgrey.svg" alt="인스타그램">
-						</a>
-					</li>
-					<li class="footer-snsitem">
-						<a class="footer-snslink" href="javascript:void(0)">
-							<img src="../resources/icons/ico_youtube_lightgrey.svg" alt="유튜브">
-						</a>
-					</li>
-					<li class="footer-snsitem">
-						<a class="footer-snslink" href="javascript:void(0)">
-							<img src="../resources/icons/ico_facebook_lightgrey.svg" alt="페이스북">
-						</a>
-					</li>
-					<li class="footer-snsitem">
-						<a class="footer-snslink" href="javascript:void(0)">
-							<img src="../resources/icons/ico_kakao_lightgrey.svg" alt="카카오톡">
-						</a>
-					</li>
-				</ul>
-			</div>
 			<div class="footer-bottom">
 				<h2 class="footer-logo">
 					<a href="Main.jsp">
