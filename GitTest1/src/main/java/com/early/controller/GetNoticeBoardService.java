@@ -10,6 +10,8 @@ import javax.servlet.http.HttpSession;
 
 import com.early.db.NoticeBoardDAO;
 import com.early.model.NoticeBoardVO;
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
 
 public class GetNoticeBoardService implements Command {
 
@@ -25,7 +27,16 @@ public class GetNoticeBoardService implements Command {
 		List<NoticeBoardVO> list = nbdao.getContents(loc);
 		System.out.println("test : "+list.get(0).getF_content());
 		HttpSession session = request.getSession();
-		session.setAttribute("NoticeAllboard", list);
+		
+		JsonArray jArray = new JsonArray();
+		for (int i=0;i<list.size();i++) {
+			Gson gson = new Gson();
+			jArray.add( gson.toJson(list.get(i)));
+		}
+		
+		
+
+		session.setAttribute("NoticeAllboard", jArray);
 		
 		return "board123.jsp";
 	}

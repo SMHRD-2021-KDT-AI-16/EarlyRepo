@@ -1,5 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@page import="com.google.gson.JsonArray"%>
+<%@page import="com.early.model.NoticeBoardVO"%>
+<%@page import="java.util.List"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -48,10 +50,34 @@
 			display: flex;
 			gap: 20px;
 		}
+		#table_content{
+			
+			margin-left: 20%;
+		}
+		#content_userid{
+			align-items: center;
+			
+			width: 150px;
+			height: 100px;
+		}
+		#content_number{
+			width: 50px;
+			height: 100px;
+		}
+		#content_content{
+			width: 500px;
+			height: 100px;
+		}
+		.inner_content{
+			height: 100px;
+		}
 	</style>
 </head>
 
 <body>
+<%
+	JsonArray list = (JsonArray)session.getAttribute("NoticeAllboard");
+%>
 	<!-- [S]campland-N1 -->
 	<header class="campland-N1" data-bid="RMlQ6deKn4" id="">
 		<div class="header-container container-lg">
@@ -115,50 +141,114 @@
 		<div class="contents-confirm"align ="center">
 			<a href="Write.jsp" class="btnset btnset-round btnset-line btnset-black">게시글 작성</a>
 		</div>
+		<table id="table_content">
+			<tr>
+				<th id = "content_number">글번호</th>
+				<th id = "content_userid">작성자</th>
+				<th id = "content_content">내용</th>
+				<th id = "content_date">작성일자</th>
+			</tr>
+			<!-- <tr class = "inner_content">
+				<td class = "inner_content" id="number"></td>
+				<td class = "inner_content" id="userid"></td>
+				<td class = "inner_content" id="content"></td>
+				<td class = "inner_content" id="date"></td>
+			</tr> -->
+		</table>
+		<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 		<script>
-			let currentPage = 1; // 현재 페이지
-			const pageSize = 10; // 한 페이지에 표시될 게시글 수
+		console.log('Test')
+		let list = <%= list %>
+		console.log("test33 : ", list)
+		console.log("test2 : ",list[0])
+		/* let temp = list[0].replace("{","").replace("}","").split(',')
+		
+		console.log("test444 : ",temp[0].split(':')[1]) */
+		
+		//var keys = Object.keys(json); //키를 가져옵니다. 이때, keys 는 반복가능한 객체가 됩니다.
+    	/* for (var i=0; i<keys.length; i++) {
+    		var key = keys[i];
+    		console.log("key : " + key + ", value : " + json[key])
+    	} */
+		
+		$(document).ready(function() {
+			
+  			
+  			loadMoreData();
+  			
+  			});
+    		
+  			$(document).scroll(function () {
+    			var documentHeight = $(document).height();
+    			var scrollPosition = $(window).height() + $(window).scrollTop();
 
-			// 초기 로딩 상황에서 데이터를 불러오는 함수
-			function initialLoadData() {
-				// 여기에 초기 데이터를 불러오는 로직을 추가
+    			if (scrollPosition / documentHeight > 0.9) {
+    				console.log("우에엥")
+      				loadMoreData();
+    			}
+  			});
+  			let temp = [];
+  			let cnt = 0;
+  			function loadMoreData() {
+  				
+    			if (list.length > cnt + 10) { // 불러오는 글의 수가 10개 +a보다 많으면
+      				for (let b = cnt; b < cnt + 10; b++) { // 10개만 출력할꺼야
+      					temp = list[b].replace("{","").replace("}","").split(',');  //한줄에서 뭉탱이씩 짤라서 넣어줄꺼야
+      					
+        				const tr = document.createElement('tr');
 
-				// 예시: 초기 데이터를 로컬 스토리지에서 가져와서 화면에 추가
-				let initialData = JSON.parse(localStorage.getItem("initialData")) || [];
-				// TODO: 화면에 데이터 추가하는 로직을 여기에 추가
+        				const num = document.createElement('td');
+        				num.innerText = temp[0].split(':')[1]; // 글번호
+      					
+        				const user_id = document.createElement('td');
+        				user_id.innerText = temp[6].split(':')[1]; // 작성자 아이디
 
-				console.log("초기 데이터를 불러왔습니다.");
-			}
+        				const comment_date = document.createElement('td');
+        				comment_date.innerText = temp[3].split(':')[1]; // 날짜
 
-			// 데이터를 불러와서 화면에 추가하는 함수
-			function loadMoreData() {
-				// 여기에 다음 페이지의 데이터를 불러오는 로직을 추가
+        				const comment = document.createElement('td');
+        				comment.innerText = temp[1].split(':')[1]; // 내용
 
-				// 예시: 다음 페이지의 데이터를 로컬 스토리지에서 가져와서 화면에 추가
-				let nextData = JSON.parse(localStorage.getItem("nextData")) || [];
-				// TODO: 화면에 데이터 추가하는 로직을 여기에 추가
+        				tr.appendChild(num);
+        				tr.appendChild(user_id);
+        				tr.appendChild(comment);
+        				tr.appendChild(comment_date);
+        				
 
-				console.log("다음 페이지의 데이터를 불러왔습니다.");
+        				document.querySelector('table').appendChild(tr);
+      				}
+      				cnt += 10;
+    			} else {
+      				for (let b = cnt; b < list.length; b++) {
+      					cnt += list.length;
+						temp = list[b].replace("{","").replace("}","").split(',');  //한줄에서 뭉탱이씩 짤라서 넣어줄꺼야
+      					
+						const tr = document.createElement('tr');
 
-				// 현재 페이지 증가
-				currentPage++;
-			}
+        				const num = document.createElement('td');
+        				num.innerText = temp[0].split(':')[1]; // 글번호
+      					
+        				const user_id = document.createElement('td');
+        				user_id.innerText = temp[6].split(':')[1]; // 작성자 아이디
 
-			// 스크롤 이벤트
-			$(document).scroll(function () {
-				// 문서의 높이
-				var documentHeight = $(document).height();
-				// 스크롤 위치
-				var scrollPosition = $(window).height() + $(window).scrollTop();
+        				const comment_date = document.createElement('td');
+        				comment_date.innerText = temp[3].split(':')[1]; // 날짜
 
-				// 스크롤이 문서의 90% 이상에 도달하면 다음 페이지의 데이터를 불러옴
-				if (scrollPosition / documentHeight > 0.9) {
-					loadMoreData();
-				}
-			});
+        				const comment = document.createElement('td');
+        				comment.innerText = temp[1].split(':')[1]; // 내용
 
-			// 초기 로딩 상황에서 데이터 불러오기
-			initialLoadData();
+        				tr.appendChild(num);
+        				tr.appendChild(user_id);
+        				tr.appendChild(comment);
+        				tr.appendChild(comment_date);
+
+        				document.querySelector('table').appendChild(tr);
+      				}
+    			}
+  			  } 
+
+  			//loadMoreData();
+		
 		</script>
 		<!-- [E]campland-N15 -->
 	</main>
