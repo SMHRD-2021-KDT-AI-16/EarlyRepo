@@ -122,6 +122,7 @@
 					<li class="header-gnbitem">
 						<a class="header-gnblink" href="board.jsp">
 							<span>부동산 게시판</span>
+						</a>	
 					</li>
 					<li class="header-gnbitem">
 						<a class="header-gnblink" href="Chat.jsp">
@@ -173,8 +174,8 @@
 							</h6>
 							<div class="form-wrap">
 								<div class="inputset inputset-round" align=center>
-									<input type="radio" name="firstloan" value="fisrtloan0"> 있어요
-									<input type="radio" name="firstloan" value="firstloan1"> 없어요
+									<input type="radio" name="nowhome" value="nowhome0"> 있어요
+									<input type="radio" name="nowhome" value="nowhome1"> 없어요
 								</div>
 							</div>
 						</li>
