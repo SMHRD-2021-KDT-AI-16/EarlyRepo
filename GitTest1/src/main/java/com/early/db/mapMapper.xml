@@ -12,5 +12,12 @@
 	<select id="getApart2" parameterType="String" resultType="com.early.model.ApartVO">
 		SELECT * FROM tb_apartment WHERE apt_loc LIKE '%'||#{name}||'%'
 	</select>
+	
+	<select id="getApartSearch" parameterType="String" resultType="com.early.model.SearchApartVO">
+	    SELECT a.apt_name, b.apt_realprice, a.apt_loc
+	    FROM tb_apartment a
+	    JOIN tb_apartment_info b ON a.apt_code = b.apt_code
+	    WHERE a.apt_loc LIKE '%' || #{name} || '%' 
+	</select>
 
 </mapper>
