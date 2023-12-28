@@ -57,9 +57,17 @@
 			</div>
 			<div class="header-right">
 				<div class="header-utils">
-					<a href="login.jsp" class="btn-profile header-utils-btn">
-						<img src="../resources/icons/ico_profile_black.svg" alt="검색">
-					</a>
+					<c:if test="${member==null }">
+                        <a href="login.jsp" class="btnset btnset-round">로그인</a>
+                     </c:if>
+                        <c:if test="${member!=null }">
+                           <c:if test="${member.user_id!='admin' }">
+                              <a href="Mypage.jsp">개인정보수정</a>
+                           </c:if>
+                           <c:if test="${member.user_id=='admin' }">
+                              <a href="SelectAll.do">회원관리</a>
+                           </c:if>   
+                     </c:if>
 					<button class="btn-search header-utils-btn">
 						<img src="../resources/icons/ico_search_black.svg" alt="검색">
 					</button>

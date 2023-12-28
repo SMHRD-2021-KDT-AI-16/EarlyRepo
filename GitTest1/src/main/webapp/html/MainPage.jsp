@@ -136,33 +136,28 @@
 			<div class="header-right">
 				<div class="header-utils">
 						<c:if test="${member==null }">
-                        <a href="login.jsp" class="btnset btnset-round">로그인</a>
+                        <a href="login.jsp"><img src="../resources/icons/LOGIN.svg" alt="검색"></a>
                      </c:if>
                         <c:if test="${member!=null }">
                            <c:if test="${member.user_id!='admin' }">
-                              <a href="Mypage.jsp">개인정보수정</a>
+                              <a href="Mypage.jsp"><img src="../resources/icons/ico_profile_black.svg" alt="검색"></a>
                            </c:if>
                            
                            <c:if test="${member.user_id=='admin' }">
                               <a href="SelectAll.do">회원관리</a>
                            </c:if>   
                      </c:if>
-                           
 					<button class="btn-search header-utils-btn">
 						<img src="../resources/icons/ico_search_black.svg" alt="검색">
 					</button>
-				
 	</header>
 	<main class="th-layout-main">
 		<div id="total_div">
 			<div id="left_div">       <!-- 왼쪽 자산정보 입력창 -->
-		   
 		       <div class="textset textset-sub textset-center">
 				  <h5 class="textset-tit">당신의 능력으로 살 수있는 집을 알려드려요​<br></h5>
 			   </div>
-		   
 		   		<ul class="contents-list">
-		   		
 		   				<li class="contents-item">
 							<h6 class="form-tit form-tit-deco">
 								<span></span>집 사본적?
@@ -174,7 +169,6 @@
 								</div>
 							</div>
 						</li>
-						
 						<li class="contents-item">
 							<h6 class="form-tit form-tit-deco">
 								<span></span> 현재 집이 있나요?
@@ -202,7 +196,6 @@
                					  </div>
                				</div>	  
 						</li>
-						
 						<li class="contents-item">
 							<h6 class="form-tit form-tit-deco">
 								<span></span>부양가족수
@@ -233,13 +226,11 @@
                       					    <option value="over5000">5000만원~6000만원</option>
                       					    <option value="over6000">6000만원~7000만원</option>
                       					    <option value="over7000">7000만원 이상</option>
-                      					    
              						 </select>
                					  </div>
                				</div>	  
 							</div>
 						</li>
-
 						<li class="contents-item">
 							<h6 class="form-tit form-tit-deco">
 								<span></span>구매여유자금(만원)
@@ -264,9 +255,7 @@
 					<div class="contents-confirm" align=center>
 						<button class="btnset btnset-round">결과보기</button>
 					</div>
-
 				</ul>	
-		
 			</div>      <!-- 왼쪽 자산정보 입력창 닫기 -->
 			
 			<div id="mid_div">
