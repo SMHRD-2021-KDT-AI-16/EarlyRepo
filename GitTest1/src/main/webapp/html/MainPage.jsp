@@ -25,79 +25,7 @@
 	<link rel="stylesheet" href="../resources/css/style.css">
 	<link rel="stylesheet" href="../resources/css/map.css">
 	<style>
-        #customOverlay {
-            background-color: #fff;
-            border: 1px solid #ccc;
-            border-radius: 10px;
-            padding: 20px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            max-width: 250px;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            z-index: 999;
-            text-align: center;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        #titleText {
-            font-size: 18px;
-            font-weight: bold;
-            margin-bottom: 16px;
-        }
-
-        #customList {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-
-        .customListItem {
-            margin-bottom: 10px;
-        }
-
-        .customButton {
-            background-color: #007BFF;
-            color: #fafafa;
-            border: none;
-            padding: 10px 20px;
-            cursor: pointer;
-            border-radius: 5px;
-            margin-top: 16px;
-        }
-
-        .customButton img {
-            width: 12px;
-            height: 12px;
-            margin-right: 5px;
-        }
-
-        .customButton:hover {
-            background-color: #0056b3;
-            
-        }
         
-        .overlay {
-    		position:fixed;
-    		right: -900px;
-    		top: 10px;
-    		width:100px;
-    		border:1px solid #ccc;
-    		border-radius: 5px;
-    		padding:5px;
-    		font-size:12px;
-		    text-align: center;
-    		white-space: pre;
-    		word-wrap: break-word;
-		}
-		#menu_wrap {position:fixed;top:0;left:100em;bottom:0;width:250px;margin:absolute; padding:5px;overflow-y:absolute;background:rgba(255, 255, 255, 0.7);z-index: 1;font-size:12px;border-radius: 10px;}
-		#menu_wrap hr {display: block; height: 1px;border: 0; border-top: 2px solid #5F5F5F;margin:3px 0;}
-		#menu_wrap .option{text-align: center;}
-		#menu_wrap .option p {margin:10px 0;}  
-		#menu_wrap .option button {margin-left:5px;}
 	</style>
 </head>
 
@@ -147,10 +75,12 @@
                               <a href="SelectAll.do">회원관리</a>
                            </c:if>   
                      </c:if>
-                           
+				</div>
+			</div>  
 					<button class="btn-search header-utils-btn">
 						<img src="../resources/icons/ico_search_black.svg" alt="검색">
 					</button>
+		</div>
 				
 	</header>
 	<main class="th-layout-main">
@@ -162,7 +92,6 @@
 			   </div>
 		   
 		   		<ul class="contents-list">
-		   		
 		   				<li class="contents-item">
 							<h6 class="form-tit form-tit-deco">
 								<span></span>집 사본적?
@@ -224,9 +153,9 @@
 							</h6>
 							<div class="form-wrap">
 								<div class="form-wrap">
-								  <div class="selectset selectset-round selectset-md">
-                  					  <select name="salary" class="selectset-toggle btn" >
-                						    <option value="under2000">2000만원 이하</option>
+									<div class="selectset selectset-round selectset-md">
+                  						<select name="salary" class="selectset-toggle btn" >
+                							<option value="under2000">2000만원 이하</option>
                              				<option value="over2000">2000~3000만원</option>
                       					    <option value="over3000">3000만원~4000만원</option>
                       					    <option value="over4000">4000만원~5000만원</option>
@@ -234,9 +163,9 @@
                       					    <option value="over6000">6000만원~7000만원</option>
                       					    <option value="over7000">7000만원 이상</option>
                       					    
-             						 </select>
-               					  </div>
-               				</div>	  
+             							</select>
+               					  	</div>
+               					</div>	  
 							</div>
 						</li>
 
@@ -269,190 +198,228 @@
 		
 			</div>      <!-- 왼쪽 자산정보 입력창 닫기 -->
 			
-			<div id="mid_div">
-			<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-				<script type="text/javascript"
-						src="//dapi.kakao.com/v2/maps/sdk.js?appkey=e193c7f773c86ecc8ab769e9704f781a&libraries=services,clusterer,drawing"></script>
-				<script>
-					var addr = '';
-					var container = document.getElementById('mid_div');
-					var options = {
-						center: new kakao.maps.LatLng(34.810159, 126.424775), level: 6
-					};
-				
-					var map = new kakao.maps.Map(container, options),
-						customOverlay = new kakao.maps.CustomOverlay({}),
-						infowindow = new kakao.maps.InfoWindow({removable: true});
-				
-				
-					$.getJSON('../resources/json/mokpo_test.json', function(json) {
-					 	var data = json.features;
-						var coordintes = [];   // 좌표 저장
-						var name = '';         // 행정구 이름
-						
-						
-						$.each(data, function(index, val) {
-							coordinates = val.geometry.coordinates;
-							name = val.properties.ADM_NM; // json에 있는 한글이름
-							
-							displayArea2(coordinates, name);
-							//console.log('test = ',name);
-							//console.log('test2 = ',coordinates);
-						})
-					})			
-					
-					var polygons = [];
-					var points = [];
-					
-					function displayArea2(coordinates, name) {
-					 	var path = [];     // 폴리곤 path
-						   // 중심좌표
-						
-						$.each(coordinates[0], function(index, coordinate) {
-							var point = new Object();
-							point.x = coordinate[0];
-							point.y = coordinate[1];
-							points.push(point);
-							console.log('test3 : ',coordinate[1]);
-							console.log('test4 : ',coordinate[0]);
-							
-							path.push(new kakao.maps.LatLng(coordinate[0], coordinate[1]));
-						})
-						console.log('points : ',points);
-						var polygon = new kakao.maps.Polygon({
-					        map : map, // 다각형을 표시할 지도 객체
-					        path : path,
-					        strokeWeight: 2,
-					        strokeColor: '#004c80',
-					        strokeOpacity: 0.8,
-					        fillColor: '#fff',
-					        fillOpacity: 0.7 
-					    });
-					    
-					    polygons.push(polygon);
-					    
-					    kakao.maps.event.addListener(polygon, 'click', function (mouseEvent) {
-				            addr = name;
-				            var content = '<div id="customOverlay">' +
-				                '<div id="titleText">' + name + '</div>' +
-				                '<ul id="customList">' +
-				                '<li class="customListItem"><button class="customButton" onclick="detail_map()">지역상세보기</button></li>' +
-				                '<li class="customListItem"><form action="notice_Board.do"><button class="customButton" name="loc" value="' + name + '">지역게시판</button></form></li>' +
-				                '<li class="customListItem"><form action=""><button class="customButton">지역채팅</button></form></li>' +
-				                '</ul>' +
-				                '</div>';
-				            customOverlay.setContent(content);
-				            customOverlay.setPosition(mouseEvent.latLng);
-				            customOverlay.setMap(map);
-				        });
-					}
-
-					function detail_map(){
-						//console.log('1. name : ',name);
-						getData();
-						map.setLevel(2, {anchor: zoomin_map(), animate:true});
-						
-						for(var i = 0; i < polygons.length; i++){
-							polygons[i].setMap(null);		
-						}
-						customOverlay.setMap(null);
-						polygons = [];
-						
-					}
-					
-					
-					function zoomin_map(){
-						if(addr == "하당동"){
-							return new kakao.maps.LatLng(34.808948346503676, 126.42033035076065);
-						}else if(addr="옥암동"){
-							return new kakao.maps.LatLng(34.81032236853858, 126.42877975042865);
-						}
-					}
-					
-					function getData() {
-					    $.ajax({
-					        url: 'http://localhost:8083/GitTest1/getApart.do?name=' + addr,
-					        contentType: 'text/plain; charset=UTF-8',
-					        success: function (result) {
-					            var itemList = result.split(';');
-					            
-					            for (let i = 0; i < itemList.length - 1; i += 2) {
-					                let j = i + 1;
-
-					                var geocoder = new kakao.maps.services.Geocoder();
-
-					                geocoder.addressSearch(itemList[i], function (result, status) {
-					                    if (status === kakao.maps.services.Status.OK) {
-					                        var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
-
-					                        // 서버에서 추가 데이터를 가져오기
-					                        var additionalData = getDataForMarker(itemList[i]);
-
-					                        var marker = new kakao.maps.Marker({
-					                            map: map,
-					                            position: coords
-					                        });
-
-					                        let content = document.createElement('div');
-					                        content.innerHTML = '<div id="menu_wrap" style="height:70em; width:350px;text-align:center;padding:6px 0;"><h1>'
-					                        	+ itemList[j] + '</h1><br>'
-					                            + additionalData + '<br>'
-					                            +                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      
-					                            '</div>';
-
-					                        kakao.maps.event.addListener(marker, 'click', function () {
-					                            let CustomOverlay2 = new kakao.maps.CustomOverlay({
-					                                map: map,
-					                                position: coords,
-					                                content: content
-					                            });
-					                        });
-					                    }
-					                });
-					            }
-					        },
-					        error: function () {
-					            console.error('Error fetching data from server.');
-					        }
-					    });
-					}
-
-					// 서버에서 추가 데이터 가져오는 함수
-					function getDataForMarker(name) {
-					    return name;
-					}
-
-					function change_LatLng(itemList){
-						var geocoder = new kakao.maps.services.Geocoder();
-						
-						// 주소로 좌표를 검색합니다
-						geocoder.addressSearch(itemList, function(result, status) {
-
-						    // 정상적으로 검색이 완료됐으면 
-						     if (status === kakao.maps.services.Status.OK) {
-
-						        var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
-
-						        // 결과값으로 받은 위치를 마커로 표시합니다
-						        var marker = new kakao.maps.Marker({
-						            map: map,
-						            position: coords
-						        });
-
-						        // 인포윈도우로 장소에 대한 설명을 표시합니다
-						        var infowindow = new kakao.maps.InfoWindow({
-						            content: '<div style="width:150px;text-align:center;padding:6px 0;">우리회사</div>'
-						        });
-						        infowindow.open(map, marker);
-
-						       
-						    } 
-						})
-					}
-				</script>
+			<div id="full_mid_div">
+				<div id="mid_div"></div>
+				<div id="search_page" class="bg_white">
+					<div class="option">
+						<div>
+							<form>
+								키워드 : <input type="text" value="" id="keyword" size="15">
+								<button type="button" onclick="searchPlaces()">검색하기</button>
+							</form>
+						</div>
+					</div>
+				</div>
 			</div>
-			
 		</div>
+			
+		<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+			<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=e193c7f773c86ecc8ab769e9704f781a&libraries=services,clusterer,drawing"></script>
+			<script>
+				var addr = '';
+				var container = document.getElementById('mid_div');
+				var options = {
+					center: new kakao.maps.LatLng(34.810159, 126.424775), level: 6
+				}; // 맵 중심좌표, 맵 확대레벨 선언
+				
+				var map = new kakao.maps.Map(container, options),
+					customOverlay = new kakao.maps.CustomOverlay({}),
+					infowindow = new kakao.maps.InfoWindow({removable: true});
+				// 맵, 오버레이, 인포윈도우
+				
+				$.getJSON('../resources/json/mokpo_test.json', function(json) {
+				 	var data = json.features;
+					var coordintes = [];   // 좌표 저장
+					var name = '';         // 행정구 이름
+						
+						
+					$.each(data, function(index, val) {
+						coordinates = val.geometry.coordinates;
+						name = val.properties.ADM_NM; // json에 있는 한글이름
+						
+						displayArea2(coordinates, name);
+					})
+				})	// 좌표 저장되어잇는 json 파일 불러오기		
+					
+				var polygons = [];
+				var points = [];
+					
+				function displayArea2(coordinates, name) {
+					 var path = [];     // 폴리곤 path
+						
+					$.each(coordinates[0], function(index, coordinate) {
+						var point = new Object();
+						point.x = coordinate[0];
+						point.y = coordinate[1];
+						points.push(point);
+							
+						path.push(new kakao.maps.LatLng(coordinate[0], coordinate[1]));
+					})
+					 
+					var polygon = new kakao.maps.Polygon({
+						map : map, // 다각형을 표시할 지도 객체
+					    path : path,
+					    strokeWeight: 2,
+					    strokeColor: '#004c80',
+					    strokeOpacity: 0.8,
+					    fillColor: '#fff',
+					    fillOpacity: 0.7 
+					});
+					    
+					polygons.push(polygon);
+					    
+					kakao.maps.event.addListener(polygon, 'click', function (mouseEvent) {
+				        addr = name;
+				        var content = '<div id="customOverlay">' +
+				            '<div id="titleText">' + name + '</div>' +
+				            '<ul id="customList">' +
+				            '<li class="customListItem"><button class="customButton" onclick="detail_map()">지역상세보기</button></li>' +
+				            '<li class="customListItem"><form action="notice_Board.do"><button class="customButton" name="loc" value="' + name + '">지역게시판</button></form></li>' +
+				            '<li class="customListItem"><form action=""><button class="customButton">지역채팅</button></form></li>' +
+				            '</ul>' +
+				            '</div>';
+				        customOverlay.setContent(content);
+				        customOverlay.setPosition(mouseEvent.latLng);
+				        customOverlay.setMap(map);
+				    });
+				}
+
+				function detail_map(){ // 상세정보보기 눌렀을 때
+					getData();
+						
+					map.setLevel(2, {anchor: zoomin_map(), animate:true});
+						
+					for(var i = 0; i < polygons.length; i++){
+						polygons[i].setMap(null);		
+					}
+					customOverlay.setMap(null);
+					polygons = [];
+						
+				}
+					
+					
+				function zoomin_map(){ // 폴리곤 눌러서 클릭 했을 때 확대되는 좌표값
+					if(addr == "하당동"){
+						return new kakao.maps.LatLng(34.808948346503676, 126.42033035076065);
+					}else if(addr="옥암동"){
+						return new kakao.maps.LatLng(34.81032236853858, 126.42877975042865);
+					}
+				}
+					
+				function getData() { // 상세정보보기 눌렀을 때 가져오는 동 아파트 주소 정보
+					$.ajax({
+						url: 'http://localhost:8083/GitTest1/getApart.do?name=' + addr,
+					    contentType: 'text/plain; charset=UTF-8',
+					    success: function (result) {
+					        var itemList = result.split(';');
+					            
+					        for (let i = 0; i < itemList.length - 1; i += 2) {
+					            let j = i + 1;
+
+					            var geocoder = new kakao.maps.services.Geocoder();
+
+					            geocoder.addressSearch(itemList[i], function (result, status) {
+					                if (status === kakao.maps.services.Status.OK) {
+					                    var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+
+					                    var additionalData = getDataForMarker(itemList[i]);
+
+					                    var marker = new kakao.maps.Marker({
+					                        map: map,
+					                        position: coords
+					                    });
+
+					                    let content = document.createElement('div');
+					                    content.innerHTML = '<div id="menu_wrap" style="height:70em; width:350px;text-align:center;padding:6px 0;"><h1>'
+					                    	  	+ itemList[j] + '</h1><br>'
+					                            + additionalData + '<br>'
+					                            + '</div>';
+
+					                    kakao.maps.event.addListener(marker, 'click', function () {
+					                        let CustomOverlay2 = new kakao.maps.CustomOverlay({
+					                            map: map,
+					                            position: coords,
+					                            content: content
+					                        });
+					                    });
+					                }
+					            });
+					        }
+					    },
+					    error: function () { // 통신 실패했을 때
+					        console.error('Error fetching data from server.');
+					    }
+					});
+				}
+				
+				function searchPlaces() { // 검색데이터 가져오기
+	            	var searchValue = $('#keyword').val();
+	            	
+	            	$.ajax({
+	           	 		url : 'http://localhost:8083/GitTest1/getApartSearch.do?name='+ searchValue,
+	                	contentType : 'text/plain; charset=UTF-8', // Specify UTF-8
+	                	data: { name: searchValue },
+	                	
+	                	success : function(result) {
+	                		console.log("test : ",result);
+	                    	var searchList = result.split(';');
+	                   		
+	                   		
+	                    	for (let i = 0; i < searchList.length - 1; i += 3) {
+	                        	let j = i + 1;
+	                    		var geocoder = new kakao.maps.services.Geocoder();
+	                        
+	                        	geocoder.addressSearch(searchList[i],function(result, status) {
+
+	                            	if (status === kakao.maps.services.Status.OK) {
+	                                	var coords = new kakao.maps.LatLng(
+	                                    	result[0].y,
+	                                        result[0].x
+	                                    );
+
+	                                    var marker = new kakao.maps.Marker({
+	                                    	map : map,
+	                                        position : coords
+	                                    });
+	                                }
+								})
+							}
+	                    },
+						error : function() {
+		                	console.log("실패");
+						}
+	            	})
+		        } 
+
+				function getDataForMarker(name) {
+				    return name;
+				}
+
+				function change_LatLng(itemList){
+					var geocoder = new kakao.maps.services.Geocoder();
+						
+					geocoder.addressSearch(itemList, function(result, status) {
+	 
+						if (status === kakao.maps.services.Status.OK) {
+
+				        	var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+
+					    	var marker = new kakao.maps.Marker({
+					        	map: map,
+					        	position: coords
+					    	});
+
+					    	var infowindow = new kakao.maps.InfoWindow({
+						        	content: '<div style="width:150px;text-align:center;padding:6px 0;">우리회사</div>'
+							});
+							infowindow.open(map, marker);
+						       
+						} 
+					})
+				}
+				</script>
+			
+			
 		
 		<!-- [S]campland-N15 -->
     <div class="campland-N15" data-bid="crlQNCwqYB">
