@@ -2,6 +2,7 @@
 <%@page import="com.early.model.NoticeBoardVO"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,12 +28,6 @@
 		li {
 			list-style: none;
 		}
-
-		img {
-			width: 200px;
-			height: 200px;
-		}
-
 		.real-upload {
 			display: none;
 		}
@@ -52,7 +47,7 @@
 		}
 		#table_content{
 			
-			margin-left: 20%;
+			margin-left: 30%;
 		}
 		#content_userid{
 			align-items: center;
@@ -71,6 +66,37 @@
 		.inner_content{
 			height: 100px;
 		}
+		
+		.myButton {
+			box-shadow:inset 0px 0px 0px 0px #ffffff;
+			background:linear-gradient(to bottom, #f9f9f9 5%, #e9e9e9 100%);
+			background-color:#f9f9f9;
+			border-radius:6px;
+			border:1px solid #dcdcdc;
+			display:inline-block;
+			cursor:pointer;
+			color:#666666;
+			font-family:Arial;
+			font-size:15px;
+			font-weight:bold;
+			padding:8px 21px;
+			text-decoration:none;
+			text-shadow:0px 1px 0px #ffffff;
+			margin-left: 30%;
+			margin-top: 20px;
+		}
+		.myButton:hover {
+			background:linear-gradient(to bottom, #e9e9e9 5%, #f9f9f9 100%);
+			background-color:#e9e9e9;
+		}
+		.myButton:active {
+			position:relative;
+			top:1px;
+		}
+		.textset-tit{
+			 color: white;			 
+		}
+		
 	</style>
 </head>
 
@@ -111,11 +137,22 @@
 			</div>
 			<div class="header-right">
 				<div class="header-utils">
-					<a href="login.jsp" class="btn-profile header-utils-btn">
-						<img src="../resources/icons/ico_profile_black.svg" alt="검색">
-					</a>
+					 <c:if test="${member==null }">
+                        <a href="login.jsp"><img src="../resources/icons/LOGIN.png"></a>
+                     </c:if>
+                     <c:if test="${member!=null }">
+                           <c:if test="${member.user_id!='admin' }">
+                              <a href="Mypage.jsp"><img src="../resources/icons/ico_profile_black.png" ></a>
+                           </c:if>
+                           <c:if test="${member.user_id!='admin' }">
+                              <a href="http://localhost:8083/GitTest1/Logout.do"><img src="../resources/icons/LOGOUT.png" ></a>
+                           </c:if>
+                           <c:if test="${member.user_id=='admin' }">
+                              <a href="SelectAll.do">회원관리</a>
+                           </c:if>   
+                     </c:if>
 					<button class="btn-search header-utils-btn">
-						<img src="../resources/icons/ico_search_black.svg" alt="검색">
+						<a href ="Profile.jsp"><img src="../resources/icons/ico_search_black.svg"></a>
 					</button>
 	</header>
 	<!-- [E]campland-N1 -->
@@ -123,20 +160,20 @@
 		<!-- [S]campland-N8 -->
 		<div class="campland-N8" data-bid="pXlq6deKP1">
 			<div class="contents-container">
-				<img class="contents-visual img-pc" src="../resources/images/img_subvisual_1.png" alt="서브 비주얼 PC 이미지">
-				<img class="contents-visual img-mobile" src="../resources/images/img_subvisual_mobile_1.png"
+				<img class="contents-visual img-pc" src="../resources/images/board.png" alt="서브 비주얼 PC 이미지">
+				<img class="contents-visual img-mobile" src="../resources/images/board.png"
 					alt="서브 비주얼 모바일 이미지">
 				<div class="contents-body container-md">
 					<div class="textset textset-visual">
-						<h2 class="textset-tit">게시판</h2>
+						<h6 class="textset-tit">동네 게시판</h6>
 					</div>
 				</div>
 			</div>
 		</div>
 		<!-- [E]campland-N8 -->
 		<!-- [S]campland-N15 -->
-		<div class="contents-confirm"align ="center">
-			<a href="Write.jsp" class="btnset btnset-round btnset-line btnset-black">게시글 작성</a>
+		<div class="myButton">
+			<a href="Write.jsp">게시글 작성</a>
 		</div>
 		<table id="table_content">
 			<tr>

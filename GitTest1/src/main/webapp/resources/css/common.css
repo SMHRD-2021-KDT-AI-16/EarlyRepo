@@ -162,11 +162,11 @@
 
 /* campland-N8 [yVLq6D2RJs] */
 .campland-N8 { overflow: hidden; }
-.campland-N8 .contents-container { position: relative; height: 48rem; }
+.campland-N8 .contents-container { position: relative; height: 15rem; }
 .campland-N8 .contents-visual { width: 100%; height: 100%; object-fit: cover; }
 .campland-N8 .contents-body { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 1; width: 100%; padding: 0 1.6rem; text-align: center; }
 .campland-N8 .textset.textset-visual { color: var(--text-color6); }
-.campland-N8 .textset.textset-visual .textset-tit { font-size: var(--fs-h2); }
+.campland-N8 .textset.textset-visual .textset-tit { font-size: 3em }
 @media (max-width: 992px) {
  .campland-N8 .contents-container { height: 40rem; }
 }
