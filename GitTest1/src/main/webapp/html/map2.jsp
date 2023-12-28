@@ -60,7 +60,7 @@
 
         .customButton {
             background-color: #007BFF;
-            color: #fff;
+            color: #fafafa;
             border: none;
             padding: 10px 20px;
             cursor: pointer;
@@ -84,8 +84,6 @@
     		right: -900px;
     		top: 10px;
     		width:100px;
-    		height: 100px;
-		    background: #fff;
     		border:1px solid #ccc;
     		border-radius: 5px;
     		padding:5px;
@@ -94,6 +92,11 @@
     		white-space: pre;
     		word-wrap: break-word;
 		}
+		#menu_wrap {position:fixed;top:0;left:100em;bottom:0;width:250px;margin:absolute; padding:5px;overflow-y:absolute;background:rgba(255, 255, 255, 0.7);z-index: 1;font-size:12px;border-radius: 10px;}
+		#menu_wrap hr {display: block; height: 1px;border: 0; border-top: 2px solid #5F5F5F;margin:3px 0;}
+		#menu_wrap .option{text-align: center;}
+		#menu_wrap .option p {margin:10px 0;}  
+		#menu_wrap .option button {margin-left:5px;}
 	</style>
 </head>
 
@@ -110,74 +113,155 @@
 			</div>
 			<div class="header-center">
 				<ul class="header-gnblist">
+					
 					<li class="header-gnbitem">
-					</li>
-					<li class="header-gnbitem">
-						<a class="header-gnblink" href="javascript:void(0)">
-							<span>시설소개</span>
+						<a class="header-gnblink" href="map.jsp">
+							<span>집찾기</span>
 						</a>
 					</li>
 					<li class="header-gnbitem">
-						<ul class="header-sublist">
-							<li class="header-subitem">
-								<a class="header-sublink" href="javascript:void(0)">
-									<span>공지사항</span>
-								</a>
-							</li>
-							<li class="header-subitem">
-								<a class="header-sublink" href="javascript:void(0)">
-									<span>자주묻는질문</span>
-								</a>
-							</li>
-						</ul>
+						<a class="header-gnblink" href="board.jsp">
+							<span>부동산 게시판</span>
 					</li>
 					<li class="header-gnbitem">
-						<a class="header-gnblink" href="javascript:void(0)">
-							<span>이용후기</span>
+						<a class="header-gnblink" href="Chat.jsp">
+							<span>동네 채팅</span>
 						</a>
 					</li>
-					<li class="header-gnbitem">
-						<a class="header-gnblink" href="javascript:void(0)">
-							<span>오시는 길</span>
-						</a>
-					</li>
-					<li class="header-gnbitem">
-						<ul class="header-sublist">
-							<li class="header-subitem">
-								<a class="header-sublink" href="javascript:void(0)">
-									<span>빠른예약</span>
-								</a>
-							</li>
-							<li class="header-subitem">
-								<a class="header-sublink" href="javascript:void(0)">
-									<span>예약조회</span>
-								</a>
-							</li>
-						</ul>
-					</li>
-				</ul>	
 			</div>
 			<div class="header-right">
 				<div class="header-utils">
-					<a href="javascript:void(0);" class="btn-profile header-utils-btn">
-						<img src="../resources/icons/ico_profile_black.svg" alt="검색">
+					<a href="login.jsp" class="btn-profile header-utils-btn">
+						<img src="../resources/icons/ico_profile_black.svg" >
 					</a>
-					<button class="btn-search header-utils-btn">
-						<img src="../resources/icons/ico_search_black.svg" alt="검색">
-					</button>
-					<button class="btn-moclose header-utils-btn">
-						<img src="../resources/icons/ico_close_m_black.svg" alt="닫기">
-					</button>
+
+					<a href="Profile.jsp" class="btn-search header-utils-btn">
+						<img src="../resources/icons/ico_search_black.svg" >
+					</a>
+
 				</div>
 			</div>
 		</div>
 	</header>
 
-	<main class="th-layout-main ">
+	<main class="th-layout-main">
 		<div id="total_div">
-			<div id="left_div">
+			<div id="left_div">       <!-- 왼쪽 자산정보 입력창 -->
+		   
+		       <div class="textset textset-sub textset-center">
+				  <h5 class="textset-tit">당신의 능력으로 살 수있는 집을 알려드려요​<br></h5>
+			   </div>
+		   
+		   		<ul class="contents-list">
+		   		
+		   				<li class="contents-item">
+							<h6 class="form-tit form-tit-deco">
+								<span></span>집 사본적?
+							</h6>
+							<div class="form-wrap">
+								<div class="inputset inputset-round" align=center>
+									<input type="radio" name="firstloan"  value="fisrtloan0"> 있어요
+									<input type="radio" name="firstloan"  value="firstloan1"> 없어요
+								</div>
+							</div>
+						</li>
+						
+						<li class="contents-item">
+							<h6 class="form-tit form-tit-deco">
+								<span></span> 현재 집이 있나요?
+							</h6>
+							<div class="form-wrap">
+								<div class="inputset inputset-round" align=center>
+									<input type="radio" name="firstloan" value="fisrtloan0"> 있어요
+									<input type="radio" name="firstloan" value="firstloan1"> 없어요
+								</div>
+							</div>
+						</li>
+		   		
+						<li class="contents-item">
+							<h6 class="form-tit form-tit-deco">
+								<span></span>나이
+							</h6>
+							<div class="form-wrap">
+								  <div class="selectset selectset-round selectset-md">
+                  					  <select name="age" class="selectset-toggle btn" >
+                						    <option value="under24">24세이하</option>
+                             				<option value="over24">25세~30세</option>
+                      					    <option value="over28">31세~36세</option>
+                      					    <option value="over34">36세이상</option>
+             						 </select>
+               					  </div>
+               				</div>	  
+						</li>
+						
+						<li class="contents-item">
+							<h6 class="form-tit form-tit-deco">
+								<span></span>부양가족수
+							</h6>
+							<div class="form-wrap">
+								  <div class="selectset selectset-round selectset-md">
+                  					  <select name="family" class="selectset-toggle btn" >
+                						    <option value="family1">혼자살아요</option>
+                             				<option value="family2">2인</option>
+                      					    <option value="family3">3인</option>
+                      					    <option value="family4">4인이상</option>
+             						 </select>
+               					  </div>
+               				</div>	  
+						</li>
+
+						
+						
+						<li class="contents-item">
+							<h6 class="form-tit form-tit-deco">
+								<span></span>연소득입력(만원)
+							</h6>
+							<div class="form-wrap">
+								<div class="form-wrap">
+								  <div class="selectset selectset-round selectset-md">
+                  					  <select name="salary" class="selectset-toggle btn" >
+                						    <option value="under2000">2000만원 이하</option>
+                             				<option value="over2000">2000~3000만원</option>
+                      					    <option value="over3000">3000만원~4000만원</option>
+                      					    <option value="over4000">4000만원~5000만원</option>
+                      					    <option value="over5000">5000만원~6000만원</option>
+                      					    <option value="over6000">6000만원~7000만원</option>
+                      					    <option value="over7000">7000만원 이상</option>
+                      					    
+             						 </select>
+               					  </div>
+               				</div>	  
+							</div>
+						</li>
+
+						<li class="contents-item">
+							<h6 class="form-tit form-tit-deco">
+								<span></span>구매여유자금(만원)
+							</h6>
+							<div class="form-wrap">
+								<div class="form-wrap">
+								  <div class="selectset selectset-round selectset-md">
+                  					  <select name="spare_funds" class="selectset-toggle btn" >
+                						    <option value="under2000">2000만원 이하</option>
+                             				<option value="over2000">2000~3000만원</option>
+                      					    <option value="over3000">3000만원~4000만원</option>
+                      					    <option value="over4000">4000만원~5000만원</option>
+                      					    <option value="over5000">5000만원~6000만원</option>
+                      					    <option value="over6000">6000만원~7000만원</option>
+                      					    <option value="over7000">7000만원 이상</option>
+             						 </select>
+               					  </div>
+               				  </div>	  
+						 </div>
+						</li>
+					<br>
+					<div class="contents-confirm" align=center>
+						<button class="btnset btnset-round">결과보기</button>
+					</div>
+
+				</ul>	
 		
-			</div>
+			</div>      <!-- 왼쪽 자산정보 입력창 닫기 -->
 			
 			<div id="mid_div">
 			<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
@@ -241,26 +325,6 @@
 					    
 					    polygons.push(polygon);
 					    
-					    /* kakao.maps.event.addListener(polygon, 'mouseover',function(mouseEvent){
-					    	console.log('작동!');
-					    	
-					    	polygon.setOptions({fillColor: '#09f'});
-					    	//customOverlay.setContent('<div>'+name+'</div>');
-					    	customOverlay.setPosition(mouseEvent.latLng);
-					    	customOverlay.setMap(map);
-					    });
-					    
-					    kakao.maps.event.addListener(polygon, 'mousemove', function(mouseEvent) {
-					        
-					        customOverlay.setPosition(mouseEvent.latLng); 
-					    });
-
-					    
-					    kakao.maps.event.addListener(polygon, 'mouseout', function() {
-					        polygon.setOptions({fillColor: '#fff'});
-					        customOverlay.setMap(null);
-					    });  */
-					    
 					    kakao.maps.event.addListener(polygon, 'click', function (mouseEvent) {
 				            addr = name;
 				            var content = '<div id="customOverlay">' +
@@ -276,26 +340,7 @@
 				            customOverlay.setMap(map);
 				        });
 					}
-					
-					//kakao.maps.event.addListener(map, 'zoom_changed', function() {        
-					    // 지도의 현재 레벨을 얻어옵니다
-					    //level = map.getLevel();
 
-						//if(level > 3){
-							//for (var i = 0, len = areas.length; i < len; i++) {
-					    		//displayArea(areas[0]);
-							//}
-
-						//}else {
-							//for (var i = 0, len = areas.length; i < len; i++) {
-					    	//	map;
-
-							//}
-						//}
-					    
-					//});
-					
-					
 					function detail_map(){
 						//console.log('1. name : ',name);
 						getData();
@@ -318,62 +363,59 @@
 						}
 					}
 					
-					function getData(){
-		                  $.ajax({
-		                     /* url : 'http://localhost:8083/GitTest2/GetApartinfoService?name='+addr, */
-		                     url : 'http://localhost:8083/GitTest1/getApart.do?name='+addr,
-		                     contentType: 'text/plain; charset=UTF-8', // Specify UTF-8
-		                     success:function(result){
-		                        var itemList = result.split(';');
-		                        //itemList.remove(4);
-		                        console.log('List from server:', itemList);
-		                        
-		                        for (let i = 0; i < itemList.length-1; i+=2){
-		                           let j = i+1;
-		                           console.log("j : ",itemList[j]);
-		                           var geocoder = new kakao.maps.services.Geocoder();
-		                        
-		                           // 주소로 좌표를 검색
-		                           geocoder.addressSearch(itemList[i], function(result, status) {
+					function getData() {
+					    $.ajax({
+					        url: 'http://localhost:8083/GitTest1/getApart.do?name=' + addr,
+					        contentType: 'text/plain; charset=UTF-8',
+					        success: function (result) {
+					            var itemList = result.split(';');
+					            
+					            for (let i = 0; i < itemList.length - 1; i += 2) {
+					                let j = i + 1;
 
-		                                // 정상적으로 검색
-		                                if (status === kakao.maps.services.Status.OK) {
+					                var geocoder = new kakao.maps.services.Geocoder();
 
-		                                   var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+					                geocoder.addressSearch(itemList[i], function (result, status) {
+					                    if (status === kakao.maps.services.Status.OK) {
+					                        var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
 
-		                                   // 결과값으로 받은 위치를 마커로 표시
-		                                   var marker = new kakao.maps.Marker({
-		                                         map: map,
-		                                       position: coords
-		                                   });
-		                                   
-		                                   let content = document.createElement('div');
-								        	content.className = 'overlay';
-								        	content.innerHTML = '<div id="test" style="width:150px;text-align:center;padding:6px 0;">'+itemList[j]+'</div>';
-								            
-								
-								        	kakao.maps.event.addListener(marker, 'click', function() {
-										        
-								        		let CustomOverlay2 = new kakao.maps.CustomOverlay({
-									        		map: map,
-									        		position: coords,
-									        	    content: content
-									        	});
-										  	});
-								     
+					                        // 서버에서 추가 데이터를 가져오기
+					                        var additionalData = getDataForMarker(itemList[i]);
 
-								    	} 
-									})
-								}
-								 
-								
-							},
-		                     error:function(){
-		                        
-		                     }
-		                  })
-		                  
-		               }
+					                        var marker = new kakao.maps.Marker({
+					                            map: map,
+					                            position: coords
+					                        });
+
+					                        let content = document.createElement('div');
+					                        content.innerHTML = '<div id="menu_wrap" style="height:70em; width:350px;text-align:center;padding:6px 0;"><h1>'
+					                        	+ itemList[j] + '</h1><br>'
+					                            + additionalData + '<br>'
+					                            +                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      
+					                            '</div>';
+
+					                        kakao.maps.event.addListener(marker, 'click', function () {
+					                            let CustomOverlay2 = new kakao.maps.CustomOverlay({
+					                                map: map,
+					                                position: coords,
+					                                content: content
+					                            });
+					                        });
+					                    }
+					                });
+					            }
+					        },
+					        error: function () {
+					            console.error('Error fetching data from server.');
+					        }
+					    });
+					}
+
+					// 서버에서 추가 데이터 가져오는 함수
+					function getDataForMarker(name) {
+					    return name;
+					}
+
 					function change_LatLng(itemList){
 						var geocoder = new kakao.maps.services.Geocoder();
 						
@@ -405,67 +447,154 @@
 			</div>
 			
 		</div>
+		
+		<!-- [S]campland-N15 -->
+    <div class="campland-N15" data-bid="crlQNCwqYB">
+      <div class="contents-inner">
+        <div class="contents-container container-md">
+          <div class="textset textset-sub">
+            <h2 class="textset-tit">부동산 게시판</h2> 
+          </div>
+          
+          <div class="cardset-wrap">
+            <a href="javascipt:void(0);" class="cardset">
+              <figure class="cardset-figure">
+                <img class="cardset-img" src="../resources/images/베장미.png" >
+              </figure>
+              <div class="cardset-body">
+                
+                <p class="cardset-desc">
+                  구임규
+                  <br>
+                 
+              </div>
+            </a>
+            <a href="javascipt:void(0);" class="cardset">
+              <figure class="cardset-figure">
+                <img class="cardset-img" src="../resources/images/직방.png" >
+              </figure>
+              <div class="cardset-body">
+                
+                <p class="cardset-desc">
+                  좋아보이지만 다 사진빨이에요.
+                 
+                </p>
+              </div>
+            </a>
+            <a href="javascipt:void(0);" class="cardset">
+              <figure class="cardset-figure">
+                <img class="cardset-img" src="../resources/images/apart.png" >
+              </figure>
+              <div class="cardset-body">
+                
+                <p class="cardset-desc">
+                  돈 벌어서 넓은 집으로!!
+                  
+                </p>
+              </div>
+            </a>
+            
+            <a href="javascipt:void(0);" class="cardset">
+              <figure class="cardset-figure">
+                <img class="cardset-img" src="../resources/images/프로젝트하는나의모습.png" >
+              </figure>
+              <div class="cardset-body">
+                
+                <p class="cardset-desc">
+                  정신아 돌아와줘
+                  
+                </p>
+              </div>
+            </a>
+            <a href="javascipt:void(0);" class="cardset">
+              <figure class="cardset-figure">
+                <img class="cardset-img" src="../resources/images/apart.png" >
+              </figure>
+              <div class="cardset-body">
+                
+                <p class="cardset-desc">
+                  이제 어려운 작업만 남았다!!
+                  
+                </p>
+              </div>
+            </a>
+            <a href="javascipt:void(0);" class="cardset">
+              <figure class="cardset-figure">
+                <img class="cardset-img" src="../resources/images/고양이빵.png" >
+              </figure>
+              <div class="cardset-body">
+                
+                <p class="cardset-desc">
+                  고양이빵
+                  
+                </p>
+              </div>
+            </a>
+            
+            <a href="javascipt:void(0);" class="cardset">
+              <figure class="cardset-figure">
+                <img class="cardset-img" src="../resources/images/고양이빵.png" >
+              </figure>
+              <div class="cardset-body">
+                
+                <p class="cardset-desc">
+                  고양이빵
+                  
+                </p>
+              </div>
+            </a>
+            
+             <a href="javascipt:void(0);" class="cardset">
+              <figure class="cardset-figure">
+                <img class="cardset-img" src="../resources/images/고양이빵.png" >
+              </figure>
+              <div class="cardset-body">
+                
+                <p class="cardset-desc">
+                  고양이빵
+                  
+                </p>
+              </div>
+            </a>
+             <a href="javascipt:void(0);" class="cardset">
+              <figure class="cardset-figure">
+                <img class="cardset-img" src="../resources/images/고양이빵.png" >
+              </figure>
+              <div class="cardset-body">
+                
+                <p class="cardset-desc">
+                  고양이빵
+                  
+                </p>
+              </div>
+            </a>
+             <a href="javascipt:void(0);" class="cardset">
+              <figure class="cardset-figure">
+                <img class="cardset-img" src="../resources/images/고양이빵.png" >
+              </figure>
+              <div class="cardset-body">
+                
+                <p class="cardset-desc">
+                  고양이빵
+                  
+                </p>
+              </div>
+            </a>
+            
+            
+            
+          </div>  <!-- 게시판 글 영역 -->
+        </div>
+      </div>
+    </div>
+    <!-- [E]campland-N15 -->
+	
+		
 	</main>
 
 	<footer class="campland-N2" data-bid="akLQ6d2RkW">
 		<div class="footer-container container-lg">
-			<div class="footer-top">
-				<h1 class="footer-logo">
-					<a href="javascript:void(0)">
-						<img src="../resources/images/img_logo_white.png" alt="로고">
-					</a>
-				</h1>
-				<ul class="footer-menulist">
-					<li class="footer-menuitem">
-						<a href="javascript:void(0)">
-							<span>이용약관</span>
-						</a>
-					</li>
-					<li class="footer-menuitem">
-						<a href="javascript:void(0)">
-							<span>개인정보처리방침</span>
-						</a>
-					</li>
-					<li class="footer-menuitem">
-						<a href="javascript:void(0)">
-							<span>푸터메뉴1</span>
-						</a>
-					</li>
-					<li class="footer-menuitem">
-						<a href="javascript:void(0)">
-							<span>푸터메뉴2</span>
-						</a>
-					</li>
-				</ul>
-				<ul class="footer-snslist">
-					<li class="footer-snsitem">
-						<a class="footer-snslink" href="javascript:void(0)">
-							<img src="../resources/icons/ico_instagram_lightgrey.svg" alt="인스타그램">
-						</a>
-					</li>
-					<li class="footer-snsitem">
-						<a class="footer-snslink" href="javascript:void(0)">
-							<img src="../resources/icons/ico_youtube_lightgrey.svg" alt="유튜브">
-						</a>
-					</li>
-					<li class="footer-snsitem">
-						<a class="footer-snslink" href="javascript:void(0)">
-							<img src="../resources/icons/ico_facebook_lightgrey.svg" alt="페이스북">
-						</a>
-					</li>
-					<li class="footer-snsitem">
-						<a class="footer-snslink" href="javascript:void(0)">
-							<img src="../resources/icons/ico_kakao_lightgrey.svg" alt="카카오톡">
-						</a>
-					</li>
-				</ul>
-			</div>
 			<div class="footer-bottom">
-				<h2 class="footer-logo">
-					<a href="javascript:void(0)">
-						<img src="../resources/images/img_logo_white.png" alt="로고">
-					</a>
-				</h2>
 				<div class="footer-txt">
 					<p> 서울시 영등포구 선유로70 우리벤처타운2 705호 </p>
 					<p>

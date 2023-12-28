@@ -332,7 +332,7 @@ br.br-mo { display: none; }
 .form-tit.form-tit-deco span { display: inline-block; width: 0.6rem; height: 0.6rem; border-radius: 50%; background-color: var(--primary); } 
 .form-tit + .inputset, 
 .form-tit + .selectset { margin-top: 0.8rem; }
-.form-wrap { display: flex; width: 100%; } 
+.form-wrap { display: flex; width: 100%;  }     /*오른쪽 정렬로 바꿨어요*/
 .form-wrap .form-tit { min-width: 12rem; padding: 0.8rem 0; } 
 .form-wrap .form-tit + .inputset { margin-top: 0; }
 .form-wrap .inputset { width: 100%; }
