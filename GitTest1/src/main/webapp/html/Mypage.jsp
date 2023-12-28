@@ -31,27 +31,25 @@
 </head>
 
 <body>
-	<!-- [S]campland-N1 -->
-	<div class="campland-N1" data-bid="uyLQ6D9nXU" id="">
+		<!-- [S]campland-N1 -->
+	<header class="campland-N1" data-bid="RMlQ6deKn4" id="">
 		<div class="header-container container-lg">
 			<div class="header-left">
 				<h1 class="header-title">
-					<a href="Main.jsp">
+					<a href="MainPage.jsp">
 						<img src="../resources/images/img_logo.png" alt="로고">
 					</a>
 				</h1>
 			</div>
 			<div class="header-center">
-
 				<ul class="header-gnblist">
 					<li class="header-gnbitem">
 					</li>
 					<li class="header-gnbitem">
-						<a class="header-gnblink" href="map.jsp">
-							<span>집찾기</span>
+						<a class="header-gnblink" href="MainPage.jsp">
+							<span>홈</span>
 						</a>
 					</li>
-
 					<li class="header-gnbitem">
 						<a class="header-gnblink" href="board.jsp">
 							<span>부동산 게시판</span>
@@ -62,20 +60,17 @@
 							<span>동네 채팅</span>
 						</a>
 					</li>
-
-				</ul>
-				</li>
 				</ul>
 			</div>
 			<div class="header-right">
 				<div class="header-utils">
+					<a href="login.jsp" class="btn-profile header-utils-btn">
+						<img src="../resources/icons/ico_profile_black.svg" alt="검색">
+					</a>
 					<button class="btn-search header-utils-btn">
 						<img src="../resources/icons/ico_search_black.svg" alt="검색">
 					</button>
-				</div>
-			</div>
-		</div>
-		</header>
+	</header>
 		<!-- [E]campland-N1 -->
 		<main class="th-layout-main ">
 			<!-- [S]campland-N23 -->
