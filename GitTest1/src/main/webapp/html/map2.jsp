@@ -113,7 +113,6 @@
 			</div>
 			<div class="header-center">
 				<ul class="header-gnblist">
-					
 					<li class="header-gnbitem">
 						<a class="header-gnblink" href="map.jsp">
 							<span>집찾기</span>
@@ -122,6 +121,7 @@
 					<li class="header-gnbitem">
 						<a class="header-gnblink" href="board.jsp">
 							<span>부동산 게시판</span>
+						</a>
 					</li>
 					<li class="header-gnbitem">
 						<a class="header-gnblink" href="Chat.jsp">
@@ -135,11 +135,9 @@
 					<a href="login.jsp" class="btn-profile header-utils-btn">
 						<img src="../resources/icons/ico_profile_black.svg" >
 					</a>
-
 					<a href="Profile.jsp" class="btn-search header-utils-btn">
 						<img src="../resources/icons/ico_search_black.svg" >
 					</a>
-
 				</div>
 			</div>
 		</div>
@@ -161,8 +159,8 @@
 							</h6>
 							<div class="form-wrap">
 								<div class="inputset inputset-round" align=center>
-									<input type="radio" name="firstloan"  value="fisrtloan0"> 있어요
-									<input type="radio" name="firstloan"  value="firstloan1"> 없어요
+									<input type="radio" name="firstloan1"  value="fisrtloan0"> 있어요
+									<input type="radio" name="firstloan1"  value="firstloan1"> 없어요
 								</div>
 							</div>
 						</li>
