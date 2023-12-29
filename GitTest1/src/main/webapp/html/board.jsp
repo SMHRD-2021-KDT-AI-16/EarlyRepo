@@ -174,7 +174,7 @@
 		<!-- [E]campland-N8 -->
 		<!-- [S]campland-N15 -->
 		<div class="myButton">
-			<a href="Write.jsp">게시글 작성</a>
+			<a href="logincheck.do">게시글 작성</a>
 		</div>
 		<table id="table_content">
 			<!-- <tr>
@@ -243,7 +243,9 @@
 
         			const img = document.createElement('img');
         			img.className = 'content_img';
-        			img.src = temp[2].split(':')[1]; // 이미지
+        			const img_src = "../uploadimg/"+((temp[2].split(':')[1]).replace('"','').replace('"',''));
+        			console.log(img_src)
+        			img.src = img_src; // 이미지
         			
         			const likes = document.createElement('div');
         			likes.className = 'likes';

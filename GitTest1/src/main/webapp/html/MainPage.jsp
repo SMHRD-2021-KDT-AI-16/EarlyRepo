@@ -59,20 +59,24 @@
 			</div>
 			<div class="header-right">
 				<div class="header-utils">
-					<c:if test="${member==null }">
-                    	<a href="login.jsp"><img src="../resources/icons/LOGIN.png"></a>
-                    </c:if>
-                    <c:if test="${member!=null }">
-                    	<c:if test="${member.user_id!='admin' }">
-                        	<a href="Mypage.jsp"><img src="../resources/icons/ico_profile_black.png" ></a>
-                        </c:if>
-                        <c:if test="${member.user_id!='admin' }">
-                        	<a href="http://localhost:8083/GitTest1/Logout.do"><img src="../resources/icons/LOGOUT.png" ></a>
-                        </c:if>
-                        	<c:if test="${member.user_id=='admin' }">
-                            <a href="SelectAll.do">회원관리</a>
-                        </c:if>   
-                    </c:if>
+					 <c:if test="${member==null }">
+                        <a href="login.jsp"><img src="../resources/icons/LOGIN.png"></a>
+                     </c:if>
+                     <c:if test="${member!=null }">
+                           <c:if test="${member.user_id!='admin' }">
+                              <a href="Mypage.jsp"><img src="../resources/icons/ico_profile_black.png" ></a>
+                           </c:if>
+                           <c:if test="${member.user_id!='admin' }">
+                              <a href="http://localhost:8083/GitTest1/Logout.do"><img src="../resources/icons/LOGOUT.png" ></a>
+                           </c:if>
+                           <c:if test="${member.user_id=='admin' }">
+                              <a href="SelectAll.do">회원관리</a>
+                           </c:if>   
+                     </c:if>
+                     <button class="btn-search header-utils-btn">
+						<a href ="Profile.jsp"><img src="../resources/icons/ico_search_black.svg"></a>
+					</button>
+                  </div>
                 </div>
             </div>
        </div>
