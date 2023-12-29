@@ -35,13 +35,12 @@
 		AND MARRIAGE_YEARS = #{MARRIAGE_YEARS}
 	</select>
 		
-	<!--
-	<select id="getCompare" parameterType="String" resultType="com.early.model.CompareVO">
+	<select id="getCompare" parameterType="String"
+		resultType="com.early.model.CompareVO">
 		SELECT a.apt_name, b.apt_realprice, a.apt_loc
 		FROM tb_apartment a, tb_apartment_info b
 		WHERE a.apt_code = b.apt_code
-		AND b.apt_realprice < ?
+		AND b.apt_realprice <![CDATA[<]]> #{total}
 	</select>
-	-->
 
 </mapper>

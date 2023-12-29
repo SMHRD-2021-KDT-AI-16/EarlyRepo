@@ -149,13 +149,13 @@
 								<div class="form-wrap">
 									<div class="selectset selectset-round selectset-md">
                   						<select name="salary" class="selectset-toggle btn" id="income">
-                							<option value="under2000">2000만원 이하</option>
-                             				<option value="over2000">2000~3000만원</option>
-                      					    <option value="over3000">3000만원~4000만원</option>
-                      					    <option value="over4000">4000만원~5000만원</option>
-                      					    <option value="over5000">5000만원~6000만원</option>
-                      					    <option value="over6000">6000만원~7000만원</option>
-                      					    <option value="over7000">7000만원 이상</option>
+                							<option value="2000">2000만원 이하</option>
+                             				<option value="3000">2000만원~3000만원</option>
+                      					    <option value="4000">3000만원~4000만원</option>
+                      					    <option value="5000">4000만원~5000만원</option>
+                      					    <option value="6000">5000만원~6000만원</option>
+                      					    <option value="7000">6000만원~7000만원</option>
+                      					    <option value="7001">7000만원 이상</option>
 				    
              							</select>
                					  	</div>
@@ -170,13 +170,13 @@
 								<div class="form-wrap">
 								  <div class="selectset selectset-round selectset-md">
                   					  <select name="spare_funds" class="selectset-toggle btn" id="money">
-                						    <option value="under2000">2000만원 이하</option>
-                             				<option value="over2000">2000~3000만원</option>
-                      					    <option value="over3000">3000만원~4000만원</option>
-                      					    <option value="over4000">4000만원~5000만원</option>
-                      					    <option value="over5000">5000만원~6000만원</option>
-                      					    <option value="over6000">6000만원~7000만원</option>
-                      					    <option value="over7000">7000만원 이상</option>
+                						    <option value="2000">2000만원</option>
+                             				<option value="3000">2000만원~3000만원</option>
+                      					    <option value="4000">3000만원~4000만원</option>
+                      					    <option value="5000">4000만원~5000만원</option>
+                      					    <option value="6000">5000만원~6000만원</option>
+                      					    <option value="7000">6000만원~7000만원</option>
+                      					    <option value="7001">7000만원 이상</option>
              						 </select>
                					  </div>
                				  </div>	  
@@ -184,7 +184,7 @@
 						</li>
 					<br>
 					<div class="contents-confirm" align=center>
-						<button class="btnset btnset-round" onclick="PriceCompare()">결과보기</button>
+						<button class="btnset btnset-round" type="button" onclick="PriceCompare()">결과보기</button>
 					</div>
 				</ul>	
 			</div>      <!-- 왼쪽 자산정보 입력창 닫기 -->
@@ -353,15 +353,16 @@
 	                	data: { name: searchValue },
 	                	
 	                	success : function(result) {
-	                		console.log("test : ",result);
-	                    	var searchList = result.split(';');
+	                		console.log("test : ",result);	
+	                		
+	                    	var Compare = result.split(';');
 	                   		
 	                   		
-	                    	for (let i = 0; i < searchList.length - 1; i += 3) {
+	                    	for (let i = 0; i < Compare.length - 1; i += 3) {
 	                        	let j = i + 1;
 	                    		var geocoder = new kakao.maps.services.Geocoder();
 	                        
-	                        	geocoder.addressSearch(searchList[i],function(result, status) {
+	                        	geocoder.addressSearch(Compare[i],function(result, status) {
 
 	                            	if (status === kakao.maps.services.Status.OK) {
 	                                	var coords = new kakao.maps.LatLng(
@@ -383,7 +384,7 @@
 	            	})
 		        }
 				
-				/* function PriceCompare(){ //결과보기
+				function PriceCompare(){ //결과보기
 					var income = $('#income').val();
 					var money = $('#money').val();
 					
@@ -393,14 +394,38 @@
 	                	data: { income: income },
 	                	
 	                	success : function(result) {
-	                		console.log("test : ",result);
+	                		console.log("test : ", result);
+	                		
+	                		var searchList = result.split(';');
+	                		
+	                		for (let i = 2; i < searchList.length - 1; i += 3) {
+	                        	let j = i + 1;
+	                    		var geocoder = new kakao.maps.services.Geocoder();
+	                        
+	                        	geocoder.addressSearch(searchList[i],function(result, status) {
+
+	                            	if (status === kakao.maps.services.Status.OK) {
+	                                	var coords = new kakao.maps.LatLng(
+	                                    	result[0].y,
+	                                        result[0].x
+	                                    );
+
+	                                    var marker = new kakao.maps.Marker({
+	                                    	map : map,
+	                                        position : coords
+	                                    });
+	                                }
+								})
+							}
+	                		
+	                		
 	                	},
 	                	error : function() {
 	                		console.log("error");
 	                	}
 	            	})
 
-				} */
+				}
 
 				function getDataForMarker(name) {
 				    return name;

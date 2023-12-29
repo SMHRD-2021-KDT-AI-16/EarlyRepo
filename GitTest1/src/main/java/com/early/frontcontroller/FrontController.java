@@ -52,9 +52,13 @@ public class FrontController extends HttpServlet {
 	
 	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		
+		//프론트엔드에서 어떤 요청을 보냈는지 분석
 		String uri = request.getRequestURI();
 		String cp = request.getContextPath();
 		String path = uri.substring(cp.length() + 1);
+		
+		
 		System.out.println("uri : "+uri);
 		System.out.println("cp : "+cp);
 		System.out.println("path : "+path);
@@ -71,6 +75,8 @@ public class FrontController extends HttpServlet {
 			com = map.get(path);
 			//System.out.println("1번 :" + finalpath);
 			System.out.println("com : "+com);
+			
+			///요청에 맞는 service를 실행시키겠습니다 
 			finalpath = com.execute(request, response);
 
 		}

@@ -17,8 +17,9 @@ public class ApartDAO {
 	
 	public List<ApartVO> getApart(String name) {
 		
+		//sqlSession --> DB와 연결 되는 통로를 만들 것이다!
 		SqlSession sqlSession = factory.openSession(true);
-		
+		//통로를통해  "com.early.db.mapMapper.getApart"에 있는 쿼리문을  실행 시키겠다!
 		List<ApartVO> list = sqlSession.selectList("com.early.db.mapMapper.getApart", name);
 		
 		sqlSession.close();
