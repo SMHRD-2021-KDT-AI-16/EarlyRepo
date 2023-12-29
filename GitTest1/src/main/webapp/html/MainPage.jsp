@@ -74,6 +74,9 @@
                               <a href="SelectAll.do">회원관리</a>
                            </c:if>   
                      </c:if>
+                     <button class="btn-search header-utils-btn">
+						<a href ="Profile.jsp"><img src="../resources/icons/ico_search_black.svg"></a>
+					</button>
                   </div>
                 </div>
 	</header>

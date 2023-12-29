@@ -87,16 +87,16 @@
 						<h4>더 정확한 대출금액을 알려드립니다. </h4>
 					</div>
 					<ul class="contents-list">  <!-- 자산정보 입력창 시작 -->
+						<form action="http://localhost:8083/GitTest1/SelectLoans.do" method="post">
 
-						
 						<li class="contents-item">
 							<h6 class="form-tit form-tit-deco">
 								<span></span>집 사본적
 							</h6>
 							<div class="form-wrap">
 								<div class="inputset inputset-round" align=left>
-									<input type="radio" name="firstloan"  value="fisrtloan0"> 있어요    
-									<input type="radio" name="firstloan"  value="firstloan1"> 없어요
+									<input type="radio" name="FIRST_HOUSE_YN"  value="N"> 있어요    
+									<input type="radio" name="FIRST_HOUSE_YN"  value="Y"> 없어요
 								</div>
 							</div>
 						</li>
@@ -107,8 +107,8 @@
 							</h6>
 							<div class="form-wrap">
 								<div class="inputset inputset-round" >
-									<input type="radio" name="now_home" value="now_home0"> 있어요
-									<input type="radio" name="now_home" value="now_home1"> 없어요
+									<input type="radio" name="now_home" value="Y"> 있어요
+									<input type="radio" name="now_home" value="N"> 없어요
 								</div>
 							</div>
 						</li>
@@ -119,8 +119,8 @@
 							</h6>
 							<div class="form-wrap">
 								<div class="inputset inputset-round">
-									<input type="radio" name="loan"  value="loan0"> 있어요
-									<input type="radio" name="loan"  value="loan1"> 없어요
+									<input type="radio" name="DUPLICATE_YN"  value="Y"> 있어요
+									<input type="radio" name="DUPLICATE_YN"  value="N"> 없어요
 								</div>
 							</div>
 						</li>
@@ -163,11 +163,11 @@
 							</h6>
 							<div class="form-wrap">
 								  <div class="selectset selectset-round selectset-md">
-                  					  <select name="marriage" class="selectset-toggle btn" >
-                  					  		<option value="marriageNo">미혼</option>
-                						    <option value="marriage0">3개월이내 결혼예정</option>
-                             				<option value="marriage6">7년미만</option>
-                      					    <option value="marriage7">7년이상</option>
+                  					  <select name="MARRIAGE_YEARS" class="selectset-toggle btn" >
+                						    <option value="1">3개월이내 결혼예정</option>
+                             				<option value="2">7년미만</option>
+                      					    <option value="3">7년이상</option>
+                  					  		<option value="4">미혼</option>
                       					    
              						 </select>
                					  </div>
@@ -239,12 +239,13 @@
 					</ul>
 					
 					<div class="contents-confirm">
-						<a href="javascript:void(0);" class="btnset btnset-round btnset-line btnset-black">돌아가기</a>
-						<a href="javascript:void(0);" class="btnset btnset-round">결과</a>
+						<a href="MainPage.jsp" class="btnset btnset-round btnset-line btnset-black">돌아가기</a>
+						<input type="submit" class="btnset btnset-round" value="결과">
 					</div>
 				</div>
 			</div>
 		</div>
+					</form>
 		<!-- [E]campland-N25 -->
 	</main>
 	<footer class="campland-N2" data-bid="oolq6dhEvp">
