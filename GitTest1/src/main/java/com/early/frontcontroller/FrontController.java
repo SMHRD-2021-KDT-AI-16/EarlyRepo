@@ -20,6 +20,7 @@ import com.early.controller.JoinService;
 import com.early.controller.LoginCheckService;
 import com.early.controller.LoginService;
 import com.early.controller.LogoutService;
+import com.early.controller.SelectLoansService;
 import com.early.controller.UpdateService;
 import com.early.controller.WriteBoardService;
 
@@ -45,6 +46,7 @@ public class FrontController extends HttpServlet {
 		map.put("getApartSearch.do", new ApartSearchService());
 		map.put("html/writeboard.do", new WriteBoardService());
 		map.put("html/logincheck.do", new LoginCheckService());
+		map.put("SelectLoans.do", new SelectLoansService());
 	}
 
 	

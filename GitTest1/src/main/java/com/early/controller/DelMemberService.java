@@ -26,12 +26,13 @@ public class DelMemberService implements Command {
 	
 		MemberVO user = (MemberVO)session.getAttribute("member");
 		String user_id = user.getUser_id();
-		
+		System.out.println("test : "+user_id);
 		
 		int cnt = new DAO().deleteMember(user_id);
 		
 		if(cnt>0) {
 			System.out.println("삭제완료");
+			
 			session.invalidate();
 		}
 			
