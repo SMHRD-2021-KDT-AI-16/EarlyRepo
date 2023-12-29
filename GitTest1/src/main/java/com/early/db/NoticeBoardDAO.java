@@ -12,20 +12,22 @@ public class NoticeBoardDAO {
 	
 	public List<NoticeBoardVO> getContents(String loc) { // 조회
 		SqlSession session = factory.openSession();
-		// 무슨 동인지 받아왔기 때문에 이걸 아파트 코드로 교환하는 부분이 있어야함
-		// 생각해보니 지금 지역누르고 게시판 눌러서 들어옴
-		// db에 지역 게시판인데 지역이 없음
 		
 		List<NoticeBoardVO> list =session.selectList("getAllBoard", loc);
-		//System.out.println(list.get(0).getF_content());
 		
 		session.close();
 		
 		return list;
 	}
 	
-	public void insertContent() { // 작성
+	public int insertContent(NoticeBoardVO nvo) { // 작성
+		SqlSession session = factory.openSession(true);
 		
+		int cnt = session.insert("writeBoard", nvo);
+		
+		session.close();
+		
+		return cnt;
 	}
 	
 	public void delectContent() { // 삭제

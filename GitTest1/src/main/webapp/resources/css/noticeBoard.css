@@ -1,0 +1,50 @@
+@charset "EUC-KR";
+
+.noticeBoard {
+	position: relative;
+	display: inline-block;
+	/*background-color: yellow;*/
+	width: 800px;
+
+}
+
+.up {
+	position: relative;
+	/*background-color: yellowgreen;*/
+	width: 100%;
+}
+
+.userid {
+	display: inline-block;
+	/*background-color: red;*/
+	width: 38%;
+	height: 30px;
+}
+
+.date {
+
+	display: inline-block;
+	/*background-color: pink;*/
+	width: 60%;
+	height: 30px;
+}
+
+.content {
+	position: relative;
+	/*background-color: blueviolet;*/
+	width: 100%;
+	white-space: normal;
+	word-wrap: break-word;
+
+}
+
+.content_img {
+	position: relative;
+	display: inline-block;
+	/*background-color: black;*/
+	width: 32%;
+}
+
+.likes {
+	text-align: right;
+}

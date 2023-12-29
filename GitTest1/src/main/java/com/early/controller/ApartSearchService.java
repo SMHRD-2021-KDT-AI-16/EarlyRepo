@@ -22,8 +22,6 @@ public class ApartSearchService implements Command{
 			throws ServletException, IOException {
 		String aSearch = request.getParameter("name");
 		
-		System.out.println("aSearch : "+aSearch);
-		
 		ApartDAO aDao = new ApartDAO();
 		
 		List<SearchApartVO> list = aDao.getApartSearch(aSearch);

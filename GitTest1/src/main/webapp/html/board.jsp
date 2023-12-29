@@ -24,6 +24,7 @@
 	<link rel="stylesheet" href="../resources/css/template.css">
 	<link rel="stylesheet" href="../resources/css/common.css">
 	<link rel="stylesheet" href="../resources/css/style.css">
+	<link rel="stylesheet" href="../resources/css/noticeBoard.css">
 	<style>
 		li {
 			list-style: none;
@@ -173,20 +174,23 @@
 		<!-- [E]campland-N8 -->
 		<!-- [S]campland-N15 -->
 		<div class="myButton">
-			<a href="Write.jsp">게시글 작성</a>
+			<a href="logincheck.do">게시글 작성</a>
 		</div>
 		<table id="table_content">
-			<tr>
-				<th id = "content_number">글번호</th>
-				<th id = "content_userid">작성자</th>
-				<th id = "content_content">내용</th>
-				<th id = "content_date">작성일자</th>
-			</tr>
-			<!-- <tr class = "inner_content">
-				<td class = "inner_content" id="number"></td>
-				<td class = "inner_content" id="userid"></td>
-				<td class = "inner_content" id="content"></td>
-				<td class = "inner_content" id="date"></td>
+			<!-- <tr>
+			<td>
+				<div class="noticeBoard">
+					<div class="up">
+						<div class="userid"></div>
+						<div class="date"></div>
+					</div>
+					<div class="content">adsfdasdasfdasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfaasdfasdfadsfadfadsfadfadfadsfadfasdfasdfasdfasddfasdfasdfasdfasdfasdfadfadsfadfadf</div>
+					<div class="content_img">
+						<img src="">
+					</div>
+					<div class="likes"></div>
+				</div>
+			</td>
 			</tr> -->
 		</table>
 		<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
@@ -196,83 +200,122 @@
 		console.log("test33 : ", list)
 		console.log("test2 : ",list[0])
 		$(document).ready(function() {
-			
-  			
-  			loadMoreData();
-  			
-  			});
+
+  			loadMoreData();			
+  		});
     		
-  			$(document).scroll(function () {
-    			var documentHeight = $(document).height();
-    			var scrollPosition = $(window).height() + $(window).scrollTop();
+  		$(document).scroll(function () {
+    		var documentHeight = $(document).height();
+    		var scrollPosition = $(window).height() + $(window).scrollTop();
 
-    			if (scrollPosition / documentHeight > 0.9) {
-    				console.log("우에엥")
-      				loadMoreData();
-    			}
-  			});
-  			let temp = [];
-  			let cnt = 0;
-  			function loadMoreData() {
+    		if (scrollPosition / documentHeight > 0.9) {
+    			console.log("우에엥")
+      			loadMoreData();
+    		}
+  		});
+  		let temp = [];
+  		let cnt = 0;
+  		function loadMoreData() {
   				
-    			if (list.length > cnt + 10) { // 불러오는 글의 수가 10개 +a보다 많으면
-      				for (let b = cnt; b < cnt + 10; b++) { // 10개만 출력할꺼야
-      					temp = list[b].replace("{","").replace("}","").split(',');  //한줄에서 뭉탱이씩 짤라서 넣어줄꺼야
+    		if (list.length > cnt + 10) { // 불러오는 글의 수가 10개 +a보다 많으면
+      			for (let b = cnt; b < cnt + 10; b++) { // 10개만 출력할꺼야
+      				temp = list[b].replace("{","").replace("}","").split(',');  //한줄에서 뭉탱이씩 짤라서 넣어줄꺼야
+      				// console.log("test : ",list)
+      				const tr = document.createElement('tr');
+      				const td = document.createElement('td');
+        			const div1 = document.createElement('div'); // 전체div
+        			div1.className = 'noticeBoard';
+        			
+        			const div2 = document.createElement('div'); // 위에 2개
+        			div2.className = 'up';
+
+        			const userid = document.createElement('div');
+        			userid.className = 'userid';
+        			userid.innerText = temp[6].split(':')[1]; // 작성자 id
       					
-        				const tr = document.createElement('tr');
+        			const date = document.createElement('div');
+        			date.className = 'date';
+        			date.innerText = temp[3].split(':')[1]; // 날짜
 
-        				const num = document.createElement('td');
-        				num.innerText = temp[0].split(':')[1]; // 글번호
+        			const content = document.createElement('div');
+        			content.className = 'content';
+        			content.innerText = temp[1].split(':')[1]; // 내용
+
+        			const img = document.createElement('img');
+        			img.className = 'content_img';
+        			const img_src = "../uploadimg/"+((temp[2].split(':')[1]).replace('"','').replace('"',''));
+        			console.log(img_src)
+        			img.src = img_src; // 이미지
+        			
+        			const likes = document.createElement('div');
+        			likes.className = 'likes';
+        			likes.innerText = temp[5].split(':')[1]; // 좋아요
+
+        			
+        			div2.appendChild(userid);
+        			div2.appendChild(date); // 위에꺼 2개 넣고
+        			
+        			div1.appendChild(div2);
+        			div1.appendChild(content);
+        			div1.appendChild(img);
+        			div1.appendChild(likes); // 전체 보드에 넣고
+        			
+        			td.appendChild(div1); 
+        			tr.appendChild(td); // tr에 전체 보드 넣고
+
+        			document.getElementById('table_content').appendChild(tr);
+      			}
+      			cnt += 10;
+    		} else {
+      			for (let b = cnt; b < list.length; b++) {
+      				cnt += list.length;
+					temp = list[b].replace("{","").replace("}","").split(',');  //한줄에서 뭉탱이씩 짤라서 넣어줄꺼야
+      				
+					const tr = document.createElement('tr');
+					const td = document.createElement('td');
+        			const div1 = document.createElement('div'); // 전체div
+        			div1.className = 'noticeBoard';
+        			
+        			const div2 = document.createElement('div'); // 위에 2개
+        			div2.className = 'up';
+
+        			const userid = document.createElement('div');
+        			userid.className = 'userid';
+        			userid.innerText = temp[6].split(':')[1]; // 작성자 id
       					
-        				const user_id = document.createElement('td');
-        				user_id.innerText = temp[6].split(':')[1]; // 작성자 아이디
+        			const date = document.createElement('div');
+        			date.className = 'date';
+        			date.innerText = temp[3].split(':')[1]; // 날짜
 
-        				const comment_date = document.createElement('td');
-        				comment_date.innerText = temp[3].split(':')[1]; // 날짜
+        			const content = document.createElement('div');
+        			content.className = 'content';
+        			content.innerText = temp[1].split(':')[1]; // 내용
 
-        				const comment = document.createElement('td');
-        				comment.innerText = temp[1].split(':')[1]; // 내용
+        			// const img = document.createElement('div');
+        			const img = document.createElement('img');
+        			img.className = 'content_img';
+        			img.src = temp[2].split(':')[1]; // 이미지
+        			
+        			const likes = document.createElement('div');
+        			likes.className = 'likes';
+        			likes.innerText = temp[5].split(':')[1]; // 좋아요
 
-        				tr.appendChild(num);
-        				tr.appendChild(user_id);
-        				tr.appendChild(comment);
-        				tr.appendChild(comment_date);
-        				
+        			
+        			div2.appendChild(userid);
+        			div2.appendChild(date); // 위에꺼 2개 넣고
+        			
+        			div1.appendChild(div2);
+        			div1.appendChild(content);
+        			div1.appendChild(img);
+        			div1.appendChild(likes); // 전체 보드에 넣고
+        			
+        			td.appendChild(div1); 
+        			tr.appendChild(td); // tr에 전체 보드 넣고
 
-        				document.querySelector('table').appendChild(tr);
-      				}
-      				cnt += 10;
-    			} else {
-      				for (let b = cnt; b < list.length; b++) {
-      					cnt += list.length;
-						temp = list[b].replace("{","").replace("}","").split(',');  //한줄에서 뭉탱이씩 짤라서 넣어줄꺼야
-      					
-						const tr = document.createElement('tr');
-
-        				const num = document.createElement('td');
-        				num.innerText = temp[0].split(':')[1]; // 글번호
-      					
-        				const user_id = document.createElement('td');
-        				user_id.innerText = temp[6].split(':')[1]; // 작성자 아이디
-
-        				const comment_date = document.createElement('td');
-        				comment_date.innerText = temp[3].split(':')[1]; // 날짜
-
-        				const comment = document.createElement('td');
-        				comment.innerText = temp[1].split(':')[1]; // 내용
-
-        				tr.appendChild(num);
-        				tr.appendChild(user_id);
-        				tr.appendChild(comment);
-        				tr.appendChild(comment_date);
-
-        				document.querySelector('table').appendChild(tr);
-      				}
-    			}
-  			  } 
-
-  			//loadMoreData();
-		
+        			document.getElementById('table_content').appendChild(tr);
+      			}
+    		}
+  		}
 		</script>
 		<!-- [E]campland-N15 -->
 	</main>

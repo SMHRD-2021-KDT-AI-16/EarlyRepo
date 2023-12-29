@@ -12,7 +12,6 @@ import com.early.db.DAO;
 import com.early.model.MemberVO;
 
 
-@WebServlet("/LoginService")
 public class LoginService implements Command{
 
 	@Override
