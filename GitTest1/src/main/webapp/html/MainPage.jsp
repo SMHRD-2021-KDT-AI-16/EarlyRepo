@@ -82,6 +82,7 @@
 			<div id="left_div">       <!-- 왼쪽 자산정보 입력창 -->
 		       <div class="textset textset-sub textset-center">
 				  <h5 class="textset-tit">당신의 능력으로 살 수있는 집을 알려드려요​<br></h5>
+			   <form>
 			   </div>
 		   		<ul class="contents-list">
 		   				<li class="contents-item">
@@ -144,7 +145,7 @@
 							<div class="form-wrap">
 								<div class="form-wrap">
 									<div class="selectset selectset-round selectset-md">
-                  						<select name="salary" class="selectset-toggle btn" >
+                  						<select name="salary" class="selectset-toggle btn" id="income">
                 							<option value="under2000">2000만원 이하</option>
                              				<option value="over2000">2000~3000만원</option>
                       					    <option value="over3000">3000만원~4000만원</option>
@@ -165,7 +166,7 @@
 							<div class="form-wrap">
 								<div class="form-wrap">
 								  <div class="selectset selectset-round selectset-md">
-                  					  <select name="spare_funds" class="selectset-toggle btn" >
+                  					  <select name="spare_funds" class="selectset-toggle btn" id="money">
                 						    <option value="under2000">2000만원 이하</option>
                              				<option value="over2000">2000~3000만원</option>
                       					    <option value="over3000">3000만원~4000만원</option>
@@ -180,10 +181,11 @@
 						</li>
 					<br>
 					<div class="contents-confirm" align=center>
-						<button class="btnset btnset-round">결과보기</button>
+						<button class="btnset btnset-round" onclick="PriceCompare()">결과보기</button>
 					</div>
 				</ul>	
 			</div>      <!-- 왼쪽 자산정보 입력창 닫기 -->
+			</form>
 			
 			<div id="full_mid_div">
 				<div id="mid_div"></div>
@@ -376,7 +378,26 @@
 		                	console.log("실패");
 						}
 	            	})
-		        } 
+		        }
+				
+				/* function PriceCompare(){ //결과보기
+					var income = $('#income').val();
+					var money = $('#money').val();
+					
+	            	$.ajax({
+	           	 		url : 'http://localhost:8083/GitTest1/getCompare.do?income='+income+'&'+'money='+money,
+	                	contentType : 'text/plain; charset=UTF-8', // Specify UTF-8
+	                	data: { income: income },
+	                	
+	                	success : function(result) {
+	                		console.log("test : ",result);
+	                	},
+	                	error : function() {
+	                		console.log("error");
+	                	}
+	            	})
+
+				} */
 
 				function getDataForMarker(name) {
 				    return name;

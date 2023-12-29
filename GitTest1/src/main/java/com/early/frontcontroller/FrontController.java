@@ -18,6 +18,7 @@ import com.early.controller.IdCheckService;
 import com.early.controller.JoinService;
 import com.early.controller.LoginService;
 import com.early.controller.LogoutService;
+import com.early.controller.PriceCompareService;
 import com.early.controller.UpdateService;
 import com.early.controller.ApartSearchService;
 import com.early.controller.BoardListService;
@@ -42,6 +43,7 @@ public class FrontController extends HttpServlet {
 		map.put("getApart.do", new GetApartService());
 		map.put("html/notice_Board.do", new GetNoticeBoardService());
 		map.put("getApartSearch.do", new ApartSearchService());
+		map.put("getCompare.do", new PriceCompareService());
 	}
 
 	
