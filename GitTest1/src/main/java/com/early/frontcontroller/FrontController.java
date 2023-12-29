@@ -11,10 +11,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.early.controller.ApartSearchService;
+import com.early.controller.BoardIdService;
 import com.early.controller.Command;
 import com.early.controller.DelMemberService;
 import com.early.controller.GetApartService;
 import com.early.controller.GetNoticeBoardService;
+import com.early.controller.GetapartallinfoService;
 import com.early.controller.IdCheckService;
 import com.early.controller.JoinService;
 import com.early.controller.LoginCheckService;
@@ -47,6 +49,8 @@ public class FrontController extends HttpServlet {
 		map.put("html/writeboard.do", new WriteBoardService());
 		map.put("html/logincheck.do", new LoginCheckService());
 		map.put("SelectLoans.do", new SelectLoansService());
+		map.put("getapartallinfo.do", new GetapartallinfoService());
+		map.put("html/BoardIdService.do", new BoardIdService());
 	}
 
 	

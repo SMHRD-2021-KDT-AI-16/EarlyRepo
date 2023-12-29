@@ -64,7 +64,7 @@
                      </c:if>
                      <c:if test="${member!=null }">
                            <c:if test="${member.user_id!='admin' }">
-                              <a href="Mypage.jsp"><img src="../resources/icons/ico_profile_black.png" ></a>
+                              <a href="BoardIdService.do"><img src="../resources/icons/ico_profile_black.png" ></a>
                            </c:if>
                            <c:if test="${member.user_id!='admin' }">
                               <a href="http://localhost:8083/GitTest1/Logout.do"><img src="../resources/icons/LOGOUT.png" ></a>
@@ -296,7 +296,10 @@
 						return new kakao.maps.LatLng(34.81032236853858, 126.42877975042865);
 					}
 				}
-					
+				
+				
+				let geocoder = new kakao.maps.services.Geocoder();
+				let infoapart = '';
 				function getData() { // 상세정보보기 눌렀을 때 가져오는 동 아파트 주소 정보
 					$.ajax({
 						url: 'http://localhost:8083/GitTest1/getApart.do?name=' + addr,
@@ -307,26 +310,26 @@
 					        for (let i = 0; i < itemList.length - 1; i += 2) {
 					            let j = i + 1;
 
-					            var geocoder = new kakao.maps.services.Geocoder();
-
 					            geocoder.addressSearch(itemList[i], function (result, status) {
 					                if (status === kakao.maps.services.Status.OK) {
 					                    var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
 
-					                    var additionalData = getDataForMarker(itemList[i]);
+					                    //var additionalData = getDataForMarker(itemList[i]);
 
-					                    var marker = new kakao.maps.Marker({
+					                    let marker = new kakao.maps.Marker({
 					                        map: map,
 					                        position: coords
 					                    });
 
 					                    let content = document.createElement('div');
-					                    content.innerHTML = '<div id="menu_wrap" style="height:70em; width:350px;text-align:center;padding:6px 0;"><h1>'
+					                    content.innerHTML = '<div id="menu_wrap" style="height:70em; width:350px;text-align:center;padding:6px 0;"><button onclick="">닫기</button><h1>'
 					                    	  	+ itemList[j] + '</h1><br>'
-					                            + additionalData + '<br>'
+					                            + itemList[i] + '<br>'
 					                            + '</div>';
 
 					                    kakao.maps.event.addListener(marker, 'click', function () {
+					                    	infoapart = itemList[j]; // 클릭했을 때 이름을 변수에 넣음
+					                    	getapartallinfo()
 					                        let CustomOverlay2 = new kakao.maps.CustomOverlay({
 					                            map: map,
 					                            position: coords,
@@ -338,10 +341,33 @@
 					        }
 					    },
 					    error: function () { // 통신 실패했을 때
-					        console.error('Error fetching data from server.');
+					        console.error('실패애~~~~~~~');
 					    }
 					});
 				}
+				
+				function getapartallinfo(){
+					$.ajax({
+						url: 'http://localhost:8083/GitTest1/getapartallinfo.do?aptname=' + infoapart,
+								
+						success: function (result) {
+							
+						},
+						error: function(){
+							
+						}
+					});
+				}
+				
+				
+				/* function overlay(){
+					let CustomOverlay2 = new kakao.maps.CustomOverlay({
+                        map: map,
+                        position: marker.getPosition(),
+                        content: content
+                    });
+				} */
+				
 				
 				function searchPlaces() { // 검색데이터 가져오기
 	            	var searchValue = $('#keyword').val();
@@ -358,7 +384,6 @@
 	                   		
 	                    	for (let i = 0; i < searchList.length - 1; i += 3) {
 	                        	let j = i + 1;
-	                    		var geocoder = new kakao.maps.services.Geocoder();
 	                        
 	                        	geocoder.addressSearch(searchList[i],function(result, status) {
 
@@ -408,11 +433,18 @@
 						} 
 					})
 				}
-				</script>
+				
+				function closeOverlay() { // 오버레이 닫기
+					CustomOverlay2.setMap(null);     
+				}
+				
+				function getApart_info(){
+					
+					
+				}
+			</script>
 			
 			
-		
-		<!-- [S]campland-N15 -->
     <div class="campland-N15" data-bid="crlQNCwqYB">
       <div class="contents-inner">
         <div class="contents-container container-md">

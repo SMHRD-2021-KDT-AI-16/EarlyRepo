@@ -220,7 +220,7 @@
     		if (list.length > cnt + 10) { // 불러오는 글의 수가 10개 +a보다 많으면
       			for (let b = cnt; b < cnt + 10; b++) { // 10개만 출력할꺼야
       				temp = list[b].replace("{","").replace("}","").split(',');  //한줄에서 뭉탱이씩 짤라서 넣어줄꺼야
-      					
+      				// console.log("test : ",list)
       				const tr = document.createElement('tr');
       				const td = document.createElement('td');
         			const div1 = document.createElement('div'); // 전체div
