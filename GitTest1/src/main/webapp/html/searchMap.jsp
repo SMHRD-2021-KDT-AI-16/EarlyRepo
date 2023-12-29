@@ -708,7 +708,7 @@
                }
             }
             
-            function getData2() {
+            function getData2() { // 검색데이터 가져오기
             	var searchValue = $('#keyword').val();
             	var keyword = document.getElementById('keyword').value;
             	console.log("test : ",searchValue)
@@ -720,29 +720,28 @@
                 data: { name: searchValue },
                 success : function(result) {
                     var itemList = result.split(';');
-                    //itemList.remove(4);
+                    
                     console.log('List from server:', itemList);
                     for (let i = 0; i < itemList.length - 1; i += 3) {
                         let j = i + 1;
                         console.log("j : ", itemList[j]);
                     	var geocoder = new kakao.maps.services.Geocoder();
-                        // 주소로 좌표를 검색
+                        
                         geocoder.addressSearch(itemList[i],function(result, status) {
 
-                                       // 정상적으로 검색
+                                       
                                        if (status === kakao.maps.services.Status.OK) {
 
                                           var coords = new kakao.maps.LatLng(
                                                 result[0].y,
                                                 result[0].x);
 
-                                          // 결과값으로 받은 위치를 마커로 표시
                                           var marker = new kakao.maps.Marker({
                                                    map : map,
                                                    position : coords
                                           });
                                        }
-                                    })
+                         })
                     }},
 
 	               	error : function() {
