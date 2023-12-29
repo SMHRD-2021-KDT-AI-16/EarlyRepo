@@ -39,8 +39,7 @@
 			</div>
 			<div class="header-center">
 				<ul class="header-gnblist">
-					<li class="header-gnbitem">
-					</li>
+					<li class="header-gnbitem"></li>
 					<li class="header-gnbitem">
 						<a class="header-gnblink" href="MainPage.jsp">
 							<span>홈</span>
@@ -79,6 +78,8 @@
 					</button>
                   </div>
                 </div>
+            </div>
+       </div>
 	</header>
 	<main class="th-layout-main">
 		<div id="total_div">
