@@ -6,6 +6,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
 import com.early.model.ApartVO;
+import com.early.model.LoanNameVO;
+import com.early.model.LoanVO;
 import com.early.model.SearchApartVO;
 
 
@@ -38,4 +40,16 @@ public class ApartDAO {
 		
 		return list;
 	}
+	
+	public List<LoanNameVO> SelectLoans(LoanVO vo) {
+		SqlSession sqlSession = factory.openSession();
+		System.out.println("test222 : "+vo);
+		List<LoanNameVO> loans = sqlSession.selectList("com.early.db.mapMapper.SelectLoans", vo);
+		System.out.println("test333 : "+loans.get(0).getLOAN_NAME());
+		sqlSession.close();
+		
+		return loans;
+	}
+
+
 }
