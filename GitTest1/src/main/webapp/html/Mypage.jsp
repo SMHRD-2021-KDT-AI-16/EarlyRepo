@@ -1,3 +1,4 @@
+<%@page import="com.google.gson.JsonArray"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
@@ -22,6 +23,7 @@
 	<link rel="stylesheet" href="../resources/css/template.css">
 	<link rel="stylesheet" href="../resources/css/common.css">
 	<link rel="stylesheet" href="../resources/css/style.css">
+	<link rel="stylesheet" href="../resources/css/noticeBoard.css">
 	<style type="text/css">
 	
 		#test{
@@ -32,6 +34,9 @@
 </head>
 
 <body>
+<%
+	JsonArray Idlist = (JsonArray)session.getAttribute("NoticeIdboard");
+%>
 		<!-- [S]campland-N1 -->
 	<header class="campland-N1" data-bid="RMlQ6deKn4" id="">
 		<div class="header-container container-lg">
@@ -94,30 +99,10 @@
 						</div>
 						<ul class="contents-group contents-profile">
 							<li class="contents-profile-item">
-								<p class="contents-name">${member.user_nick}</p>
+								<p class="contents-name">${member.user_nick}님의 프로필</p>
 							</li>
 						</ul>
-						<div class="contents-group contents-reservation">
-							<div class="cardset cardset-hor cardset-sm">
-								<figure class="cardset-figure">
-									<img class="cardset-img" src="../resources/images/img_campland_N19_3.png"
-										alt="카드 이미지">
-								</figure>
-								<div class="cardset-body">
-									<div class="badgeset-wrap">
-										<div class="badgeset-group">
-											<div
-												class="badgeset badgeset-fill badgeset-border badgeset-round badgeset-primary">
-												이용완료</div>
-										</div>
-										<p class="cardset-txt">예약번호 2023010120230101</p>
-									</div>
-									<h2 class="cardset-tit">캠핑장 C구역</h2>
-									<p class="cardset-desc"> 2023.01.09(월) ~ 2023.01.12(목) ㅣ <br class="br-mo"> 3박 4일 ㅣ
-										성인 2명, 어린이 1명 </p>
-								</div>
-							</div>
-						</div>
+						
 						<form method="post" action="http://localhost:8083/GitTest1/Update.do">
 							<h6 class="form-tit form-tit-deco">
 							<span></span>회원정보수정
@@ -132,17 +117,147 @@
 								</div>
 							</div>
 							</form>
-
-						<div class="contents-button">
-						<form action="http://localhost:8083/GitTest1/Logout.do" id="test">
-							<input class="btnset btnset-round" type="submit" value="로그아웃">
-						</form>
+								<div class="contents-button">
 						<form action="http://localhost:8083/GitTest1/DeleteMember.do">
 							<input class="btnset btnset-round" type="submit" value="회원탈퇴">
 						</form>
-							
-							
+						
 						</div>
+						<div class="contents-group contents-reservation">
+						<table id="table_content">
+						
+						</table>
+						<!-- id에 맞는 게시판 내용 -->
+						<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+							<script>
+							console.log('Test')
+							let Idlist = <%= Idlist %>
+							console.log("test33 : ", Idlist)
+							console.log("test2 : ",Idlist[0])
+							$(document).ready(function() {
+					
+					  			loadMoreData();			
+					  		});
+					    		
+					  		$(document).scroll(function () {
+					    		var documentHeight = $(document).height();
+					    		var scrollPosition = $(window).height() + $(window).scrollTop();
+					
+					    		if (scrollPosition / documentHeight > 0.9) {
+					    			console.log("우에엥")
+					      			loadMoreData();
+					    		}
+					  		});
+					  		let temp = [];
+					  		let cnt = 0;
+					  		function loadMoreData() {
+					  				
+					    		if (Idlist.length > cnt + 10) { // 불러오는 글의 수가 10개 +a보다 많으면
+					      			for (let b = cnt; b < cnt + 10; b++) { // 10개만 출력할꺼야
+					      				temp = Idlist[b].replace("{","").replace("}","").split(',');  //한줄에서 뭉탱이씩 짤라서 넣어줄꺼야
+					      				// console.log("test : ",Idlist)
+					      				const tr = document.createElement('tr');
+					      				const td = document.createElement('td');
+					        			const div1 = document.createElement('div'); // 전체div
+					        			div1.className = 'noticeBoard';
+					        			
+					        			const div2 = document.createElement('div'); // 위에 2개
+					        			div2.className = 'up';
+					
+					        			const userid = document.createElement('div');
+					        			userid.className = 'userid';
+					        			userid.innerText = temp[6].split(':')[1]; // 작성자 id
+					      					
+					        			const date = document.createElement('div');
+					        			date.className = 'date';
+					        			date.innerText = temp[3].split(':')[1]; // 날짜
+					
+					        			const content = document.createElement('div');
+					        			content.className = 'content';
+					        			content.innerText = temp[1].split(':')[1]; // 내용
+					
+					        			const img = document.createElement('img');
+					        			img.className = 'content_img';
+					        			const img_src = "../uploadimg/"+((temp[2].split(':')[1]).replace('"','').replace('"',''));
+					        			console.log(img_src)
+					        			img.src = img_src; // 이미지
+					        			
+					        			const likes = document.createElement('div');
+					        			likes.className = 'likes';
+					        			likes.innerText = temp[5].split(':')[1]; // 좋아요
+					
+					        			
+					        			div2.appendChild(userid);
+					        			div2.appendChild(date); // 위에꺼 2개 넣고
+					        			
+					        			div1.appendChild(div2);
+					        			div1.appendChild(content);
+					        			div1.appendChild(img);
+					        			div1.appendChild(likes); // 전체 보드에 넣고
+					        			
+					        			td.appendChild(div1); 
+					        			tr.appendChild(td); // tr에 전체 보드 넣고
+					
+					        			document.getElementById('table_content').appendChild(tr);
+					      			}
+					      			cnt += 10;
+					    		} else {
+					      			for (let b = cnt; b < Idlist.length; b++) {
+					      				cnt += Idlist.length;
+										temp = Idlist[b].replace("{","").replace("}","").split(',');  //한줄에서 뭉탱이씩 짤라서 넣어줄꺼야
+					      				
+										const tr = document.createElement('tr');
+										const td = document.createElement('td');
+					        			const div1 = document.createElement('div'); // 전체div
+					        			div1.className = 'noticeBoard';
+					        			
+					        			const div2 = document.createElement('div'); // 위에 2개
+					        			div2.className = 'up';
+					
+					        			const userid = document.createElement('div');
+					        			userid.className = 'userid';
+					        			userid.innerText = temp[6].split(':')[1]; // 작성자 id
+					      					
+					        			const date = document.createElement('div');
+					        			date.className = 'date';
+					        			date.innerText = temp[3].split(':')[1]; // 날짜
+					
+					        			const content = document.createElement('div');
+					        			content.className = 'content';
+					        			content.innerText = temp[1].split(':')[1]; // 내용
+					
+					        			// const img = document.createElement('div');
+					        			const img = document.createElement('img');
+					        			img.className = 'content_img';
+					        			img.src = temp[2].split(':')[1]; // 이미지
+					        			
+					        			const likes = document.createElement('div');
+					        			likes.className = 'likes';
+					        			likes.innerText = temp[5].split(':')[1]; // 좋아요
+					
+					        			
+					        			div2.appendChild(userid);
+					        			div2.appendChild(date); // 위에꺼 2개 넣고
+					        			
+					        			div1.appendChild(div2);
+					        			div1.appendChild(content);
+					        			div1.appendChild(img);
+					        			div1.appendChild(likes); // 전체 보드에 넣고
+					        			
+					        			td.appendChild(div1); 
+					        			tr.appendChild(td); // tr에 전체 보드 넣고
+					
+					        			document.getElementById('table_content').appendChild(tr);
+					      			}
+					    		}
+					  		}
+							</script>	
+						</div>
+						
+
+					
+							
+							
 					</div>
 				</div>
 			</div>

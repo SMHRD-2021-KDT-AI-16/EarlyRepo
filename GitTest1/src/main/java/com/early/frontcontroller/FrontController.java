@@ -22,6 +22,7 @@ import com.early.controller.JoinService;
 import com.early.controller.LoginCheckService;
 import com.early.controller.LoginService;
 import com.early.controller.LogoutService;
+import com.early.controller.ResultService;
 import com.early.controller.SelectLoansService;
 import com.early.controller.UpdateService;
 import com.early.controller.WriteBoardService;
@@ -48,14 +49,16 @@ public class FrontController extends HttpServlet {
 		map.put("getApartSearch.do", new ApartSearchService());
 		map.put("html/writeboard.do", new WriteBoardService());
 		map.put("html/logincheck.do", new LoginCheckService());
-		map.put("SelectLoans.do", new SelectLoansService());
+		map.put("html/SelectLoans.do", new SelectLoansService());
 		map.put("getapartallinfo.do", new GetapartallinfoService());
 		map.put("html/BoardIdService.do", new BoardIdService());
+		map.put("Result.do", new ResultService());
 	}
 
 	
 	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		System.out.println("Test");
 		String uri = request.getRequestURI();
 		String cp = request.getContextPath();
 		String path = uri.substring(cp.length() + 1);

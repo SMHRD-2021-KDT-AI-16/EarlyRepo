@@ -40,10 +40,22 @@ public class ApartDAO {
 		System.out.println("test222 : "+vo);
 		List<LoanNameVO> loans = sqlSession.selectList("com.early.db.mapMapper.SelectLoans", vo);
 		System.out.println("test333 : "+loans.get(0).getLOAN_NAME());
+		
 		sqlSession.close();
 		
 		return loans;
 	}
+
+	public List<ApartVO> SelectPrice() {
+		SqlSession sqlSession = factory.openSession();
+		List<ApartVO> avos = sqlSession.selectList("com.early.db.mapMapper.SelectPrice"); 
+		sqlSession.close();
+		
+		return avos;
+		
+	}
+	
+	
 
 
 }

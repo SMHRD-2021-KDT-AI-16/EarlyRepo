@@ -12,5 +12,9 @@
 	<insert id="writeBoard" parameterType="com.early.model.NoticeBoardVO">
 		insert into tb_forum (f_content, f_file, created_at, user_id, loc) values (#{f_content}, #{f_file}, sysdate, #{user_id}, #{loc})
 	</insert>
+	
+	<select id="getIdBoard" resultType="com.early.model.NoticeBoardVO">
+	select * from tb_FORUM where user_id = #{user_id}
+	</select>
 
 </mapper>

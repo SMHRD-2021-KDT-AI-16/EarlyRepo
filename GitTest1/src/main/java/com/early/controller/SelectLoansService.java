@@ -6,6 +6,7 @@ import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.early.db.ApartDAO;
 import com.early.model.LoanNameVO;
@@ -22,6 +23,7 @@ public class SelectLoansService implements Command{
 		String DUPLICATE_YN = request.getParameter("DUPLICATE_YN");
 		int MARRIAGE_YEARS = Integer.parseInt( request.getParameter("MARRIAGE_YEARS"));
 		
+		HttpSession session = request.getSession();
 		LoanVO vo = new LoanVO();
 		vo.setFIRST_HOUSE_YN(FIRST_HOUSE_YN);
 		vo.setDUPLICATE_YN(DUPLICATE_YN);
@@ -31,31 +33,14 @@ public class SelectLoansService implements Command{
 		List<LoanNameVO> loanVOs = dao.SelectLoans(vo);
 		System.out.println("loanVOs : "+loanVOs);
 		
-//		int cnt=0;
-//		for(int i=0;i<loanVOs.size();i++) {
-//			if(vo.getFIRST_HOUSE_YN().equals(loanVOs.get(i).getFIRST_HOUSE_YN())) {
-//				cnt++;
-//			}
-//			if(vo.getDUPLICATE_YN().equals(loanVOs.get(i).getDUPLICATE_YN())) {
-//				cnt++;
-//			}
-//			if(vo.getMARRIAGE_YEARS()<=loanVOs.get(i).getMARRIAGE_YEARS()) {
-//				cnt++;
-//			}
-//			
-//		}
-//		ApartDAO dao2 = new ApartDAO();
-//		
-//			if(cnt==3) {
-//			List<LoanNameVO> voName = dao.SelectLoansName();
-//			}	
+		session.setAttribute("loanVOs", loanVOs);
 		
 		
+		return "loan.jsp";
 		
-			request.setAttribute("loanVOs", loanVOs);
+		
 		
 				
-		return "html/loan.jsp";
 
 	}
 }

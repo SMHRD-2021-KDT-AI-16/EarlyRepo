@@ -37,4 +37,14 @@ public class NoticeBoardDAO {
 	public void updateContent() { // 글 수정
 		
 	}
+	
+	public List<NoticeBoardVO> getIdContents(String user_id) { // ID에 맞는 조회
+		SqlSession session = factory.openSession();
+		
+		List<NoticeBoardVO> list =session.selectList("getIdBoard", user_id);
+		System.out.println("idtest : "+list);
+		session.close();
+		
+		return list;
+	}
 }

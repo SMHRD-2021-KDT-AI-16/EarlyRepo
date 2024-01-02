@@ -1,3 +1,6 @@
+<%@page import="com.early.model.LoanNameVO"%>
+<%@page import="java.util.List"%>
+<%@page import="com.early.model.LoanVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
@@ -138,12 +141,21 @@ tr:hover {
 					<div class="textset textset-sub textset-center">
 						<h2 class="textset-tit">판단 결과​<br></h2>
 						<h4>당신이 대출받을 수 있는 금액은... </h4>
-					</div>					
+					</div>	
+					<form action="Result.do" method="post">			
      				<div class="container">
      					<img src="../resources/icons/check-icon.png" alt="체크마크">
      				</div>
-     				<p class="text_result"><span class="color-change">신생아 특례대출</span>상품을 이용하시면</p>     <!-- 대출상품이름 적용하기 -->
-					<p class="text_result">최대&nbsp;<span class="color-change"> 5억원&nbsp; </span> 입니다.</p>      <!-- profile에서 판단한 대출 금액으로 바꾸기 -->
+     				<% HttpSession sessions = request.getSession();
+     				List<LoanNameVO> vo = (List<LoanNameVO>)sessions.getAttribute("loanVOs"); 
+     				
+     				if(vo.size() ==1){ %>
+     				<p class="text_result"><span class="color-change">${loanVOs.get(0).getLOAN_NAME() }</span>상품을 이용하시면</p>     <!-- 대출상품이름 적용하기 -->
+					<p class="text_result">최대&nbsp;<span class="color-change"> ${loanVOs.get(0).getLOAN_LIMIT() }원&nbsp; </span> 입니다.</p>      <!-- profile에서 판단한 대출 금액으로 바꾸기 -->
+     				<%} else if(vo.size()==2){ %>
+     					<p class="text_result"><span class="color-change">${loanVOs.get(0).getLOAN_NAME()} + ${loanVOs.get(1).getLOAN_NAME() }</span>상품을 이용하시면</p>     <!-- 대출상품이름 적용하기 -->
+    					<p class="text_result">최대&nbsp;<span class="color-change"> ${loanVOs.get(0).getLOAN_LIMIT()}원 + ${loanVOs.get(1).getLOAN_LIMIT()}원&nbsp; </span> 입니다.</p> 
+     				<%}%>
 					<table>
 						<thead>
 							<tr>
@@ -177,7 +189,8 @@ tr:hover {
 
 					<div class="contents-confirm">
 						<a href="Profile.jsp" class="btnset btnset-round">다시하기</a>
-						<a href="searchMap.jsp" class="btnset btnset-round">결과보기</a>
+						<input type="submit" value="결과보기" class="btnset btnset-round" >
+						
 					</div>
 				</div>
 			</div>

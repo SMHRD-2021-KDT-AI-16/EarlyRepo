@@ -4,8 +4,17 @@ public class ApartVO {
 	private int apart_seq;
 	private String apt_name;
 	private String apt_loc;
+	private int apt_realprice;
 	
 	
+
+	
+	public int getApt_realprice() {
+		return apt_realprice;
+	}
+	public void setApt_realprice(int apt_realprice) {
+		this.apt_realprice = apt_realprice;
+	}
 	public int getApart_seq() {
 		return apart_seq;
 	}
