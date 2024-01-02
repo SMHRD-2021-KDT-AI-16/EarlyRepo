@@ -79,8 +79,7 @@
 	<!-- [E]campland-N1 -->
 	<main class="th-layout-main ">
 		<!-- [S]campland-N24 -->
-		<form method="post" action="http://localhost:8083/GitTest1/Login.do">
-			
+		
 		<div class="campland-N24" data-bid="oULq6dgKXB">
 			<div class="contents-inner">
 				<div class="contents-container">
@@ -88,41 +87,73 @@
 						<div class="textset textset-center">
 							<h2 class="textset-tit">일반 로그인</h2>
 						</div>
-						<div class="inputset inputset-round">
-							<input name="user_id" type="text" class="inputset-input form-control" aria-label="내용"
-								placeholder="아이디를 입력해주세요.">
-						</div>
-						<div class="inputset inputset-round">
-							<input name="user_pw" type="password" class="inputset-input form-control" aria-label="내용"
-								placeholder="비밀번호를 입력해주세요.">
-						</div>
-						<div class="checkset">
-							<input id="checkset-a-1-1" class="checkset-input input-fill input-round" type="checkbox"
-								value="">
-						</div>
-							
-						<input type="submit" class="btnset btnset-round" value="로그인">
-						</form>
-						
+						<!-- <form method="post"
+							action="http://localhost:8083/GitTest1/Login.do"> -->
+							<div class="inputset inputset-round">
+								<input id="user_id" name="user_id" type="text"
+									class="inputset-input form-control" aria-label="내용"
+									placeholder="아이디를 입력해주세요.">
+							</div>
+							<div class="inputset inputset-round">
+								<input id="user_pw" name="user_pw" type="password"
+									class="inputset-input form-control" aria-label="내용"
+									placeholder="비밀번호를 입력해주세요.">
+							</div>
+							<div class="checkset">
+								<input id="checkset-a-1-1"
+									class="checkset-input input-fill input-round" type="checkbox"
+									value="">
+							</div>
+
+							<input type="button" onclick="logincheck()" class="btnset btnset-round" value="로그인">
+						<!-- </form> -->
+						<script type="text/javascript">
+							function logincheck() {
+								let user_id = document.getElementById('user_id');
+						        let user_pw = document.getElementById('user_pw');
+						        
+								let logininfo = {
+									user_id : user_id.value,
+									pw : user_pw.value
+								};
+								console.log("정보 : ",logininfo);
+								
+								$.ajax({
+									url: 'http://localhost:8083/GitTest1/Login.do',
+									method: 'POST',
+									data: logininfo,
+									success: function (result) {
+										if (result === 'success') {
+							                window.location.href = "MainPage.jsp";
+							            } else {
+							                alert("아이디 혹은 비밀번호를 확인해주세요.");
+							                window.location.href = "login.jsp";
+							            }
+
+									},
+									error: function(){
+								
+									}
+					  		    });
+
+							}
+						</script>
 						<ul class="contents-list">
-							<li class="contents-item">
+							<!-- <li class="contents-item">
 								<a href="javascipt:void(0);">아이디 찾기</a>
-							</li>
-							<li class="contents-item">
+							</li> -->
+							<!-- <li class="contents-item">
 								<a href="javascipt:void(0);">비밀번호 찾기</a>
-							</li>
+							</li> -->
 							<li class="contents-item">
 								<a href="Join.jsp">회원가입</a>
 							</li>
 						</ul>
 					</div>
-
 				</div>
 			</div>
 		</div>
-		<!-- [E]campland-N24 -->
 	</main>
-	<!-- [S]campland-N2 -->
 	<footer class="campland-N2" data-bid="Ojlq6dgkyD">
 		<div class="footer-container container-lg">
 			<div class="footer-bottom">

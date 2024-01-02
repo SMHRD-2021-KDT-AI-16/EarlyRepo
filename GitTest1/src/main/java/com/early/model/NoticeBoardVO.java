@@ -9,6 +9,15 @@ public class NoticeBoardVO {
 	private int f_likes;
 	private String user_id;
 	private String loc;
+	private String user_nick;
+	
+	
+	public String getUser_nick() {
+		return user_nick;
+	}
+	public void setUser_nick(String user_nick) {
+		this.user_nick = user_nick;
+	}
 	public int getF_seq() {
 		return f_seq;
 	}

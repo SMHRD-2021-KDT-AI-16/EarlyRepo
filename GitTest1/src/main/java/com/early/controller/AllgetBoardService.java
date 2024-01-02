@@ -13,35 +13,31 @@ import com.early.model.NoticeBoardVO;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 
-public class GetNoticeBoardService implements Command {
+public class AllgetBoardService implements Command {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
 		HttpSession session = request.getSession();
 		
 		if(session.getAttribute("NoticeAllboard")!=null) {
 			session.removeAttribute("NoticeAllboard");
 		}
 		
-		String loc = request.getParameter("loc");
-		System.out.println("loc : "+loc);
-		
 		NoticeBoardDAO nbdao = new NoticeBoardDAO();
 		
-		List<NoticeBoardVO> list = nbdao.getContents(loc);
-		System.out.println("test : "+list.get(0).getF_content());
+		List<NoticeBoardVO> list = nbdao.getAllBoard();
 		
 		JsonArray jArray = new JsonArray();
 		for (int i=0;i<list.size();i++) {
 			Gson gson = new Gson();
-			jArray.add( gson.toJson(list.get(i)));
+			jArray.add(gson.toJson(list.get(i)));
 		}
 		
 		session.setAttribute("NoticeAllboard", jArray);
 		
 		return "board.jsp";
+		
 	}
 
 }

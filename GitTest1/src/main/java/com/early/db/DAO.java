@@ -21,11 +21,13 @@ public class DAO {
 
 	public MemberVO login(MemberVO vo) {
 		SqlSession sqlsession = factory.openSession();
+		
 		System.out.println("id는 :" + vo.getUser_id());
+		System.out.println("pw는 :" + vo.getUser_pw());
 
 		MemberVO result = sqlsession.selectOne("login", vo);
 
-		System.out.println("결과 : " + result.getUser_id());
+		System.out.println("결과 : " + result);
 		sqlsession.close();
 
 		return result;

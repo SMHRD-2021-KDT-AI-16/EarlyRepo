@@ -1,6 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ page session="true"%>
 <!DOCTYPE html>
 <html lang="ko">
 
@@ -24,10 +28,25 @@
 	<link rel="stylesheet" href="../resources/css/common.css">
 	<link rel="stylesheet" href="../resources/css/style.css">
 	<link rel="stylesheet" href="../resources/css/map.css">
+	<style>
+
+	</style>
 </head>
 
 <body>
-	<!-- [S]campland-N1 -->
+    <c:set var="chatId" value="${not empty sessionScope.member ? sessionScope.member.user_nick : ''}" />
+
+<!-- 채팅창 -->
+<div id="_chatbox" style="display: none">
+    <fieldset>
+        <div id="messageWindow"></div>
+        <br /> 
+        <input id="inputMessage" type="text" onkeyup="enterkey()" />
+        <input id="send" type="submit" value="send" onclick="send()" />
+    </fieldset>
+</div>
+<img class="chat" src="../resources/images/고양이말풍선white.png" />
+
 	<header class="campland-N1" data-bid="RMlQ6deKn4" id="">
 		<div class="header-container container-lg">
 			<div class="header-left">
@@ -46,7 +65,7 @@
 						</a>
 					</li>
 					<li class="header-gnbitem">
-						<a class="header-gnblink" href="board.jsp">
+						<a class="header-gnblink" href="AllgetBoardService.do">
 							<span>부동산 게시판</span>
 						</a>
 					</li>
@@ -74,9 +93,10 @@
                            </c:if>   
                      </c:if>
                      <button class="btn-search header-utils-btn">
-						<a href ="Profile.jsp"><img src="../resources/icons/ico_search_black.svg"></a>
+						<a href ="Profile.jsp">
+							<img src="../resources/icons/ico_search_black.svg">
+						</a>
 					</button>
-                  </div>
                 </div>
             </div>
        </div>
@@ -203,65 +223,173 @@
 				</div>
 			</div>
 		</div>
-			
-		<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-			<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=e193c7f773c86ecc8ab769e9704f781a&libraries=services,clusterer,drawing"></script>
-			<script>
-				var addr = '';
-				var container = document.getElementById('mid_div');
-				var options = {
-					center: new kakao.maps.LatLng(34.810159, 126.424775), level: 6
-				}; // 맵 중심좌표, 맵 확대레벨 선언
+	
+		<div class="campland-N15" data-bid="crlQNCwqYB">
+      		<div class="contents-inner">
+        		<div class="contents-container container-md">
+          			<div class="textset textset-sub">
+            			<h2 class="textset-tit">부동산 게시판</h2> 
+          			</div>
+          
+          			<div class="cardset-wrap">
+            			<div class="cardset">
+              				<figure class="cardset-figure">
+                				<img id = "top1_img" class="cardset-img" src="" onerror="this.src='../resources/images/img_logo.png'">
+              				</figure>
+              				<div class="cardset-body">
+                				<p id="top1_p" class="cardset-desc"></p>
+                  				<br>
+              				</div>
+            			</div>
+            			
+            			<div class="cardset">
+              				<figure class="cardset-figure">
+                				<img id = "top2_img" class="cardset-img" src="" onerror="this.src='../resources/images/img_logo.png'">
+              				</figure>
+              				<div class="cardset-body">
+                				<p id="top2_p" class="cardset-desc"></p>
+                  				<br>
+              				</div>
+            			</div>
+            			
+            			<div class="cardset">
+              				<figure class="cardset-figure">
+                				<img id = "top3_img" class="cardset-img" src="" onerror="this.src='../resources/images/img_logo.png'">
+              				</figure>
+              				<div class="cardset-body">
+                				<p id="top3_p" class="cardset-desc"></p>
+                  				<br>
+              				</div>
+            			</div>
+            			
+            			<div class="cardset">
+              				<figure class="cardset-figure">
+                				<img id = "top4_img" class="cardset-img" src="" onerror="this.src='../resources/images/img_logo.png'">
+              				</figure>
+              				<div class="cardset-body">
+                				<p id="top4_p" class="cardset-desc"></p>
+                  				<br>
+              				</div>
+            			</div>
+            			
+            			<div class="cardset">
+              				<figure class="cardset-figure">
+                				<img id = "top5_img" class="cardset-img" src="" onerror="this.src='../resources/images/img_logo.png'">
+              				</figure>
+              				<div class="cardset-body">
+                				<p id="top5_p" class="cardset-desc"></p>
+                  				<br>
+              				</div>
+            			</div>
+            
+            			<div class="cardset">
+              				<figure class="cardset-figure">
+                				<img id = "top6_img" class="cardset-img" src="" onerror="this.src='../resources/images/img_logo.png'">
+              				</figure>
+              				<div class="cardset-body">
+                				<p id="top6_p" class="cardset-desc"></p>
+                  				<br>
+              				</div>
+            			</div>
+          			</div>
+        		</div>
+      		</div>
+    	</div>		
+	</main>
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=e193c7f773c86ecc8ab769e9704f781a&libraries=services,clusterer,drawing"></script>
+		<script>
+			var addr = '';
+			var container = document.getElementById('mid_div');
+			var options = {
+				center: new kakao.maps.LatLng(34.810159, 126.424775), level: 6
+			};
+			// 맵 중심좌표, 맵 확대레벨 선언
 				
-				var map = new kakao.maps.Map(container, options),
-					customOverlay = new kakao.maps.CustomOverlay({}),
-					infowindow = new kakao.maps.InfoWindow({removable: true});
+			var map = new kakao.maps.Map(container, options), 
+            	customOverlay = new kakao.maps.CustomOverlay({yAnchor: 2, xAnchor:0.5}), 
+            	customOverlay2 = new kakao.maps.CustomOverlay({}),
+            	customOverlay3 = new kakao.maps.CustomOverlay({}),
+				infowindow = new kakao.maps.InfoWindow({removable: true});
 				// 맵, 오버레이, 인포윈도우
 				
-				$.getJSON('../resources/json/mokpo_test.json', function(json) {
-				 	var data = json.features;
-					var coordintes = [];   // 좌표 저장
-					var name = '';         // 행정구 이름
+			$.getJSON('../resources/json/mokpo_test.json', function(json) {
+			 	var data = json.features;
+				var coordintes = [];   // 좌표 저장
+				var name = '';         // 행정구 이름
 						
 						
-					$.each(data, function(index, val) {
-						coordinates = val.geometry.coordinates;
-						name = val.properties.ADM_NM; // json에 있는 한글이름
+				$.each(data, function(index, val) {
+					coordinates = val.geometry.coordinates;
+					name = val.properties.ADM_NM; // json에 있는 한글이름
 						
-						displayArea2(coordinates, name);
-					})
-				})	// 좌표 저장되어잇는 json 파일 불러오기		
+					displayArea2(coordinates, name);
+				})
+			})	// 좌표 저장되어잇는 json 파일 불러오기		
 					
-				var polygons = [];
-				var points = [];
+			var polygons = [];
+			var points = [];
 					
-				function displayArea2(coordinates, name) {
-					 var path = [];     // 폴리곤 path
+			function displayArea2(coordinates, name) {
+				 var path = [];     // 폴리곤 path
 						
-					$.each(coordinates[0], function(index, coordinate) {
-						var point = new Object();
+				$.each(coordinates[0], function(index, coordinate) {
+					var point = new Object();
 						point.x = coordinate[0];
 						point.y = coordinate[1];
 						points.push(point);
 							
-						path.push(new kakao.maps.LatLng(coordinate[0], coordinate[1]));
-					})
+					path.push(new kakao.maps.LatLng(coordinate[0], coordinate[1]));
+				})
 					 
-					var polygon = new kakao.maps.Polygon({
-						map : map, // 다각형을 표시할 지도 객체
-					    path : path,
-					    strokeWeight: 2,
-					    strokeColor: '#004c80',
-					    strokeOpacity: 0.8,
-					    fillColor: '#fff',
-					    fillOpacity: 0.7 
-					});
+				var polygon = new kakao.maps.Polygon({
+					map : map, // 다각형을 표시할 지도 객체
+				    path : path,
+				    strokeWeight: 2,
+				    strokeColor: '#004c80',
+				    strokeOpacity: 0.8,
+				    fillColor: '#fff',
+				    fillOpacity: 0.7 
+				});
 					    
-					polygons.push(polygon);
-					    
-					kakao.maps.event.addListener(polygon, 'click', function (mouseEvent) {
-				        addr = name;
-				        var content = '<div id="customOverlay">' +
+				polygons.push(polygon);
+				
+				// 폴리곤 위에 마우스를 올렸을 때
+		        kakao.maps.event.addListener(polygon, 'mouseover',function(mouseEvent){
+		                   
+		           	polygon.setOptions({fillColor: '#09f'});
+		           	customOverlay.setContent('<div id="test">'+name+'</div>');
+		            customOverlay.setPosition(mouseEvent.latLng);
+		            customOverlay.setMap(map);
+		        });
+		        
+				// 폴리곤에서 마우스를 움직일 때
+				kakao.maps.event.addListener(polygon, 'mousemove', function(mouseEvent) {
+		               	
+		        	customOverlay.setPosition(mouseEvent.latLng); 
+		        });
+
+		        // 맵을 드래그 했을 때
+				kakao.maps.event.addListener(map, 'drag', function(mouseEvent){
+		            	   
+		        	customOverlay2.setMap(null);
+		            polygon.setOptions({fillColor: '#fff'});
+		            customOverlay.setMap(null);
+		        });
+		               
+		        // 폴리곤에서 마우스가 벗어났을 때
+		        kakao.maps.event.addListener(polygon, 'mouseout', function() {
+		            	   
+		        	polygon.setOptions({fillColor: '#fff'});
+		            customOverlay.setMap(null);
+		        });
+					
+				// 폴리곤을 클릭했을 때
+		        kakao.maps.event.addListener(polygon, 'click', function (mouseEvent) {
+						
+					addr = name;
+				    var content = '<div id="customOverlay">' +
 				            '<div id="titleText">' + name + '</div>' +
 				            '<ul id="customList">' +
 				            '<li class="customListItem"><button class="customButton" onclick="detail_map()">지역상세보기</button></li>' +
@@ -269,327 +397,405 @@
 				            '<li class="customListItem"><form action=""><button class="customButton">지역채팅</button></form></li>' +
 				            '</ul>' +
 				            '</div>';
-				        customOverlay.setContent(content);
-				        customOverlay.setPosition(mouseEvent.latLng);
-				        customOverlay.setMap(map);
-				    });
-				}
+				    customOverlay2.setContent(content);
+				    customOverlay2.setPosition(mouseEvent.latLng);
+				    customOverlay2.setMap(map);
+				});
+			} // displayarea2 끝나는 부분
 
-				function detail_map(){ // 상세정보보기 눌렀을 때
-					getData();
+			// 상세정보보기 눌렀을 때
+			function detail_map(){ 
+				customOverlay2.setMap(null);
+				getData();// 데이터 가져오는 함수
 						
-					map.setLevel(2, {anchor: zoomin_map(), animate:true});
+				map.setLevel(2, {anchor: zoomin_map(), animate:true});
 						
-					for(var i = 0; i < polygons.length; i++){
-						polygons[i].setMap(null);		
-					}
-					customOverlay.setMap(null);
-					polygons = [];
-						
+				for(var i = 0; i < polygons.length; i++){
+					polygons[i].setMap(null);		
 				}
+				customOverlay.setMap(null);
+				polygons = [];
+						
+			}
 					
-					
-				function zoomin_map(){ // 폴리곤 눌러서 클릭 했을 때 확대되는 좌표값
-					if(addr == "하당동"){
-						return new kakao.maps.LatLng(34.808948346503676, 126.42033035076065);
-					}else if(addr="옥암동"){
-						return new kakao.maps.LatLng(34.81032236853858, 126.42877975042865);
-					}
+			// 폴리곤 눌러서 클릭 했을 때 확대되는 좌표값
+			function zoomin_map(){ 
+				if(addr == "하당동"){
+					return new kakao.maps.LatLng(34.808948346503676, 126.42033035076065);
+				}else if(addr="옥암동"){
+					return new kakao.maps.LatLng(34.81032236853858, 126.42877975042865);
 				}
+			}
 				
 				
-				let geocoder = new kakao.maps.services.Geocoder();
-				let infoapart = '';
-				function getData() { // 상세정보보기 눌렀을 때 가져오는 동 아파트 주소 정보
-					$.ajax({
-						url: 'http://localhost:8083/GitTest1/getApart.do?name=' + addr,
-					    contentType: 'text/plain; charset=UTF-8',
-					    success: function (result) {
-					        var itemList = result.split(';');
+			let geocoder = new kakao.maps.services.Geocoder();
+			let infoapart = '';
+			var currentOverlay; // 전역 변수로 현재 오버레이를 저장하는 변수
+
+			function getData() { // 상세정보보기 눌렀을 때 가져오는 동 아파트 주소 정보
+				$.ajax({
+					url: 'http://localhost:8083/GitTest1/getApart.do?name=' + addr,
+				    contentType: 'text/plain; charset=UTF-8',
+				    success: function (result) {
+				        var itemList = result.split(';');
 					            
-					        for (let i = 0; i < itemList.length - 1; i += 2) {
-					            let j = i + 1;
+				        for (let i = 0; i < itemList.length - 1; i += 2) {
+				            let j = i + 1;
 
-					            geocoder.addressSearch(itemList[i], function (result, status) {
-					                if (status === kakao.maps.services.Status.OK) {
-					                    var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+				            geocoder.addressSearch(itemList[i], function (result, status) {
+				                if (status === kakao.maps.services.Status.OK) {
+				                    var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
 
-					                    //var additionalData = getDataForMarker(itemList[i]);
+				                    let marker = new kakao.maps.Marker({
+				                        map: map,
+				                        position: coords
+				                    });
 
-					                    let marker = new kakao.maps.Marker({
-					                        map: map,
-					                        position: coords
-					                    });
+				                    let content = document.createElement('div');
+				                    content.innerHTML = '<div id="menu_wrap">'
+								                        +'<h1 id="apt_name"></h1>'
+								                        +'<h3 id="apt_loc"></h3>'
+								                        +'<div class="sizecontiainer">'
+								                        +'<ul class="tabs">'
+								                        +'<li id="tab_1" class="tab-link current" data-tab="tab-1"></li>'
+								                        +'<li id="tab_2" class="tab-link" data-tab="tab-2"></li>'
+								                        +'<li id="tab_3" class="tab-link" data-tab="tab-3"></li></ul>'
+								                        +'<div id="tab-1" class="tab-content current">'
+								                        +'<h3 id="realprice1"></h3>'
+								                        +'<img id="apt_img1" class="apt_img" alt="구조도 사진 없음"></div>'
+								                        +'<div id="tab-2" class="tab-content">'
+								                        +'<h3 id="realprice2"></h3>'
+								                        +'<img id="apt_img2" class="apt_img" alt="구조도 사진 없음"></div>'
+								                        +'<div id="tab-3" class="tab-content">'
+								                        +'<h3 id="realprice3"></h3>'
+								                        +'<img id="apt_img3" class="apt_img" alt="구조도 사진 없음">'
+								                        +'</div></div><div id="temp_review"></div>'
+								                        +'<div id="review"><h3>부동산 후기</h3>'
+								                        +'</div></div>';
+					                            
+								    kakao.maps.event.addListener(marker, 'click', function () {
+								    	infoapart = itemList[j]; // 클릭했을 때 이름을 변수에 넣음
+								        getapartallinfo();
 
-					                    let content = document.createElement('div');
-					                    content.innerHTML = '<div id="menu_wrap" style="height:70em; width:350px;text-align:center;padding:6px 0;"><button onclick="">닫기</button><h1>'
-					                    	  	+ itemList[j] + '</h1><br>'
-					                            + itemList[i] + '<br>'
-					                            + '</div>';
+								        var existingContent = document.getElementById('content');
 
-					                    kakao.maps.event.addListener(marker, 'click', function () {
-					                    	infoapart = itemList[j]; // 클릭했을 때 이름을 변수에 넣음
-					                    	getapartallinfo()
-					                        let CustomOverlay2 = new kakao.maps.CustomOverlay({
-					                            map: map,
-					                            position: coords,
-					                            content: content
-					                        });
-					                    });
-					                }
-					            });
-					        }
-					    },
-					    error: function () { // 통신 실패했을 때
-					        console.error('실패애~~~~~~~');
-					    }
-					});
-				}
+								        // 중복 방지를 위해 이미 추가된 엘리먼트인지 확인
+								        if (!existingContent) {
+								        	existingContent = document.createElement('div');
+								            existingContent.id = 'content'; // ID를 중복되지 않도록 수정
+								            document.getElementById('mid_div').appendChild(existingContent);
+								        }
+
+								        existingContent.innerHTML = ''; // 기존 내용 지우기
+								        existingContent.appendChild(content); // 내용 추가
+
+								        // 맵 클릭 시 팝업 제거
+								        kakao.maps.event.addListener(map, 'click', function () {
+								        	existingContent = document.getElementById('content'); // 다시 가져오기
+								        	if (existingContent) {
+								        		existingContent.innerHTML = ''; // 엘리먼트의 내용을 지우고
+								            	existingContent.parentNode.removeChild(existingContent); // 부모에서 제거
+								        	}
+								    	});
+									});					                    
+				                }
+				            });
+				        }
+				    },
+				    error: function () { // 통신 실패했을 때
+				        console.error('실패애~~~~~~~');
+				    }
+				});
+			} // getData 끝
 				
-				function getapartallinfo(){
-					$.ajax({
-						url: 'http://localhost:8083/GitTest1/getapartallinfo.do?aptname=' + infoapart,
+				
+			function getapartallinfo(){
+				$.ajax({
+					url: 'http://localhost:8083/GitTest1/getapartallinfo.do?aptname=' + infoapart,
 								
-						success: function (result) {
+					success: function (result) {
+						let infoList = result.split(';');
+						console.log("tteesstt : ",infoList);
 							
-						},
-						error: function(){
+						console.log("test : ",infoList.length);
+						let temp1 = infoList.length/5; // 같은 이름 다른 평수 몇개인지 구분하기 위해서
+						console.log("길이 : ",temp1)
 							
-						}
-					});
-				}
-				
-				
-				/* function overlay(){
-					let CustomOverlay2 = new kakao.maps.CustomOverlay({
-                        map: map,
-                        position: marker.getPosition(),
-                        content: content
-                    });
-				} */
-				
-				
-				function searchPlaces() { // 검색데이터 가져오기
-	            	var searchValue = $('#keyword').val();
-	            	
-	            	$.ajax({
-	           	 		url : 'http://localhost:8083/GitTest1/getApartSearch.do?name='+ searchValue,
-	                	contentType : 'text/plain; charset=UTF-8', // Specify UTF-8
-	                	data: { name: searchValue },
-	                	
-	                	success : function(result) {
-	                		console.log("test : ",result);
-	                    	var searchList = result.split(';');
-	                   		
-	                   		
-	                    	for (let i = 0; i < searchList.length - 1; i += 3) {
-	                        	let j = i + 1;
-	                        
-	                        	geocoder.addressSearch(searchList[i],function(result, status) {
-
-	                            	if (status === kakao.maps.services.Status.OK) {
-	                                	var coords = new kakao.maps.LatLng(
-	                                    	result[0].y,
-	                                        result[0].x
-	                                    );
-
-	                                    var marker = new kakao.maps.Marker({
-	                                    	map : map,
-	                                        position : coords
-	                                    });
-	                                }
-								})
-							}
-	                    },
-						error : function() {
-		                	console.log("실패");
-						}
-	            	})
-		        } 
-
-				function getDataForMarker(name) {
-				    return name;
-				}
-
-				function change_LatLng(itemList){
-					var geocoder = new kakao.maps.services.Geocoder();
+						document.getElementById('apt_name').innerText = infoList[0];
+							
+						document.getElementById('apt_loc').innerText = infoList[1];
+							
+						document.getElementById('tab_1').innerText = infoList[3];
+						document.getElementById('realprice1').innerText = infoList[2];
+						document.getElementById('apt_img1').src = infoList[4];
+						document.getElementById('apt_img1').onerror = function() {
+	        			    this.src = '../resources/images/img_logo.png';
+	        			};
 						
-					geocoder.addressSearch(itemList, function(result, status) {
+							
+						if(temp1 > 2 && temp1 < 3){
+							document.getElementById('tab_2').innerText = infoList[8];
+							document.getElementById('realprice2').innerText = infoList[7];
+							document.getElementById('apt_img2').src = infoList[9];
+							document.getElementById('apt_img2').onerror = function() {
+		        			    this.src = '../resources/images/img_logo.png';
+		        			};
+						}
+						if(temp1 > 3){
+							document.getElementById('tab_2').innerText = infoList[8];
+							document.getElementById('realprice2').innerText = infoList[7];
+							document.getElementById('apt_img2').src = infoList[9];
+							document.getElementById('apt_img2').onerror = function() {
+		        			    this.src = '../resources/images/img_logo.png';
+		        			};
+							document.getElementById('tab_3').innerText = infoList[13];
+							document.getElementById('realprice3').innerText = infoList[12];
+							document.getElementById('apt_img3').src = infoList[14];
+							document.getElementById('apt_img3').onerror = function() {
+		        			    this.src = '../resources/images/img_logo.png';
+		        			};
+						}
+							
+						let reviewList = infoList[infoList.length-1].split("|");
+							
+						const review = document.getElementById('review');
+							
+						for(let d = 0; d < reviewList.length; d++){
+							const reviews = document.createElement('div');
+							reviews.className="review_contents";
+							reviews.innerText = reviewList[d];
+							review.appendChild(reviews);
+						}
+												
+						//infoList 
+						/*  0,5 : 아파트 이름 
+							1,6 : 주소
+							2,7 : 실거래가
+							3,8 : 평수
+							4,9 : 이미지
+							10 ~ :리뷰
+						*/
+					},
+					error: function(){
+							
+					}
+				});
+			} // getapartallinfo 끝
+				
+			// 상세정보 출력하는 부분에서 평수에 따른 탭이동
+			$(document).on('click', 'ul.tabs li', function(){
+			    console.log("탭이동!")
+			    var tab_id = $(this).attr('data-tab');
+
+			    $('ul.tabs li').removeClass('current');
+			    $('.tab-content').removeClass('current');
+
+			    $(this).addClass('current');
+			    $("#" + tab_id).addClass('current');
+			});
+
+				
+			function searchPlaces() { // 검색데이터 가져오기
+	           	var searchValue = $('#keyword').val();
+	            	
+	           	$.ajax({
+	        		url : 'http://localhost:8083/GitTest1/getApartSearch.do?name='+ searchValue,
+	               	contentType : 'text/plain; charset=UTF-8', // Specify UTF-8
+	               	data: { name: searchValue },
+	                	
+	               	success : function(result) {
+	               		console.log("test : ",result);
+	                   	var searchList = result.split(';');
+	                   		
+	                   	for (let i = 0; i < searchList.length - 1; i += 3) {
+	                       	let j = i + 1;
+	                        
+	                       	geocoder.addressSearch(searchList[i],function(result, status) {
+
+	                           	if (status === kakao.maps.services.Status.OK) {
+	                               	var coords = new kakao.maps.LatLng(
+	                                   	result[0].y,
+	                                    result[0].x
+	                            	);
+
+	                             	var marker = new kakao.maps.Marker({
+	                                   	map : map,
+	                                       position : coords
+	                                });
+	                            }
+							})
+						}
+	                },
+					error : function() {
+		               	console.log("실패");
+					}
+	            })
+		    } // searchPlaces 끝
+
+			/* function change_LatLng(itemList){
+				var geocoder = new kakao.maps.services.Geocoder();
+						
+				geocoder.addressSearch(itemList, function(result, status) {
 	 
-						if (status === kakao.maps.services.Status.OK) {
+					if (status === kakao.maps.services.Status.OK) {
 
-				        	var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+			        	var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
 
-					    	var marker = new kakao.maps.Marker({
-					        	map: map,
-					        	position: coords
-					    	});
+				    	var marker = new kakao.maps.Marker({
+				        	map: map,
+				        	position: coords
+				    	});
 
 					    	var infowindow = new kakao.maps.InfoWindow({
 						        	content: '<div style="width:150px;text-align:center;padding:6px 0;">우리회사</div>'
 							});
-							infowindow.open(map, marker);
-						       
+							infowindow.open(map, marker);     
 						} 
 					})
 				}
+ */				
 				
-				function closeOverlay() { // 오버레이 닫기
-					CustomOverlay2.setMap(null);     
-				}
-				
-				function getApart_info(){
-					
-					
-				}
-			</script>
-			
-			
-    <div class="campland-N15" data-bid="crlQNCwqYB">
-      <div class="contents-inner">
-        <div class="contents-container container-md">
-          <div class="textset textset-sub">
-            <h2 class="textset-tit">부동산 게시판</h2> 
-          </div>
-          
-          <div class="cardset-wrap">
-            <a href="javascipt:void(0);" class="cardset">
-              <figure class="cardset-figure">
-                <img class="cardset-img" src="../resources/images/베장미.png" >
-              </figure>
-              <div class="cardset-body">
+		var chatId = "${chatId}";
+			// 이미지 클릭 이벤트 처리
+    		$(".chat").on({"click": function () {
                 
-                <p class="cardset-desc">
-                  구임규
-                  <br>
-                 
-              </div>
-            </a>
-            <a href="javascipt:void(0);" class="cardset">
-              <figure class="cardset-figure">
-                <img class="cardset-img" src="../resources/images/직방.png" >
-              </figure>
-              <div class="cardset-body">
-                
-                <p class="cardset-desc">
-                  좋아보이지만 다 사진빨이에요.
-                 xvxczxczxczxc
-                 zxczzx
-                </p>
-              </div>
-            </a>
-            <a href="javascipt:void(0);" class="cardset">
-              <figure class="cardset-figure">
-                <img class="cardset-img" src="../resources/images/apart.png" >
-              </figure>
-              <div class="cardset-body">
-                
-                <p class="cardset-desc">
-                  돈 벌어서 넓은 집으로!!
-                  
-                </p>
-              </div>
-            </a>
-            
-            <a href="javascipt:void(0);" class="cardset">
-              <figure class="cardset-figure">
-                <img class="cardset-img" src="../resources/images/프로젝트하는나의모습.png" >
-              </figure>
-              <div class="cardset-body">
-                
-                <p class="cardset-desc">
-                  정신아 돌아와줘
-                  
-                </p>
-              </div>
-            </a>
-            <a href="javascipt:void(0);" class="cardset">
-              <figure class="cardset-figure">
-                <img class="cardset-img" src="../resources/images/apart.png" >
-              </figure>
-              <div class="cardset-body">
-                
-                <p class="cardset-desc">
-                  이제 어려운 작업만 남았다!!
-                  
-                </p>
-              </div>
-            </a>
-            <a href="javascipt:void(0);" class="cardset">
-              <figure class="cardset-figure">
-                <img class="cardset-img" src="../resources/images/고양이빵.png" >
-              </figure>
-              <div class="cardset-body">
-                
-                <p class="cardset-desc">
-                  고양이빵
-                  
-                </p>
-              </div>
-            </a>
-            
-            <a href="javascipt:void(0);" class="cardset">
-              <figure class="cardset-figure">
-                <img class="cardset-img" src="../resources/images/고양이빵.png" >
-              </figure>
-              <div class="cardset-body">
-                
-                <p class="cardset-desc">
-                  고양이빵
-                  
-                </p>
-              </div>
-            </a>
-            
-             <a href="javascipt:void(0);" class="cardset">
-              <figure class="cardset-figure">
-                <img class="cardset-img" src="../resources/images/고양이빵.png" >
-              </figure>
-              <div class="cardset-body">
-                
-                <p class="cardset-desc">
-                  고양이빵
-                  
-                </p>
-              </div>
-            </a>
-             <a href="javascipt:void(0);" class="cardset">
-              <figure class="cardset-figure">
-                <img class="cardset-img" src="../resources/images/고양이빵.png" >
-              </figure>
-              <div class="cardset-body">
-                
-                <p class="cardset-desc">
-                  고양이빵
-                  
-                </p>
-              </div>
-            </a>
-             <a href="javascipt:void(0);" class="cardset">
-              <figure class="cardset-figure">
-                <img class="cardset-img" src="../resources/images/고양이빵.png" >
-              </figure>
-              <div class="cardset-body">
-                
-                <p class="cardset-desc">
-                  고양이빵
-                  
-                </p>
-              </div>
-            </a>
-            
-            
-            
-          </div>  <!-- 게시판 글 영역 -->
-        </div>
-      </div>
-    </div>
-    <!-- [E]campland-N15 -->
-	
-		
-	</main>
+    			// 눌렀을 때 이미지 변경
+                if ($(this).attr("src") == "../resources/images/고양이말풍선white.png" && chatId !== '') {
+                    $(this).attr("src", "../resources/images/고양이말풍선black.png");
+                    $("#_chatbox").css("display", "block");
+                } else if ($(this).attr("src") == "../resources/images/고양이말풍선black.png") {
+                    $(this).attr("src", "../resources/images/고양이말풍선white.png");
+                    $("#_chatbox").css("display", "none");
+                } else if (chatId === '') {
+                    // 비로그인이면 로그인페이지로 보내버림
+                    alert("로그인이 필요합니다.");
+                    window.location.href = "login.jsp";
+                }
+            }});
 
-<!-- [S]campland-N2 -->
+
+			var textarea = document.getElementById("messageWindow");
+			var webSocket = new WebSocket('ws://localhost:8083/GitTest1/broadcasting');
+			var inputMessage = document.getElementById('inputMessage');
+			webSocket.onerror = function(event) {
+			    onError(event)
+			};
+			webSocket.onopen = function(event) {
+			    onOpen(event)
+			};
+			webSocket.onmessage = function(event) {
+			    onMessage(event)
+			};
+			
+			//메세지 받은거
+			function onMessage(event) {
+			    var message = event.data.split("|");
+			    var sender = message[0];
+			    var content = message[1];
+			    if (content == "") {
+			            
+			    } else {
+			        if (content.match("/")) {
+			            if (content.match(("/" + chatId))) {
+			                var temp = content.replace("/" + chatId, "(귓속말) :").split(":");
+			                if (temp[1].trim() == "") {
+			                } else {
+			                    $("#messageWindow").html($("#messageWindow").html() + "<p class='whisper'>"
+			                        + sender + content.replace("/" + chatId, "(귓속말) :") + "</p>");
+			                }
+			            } else {
+			            }
+			        } else {
+			            if (content.match("!")) {
+			                $("#messageWindow").html($("#messageWindow").html()
+			                    + "<p class='chat_content'><b class='impress'>" + sender + " : " + content + "</b></p>");
+			            } else {
+			                $("#messageWindow").html($("#messageWindow").html()
+			                    + "<p class='chat_content'>" + sender + " : " + content + "</p>");
+			            }
+			        }
+			    }
+			}// onMessage(event) 끝
+			    
+			// 입장할때
+			function onOpen(event) {
+			    $("#messageWindow").html("<p class='chat_content'>채팅에 참여하였습니다.</p>");
+			}
+			
+			// 에러낫을때
+			function onError(event) {
+			    alert(event.data);
+			}
+			
+			// 메세지 보내는 부분
+			function send() {
+			    if (inputMessage.value == "") {
+			    } else {
+			        $("#messageWindow").html($("#messageWindow").html()
+			            + "<p class='chat_content'>나 : " + inputMessage.value + "</p>");
+			    }
+			    webSocket.send(chatId + "|" + inputMessage.value);
+			    inputMessage.value = "";
+			}
+			
+			//엔터키를 통해 send함
+			function enterkey() {
+			    if (window.event.keyCode == 13) {
+			        send();
+			    }
+			}
+			
+			// 스크롤 조절
+			window.setInterval(function() {
+			    var elem = document.getElementById('messageWindow');
+				    elem.scrollTop = elem.scrollHeight;
+			}, 0);
+		
+			
+		$.ajax({
+			url: 'http://localhost:8083/GitTest1/getmainforum.do',
+			dataType: 'json',
+			success:function(result){
+				console.log("result : ",result);
+				console.log("result : ",result[0].f_seq);
+				
+				let top1_img = document.getElementById("top1_img");
+				top1_img.src = "../uploadimg/"+result[0].f_file;
+				let top1_p = document.getElementById("top1_p");
+				top1_p.innerText = result[0].f_content;
+				
+				let top2_img = document.getElementById("top2_img");
+				top2_img.src = "../uploadimg/"+result[1].f_file;
+				let top2_p = document.getElementById("top2_p");
+				top2_p.innerText = result[1].f_content;
+				
+				let top3_img = document.getElementById("top3_img");
+				top3_img.src = "../uploadimg/"+result[2].f_file;
+				let top3_p = document.getElementById("top3_p");
+				top3_p.innerText = result[2].f_content;
+				
+				let top4_img = document.getElementById("top4_img");
+				top4_img.src = "../uploadimg/"+result[3].f_file;
+				let top4_p = document.getElementById("top4_p");
+				top4_p.innerText = result[3].f_content;
+				
+				let top5_img = document.getElementById("top5_img");
+				top5_img.src = "../uploadimg/"+result[4].f_file;
+				let top5_p = document.getElementById("top5_p");
+				top5_p.innerText = result[4].f_content;
+				
+				let top6_img = document.getElementById("top6_img");
+				top6_img.src = "../uploadimg/"+result[5].f_file;
+				let top6_p = document.getElementById("top6_p");
+				top6_p.innerText = result[5].f_content;
+				
+			},
+			error:function(){
+				
+			}
+		})
+		</script>
+
 	<footer class="campland-N2" data-bid="mMlq6dEKQC">
 		<div class="footer-container container-lg">
 			<div class="footer-bottom">

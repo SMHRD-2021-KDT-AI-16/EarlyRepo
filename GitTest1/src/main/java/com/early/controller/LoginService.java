@@ -19,12 +19,15 @@ public class LoginService implements Command{
 			throws ServletException, IOException {
 		
 		String user_id = request.getParameter("user_id");
-		String user_pw = request.getParameter("user_pw");
+		String user_pw = request.getParameter("pw");
+		
+		System.out.println("test : "+user_id);
+		System.out.println("test2 : "+user_pw);
 		
 		MemberVO vo = new MemberVO();
+		
 		vo.setUser_id(user_id);
 		vo.setUser_pw(user_pw);
-		
 		
 		DAO dao = new DAO();
 		
@@ -33,14 +36,16 @@ public class LoginService implements Command{
 		HttpSession session = request.getSession();
 		session.setAttribute("member", result);
 		
-		
-		return "redirect:/GoMainPage.do";
-	
-		
+        String responseData;
+        if (result != null) {
+            responseData = "success";
+        } else {
+            responseData = "fail";
+        }
+
+        // 클라이언트에 응답 데이터 전송
+        response.getWriter().write(responseData);
+        return null;
+
 	}
-       
-  
-   
-
-
 }

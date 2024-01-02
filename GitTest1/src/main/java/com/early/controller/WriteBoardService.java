@@ -47,7 +47,7 @@ public class WriteBoardService implements Command{
 		
 		nbdao.insertContent(nbvo);
 		
-		return null;
+		return "AllgetBoardService.do";
 	}
 
 }

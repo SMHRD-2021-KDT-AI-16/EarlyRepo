@@ -37,4 +37,36 @@ public class NoticeBoardDAO {
 	public void updateContent() { // 글 수정
 		
 	}
+	
+	public int likesUp(NoticeBoardVO nvo) {
+		SqlSession session = factory.openSession(true);
+		
+		int row = session.insert("likesUp", nvo);
+		if(row >0) {
+			System.out.println("업데이트 성공인데 웨?");
+		}
+		session.close();
+		
+		return row;
+	}
+
+	public List<NoticeBoardVO> getAllBoard() {
+		SqlSession session = factory.openSession();
+		
+		List<NoticeBoardVO> list =session.selectList("getBoardALL");
+		
+		session.close();
+		
+		return list;
+	}
+	
+	public List<NoticeBoardVO> getlikeBoard() {
+		SqlSession session = factory.openSession();
+		
+		List<NoticeBoardVO> list = session.selectList("getliketop");
+		// System.out.println(list.get(0).getF_likes());
+		session.close();
+		
+		return list;	
+	}
 }
