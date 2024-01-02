@@ -106,6 +106,7 @@
 			<div id="left_div">       <!-- 왼쪽 자산정보 입력창 -->
 		       <div class="textset textset-sub textset-center">
 				  <h5 class="textset-tit">당신의 능력으로 살 수있는 집을 알려드려요​<br></h5>
+			   <form>
 			   </div>
 		   		<ul class="contents-list">
 		   				<li class="contents-item">
@@ -168,14 +169,14 @@
 							<div class="form-wrap">
 								<div class="form-wrap">
 									<div class="selectset selectset-round selectset-md">
-                  						<select name="salary" class="selectset-toggle btn" >
-                							<option value="under2000">2000만원 이하</option>
-                             				<option value="over2000">2000~3000만원</option>
-                      					    <option value="over3000">3000만원~4000만원</option>
-                      					    <option value="over4000">4000만원~5000만원</option>
-                      					    <option value="over5000">5000만원~6000만원</option>
-                      					    <option value="over6000">6000만원~7000만원</option>
-                      					    <option value="over7000">7000만원 이상</option>
+                  						<select name="salary" class="selectset-toggle btn" id="income">
+                							<option value="2000">2000만원 이하</option>
+                             				<option value="3000">2000만원~3000만원</option>
+                      					    <option value="4000">3000만원~4000만원</option>
+                      					    <option value="5000">4000만원~5000만원</option>
+                      					    <option value="6000">5000만원~6000만원</option>
+                      					    <option value="7000">6000만원~7000만원</option>
+                      					    <option value="7001">7000만원 이상</option>
 				    
              							</select>
                					  	</div>
@@ -189,14 +190,14 @@
 							<div class="form-wrap">
 								<div class="form-wrap">
 								  <div class="selectset selectset-round selectset-md">
-                  					  <select name="spare_funds" class="selectset-toggle btn" >
-                						    <option value="under2000">2000만원 이하</option>
-                             				<option value="over2000">2000~3000만원</option>
-                      					    <option value="over3000">3000만원~4000만원</option>
-                      					    <option value="over4000">4000만원~5000만원</option>
-                      					    <option value="over5000">5000만원~6000만원</option>
-                      					    <option value="over6000">6000만원~7000만원</option>
-                      					    <option value="over7000">7000만원 이상</option>
+                  					  <select name="spare_funds" class="selectset-toggle btn" id="money">
+                						    <option value="2000">2000만원</option>
+                             				<option value="3000">2000만원~3000만원</option>
+                      					    <option value="4000">3000만원~4000만원</option>
+                      					    <option value="5000">4000만원~5000만원</option>
+                      					    <option value="6000">5000만원~6000만원</option>
+                      					    <option value="7000">6000만원~7000만원</option>
+                      					    <option value="7001">7000만원 이상</option>
              						 </select>
                					  </div>
                				  </div>	  
@@ -204,10 +205,11 @@
 						</li>
 					<br>
 					<div class="contents-confirm" align=center>
-						<button class="btnset btnset-round">결과보기</button>
+						<button class="btnset btnset-round" type="button" onclick="PriceCompare()">결과보기</button>
 					</div>
 				</ul>	
 			</div>      <!-- 왼쪽 자산정보 입력창 닫기 -->
+			</form>
 			
 			<div id="full_mid_div">
 				<div id="mid_div"></div>
@@ -520,7 +522,7 @@
 						console.log("test : ",infoList.length);
 						let temp1 = infoList.length/5; // 같은 이름 다른 평수 몇개인지 구분하기 위해서
 						console.log("길이 : ",temp1)
-							
+						
 						document.getElementById('apt_name').innerText = infoList[0];
 							
 						document.getElementById('apt_loc').innerText = infoList[1];
@@ -531,9 +533,8 @@
 						document.getElementById('apt_img1').onerror = function() {
 	        			    this.src = '../resources/images/img_logo.png';
 	        			};
-						
-							
-						if(temp1 > 2 && temp1 < 3){
+	        			
+	        			if(temp1 > 2 && temp1 < 3){
 							document.getElementById('tab_2').innerText = infoList[8];
 							document.getElementById('realprice2').innerText = infoList[7];
 							document.getElementById('apt_img2').src = infoList[9];
@@ -541,6 +542,7 @@
 		        			    this.src = '../resources/images/img_logo.png';
 		        			};
 						}
+	        			
 						if(temp1 > 3){
 							document.getElementById('tab_2').innerText = infoList[8];
 							document.getElementById('realprice2').innerText = infoList[7];
@@ -581,6 +583,87 @@
 					}
 				});
 			} // getapartallinfo 끝
+
+				
+				function searchPlaces() { // 검색데이터 가져오기
+	            	var searchValue = $('#keyword').val();
+	            	
+	            	$.ajax({
+	           	 		url : 'http://localhost:8083/GitTest1/getApartSearch.do?name='+ searchValue,
+	                	contentType : 'text/plain; charset=UTF-8', // Specify UTF-8
+	                	data: { name: searchValue },
+	                	
+	                	success : function(result) {
+	                		console.log("test : ",result);	
+	                		
+	                    	var Compare = result.split(';');
+	                   		
+	                   		
+	                    	for (let i = 0; i < Compare.length - 1; i += 3) {
+	                        	let j = i + 1;
+	                        
+	                        	geocoder.addressSearch(Compare[i],function(result, status) {
+
+	                            	if (status === kakao.maps.services.Status.OK) {
+	                                	var coords = new kakao.maps.LatLng(
+	                                    	result[0].y,
+	                                        result[0].x
+	                                    );
+
+	                                    var marker = new kakao.maps.Marker({
+	                                    	map : map,
+	                                        position : coords
+	                                    });
+	                                }
+								})
+							}
+	                    },
+						error : function() {
+		                	console.log("실패");
+						}
+	            	})
+		        }
+				
+				function PriceCompare(){ //결과보기
+					var income = $('#income').val();
+					var money = $('#money').val();
+					
+	            	$.ajax({
+	           	 		url : 'http://localhost:8083/GitTest1/getCompare.do?income='+income+'&'+'money='+money,
+	                	contentType : 'text/plain; charset=UTF-8', // Specify UTF-8
+	                	data: { income: income },
+	                	
+	                	success : function(result) {
+	                		console.log("test : ", result);
+	                		
+	                		var searchList = result.split(';');
+	                		
+	                		for (let i = 2; i < searchList.length - 1; i += 3) {
+	                        	let j = i + 1;
+	                    		var geocoder = new kakao.maps.services.Geocoder();
+	                        
+	                        	geocoder.addressSearch(searchList[i],function(result, status) {
+
+	                            	if (status === kakao.maps.services.Status.OK) {
+	                                	var coords = new kakao.maps.LatLng(
+	                                    	result[0].y,
+	                                        result[0].x
+	                                    );
+
+	                                    var marker = new kakao.maps.Marker({
+	                                    	map : map,
+	                                        position : coords
+	                                    });
+	                                }
+								})
+							}
+	                	},
+	                	error : function() {
+	                		console.log("error");
+	                	}
+	            	})
+
+				}
 				
 			// 상세정보 출력하는 부분에서 평수에 따른 탭이동
 			$(document).on('click', 'ul.tabs li', function(){

@@ -28,6 +28,7 @@ import com.early.controller.LoginCheckService;
 import com.early.controller.LoginService;
 import com.early.controller.LogoutService;
 import com.early.controller.SelectLoansService;
+import com.early.controller.PriceCompareService;
 import com.early.controller.UpdateService;
 import com.early.controller.WriteBoardService;
 
@@ -53,6 +54,8 @@ public class FrontController extends HttpServlet {
 		map.put("getApartSearch.do", new ApartSearchService());
 		map.put("html/writeboard.do", new WriteBoardService());
 		map.put("logincheck.do", new LoginCheckService());
+		map.put("html/writeboard.do", new WriteBoardService());
+		map.put("html/logincheck.do", new LoginCheckService());
 		map.put("SelectLoans.do", new SelectLoansService());
 		map.put("getapartallinfo.do", new GetapartallinfoService());
 		map.put("html/BoardIdService.do", new BoardIdService());
@@ -61,14 +64,21 @@ public class FrontController extends HttpServlet {
 		map.put("insertComment.do", new InsertCommentService());
 		map.put("getComment.do", new GetCommentService());
 		map.put("getmainforum.do", new GetmainforumService());
+		map.put("getApartSearch.do", new ApartSearchService());
+		map.put("SelectLoans.do", new SelectLoansService());
+		map.put("getCompare.do", new PriceCompareService());
 	}
 
 	
 	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		
+		//프론트엔드에서 어떤 요청을 보냈는지 분석
 		String uri = request.getRequestURI();
 		String cp = request.getContextPath();
 		String path = uri.substring(cp.length() + 1);
+		
+		
 		System.out.println("uri : "+uri);
 		System.out.println("cp : "+cp);
 		System.out.println("path : "+path);
@@ -85,6 +95,8 @@ public class FrontController extends HttpServlet {
 			com = map.get(path);
 			//System.out.println("1번 :" + finalpath);
 			System.out.println("com : "+com);
+			
+			///요청에 맞는 service를 실행시키겠습니다 
 			finalpath = com.execute(request, response);
 
 		}
