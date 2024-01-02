@@ -10,18 +10,24 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.early.controller.AllgetBoardService;
 import com.early.controller.ApartSearchService;
 import com.early.controller.BoardIdService;
 import com.early.controller.Command;
 import com.early.controller.DelMemberService;
 import com.early.controller.GetApartService;
+import com.early.controller.GetCommentService;
 import com.early.controller.GetNoticeBoardService;
 import com.early.controller.GetapartallinfoService;
+import com.early.controller.GetmainforumService;
 import com.early.controller.IdCheckService;
+import com.early.controller.InsertCommentService;
 import com.early.controller.JoinService;
+import com.early.controller.LikesUpService;
 import com.early.controller.LoginCheckService;
 import com.early.controller.LoginService;
 import com.early.controller.LogoutService;
+import com.early.controller.PriceCompareService;
 import com.early.controller.ResultService;
 import com.early.controller.SelectLoansService;
 import com.early.controller.UpdateService;
@@ -48,20 +54,48 @@ public class FrontController extends HttpServlet {
 		map.put("html/notice_Board.do", new GetNoticeBoardService());
 		map.put("getApartSearch.do", new ApartSearchService());
 		map.put("html/writeboard.do", new WriteBoardService());
+
 		map.put("html/logincheck.do", new LoginCheckService());
 		map.put("html/SelectLoans.do", new SelectLoansService());
+
+		map.put("logincheck.do", new LoginCheckService());
+		map.put("html/writeboard.do", new WriteBoardService());
+		map.put("html/logincheck.do", new LoginCheckService());
+		map.put("SelectLoans.do", new SelectLoansService());
+
 		map.put("getapartallinfo.do", new GetapartallinfoService());
+
 		map.put("html/BoardIdService.do", new BoardIdService());
 		map.put("Result.do", new ResultService());
+
+		map.put("html/BoardIdService.do", new BoardIdService());
+		map.put("likes_up.do", new LikesUpService());
+		map.put("html/AllgetBoardService.do", new AllgetBoardService());
+		map.put("insertComment.do", new InsertCommentService());
+		map.put("getComment.do", new GetCommentService());
+		map.put("getmainforum.do", new GetmainforumService());
+		map.put("getApartSearch.do", new ApartSearchService());
+		map.put("SelectLoans.do", new SelectLoansService());
+		map.put("getCompare.do", new PriceCompareService());
+		
+		// 추가
+		map.put("html/Result.do", new ResultService());
+		
+
 	}
 
 	
 	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		System.out.println("Test");
+
+		
+		//프론트엔드에서 어떤 요청을 보냈는지 분석
+
 		String uri = request.getRequestURI();
 		String cp = request.getContextPath();
 		String path = uri.substring(cp.length() + 1);
+		
+		
 		System.out.println("uri : "+uri);
 		System.out.println("cp : "+cp);
 		System.out.println("path : "+path);
@@ -78,6 +112,8 @@ public class FrontController extends HttpServlet {
 			com = map.get(path);
 			//System.out.println("1번 :" + finalpath);
 			System.out.println("com : "+com);
+			
+			///요청에 맞는 service를 실행시키겠습니다 
 			finalpath = com.execute(request, response);
 
 		}

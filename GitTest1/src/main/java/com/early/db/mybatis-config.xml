@@ -10,9 +10,6 @@
 
 	<properties resource="com/early/db/db.properties">
 	</properties>
-	<typeAliases>
-		<typeAlias type="com.early.model.boardVO" alias="Board" />
-	</typeAliases>
 
 	<!-- 3. environments : 연결할 db들에 대한 정보를 기술하는 태그 default = 기본이되는 db설정 -->
 	<environments default="development">

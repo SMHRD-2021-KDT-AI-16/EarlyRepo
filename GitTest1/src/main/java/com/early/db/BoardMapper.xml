@@ -2,19 +2,69 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
-  
+
 <mapper namespace="com.early.db.BoardMapper">
-	
-	<select id="getAllBoard" resultType="com.early.model.NoticeBoardVO">
-		select * from tb_FORUM where loc = #{loc}
+
+	<select id="getAllBoard"
+		resultType="com.early.model.NoticeBoardVO">
+		select a.*,b.user_nick
+		from tb_forum a, tb_user b
+		where
+		a.user_id=b.user_id
+		and a.loc=#{loc}
+		order by a.created_at desc
 	</select>
-	
-	<insert id="writeBoard" parameterType="com.early.model.NoticeBoardVO">
-		insert into tb_forum (f_content, f_file, created_at, user_id, loc) values (#{f_content}, #{f_file}, sysdate, #{user_id}, #{loc})
+
+	<insert id="writeBoard"
+		parameterType="com.early.model.NoticeBoardVO">
+		insert into tb_forum (f_content, f_file, created_at,
+		user_id, loc) values (#{f_content}, #{f_file}, sysdate, #{user_id},
+		#{loc})
 	</insert>
-	
-	<select id="getIdBoard" resultType="com.early.model.NoticeBoardVO">
-	select * from tb_FORUM where user_id = #{user_id}
+
+
+	<select id="getIdBoard"
+		resultType="com.early.model.NoticeBoardVO">
+		select * from tb_FORUM where user_id = #{user_id}
+	</select>
+
+	<update id="likesUp"
+		parameterType="com.early.model.NoticeBoardVO">
+		update tb_forum set F_LIKES = #{f_likes} where F_SEQ = #{f_seq}
+	</update>
+
+	<select id="getBoardALL"
+		resultType="com.early.model.NoticeBoardVO">
+		select a.*,b.user_nick
+		from tb_forum a, tb_user b
+		where
+		a.user_id=b.user_id
+		order by a.created_at desc
+	</select>
+
+	<insert id="insertComment"
+		parameterType="com.early.model.CommentVO">
+		insert into tb_comment (f_seq, cmt_content, created_at,
+		user_id) values (#{f_seq}, #{cmt_content}, sysdate, #{user_id})
+	</insert>
+
+	<select id="getcomment" resultType="com.early.model.CommentVO">
+		select * from tb_comment
+		where f_seq = #{f_seq}
+	</select>
+
+	<select id="getliketop"
+		resultType="com.early.model.NoticeBoardVO">
+		<![CDATA[
+   		SELECT *
+    	FROM (
+      		SELECT a.*, b.user_nick
+      		FROM tb_forum a, tb_user b
+      		WHERE a.user_id = b.user_id
+      		ORDER BY a.f_likes DESC
+    	)
+    	WHERE ROWNUM <= 6
+  		]]>
 	</select>
 
 </mapper>

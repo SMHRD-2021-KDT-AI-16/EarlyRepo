@@ -22,11 +22,13 @@
 	margin-right: 5%;
 	margin-left: 50px;
 }
+
 #mid_div {
 	width: 100%;
 	height: 100%;
 	position: absolute
 }
+
 #search_page {
 	position: absolute;
 	top: 0;
@@ -41,24 +43,25 @@
 	font-size: 12px;
 	border-radius: 10px;
 }
+
 #search_page hr {
-   display: block;
-   height: 1px;
-   border: 0;
-   border-top: 2px solid #5F5F5F;
-   margin: 3px 0;
+	display: block;
+	height: 1px;
+	border: 0;
+	border-top: 2px solid #5F5F5F;
+	margin: 3px 0;
 }
 
 #search_page .option {
-   text-align: center;
+	text-align: center;
 }
 
 #search_page .option p {
-   margin: 10px 0;
+	margin: 10px 0;
 }
 
 #search_page .option button {
-   margin-left: 5px;
+	margin-left: 5px;
 }
 
 .overlaybox {
@@ -141,36 +144,87 @@
 }
 
 #menu_wrap {
-	position: fixed;
+	position: absolute;
 	top: 0;
-	left: 100em;
+	right: 0;
 	bottom: 0;
-	width: 250px;
-	margin: absolute;
-	padding: 5px;
-	overflow-y: absolute;
-	background: rgba(255, 255, 255, 0.7);
-	z-index: 1;
+	width: 300px;
+	height: 700px;
+	padding: 6px 0;
+	overflow-y: auto;
+	background: whitesmoke;
+	z-index: 1000;
 	font-size: 12px;
 	border-radius: 10px;
 }
-
-#menu_wrap hr {
-	display: block;
-	height: 1px;
-	border: 0;
-	border-top: 2px solid #5F5F5F;
-	margin: 3px 0;
+.sizecontiainer {
+	width: 100%;
+	margin: 0 auto;
 }
 
-#menu_wrap .option {
-	text-align: center;
+ul.tabs {
+	margin: 0px;
+	padding: 0px;
+	list-style: none;
 }
 
-#menu_wrap .option p {
-	margin: 10px 0;
+ul.tabs li {
+	background: none;
+	color: #222;
+	display: inline-block;
+	padding: 10px 15px;
+	cursor: pointer;
 }
 
-#menu_wrap .option button {
-	margin-left: 5px;
+ul.tabs li.current {
+	background: #ededed;
+	color: #222;
+}
+
+.tab-content {
+	display: none;
+	background: #ededed;
+	padding: 15px;
+}
+
+.tab-content.current {
+	display: inherit;
+}
+
+.apt_img {
+	width: 100%;
+	height: 200px;
+}
+
+#review {
+	overflow-y: auto;
+	width: 100%;
+	white-space: normal;
+	word-wrap: break-word;
+}
+
+#temp_review {
+	height: 50px;
+}
+.review_contents{
+	padding-left: 5%;
+	padding-right: 5%;
+	margin-bottom: 10px;	
+}
+.chat{
+	position: fixed;
+	z-index: 10001;
+	right: 10px;
+	bottom: 10px;
+}
+#_chatbox {
+	
+    position: fixed;
+    background-color: white;
+    z-index: 10000;
+    right: 10px;
+    max-height: 250px;
+    bottom: 100px; /* 이미지 아래에 띄우기 위한 여유값 */
+    display: none;
+    overflow-y: scroll;
 }

@@ -25,80 +25,6 @@
 	<link rel="stylesheet" href="../resources/css/common.css">
 	<link rel="stylesheet" href="../resources/css/style.css">
 	<link rel="stylesheet" href="../resources/css/noticeBoard.css">
-	<style>
-		li {
-			list-style: none;
-		}
-		.real-upload {
-			display: none;
-		}
-
-		.upload {
-			width: 200px;
-			height: 200px;
-			background-color: antiquewhite;
-		}
-
-		.image-preview {
-			width: 1300px;
-			height: 200px;
-			background-color: aquamarine;
-			display: flex;
-			gap: 20px;
-		}
-		#table_content{
-			
-			margin-left: 30%;
-		}
-		#content_userid{
-			align-items: center;
-			
-			width: 150px;
-			height: 100px;
-		}
-		#content_number{
-			width: 50px;
-			height: 100px;
-		}
-		#content_content{
-			width: 500px;
-			height: 100px;
-		}
-		.inner_content{
-			height: 100px;
-		}
-		
-		.myButton {
-			box-shadow:inset 0px 0px 0px 0px #ffffff;
-			background:linear-gradient(to bottom, #f9f9f9 5%, #e9e9e9 100%);
-			background-color:#f9f9f9;
-			border-radius:6px;
-			border:1px solid #dcdcdc;
-			display:inline-block;
-			cursor:pointer;
-			color:#666666;
-			font-family:Arial;
-			font-size:15px;
-			font-weight:bold;
-			padding:8px 21px;
-			text-decoration:none;
-			text-shadow:0px 1px 0px #ffffff;
-			margin-left: 30%;
-			margin-top: 20px;
-		}
-		.myButton:hover {
-			background:linear-gradient(to bottom, #e9e9e9 5%, #f9f9f9 100%);
-			background-color:#e9e9e9;
-		}
-		.myButton:active {
-			position:relative;
-			top:1px;
-		}
-		.textset-tit{
-			 color: white;			 
-		}
-		
-	</style>
 </head>
 
 <body>
@@ -155,10 +81,13 @@
 					<button class="btn-search header-utils-btn">
 						<a href ="Profile.jsp"><img src="../resources/icons/ico_search_black.svg"></a>
 					</button>
+				</div>
+			</div>
+		</div>
 	</header>
-	<!-- [E]campland-N1 -->
+	
 	<main class="th-layout-main ">
-		<!-- [S]campland-N8 -->
+		
 		<div class="campland-N8" data-bid="pXlq6deKP1">
 			<div class="contents-container">
 				<img class="contents-visual img-pc" src="../resources/images/board.png" alt="서브 비주얼 PC 이미지">
@@ -171,34 +100,15 @@
 				</div>
 			</div>
 		</div>
-		<!-- [E]campland-N8 -->
-		<!-- [S]campland-N15 -->
 		<div class="myButton">
-			<a href="logincheck.do">게시글 작성</a>
+			<button onclick="loginCheck()" type="button">게시글 작성</button>
 		</div>
 		<table id="table_content">
-			<!-- <tr>
-			<td>
-				<div class="noticeBoard">
-					<div class="up">
-						<div class="userid"></div>
-						<div class="date"></div>
-					</div>
-					<div class="content">adsfdasdasfdasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfaasdfasdfadsfadfadsfadfadfadsfadfasdfasdfasdfasddfasdfasdfasdfasdfasdfadfadsfadfadf</div>
-					<div class="content_img">
-						<img src="">
-					</div>
-					<div class="likes"></div>
-				</div>
-			</td>
-			</tr> -->
 		</table>
 		<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 		<script>
-		console.log('Test')
 		let list = <%= list %>
-		console.log("test33 : ", list)
-		console.log("test2 : ",list[0])
+				
 		$(document).ready(function() {
 
   			loadMoreData();			
@@ -209,7 +119,6 @@
     		var scrollPosition = $(window).height() + $(window).scrollTop();
 
     		if (scrollPosition / documentHeight > 0.9) {
-    			console.log("우에엥")
       			loadMoreData();
     		}
   		});
@@ -228,37 +137,155 @@
         			
         			const div2 = document.createElement('div'); // 위에 2개
         			div2.className = 'up';
+        			
+        			const div3 = document.createElement('div'); // 위에 2개
+        			div2.className = 'bottom';
 
         			const userid = document.createElement('div');
         			userid.className = 'userid';
-        			userid.innerText = temp[6].split(':')[1]; // 작성자 id
-      					
+        			userid.innerText = "작성자 : "+temp[8].split(':')[1].replace('"',"").replace('"',"")+"("+temp[6].split(':')[1].replace('"',"").replace('"',"")+")"; // 작성자 id
+        			
         			const date = document.createElement('div');
         			date.className = 'date';
-        			date.innerText = temp[3].split(':')[1]; // 날짜
+        			date.innerText = "작성일자 : "+temp[3].split(':')[1].split(' ')[0].replace('"',""); // 날짜
+        			
+        			const loc = document.createElement('div');
+        			loc.className = "loc";
+        			loc.innerText = "지역 : "+temp[7].split(':')[1].replace('"',"").replace('"',""); // 지역
 
         			const content = document.createElement('div');
         			content.className = 'content';
-        			content.innerText = temp[1].split(':')[1]; // 내용
+        			content.innerText = temp[1].split(':')[1].replace('"',"").replace('"',""); // 내용
 
         			const img = document.createElement('img');
         			img.className = 'content_img';
         			const img_src = "../uploadimg/"+((temp[2].split(':')[1]).replace('"','').replace('"',''));
-        			console.log(img_src)
+        			//console.log(img_src)
         			img.src = img_src; // 이미지
+        			img.onerror = function() {
+        			    this.src = '../resources/images/img_logo.png';
+        			};
         			
         			const likes = document.createElement('div');
         			likes.className = 'likes';
-        			likes.innerText = temp[5].split(':')[1]; // 좋아요
+        			likes.innerText = +temp[5].split(':')[1]; // 좋아요
 
+        			const likes_btn = document.createElement('button');
+        			likes_btn.value = temp[0].split(':')[1];
+        			likes_btn.className = "likes_btn";
+        			likes_btn.name = "f_seq";
+        			likes_btn.innerText = "좋아요";
+        			
+        			const comment_btn = document.createElement('button');
+        			comment_btn.value = temp[0].split(':')[1];
+        			comment_btn.className = "comment_btn";
+        			comment_btn.name = "f_seq";
+        			comment_btn.innerText = "댓글";
+        			
+        			const cmt_div = document.createElement('div');
+        			cmt_div.className="cmt_div";
+        			
+        			// 댓글 버튼
+        			comment_btn.addEventListener('click', function() {
+        				comment_btn.className = "comment_btn_open";
+        				$.ajax({
+        					url: 'http://localhost:8083/GitTest1/getComment.do?f_seq='+likes_btn.value,
+        					
+        					success: function (result) {
+        						let comment = result.split(";");
+        						console.log("comment",comment.length)
+        			  			
+        						for (let e = 0; e < comment.length-1; e+=3){
+        							const full_comment = document.createElement('div');
+        							
+        							const up_comment = document.createElement('div');
+        							
+        							const comment_userid = document.createElement('span');
+        							comment_userid.innerText = comment[e];
+        							
+        							const comment_created = document.createElement('span');
+        							comment_created.innerText = comment[e+1];
+        							
+        							const comment_comment = document.createElement('div');
+        							comment_comment.innerText = comment[e+2];
+        							
+        							up_comment.appendChild(comment_userid);
+        							up_comment.appendChild(comment_created);
+        							
+        							full_comment.appendChild(up_comment);
+        							full_comment.appendChild(comment_comment);
+        							
+        							cmt_div.appendChild(full_comment);
+        						}
+        						
+        					},
+        					error: function(){
+        				
+        					}
+        	  		    });
+        				
+        				
+        				
+            			const comment = document.createElement('textArea');
+            			comment.name = "comment_text";
+            			comment.className = "comment_text";
+            			comment.maxLength = 50;
+            			comment.placeholder = "최대 50자입니다."
+            			
+            			
+            			const insert_cmt_btn = document.createElement('button');
+            			insert_cmt_btn.name = "cmt_btn";
+            			insert_cmt_btn.innerText = "댓글작성";
+            			
+            			cmt_div.appendChild(comment);
+            			cmt_div.appendChild(insert_cmt_btn);
+            			
+            			// 댓글작성 버튼 이벤트
+            			insert_cmt_btn.addEventListener('click', function() {
+            				$.ajax({
+            					url: 'http://localhost:8083/GitTest1/logincheck.do',
+            					
+            					success: function (result) {
+            						console.log("결과 : ",result);
+            						if (result === 'success') {
+            							insert_comment(comment.value, likes_btn.value);
+            			  			}else{
+            			  				alert("로그인이 필요한 서비스입니다.\n로그인 페이지로 이동합니다.");
+            			  				window.location.href = "login.jsp";
+            			  			}
+            					},
+            					error: function(){
+            				
+            					}
+            	  		    });        				
+            			});
+        			});
+        			
+        			likes_btn.addEventListener('click', function() {
+            			// 클릭된 버튼의 value 값을 콘솔에 출력
+            			console.log('클릭된 버튼의 value:', likes_btn.value, likes.innerText);
+            			likes_up(likes_btn.value, likes.innerText);
+            			let likesup = parseInt(likes.innerText)+1;
+            			likes.innerText = likesup;
+        			});
         			
         			div2.appendChild(userid);
-        			div2.appendChild(date); // 위에꺼 2개 넣고
+        			div2.appendChild(date); 
+        			div2.appendChild(loc);
+        			// 위에꺼 2개 넣고
         			
         			div1.appendChild(div2);
+        			
         			div1.appendChild(content);
         			div1.appendChild(img);
-        			div1.appendChild(likes); // 전체 보드에 넣고
+        			
+        			div3.appendChild(comment_btn);
+        			div3.appendChild(likes_btn)
+        			div3.appendChild(likes);
+        			// 좋아요 버튼, 좋아요 하단에 묶고
+        			
+        			div1.appendChild(div3);
+        			div1.appendChild(cmt_div);
         			
         			td.appendChild(div1); 
         			tr.appendChild(td); // tr에 전체 보드 넣고
@@ -269,52 +296,309 @@
     		} else {
       			for (let b = cnt; b < list.length; b++) {
       				cnt += list.length;
-					temp = list[b].replace("{","").replace("}","").split(',');  //한줄에서 뭉탱이씩 짤라서 넣어줄꺼야
-      				
-					const tr = document.createElement('tr');
-					const td = document.createElement('td');
+      				temp = list[b].replace("{","").replace("}","").split(',');  //한줄에서 뭉탱이씩 짤라서 넣어줄꺼야
+      				// console.log("test : ",list)
+      				const tr = document.createElement('tr');
+      				const td = document.createElement('td');
         			const div1 = document.createElement('div'); // 전체div
         			div1.className = 'noticeBoard';
         			
         			const div2 = document.createElement('div'); // 위에 2개
         			div2.className = 'up';
+        			
+        			const div3 = document.createElement('div'); // 위에 2개
+        			div2.className = 'bottom';
 
         			const userid = document.createElement('div');
         			userid.className = 'userid';
-        			userid.innerText = temp[6].split(':')[1]; // 작성자 id
-      					
+        			userid.innerText = "작성자 : "+temp[8].split(':')[1].replace('"',"").replace('"',"")+"("+temp[6].split(':')[1].replace('"',"").replace('"',"")+")"; // 작성자 id
+        			
         			const date = document.createElement('div');
         			date.className = 'date';
-        			date.innerText = temp[3].split(':')[1]; // 날짜
+        			date.innerText = "작성일자 : "+temp[3].split(':')[1].split(' ')[0].replace('"',""); // 날짜
+        			
+        			const loc = document.createElement('div');
+        			loc.className = "loc";
+        			loc.innerText = "지역 : "+temp[7].split(':')[1].replace('"',"").replace('"',""); // 지역
 
         			const content = document.createElement('div');
         			content.className = 'content';
-        			content.innerText = temp[1].split(':')[1]; // 내용
+        			content.innerText = temp[1].split(':')[1].replace('"',"").replace('"',""); // 내용
 
-        			// const img = document.createElement('div');
         			const img = document.createElement('img');
         			img.className = 'content_img';
-        			img.src = temp[2].split(':')[1]; // 이미지
+        			const img_src = "../uploadimg/"+((temp[2].split(':')[1]).replace('"','').replace('"',''));
+        			//console.log(img_src)
+        			img.src = img_src; // 이미지
+        			img.onerror = function() {
+        			    this.src = '../resources/images/img_logo.png';
+        			};
         			
+        			// 좋아요 수
         			const likes = document.createElement('div');
         			likes.className = 'likes';
-        			likes.innerText = temp[5].split(':')[1]; // 좋아요
+        			likes.innerText = +temp[5].split(':')[1];
 
+        			// 좋아요 버튼
+        			const likes_btn = document.createElement('button');
+        			likes_btn.value = temp[0].split(':')[1];
+        			likes_btn.className = "likes_btn";
+        			likes_btn.name = "f_seq";
+        			likes_btn.innerText = "좋아요";
+        			
+        			
+        			const comment_btn = document.createElement('button');
+        			comment_btn.className = "comment_btn";
+        			comment_btn.name = "f_seq";
+        			comment_btn.innerText = "댓글";
+        			
+        			const cmt_div = document.createElement('div');
+        			cmt_div.className="cmt_div";
+        			
+        			// 댓글 버튼
+        			comment_btn.addEventListener('click', function() {
+        				$.ajax({
+        					url: 'http://localhost:8083/GitTest1/getComment.do?f_seq='+likes_btn.value,
+        					
+        					success: function (result) {
+        						let comment = result.split(";");
+        						console.log("comment",comment.length)
+        			  			
+        						for (let e = 0; e < comment.length-1; e+=3){
+        							const full_comment = document.createElement('div');
+        							
+        							const up_comment = document.createElement('div');
+        							
+        							const comment_userid = document.createElement('span');
+        							comment_userid.innerText = comment[e];
+        							
+        							const comment_created = document.createElement('span');
+        							comment_created.innerText = comment[e+1];
+        							
+        							const comment_comment = document.createElement('div');
+        							comment_comment.innerText = comment[e+2];
+        							
+        							up_comment.appendChild(comment_userid);
+        							up_comment.appendChild(comment_created);
+        							
+        							full_comment.appendChild(up_comment);
+        							full_comment.appendChild(comment_comment);
+        							
+        							cmt_div.appendChild(full_comment);
+        						}
+        						
+        					},
+        					error: function(){
+        				
+        					}
+        	  		    });
+        				
+        				
+            			const comment = document.createElement('textArea');
+            			comment.name = "comment_text";
+            			comment.className = "comment_text";
+            			comment.maxLength = 50;
+            			comment.placeholder = "최대 50자입니다."
+            			
+            			
+            			const insert_cmt_btn = document.createElement('button');
+            			insert_cmt_btn.name = "cmt_btn";
+            			insert_cmt_btn.innerText = "댓글작성";
+            			
+            			cmt_div.appendChild(comment);
+            			cmt_div.appendChild(insert_cmt_btn);
+            			
+            			// 댓글작성 버튼 이벤트
+            			insert_cmt_btn.addEventListener('click', function() {
+            				$.ajax({
+            					url: 'http://localhost:8083/GitTest1/logincheck.do',
+            					
+            					success: function (result) {
+            						console.log("결과 : ",result);
+            						if (result === 'success') {
+            							insert_comment(comment.value, likes_btn.value);
+            			  			}else{
+            			  				alert("로그인이 필요한 서비스입니다.\n로그인 페이지로 이동합니다.");
+            			  				window.location.href = "login.jsp";
+            			  			}
+            					},
+            					error: function(){
+            				
+            					}
+            	  		    });        				
+            			});
+        			});
+        			
+        			likes_btn.addEventListener('click', function() {
+            			// 클릭된 버튼의 value 값을 콘솔에 출력
+            			console.log('클릭된 버튼의 value:', likes_btn.value, likes.innerText);
+            			likes_up(likes_btn.value, likes.innerText);
+            			let likesup = parseInt(likes.innerText)+1;
+            			likes.innerText = likesup;
+        			});
         			
         			div2.appendChild(userid);
-        			div2.appendChild(date); // 위에꺼 2개 넣고
+        			div2.appendChild(date); 
+        			div2.appendChild(loc);
+        			// 위에꺼 2개 넣고
         			
         			div1.appendChild(div2);
+        			
         			div1.appendChild(content);
         			div1.appendChild(img);
-        			div1.appendChild(likes); // 전체 보드에 넣고
+        			
+        			div3.appendChild(comment_btn);
+        			div3.appendChild(likes_btn)
+        			div3.appendChild(likes);
+        			// 좋아요 버튼, 좋아요 하단에 묶고
+        			
+        			div1.appendChild(div3);
+        			div1.appendChild(cmt_div);
         			
         			td.appendChild(div1); 
         			tr.appendChild(td); // tr에 전체 보드 넣고
 
         			document.getElementById('table_content').appendChild(tr);
       			}
+      			
     		}
+  		}
+  		
+  		/*let isButtonClicked = false;
+  		document.querySelectorAll('.comment_btn').forEach(function(comment_btn) {
+  		    comment_btn.addEventListener('click', function() {
+  		    	console.log("testtest")
+  		        if (isButtonClicked) {
+  		            // 이미 클릭되었으면 출력된 부분 지우기
+  		            cmt_div.innerHTML = '';
+  		            isButtonClicked = false; // 클릭 상태 초기화
+  		        } else {
+  		            // 클릭되지 않았으면 데이터 받아오고 출력
+  		            let f_seq = comment_btn.getAttribute('value');
+
+  		            $.ajax({
+  		                url: 'http://localhost:8083/GitTest1/getComment.do?f_seq=' + f_seq,
+  		                success: function(result) {
+  		                    // 받아온 데이터를 이용하여 출력
+  		                    showComment(result);
+
+  		                    isButtonClicked = true; // 클릭 상태를 true로 설정
+  		                },
+					error: function(){
+				
+					}
+	  		    });
+  		        }
+				
+				
+    			const comment = document.createElement('textArea');
+    			comment.name = "comment_text";
+    			comment.className = "comment_text";
+    			comment.maxLength = 50;
+    			comment.placeholder = "최대 50자입니다."
+    			
+    			
+    			const insert_cmt_btn = document.createElement('button');
+    			insert_cmt_btn.name = "cmt_btn";
+    			insert_cmt_btn.innerText = "댓글작성";
+    			
+    			cmt_div.appendChild(comment);
+    			cmt_div.appendChild(insert_cmt_btn);
+    			
+    			// 댓글작성 버튼 이벤트
+    			insert_cmt_btn.addEventListener('click', function() {
+    				$.ajax({
+    					url: 'http://localhost:8083/GitTest1/logincheck.do',
+    					
+    					success: function (result) {
+    						console.log("결과 : ",result);
+    						if (result === 'success') {
+    							insert_comment(comment.value, likes_btn.value);
+    			  			}else{
+    			  				alert("로그인이 필요한 서비스입니다.\n로그인 페이지로 이동합니다.");
+    			  				window.location.href = "login.jsp";
+    			  			}
+    					},
+    					error: function(){
+    				
+    					}
+    	  		    });        				
+    			});
+			});
+  		});
+  		function showComment(result) {
+  		    let comment = result.split(";");
+  		    console.log("comment", comment.length);
+
+  		    for (let e = 0; e < comment.length - 1; e += 3) {
+  		        const full_comment = document.createElement('div');
+
+  		        const up_comment = document.createElement('div');
+
+  		        const comment_userid = document.createElement('span');
+  		        comment_userid.innerText = comment[e];
+
+  		        const comment_created = document.createElement('span');
+  		        comment_created.innerText = comment[e + 1];
+
+  		        const comment_comment = document.createElement('div');
+  		        comment_comment.innerText = comment[e + 2];
+
+  		        up_comment.appendChild(comment_userid);
+  		        up_comment.appendChild(comment_created);
+
+  		        full_comment.appendChild(up_comment);
+  		        full_comment.appendChild(comment_comment);
+
+  		        cmt_div.appendChild(full_comment);
+  		    }
+  		} */
+  		
+  		
+  		function likes_up(value, likes){
+  			//console.log("test : ",value, likes);
+  		    $.ajax({
+				url: 'http://localhost:8083/GitTest1/likes_up.do?f_seq='+value+'&f_likes='+likes,
+							
+				success: function (result) {
+						
+				},
+				error: function(){
+			
+				}
+  		    });
+  		}
+  		function insert_comment(comment, num){
+  			$.ajax({
+				url: 'http://localhost:8083/GitTest1/insertComment.do?cmt_content='+comment+'&f_seq='+num,
+							
+				success: function (result) {
+					
+				},
+				error: function(){
+				
+				}
+  		    });
+  		}
+
+  		function loginCheck(){
+  			$.ajax({
+				url: 'http://localhost:8083/GitTest1/logincheck.do',
+				
+				success: function (result) {
+					console.log("결과 : ",result);
+					if (result === 'success') {
+		  				window.location.href = "Write.jsp";
+		  			}else{
+		  				alert("로그인이 필요한 서비스입니다.\n로그인 페이지로 이동합니다.");
+		  				window.location.href = "login.jsp";
+		  			}
+				},
+				error: function(){
+			
+				}
+  		    });
+  			
   		}
 		</script>
 		<!-- [E]campland-N15 -->

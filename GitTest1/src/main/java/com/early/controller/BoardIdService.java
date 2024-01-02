@@ -8,13 +8,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.apache.catalina.Session;
-
 import com.early.db.NoticeBoardDAO;
 import com.early.model.MemberVO;
 import com.early.model.NoticeBoardVO;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
+
 
 
 public class BoardIdService implements Command{
@@ -23,6 +22,7 @@ public class BoardIdService implements Command{
    public String execute(HttpServletRequest request, HttpServletResponse response)
          throws ServletException, IOException {
       
+
 	    HttpSession session = request.getSession();
 	    System.out.println("여기까지 들어옴?");
 		
@@ -47,8 +47,9 @@ public class BoardIdService implements Command{
 
 		session.setAttribute("NoticeIdboard", jArray);
 		
-		return "Mypage.jsp";
+		return "html/Mypage.jsp";
 	}
+
       
  
    }
