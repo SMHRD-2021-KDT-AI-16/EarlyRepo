@@ -55,6 +55,20 @@ public class ApartDAO {
 		return avos;
 		
 	}
+
+	public int deletereview(String user_id) {
+		SqlSession session = factory.openSession(true);
+		System.out.println("test2 : "+user_id);
+		
+		int cnt = session.delete("deletereview", user_id);
+		System.out.println("암ㄴ어ㅏㅁㄴㅇ");
+		System.out.println("cnt출력:" + cnt);
+
+		session.close();
+
+		return cnt;
+		
+	}
 	
 	
 

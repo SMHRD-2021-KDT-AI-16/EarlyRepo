@@ -66,5 +66,18 @@
     	WHERE ROWNUM <= 6
   		]]>
 	</select>
+	
+	<delete id="deleteboard">
+		DELETE FROM tb_forum WHERE USER_ID = #{user_id}
+	</delete>
+	
+	<delete id="deletecomment">
+		DELETE FROM tb_comment WHERE USER_ID = #{user_id}
+	</delete>
+	
+	<delete id="deleteeach">
+		DELETE FROM TB_FORUM WHERE F_SEQ = #{f_seq}
+	</delete>
+	
 
 </mapper>

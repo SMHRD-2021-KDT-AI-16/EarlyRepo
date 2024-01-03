@@ -64,6 +64,7 @@
 		AND b.apt_realprice <![CDATA[<]]>
 		#{total}
 	</select>
+
 	<select id="getCompare2" parameterType="int" resultType="com.early.model.CompareVO">
 	<![CDATA[
         SELECT a.apt_name, a.apt_loc, b.apt_realprice
@@ -72,5 +73,9 @@
         WHERE b.apt_realprice < #{total_money}
     ]]>
 	</select>
+
+	<delete id="deletereview">
+		DELETE FROM tb_apt_review WHERE USER_ID = #{user_id}
+	</delete>
 
 </mapper>

@@ -63,6 +63,8 @@ public class FrontController extends HttpServlet {
 		map.put("getapartallinfo.do", new GetapartallinfoService());
 		map.put("html/BoardIdService.do", new BoardIdService());
 		map.put("Result.do", new ResultService());
+		map.put("SelectLoans.do", new SelectLoansService());
+		map.put("getapartallinfo.do", new GetapartallinfoService());
 		map.put("html/BoardIdService.do", new BoardIdService());
 		map.put("likes_up.do", new LikesUpService());
 		map.put("html/AllgetBoardService.do", new AllgetBoardService());
@@ -72,11 +74,7 @@ public class FrontController extends HttpServlet {
 		map.put("getApartSearch.do", new ApartSearchService());
 		map.put("SelectLoans.do", new SelectLoansService());
 		map.put("getCompare.do", new PriceCompareService());
-		
-		// 추가
 		map.put("html/Result.do", new ResultService());
-		
-
 	}
 
 	

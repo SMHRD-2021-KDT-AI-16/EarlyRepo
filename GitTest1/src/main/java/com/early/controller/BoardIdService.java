@@ -21,37 +21,38 @@ public class BoardIdService implements Command{
    @Override
    public String execute(HttpServletRequest request, HttpServletResponse response)
          throws ServletException, IOException {
+
+       HttpSession session = request.getSession();
+       
+
+       MemberVO member = (MemberVO) session.getAttribute("member");
+       String user_id = member.getUser_id();
+
+       System.out.println("user_id : " + user_id);
+
+       NoticeBoardDAO nbdao = new NoticeBoardDAO();
+
+       List<NoticeBoardVO> list = nbdao.getIdContents(user_id);
+
+       // list가 null이 아닌 경우에만 JsonArray를 생성하고 세션에 저장
+       if (list != null && !list.isEmpty()) {
+           
+
+           JsonArray jArray = new JsonArray();
+           for (int i = 0; i < list.size(); i++) {
+               Gson gson = new Gson();
+               jArray.add(gson.toJson(list.get(i)));
+           }
+
+           session.setAttribute("NoticeIdboard", jArray);
+       }
+
+       return "Mypage.jsp";
+
+	 
+
       
-
-	    HttpSession session = request.getSession();
-	    System.out.println("여기까지 들어옴?");
-		
-		MemberVO member = (MemberVO)session.getAttribute("member");
-		String user_id=member.getUser_id();
-		
-		System.out.println("user_id : "+user_id);
-		
-		NoticeBoardDAO nbdao = new NoticeBoardDAO();
-		
-		List<NoticeBoardVO> list = nbdao.getIdContents(user_id);
-		System.out.println("test333 : "+list.get(0).getF_content());
-		
-		
-		JsonArray jArray = new JsonArray();
-		for (int i=0;i<list.size();i++) {
-			Gson gson = new Gson();
-			jArray.add( gson.toJson(list.get(i)));
-		}
-		
-		
-
-		session.setAttribute("NoticeIdboard", jArray);
-		
-		return "html/Mypage.jsp";
-	}
-
-      
- 
+   }
    }
 
 

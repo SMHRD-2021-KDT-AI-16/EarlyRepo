@@ -80,4 +80,45 @@ public class NoticeBoardDAO {
 		return list;
 
 	}
+
+	public int deleteboard(String user_id) {
+		SqlSession session = factory.openSession(true);
+		System.out.println("test2 : "+user_id);
+		
+		int cnt = session.delete("deleteboard", user_id);
+		System.out.println("암ㄴ어ㅏㅁㄴㅇ");
+		System.out.println("cnt출력:" + cnt);
+
+		session.close();
+
+		return cnt;
+		
+	}
+
+	public int deletecomment(String user_id) {
+		SqlSession session = factory.openSession(true);
+		System.out.println("test2 : "+user_id);
+		
+		int cnt = session.delete("deleteboard", user_id);
+		System.out.println("암ㄴ어ㅏㅁㄴㅇ");
+		System.out.println("cnt출력:" + cnt);
+
+		session.close();
+
+		return cnt;
+		
+	}
+
+	public boolean deleteeach(int f_seq) {
+		SqlSession session = factory.openSession(true);
+		System.out.println("test2 : "+f_seq);
+		
+		int cnt = session.delete("deleteboard", f_seq);
+		System.out.println("암ㄴ어ㅏㅁㄴㅇ");
+		System.out.println("cnt출력:" + cnt);
+
+		session.close();
+		return true;
+		
+	}
 }
