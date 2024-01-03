@@ -8,7 +8,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.early.db.ApartDAO;
 import com.early.db.DAO;
+import com.early.db.NoticeBoardDAO;
 import com.early.model.MemberVO;
 
 
@@ -27,6 +29,12 @@ public class DelMemberService implements Command {
 		MemberVO user = (MemberVO)session.getAttribute("member");
 		String user_id = user.getUser_id();
 		System.out.println("test : "+user_id);
+
+		NoticeBoardDAO dao = new NoticeBoardDAO();
+		ApartDAO dao2 = new ApartDAO();
+		dao.deleteboard(user_id);
+		dao.deletecomment(user_id);
+		dao2.deletereview(user_id);
 		
 		int cnt = new DAO().deleteMember(user_id);
 		

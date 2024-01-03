@@ -69,5 +69,9 @@
 		AND b.apt_realprice <![CDATA[<]]>
 		#{total}
 	</select>
+	
+	<delete id="deletereview">
+		DELETE FROM tb_apt_review WHERE USER_ID = #{user_id}
+	</delete>
 
 </mapper>

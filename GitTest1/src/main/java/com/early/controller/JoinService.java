@@ -34,7 +34,7 @@ public class JoinService implements Command {
 		
 		if(row>0) {
 			request.setAttribute("user_id", user_id);
-		
+			System.out.println("회원가입 완료");
 			return "redirect:/GoWelcome.do";
 		
 		}else {

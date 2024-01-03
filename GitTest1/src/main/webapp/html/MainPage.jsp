@@ -758,7 +758,7 @@
 
 
 			var textarea = document.getElementById("messageWindow");
-			var webSocket = new WebSocket('ws://localhost:8083/GitTest1/broadcasting');
+			var webSocket = new WebSocket('ws://192.168.219.111:8083/GitTest1/broadcasting');
 			var inputMessage = document.getElementById('inputMessage');
 			webSocket.onerror = function(event) {
 			    onError(event)

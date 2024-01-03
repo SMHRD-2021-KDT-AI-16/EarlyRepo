@@ -122,21 +122,21 @@
 							<input class="btnset btnset-round" type="submit" value="회원탈퇴">
 						</form>
 						
+						
 						</div>
 						<div class="contents-group contents-reservation">
 						<table id="table_content">
 						
 						</table>
 						<!-- id에 맞는 게시판 내용 -->
-						<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+							<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 							<script>
 							console.log('Test')
 							let Idlist = <%= Idlist %>
 							console.log("test33 : ", Idlist)
 							console.log("test2 : ",Idlist[0])
 							$(document).ready(function() {
-					
-					  			loadMoreData();			
+								loadMoreData();			
 					  		});
 					    		
 					  		$(document).scroll(function () {
@@ -144,8 +144,8 @@
 					    		var scrollPosition = $(window).height() + $(window).scrollTop();
 					
 					    		if (scrollPosition / documentHeight > 0.9) {
-					    			console.log("우에엥")
 					      			loadMoreData();
+					    			
 					    		}
 					  		});
 					  		let temp = [];
@@ -208,7 +208,10 @@
 					      				
 										const tr = document.createElement('tr');
 										const td = document.createElement('td');
-					        			const div1 = document.createElement('div'); // 전체div
+					        			const div1 = document.createElement('div');
+					        			const div3 = document.createElement('div');
+					        			// 전체div
+					        			console.log(temp)
 					        			div1.className = 'noticeBoard';
 					        			
 					        			const div2 = document.createElement('div'); // 위에 2개
@@ -234,9 +237,7 @@
 					        			const likes = document.createElement('div');
 					        			likes.className = 'likes';
 					        			likes.innerText = temp[5].split(':')[1]; // 좋아요
-					
-					        			
-					        			div2.appendChild(userid);
+										div2.appendChild(userid);
 					        			div2.appendChild(date); // 위에꺼 2개 넣고
 					        			
 					        			div1.appendChild(div2);
@@ -244,16 +245,21 @@
 					        			div1.appendChild(img);
 					        			div1.appendChild(likes); // 전체 보드에 넣고
 					        			
+					        			div3.appendChild(button);
+					        			div1.appendChild(div3);
+					        			
 					        			td.appendChild(div1); 
 					        			tr.appendChild(td); // tr에 전체 보드 넣고
+					        			
+					        			
 					
 					        			document.getElementById('table_content').appendChild(tr);
 					      			}
 					    		}
-					  		}
+					  		} 
 							</script>	
-						</div>
 						
+						</div>
 
 					
 							
