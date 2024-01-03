@@ -32,8 +32,12 @@ public class DelMemberService implements Command {
 
 		NoticeBoardDAO dao = new NoticeBoardDAO();
 		ApartDAO dao2 = new ApartDAO();
-		dao.deleteboard(user_id);
-		dao.deletecomment(user_id);
+		
+		int num2= dao.deletecomment(user_id);
+		System.out.println("num2 :"+num2);
+		
+		int num1= dao.deleteboard(user_id);
+		System.out.println("num1:" +num1);
 		dao2.deletereview(user_id);
 		
 		int cnt = new DAO().deleteMember(user_id);
