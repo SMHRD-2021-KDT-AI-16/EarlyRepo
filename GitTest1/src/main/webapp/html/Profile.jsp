@@ -30,8 +30,8 @@
 		<div class="header-container container-lg">
 			<div class="header-left">
 				<h1 class="header-title">
-					<a href="MainPage.jsp"> <img
-						src="../resources/images/img_logo.png" alt="로고">
+					<a href="MainPage.jsp">
+						<img src="../resources/images/img_logo.png" alt="로고">
 					</a>
 				</h1>
 			</div>
@@ -86,7 +86,7 @@
 					</div>
 					<ul class="contents-list">
 						<!-- 자산정보 입력창 시작 -->
-						<form action="SelectLoans.do"	method="post">
+						<form action="SelectLoans.do" method="post">
 
 							<li class="contents-item">
 								<h6 class="form-tit form-tit-deco">
@@ -94,9 +94,8 @@
 								</h6>
 								<div class="form-wrap">
 									<div class="inputset inputset-round" align=left>
-										<input type="radio" name="FIRST_HOUSE_YN" value="N">
-										있어요 <input type="radio" name="FIRST_HOUSE_YN" value="Y">
-										없어요
+										<input type="radio" name="FIRST_HOUSE_YN" value="N">있어요
+										<input type="radio" name="FIRST_HOUSE_YN" value="Y">없어요
 									</div>
 								</div>
 							</li>
@@ -231,7 +230,6 @@
 										</select>
 									</div>
 								</div>
-
 				</div>
 				</li>
 				<div class="contents-confirm">
@@ -242,7 +240,7 @@
 
 
 				</ul>
-					</form>
+				</form>
 
 			</div>
 		</div>

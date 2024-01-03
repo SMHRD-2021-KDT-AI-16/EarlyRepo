@@ -205,7 +205,9 @@
 						</li>
 					<br>
 					<div class="contents-confirm" align=center>
-						<button class="btnset btnset-round" type="button" onclick="PriceCompare()">결과보기</button>
+						<button id="result_btn" class="btnset btnset-round" type="button" onclick="PriceCompare()">결과보기</button>
+						<br>
+						<button id="final_btn" class="btnset btnset-round" type="button" onclick="">더보기</button>
 					</div>
 				</ul>	
 			</div>      <!-- 왼쪽 자산정보 입력창 닫기 -->
@@ -361,7 +363,7 @@
 		        kakao.maps.event.addListener(polygon, 'mouseover',function(mouseEvent){
 		                   
 		           	polygon.setOptions({fillColor: '#09f'});
-		           	customOverlay.setContent('<div id="test">'+name+'</div>');
+		           	customOverlay.setContent('<div id="Region_name">'+name+'</div>');
 		            customOverlay.setPosition(mouseEvent.latLng);
 		            customOverlay.setMap(map);
 		        });
@@ -396,7 +398,7 @@
 				            '<ul id="customList">' +
 				            '<li class="customListItem"><button class="customButton" onclick="detail_map()">지역상세보기</button></li>' +
 				            '<li class="customListItem"><form action="notice_Board.do"><button class="customButton" name="loc" value="' + name + '">지역게시판</button></form></li>' +
-				            '<li class="customListItem"><form action=""><button class="customButton">지역채팅</button></form></li>' +
+				            /* '<li class="customListItem"><form action=""><button class="customButton">지역채팅</button></form></li>' + */
 				            '</ul>' +
 				            '</div>';
 				    customOverlay2.setContent(content);
@@ -484,7 +486,7 @@
 								        // 중복 방지를 위해 이미 추가된 엘리먼트인지 확인
 								        if (!existingContent) {
 								        	existingContent = document.createElement('div');
-								            existingContent.id = 'content'; // ID를 중복되지 않도록 수정
+								            existingContent.id = 'content'; 
 								            document.getElementById('mid_div').appendChild(existingContent);
 								        }
 
@@ -715,28 +717,6 @@
 	            })
 		    } // searchPlaces 끝
 
-			/* function change_LatLng(itemList){
-				var geocoder = new kakao.maps.services.Geocoder();
-						
-				geocoder.addressSearch(itemList, function(result, status) {
-	 
-					if (status === kakao.maps.services.Status.OK) {
-
-			        	var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
-
-				    	var marker = new kakao.maps.Marker({
-				        	map: map,
-				        	position: coords
-				    	});
-
-					    	var infowindow = new kakao.maps.InfoWindow({
-						        	content: '<div style="width:150px;text-align:center;padding:6px 0;">우리회사</div>'
-							});
-							infowindow.open(map, marker);     
-						} 
-					})
-				}
- */				
 				
 		var chatId = "${chatId}";
 			// 이미지 클릭 이벤트 처리
@@ -758,7 +738,7 @@
 
 
 			var textarea = document.getElementById("messageWindow");
-			var webSocket = new WebSocket('ws://localhost:8083/GitTest1/broadcasting');
+			var webSocket = new WebSocket('ws://192.168.219.111:8083/GitTest1/broadcasting');
 			var inputMessage = document.getElementById('inputMessage');
 			webSocket.onerror = function(event) {
 			    onError(event)
@@ -877,6 +857,34 @@
 				
 			}
 		})
+		
+		const result_btn = document.getElementById("result_btn");
+		const final_btn = document.getElementById("final_btn");
+
+		result_btn.addEventListener('click', function () {
+    		console.log("ttttt");
+    		final_btn.style.display = "block";
+		});
+		
+		final_btn.addEventListener('click', function () {
+			$.ajax({
+				url: 'http://localhost:8083/GitTest1/logincheck.do',
+				
+				success: function (result) {
+					console.log("결과 : ",result);
+					if (result === 'success') {
+						window.location.href = "Profile.jsp";
+		  			}else{
+		  				alert("로그인이 필요한 서비스입니다.\n로그인 페이지로 이동합니다.");
+		  				window.location.href = "login.jsp";
+		  			}
+				},
+				error: function(){
+			
+				}
+  		    });
+		});
+		
 		</script>
 
 	<footer class="campland-N2" data-bid="mMlq6dEKQC">

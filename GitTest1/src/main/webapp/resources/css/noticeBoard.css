@@ -49,8 +49,12 @@
 	margin-bottom: 20px;
 }
 .comment_btn{
-	margin-right: 680px;
+	margin-right: 5px;
 }
+.comment_close{
+	margin-right: 650px;
+}
+
 .likes {
 	display: inline-block;
 	height: 50px;

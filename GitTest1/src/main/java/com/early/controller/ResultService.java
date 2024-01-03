@@ -10,8 +10,12 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.early.db.ApartDAO;
+import com.early.db.CompareDAO;
 import com.early.model.ApartVO;
+import com.early.model.CompareVO;
 import com.early.model.LoanNameVO;
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
 
 
 public class ResultService implements Command{
@@ -20,26 +24,23 @@ public class ResultService implements Command{
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
-		HttpSession session = request.getSession();
+		int total_money = Integer.parseInt(request.getParameter("loan_select"));
 		
-		List<LoanNameVO> vos = (List<LoanNameVO>)session.getAttribute("loanVOs");
-		int limit = vos.get(0).getLOAN_LIMIT();
-		System.out.println("limit : "+limit);
 		
-		ApartDAO adao = new ApartDAO();
-		List<ApartVO> vo = adao.SelectPrice();
+		CompareDAO cdao = new CompareDAO();
 		
-		List<ApartVO> vo2 = new ArrayList<ApartVO>();
+		List<CompareVO> list = cdao.getCompareincome(total_money);
 		
-		for(int i=0;i<vo.size();i++) {
-			if(limit>vo.get(i).getApt_realprice()) {
-				vo2.add(vo.get(i));
-				}
+		JsonArray jArray = new JsonArray();
+		for (int i=0;i<list.size();i++) {
+			Gson gson = new Gson();
+			jArray.add(gson.toJson(list.get(i)));
 		}
-		System.out.println("vo2 : "+vo2);
-		session.setAttribute("vo2", vo2);
 		
-		// 사용자의 자산값 추가해야함
+		HttpSession session = request.getSession();
+		System.out.println("여기?");
+		session.setAttribute("final_list", jArray);
+		
 		
 		return "resultMap.jsp";
 	}

@@ -4,6 +4,7 @@ public class LoanNameVO {
 	private String LOAN_NAME;
 	private int LOAN_LIMIT;
 	
+	
 	public String getLOAN_NAME() {
 		return LOAN_NAME;
 	}

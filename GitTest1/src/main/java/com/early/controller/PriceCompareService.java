@@ -21,7 +21,7 @@ public class PriceCompareService implements Command{
 		
 		String income = request.getParameter("income");
 		String money = request.getParameter("money");
-		
+		int loan_money = Integer.parseInt(money)+Integer.parseInt(income);
 		System.out.println("income : "+ income);
 		System.out.println("money : "+ money);
 		
@@ -44,6 +44,8 @@ public class PriceCompareService implements Command{
 		
 //		Gson gson  = new Gson();
 //	    response.getWriter().write(gson.toJson(list).toString());
+		
+		session.setAttribute("loan_money", loan_money);
 		
 		session.setAttribute("priceCompare_list", plainText.toString());
 		response.setCharacterEncoding("UTF-8");

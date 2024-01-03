@@ -13,6 +13,14 @@
 	height: 700px;
 	position: relative;
 }
+#Region_name{
+	font-size: x-large;
+	background-color: white;
+	border-radius: 30%;
+}
+#final_btn{
+	display: none;
+}
 
 #full_mid_div {
 	display: inline-block;

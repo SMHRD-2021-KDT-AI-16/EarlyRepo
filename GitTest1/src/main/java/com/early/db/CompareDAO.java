@@ -16,12 +16,17 @@ public class CompareDAO {
 		
 		SqlSession sqlSession = factory.openSession(true);
 		
-//		Map<String,String> prams = new HashMap<String, String>();
-//		prams.put("income", income);
-//		prams.put("money", money);
-		
 		List<CompareVO> list = sqlSession.selectList("com.early.db.mapMapper.getCompare", total);
 		
+		sqlSession.close();
+		return list;
+	}
+	public List<CompareVO> getCompareincome(int total_money){
+		System.out.println("여기?#33");
+		SqlSession sqlSession = factory.openSession(true);
+		
+		List<CompareVO> list = sqlSession.selectList("getCompare2", total_money);
+		System.out.println("여기가?"+list);
 		sqlSession.close();
 		return list;
 	}

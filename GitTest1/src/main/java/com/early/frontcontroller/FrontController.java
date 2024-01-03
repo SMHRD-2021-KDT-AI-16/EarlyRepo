@@ -54,20 +54,15 @@ public class FrontController extends HttpServlet {
 		map.put("html/notice_Board.do", new GetNoticeBoardService());
 		map.put("getApartSearch.do", new ApartSearchService());
 		map.put("html/writeboard.do", new WriteBoardService());
-
 		map.put("html/logincheck.do", new LoginCheckService());
 		map.put("html/SelectLoans.do", new SelectLoansService());
-
 		map.put("logincheck.do", new LoginCheckService());
 		map.put("html/writeboard.do", new WriteBoardService());
 		map.put("html/logincheck.do", new LoginCheckService());
 		map.put("SelectLoans.do", new SelectLoansService());
-
 		map.put("getapartallinfo.do", new GetapartallinfoService());
-
 		map.put("html/BoardIdService.do", new BoardIdService());
 		map.put("Result.do", new ResultService());
-
 		map.put("html/BoardIdService.do", new BoardIdService());
 		map.put("likes_up.do", new LikesUpService());
 		map.put("html/AllgetBoardService.do", new AllgetBoardService());

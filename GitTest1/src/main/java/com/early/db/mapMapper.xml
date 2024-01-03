@@ -50,24 +50,27 @@
 		#{MARRIAGE_YEARS} >= MARRIAGE_YEARS
 	</select>
 
-
 	<select id="SelectPrice" resultType="com.early.model.ApartVO">
 		select a.APT_NAME , b.APT_REALPRICE , a.APT_LOC
 		from TB_APARTMENT a,TB_APARTMENT_INFO b
 		where a.APT_CODE = b.APT_CODE
 	</select>
 
-
-
-
-	<select id="getCompare" parameterType="String"
-		resultType="com.early.model.CompareVO">
+	<select id="getCompare" parameterType="String" resultType="com.early.model.CompareVO">
 		SELECT a.apt_name, b.apt_realprice, a.apt_loc
 		FROM tb_apartment a,
 		tb_apartment_info b
 		WHERE a.apt_code = b.apt_code
 		AND b.apt_realprice <![CDATA[<]]>
 		#{total}
+	</select>
+	<select id="getCompare2" parameterType="int" resultType="com.early.model.CompareVO">
+	<![CDATA[
+        SELECT a.apt_name, a.apt_loc, b.apt_realprice
+        FROM tb_apartment a
+        JOIN tb_apartment_info b ON a.apt_code = b.apt_code
+        WHERE b.apt_realprice < #{total_money}
+    ]]>
 	</select>
 
 </mapper>

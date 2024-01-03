@@ -51,7 +51,7 @@
 						</a>
 					</li>
 					<li class="header-gnbitem">
-						<a class="header-gnblink" href="board.jsp">
+						<a class="header-gnblink" href="AllgetBoardService.do">
 							<span>부동산 게시판</span>
 						</a>
 					</li>
@@ -101,7 +101,7 @@
 			</div>
 		</div>
 		<div class="myButton">
-			<button onclick="loginCheck()" type="button">게시글 작성</button>
+			<button id = "cmt_int" onclick="loginCheck()" type="button">게시글 작성</button>
 		</div>
 		<table id="table_content">
 		</table>
@@ -174,7 +174,12 @@
         			likes_btn.value = temp[0].split(':')[1];
         			likes_btn.className = "likes_btn";
         			likes_btn.name = "f_seq";
-        			likes_btn.innerText = "좋아요";
+        			//likes_btn.innerText = "좋아요";
+        			
+        			const btn_img = document.createElement('img');
+        			btn_img.src = '../resources/images/하트.png';
+        			
+        			
         			
         			const comment_btn = document.createElement('button');
         			comment_btn.value = temp[0].split(':')[1];
@@ -182,18 +187,28 @@
         			comment_btn.name = "f_seq";
         			comment_btn.innerText = "댓글";
         			
+        			const comment_close_btn = document.createElement('button');
+        			comment_close_btn.className = "comment_close";
+        			comment_close_btn.innerText = "댓글창닫기";
+        			
         			const cmt_div = document.createElement('div');
         			cmt_div.className="cmt_div";
         			
+        			// 댓글 닫기버튼
+        			comment_close_btn.addEventListener('click', function(){
+        				cmt_div.innerHTML = '';
+        			})
+        			
         			// 댓글 버튼
         			comment_btn.addEventListener('click', function() {
-        				comment_btn.className = "comment_btn_open";
+        				//comment_btn.className = "comment_btn_open";
+        				//comment_btn.innerText="댓글닫기";
         				$.ajax({
         					url: 'http://localhost:8083/GitTest1/getComment.do?f_seq='+likes_btn.value,
         					
         					success: function (result) {
         						let comment = result.split(";");
-        						console.log("comment",comment.length)
+        						//console.log("comment",comment.length)
         			  			
         						for (let e = 0; e < comment.length-1; e+=3){
         							const full_comment = document.createElement('div');
@@ -279,7 +294,10 @@
         			div1.appendChild(content);
         			div1.appendChild(img);
         			
+        			likes_btn.appendChild(btn_img);
+        			
         			div3.appendChild(comment_btn);
+        			div3.appendChild(comment_close_btn);
         			div3.appendChild(likes_btn)
         			div3.appendChild(likes);
         			// 좋아요 버튼, 좋아요 하단에 묶고
@@ -384,7 +402,8 @@
         							full_comment.appendChild(up_comment);
         							full_comment.appendChild(comment_comment);
         							
-        							cmt_div.appendChild(full_comment);
+        							var cmt_div2 = this.nextElementSibling;
+        							cmt_div2.appendChild(full_comment);
         						}
         						
         					},
@@ -464,95 +483,118 @@
     		}
   		}
   		
-  		/*let isButtonClicked = false;
-  		document.querySelectorAll('.comment_btn').forEach(function(comment_btn) {
-  		    comment_btn.addEventListener('click', function() {
-  		    	console.log("testtest")
-  		        if (isButtonClicked) {
-  		            // 이미 클릭되었으면 출력된 부분 지우기
-  		            cmt_div.innerHTML = '';
-  		            isButtonClicked = false; // 클릭 상태 초기화
-  		        } else {
-  		            // 클릭되지 않았으면 데이터 받아오고 출력
-  		            let f_seq = comment_btn.getAttribute('value');
+  		/* window.onload = function () {
+  			var commentBtn_opens = document.getElementsByClassName('comment_btn_open');
+  			for (var i = 0; i < commentBtn_opens.length; i++) {
+  				commentBtn_opens.addEventListener('click', function() {
+  					console.log("testtest")
+  		    		this.innerHTML = '';
+  					this.className = "comment_btn";
+					this.innerText="댓글";
+  				});
+  			}
+  		} */
+  		
+  		/* window.onload = function () {
+  		    var commentBtns = document.getElementsByClassName('comment_btn');
+  		    for (var i = 0; i < commentBtns.length; i++) {
+  		        commentBtns[i].addEventListener('click', function () {
+  		            var clickedBtn = this;
+  		            var clickedBtnValue = this.value;
+
+  		            // 'comment_btn_open' 클래스 추가 및 텍스트 변경
+  		            clickedBtn.classList.add("comment_btn_open");
+  		            clickedBtn.innerText = "댓글닫기";
+
+  		            // 댓글을 추가할 부모의 형제로부터 cmt_div 찾기
+  		            var siblingCmtDiv = clickedBtn.parentNode.nextElementSibling;
+
+if (!siblingCmtDiv || !siblingCmtDiv.classList.contains('cmt_div')) {
+    // 부모의 형제 cmt_div가 없다면 새로 생성하여 추가
+    siblingCmtDiv = document.createElement('div');
+    siblingCmtDiv.className = 'cmt_div';
+    clickedBtn.parentNode.parentNode.appendChild(siblingCmtDiv);
+}
 
   		            $.ajax({
-  		                url: 'http://localhost:8083/GitTest1/getComment.do?f_seq=' + f_seq,
-  		                success: function(result) {
-  		                    // 받아온 데이터를 이용하여 출력
-  		                    showComment(result);
+  		                url: 'http://localhost:8083/GitTest1/getComment.do?f_seq=' + clickedBtnValue,
+  		                success: function (result) {
+  		                    let comment = result.split(";");
+  		                    console.log("comment", comment.length);
 
-  		                    isButtonClicked = true; // 클릭 상태를 true로 설정
+  		                    for (let e = 0; e < comment.length - 1; e += 3) {
+  		                        const full_comment = document.createElement('div');
+
+  		                        const up_comment = document.createElement('div');
+
+  		                        const comment_userid = document.createElement('span');
+  		                        comment_userid.innerText = comment[e];
+
+  		                        const comment_created = document.createElement('span');
+  		                        comment_created.innerText = comment[e + 1];
+
+  		                        const comment_comment = document.createElement('div');
+  		                        comment_comment.innerText = comment[e + 2];
+
+  		                        up_comment.appendChild(comment_userid);
+  		                        up_comment.appendChild(comment_created);
+
+  		                        full_comment.appendChild(up_comment);
+  		                        full_comment.appendChild(comment_comment);
+
+  		                        // full_comment를 부모의 형제인 cmt_div에 추가
+  		                      parentSibling.parentNode.appendChild(siblingCmtDiv);
+  		                    siblingCmtDiv.appendChild(full_comment);
+  		                    }
+
+  		                    // 댓글 입력 폼 생성 및 이벤트 추가
+  		                    var commentDiv = document.createElement('div');
+  		                    commentDiv.className = 'cmt_div';
+
+  		                    const comment_content = document.createElement('textarea');
+  		                  	comment_content.name = "comment_text";
+  		                	comment_content.className = "comment_text";
+  		              		comment_content.maxLength = 50;
+  		            		comment_content.placeholder = "최대 50자입니다.";
+
+  		                    const insertCmtBtn = document.createElement('button');
+  		                    insertCmtBtn.name = "cmt_btn";
+  		                    insertCmtBtn.innerText = "댓글작성";
+
+  		                    commentDiv.appendChild(comment);
+  		                    commentDiv.appendChild(insertCmtBtn);
+
+  		                    // 댓글작성 버튼 이벤트
+  		                    insertCmtBtn.addEventListener('click', function () {
+  		                        $.ajax({
+  		                            url: 'http://localhost:8083/GitTest1/logincheck.do',
+  		                            success: function (result) {
+  		                                console.log("결과 : ", result);
+  		                                if (result === 'success') {
+  		                                    insert_comment(comment.value, clickedBtnValue);
+  		                                } else {
+  		                                    alert("로그인이 필요한 서비스입니다.\n로그인 페이지로 이동합니다.");
+  		                                    window.location.href = "login.jsp";
+  		                                }
+  		                            },
+  		                            error: function () {
+  		                                console.error("Error in AJAX request");
+  		                            }
+  		                        });
+  		                    });
+
+  		                    // 부모의 형제에 댓글 입력 폼 추가
+  		                    clickedBtn.parentNode.parentNode.appendChild(commentDiv);
   		                },
-					error: function(){
-				
-					}
-	  		    });
-  		        }
-				
-				
-    			const comment = document.createElement('textArea');
-    			comment.name = "comment_text";
-    			comment.className = "comment_text";
-    			comment.maxLength = 50;
-    			comment.placeholder = "최대 50자입니다."
-    			
-    			
-    			const insert_cmt_btn = document.createElement('button');
-    			insert_cmt_btn.name = "cmt_btn";
-    			insert_cmt_btn.innerText = "댓글작성";
-    			
-    			cmt_div.appendChild(comment);
-    			cmt_div.appendChild(insert_cmt_btn);
-    			
-    			// 댓글작성 버튼 이벤트
-    			insert_cmt_btn.addEventListener('click', function() {
-    				$.ajax({
-    					url: 'http://localhost:8083/GitTest1/logincheck.do',
-    					
-    					success: function (result) {
-    						console.log("결과 : ",result);
-    						if (result === 'success') {
-    							insert_comment(comment.value, likes_btn.value);
-    			  			}else{
-    			  				alert("로그인이 필요한 서비스입니다.\n로그인 페이지로 이동합니다.");
-    			  				window.location.href = "login.jsp";
-    			  			}
-    					},
-    					error: function(){
-    				
-    					}
-    	  		    });        				
-    			});
-			});
-  		});
-  		function showComment(result) {
-  		    let comment = result.split(";");
-  		    console.log("comment", comment.length);
-
-  		    for (let e = 0; e < comment.length - 1; e += 3) {
-  		        const full_comment = document.createElement('div');
-
-  		        const up_comment = document.createElement('div');
-
-  		        const comment_userid = document.createElement('span');
-  		        comment_userid.innerText = comment[e];
-
-  		        const comment_created = document.createElement('span');
-  		        comment_created.innerText = comment[e + 1];
-
-  		        const comment_comment = document.createElement('div');
-  		        comment_comment.innerText = comment[e + 2];
-
-  		        up_comment.appendChild(comment_userid);
-  		        up_comment.appendChild(comment_created);
-
-  		        full_comment.appendChild(up_comment);
-  		        full_comment.appendChild(comment_comment);
-
-  		        cmt_div.appendChild(full_comment);
+  		                error: function () {
+  		                    console.error("Error in AJAX request");
+  		                }
+  		            });
+  		        });
   		    }
-  		} */
+  		};
+ */
+  		
   		
   		
   		function likes_up(value, likes){

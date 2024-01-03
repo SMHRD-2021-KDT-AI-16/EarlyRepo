@@ -148,14 +148,24 @@ tr:hover {
      				</div>
      				<% HttpSession sessions = request.getSession();
      				List<LoanNameVO> vo = (List<LoanNameVO>)sessions.getAttribute("loanVOs"); 
+     				int loan_money = (int) session.getAttribute("loan_money");
      				
      				if(vo.size() ==1){ %>
      				<p class="text_result"><span class="color-change">${loanVOs.get(0).getLOAN_NAME() }</span>상품을 이용하시면</p>     <!-- 대출상품이름 적용하기 -->
-					<p class="text_result">최대&nbsp;<span class="color-change"> ${loanVOs.get(0).getLOAN_LIMIT() }원&nbsp; </span> 입니다.</p>      <!-- profile에서 판단한 대출 금액으로 바꾸기 -->
+					<p class="text_result">최대&nbsp;<span class="color-change"> ${loanVOs.get(0).getLOAN_LIMIT() }원&nbsp; </span> 이고,</p>      <!-- profile에서 판단한 대출 금액으로 바꾸기 -->
+					<p class="text_result">본인의 자산과 합한 금액은 최대&nbsp;<span class="color-change">${loanVOs.get(0).getLOAN_LIMIT()+loan_money}원&nbsp; </span> 입니다.</p>
+					<input type="radio" name="loan_select" value="${loanVOs.get(0).getLOAN_LIMIT()+loan_money}"> ${loanVOs.get(0).getLOAN_NAME()}
+					<br>
      				<%} else if(vo.size()==2){ %>
      					<p class="text_result"><span class="color-change">${loanVOs.get(0).getLOAN_NAME()} + ${loanVOs.get(1).getLOAN_NAME() }</span>상품을 이용하시면</p>     <!-- 대출상품이름 적용하기 -->
-    					<p class="text_result">최대&nbsp;<span class="color-change"> ${loanVOs.get(0).getLOAN_LIMIT()}원 + ${loanVOs.get(1).getLOAN_LIMIT()}원&nbsp; </span> 입니다.</p> 
+    					<p class="text_result">각각 최대&nbsp;<span class="color-change"> ${loanVOs.get(0).getLOAN_LIMIT()}원, ${loanVOs.get(1).getLOAN_LIMIT()}원&nbsp; </span> 이고</p>
+    					<p class="text_result">본인의 자산과 합한 금액은 최대&nbsp;<span class="color-change"> ${loanVOs.get(0).getLOAN_LIMIT()+loan_money}원 , ${loanVOs.get(1).getLOAN_LIMIT()+loan_money}원&nbsp; </span> 입니다.</p>
+    					<input type="radio" name="loan_select" value="${loanVOs.get(0).getLOAN_LIMIT()+loan_money}"> ${loanVOs.get(0).getLOAN_NAME()}
+    					<br>
+    					<input type="radio" name="loan_select" value="${loanVOs.get(1).getLOAN_LIMIT()+loan_money}"> ${loanVOs.get(1).getLOAN_NAME()}
+    					<br>
      				<%}%>
+     				<span class="color-change">대출에 관한 금액은 세부적으로 상이할 수 있습니다.</span>
 					<table>
 						<thead>
 							<tr>
