@@ -61,11 +61,6 @@
 							<span>부동산 게시판</span>
 						</a>
 					</li>
-					<li class="header-gnbitem">
-						<a class="header-gnblink" href="Chat.jsp">
-							<span>동네 채팅</span>
-						</a>
-					</li>
 				</ul>
 			</div>
 			<div class="header-right">
@@ -84,9 +79,6 @@
                               <a href="SelectAll.do">회원관리</a>
                            </c:if>   
                      </c:if>
-					<button class="btn-search header-utils-btn">
-						<a href ="Profile.jsp"><img src="../resources/icons/ico_search_black.svg"></a>
-					</button>
 	</header>
 		<!-- [E]campland-N1 -->
 		<main class="th-layout-main ">

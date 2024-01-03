@@ -3,9 +3,7 @@
 .noticeBoard {
 	position: relative;
 	display: inline-block;
-	/*background-color: yellow;*/
 	width: 800px;
-
 }
 
 .up {
@@ -15,7 +13,6 @@
 
 .userid {
 	display: inline-block;
-	/*background-color: red;*/
 	width: 33%;
 	height: 30px;
 }
@@ -25,16 +22,16 @@
 	width: 33%;
 	height: 30px;
 }
-.loc{
+
+.loc {
 	text-align: right;
 	display: inline-block;
 	width: 33%;
-	
+
 }
 
 .content {
 	position: relative;
-	/*background-color: blueviolet;*/
 	width: 100%;
 	white-space: normal;
 	word-wrap: break-word;
@@ -45,26 +42,71 @@
 	display: inline-block;
 	width: 32%;
 }
-.cmt_div{
+
+.cmt_div {
 	margin-bottom: 20px;
 }
-.comment_btn{
+
+.comment_btn {
 	margin-right: 5px;
+	background-color: #df834d;
+	color: white;
+	border: none;
+	border-radius: 20px;
+	padding: 10px 20px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 16px;
+	transition-duration: 0.4s;
+	cursor: pointer;
 }
-.comment_close{
-	margin-right: 650px;
+.insert_cmt_btn{
+	margin-right: 5px;
+	background-color: #df834d;
+	color: white;
+	border: none;
+	border-radius: 20px;
+	padding: 10px 20px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 16px;
+	transition-duration: 0.4s;
+	cursor: pointer;
+}
+
+.comment_close {
+	margin-right: 570px;
+	background-color: #df834d;
+	color: white;
+	border: none;
+	border-radius: 20px;
+	padding: 10px 20px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 16px;
+	transition-duration: 0.4s;
+	cursor: pointer;
 }
 
 .likes {
 	display: inline-block;
 	height: 50px;
 }
-.likes_btn{
+
+.likes_btn {
+	border: none;
 	text-align: right;
 }
-.comment_text{
+
+.comment_text {
 	width: 100%;
 	resize: none;
+}
+.comment_created{
+	float: right;
 }
 
 li {
@@ -128,4 +170,9 @@ li {
 
 .textset-tit {
 	color: white;
+}
+
+#cmt_inst{
+	background-color: none;
+	border: none;
 }

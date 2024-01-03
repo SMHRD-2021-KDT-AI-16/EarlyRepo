@@ -5,13 +5,11 @@
 
 <mapper namespace="com.early.db.mapMapper">
 
-	<select id="getApart" parameterType="String"
-		resultType="com.early.model.ApartVO">
+	<select id="getApart" parameterType="String" resultType="com.early.model.ApartVO">
 		SELECT * FROM tb_apartment WHERE apt_loc LIKE
 		'%'||#{name}||'%'
 	</select>
-	<select id="getApartinfo" parameterType="String"
-		resultType="com.early.model.ApartAllinfoVO">
+	<select id="getApartinfo" parameterType="String" resultType="com.early.model.ApartAllinfoVO">
 		SELECT a.apt_name, a.apt_loc, b.apt_size, b.apt_img,
 		b.apt_realprice
 		FROM tb_apartment a
@@ -19,8 +17,7 @@
 		a.apt_code = b.apt_code
 		WHERE a.apt_name=#{apt_name}
 	</select>
-	<select id="getAptReview"
-		resultType="com.early.model.ApartAllinfoVO">
+	<select id="getAptReview" resultType="com.early.model.ApartAllinfoVO">
 		select a.apt_name, b.user_id, b.review_content
 		FROM
 		tb_apartment a
@@ -47,7 +44,7 @@
 		#{FIRST_HOUSE_YN}
 		AND DUPLICATE_YN = #{DUPLICATE_YN}
 		AND
-		#{MARRIAGE_YEARS} >= MARRIAGE_YEARS
+		MARRIAGE_YEARS >= #{MARRIAGE_YEARS}
 	</select>
 
 	<select id="SelectPrice" resultType="com.early.model.ApartVO">

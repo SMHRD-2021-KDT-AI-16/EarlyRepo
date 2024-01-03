@@ -28,10 +28,8 @@
 	<link rel="stylesheet" href="../resources/css/common.css">
 	<link rel="stylesheet" href="../resources/css/style.css">
 	<link rel="stylesheet" href="../resources/css/map.css">
-	<style>
-
-	</style>
 </head>
+<link rel="icon" href="data:;base64,iVBORw0KGgo=">
 
 <body>
     <c:set var="chatId" value="${not empty sessionScope.member ? sessionScope.member.user_nick : ''}" />
@@ -45,7 +43,7 @@
         <input id="send" type="submit" value="send" onclick="send()" />
     </fieldset>
 </div>
-<img class="chat" src="../resources/images/고양이말풍선white.png" />
+<img class="chat" src="../resources/images/고양이말풍선white2.png" />
 
 	<header class="campland-N1" data-bid="RMlQ6deKn4" id="">
 		<div class="header-container container-lg">
@@ -58,7 +56,6 @@
 			</div>
 			<div class="header-center">
 				<ul class="header-gnblist">
-					<li class="header-gnbitem"></li>
 					<li class="header-gnbitem">
 						<a class="header-gnblink" href="MainPage.jsp">
 							<span>홈</span>
@@ -67,11 +64,6 @@
 					<li class="header-gnbitem">
 						<a class="header-gnblink" href="AllgetBoardService.do">
 							<span>부동산 게시판</span>
-						</a>
-					</li>
-					<li class="header-gnbitem">
-						<a class="header-gnblink" href="Chat.jsp">
-							<span>동네 채팅</span>
 						</a>
 					</li>
 				</ul>
@@ -92,11 +84,6 @@
                               <a href="SelectAll.do">회원관리</a>
                            </c:if>   
                      </c:if>
-                     <button class="btn-search header-utils-btn">
-						<a href ="Profile.jsp">
-							<img src="../resources/icons/ico_search_black.svg">
-						</a>
-					</button>
                 </div>
             </div>
        </div>
@@ -170,14 +157,13 @@
 								<div class="form-wrap">
 									<div class="selectset selectset-round selectset-md">
                   						<select name="salary" class="selectset-toggle btn" id="income">
-                							<option value="2000">2000만원 이하</option>
-                             				<option value="3000">2000만원~3000만원</option>
-                      					    <option value="4000">3000만원~4000만원</option>
-                      					    <option value="5000">4000만원~5000만원</option>
-                      					    <option value="6000">5000만원~6000만원</option>
-                      					    <option value="7000">6000만원~7000만원</option>
-                      					    <option value="7001">7000만원 이상</option>
-				    
+                							<option value="1600">2000만원 이하</option>
+                             				<option value="2400">2000만원~3000만원</option>
+                      					    <option value="3200">3000만원~4000만원</option>
+                      					    <option value="4000">4000만원~5000만원</option>
+                      					    <option value="4800">5000만원~6000만원</option>
+                      					    <option value="5600">6000만원~7000만원</option>
+                      					    <option value="6000">7000만원 이상</option>
              							</select>
                					  	</div>
                					</div>	  
@@ -219,9 +205,10 @@
 					<div class="option">
 						<div>
 							<form>
-								키워드 : <input type="text" value="" id="keyword" size="15">
-								<button type="button" onclick="searchPlaces()">검색하기</button>
-							</form>
+                        		<label for="keyword" style="font-size: 20px;">키워드 :</label> <input type="text" value="" id="keyword" size="15" >
+                        		<button type="button" onclick="searchPlaces()">검색</button>
+                        		<span style="font-size: 20px; text-align: left;"><br><br>↑ 주소 검색 가능<br><br> ← 왼쪽에 입력하면 살 수 있는 집이 표시됩니다.<br><br> → 지도에서 직접 집보기,지역게시판 <br><br> ↓ 게시판 인기글 <br><br>↘ 접속한 사람들과 채팅<br><br><br>시연회계정<br>id:test<br>pw:12345<br></span>
+                     		</form>
 						</div>
 					</div>
 				</div>
@@ -232,9 +219,8 @@
       		<div class="contents-inner">
         		<div class="contents-container container-md">
           			<div class="textset textset-sub">
-            			<h2 class="textset-tit">부동산 게시판</h2> 
+            			<h2 class="textset-tit">인기 게시글</h2> 
           			</div>
-          
           			<div class="cardset-wrap">
             			<div class="cardset">
               				<figure class="cardset-figure">
@@ -302,395 +288,346 @@
 	</main>
 
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=e193c7f773c86ecc8ab769e9704f781a&libraries=services,clusterer,drawing"></script>
-		<script>
-			var addr = '';
-			var container = document.getElementById('mid_div');
-			var options = {
-				center: new kakao.maps.LatLng(34.810159, 126.424775), level: 6
-			};
-			// 맵 중심좌표, 맵 확대레벨 선언
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=e193c7f773c86ecc8ab769e9704f781a&libraries=services,clusterer,drawing"></script>
+<script>
+	var addr = '';
+	var markers = [];
+	var container = document.getElementById('mid_div');
+	var options = {
+		center: new kakao.maps.LatLng(34.810159, 126.424775), level: 6
+	};
+	// 맵 중심좌표, 맵 확대레벨 선언
 				
-			var map = new kakao.maps.Map(container, options), 
-            	customOverlay = new kakao.maps.CustomOverlay({yAnchor: 2, xAnchor:0.5}), 
-            	customOverlay2 = new kakao.maps.CustomOverlay({}),
-            	customOverlay3 = new kakao.maps.CustomOverlay({}),
-				infowindow = new kakao.maps.InfoWindow({removable: true});
-				// 맵, 오버레이, 인포윈도우
+	var map = new kakao.maps.Map(container, options), 
+       	customOverlay = new kakao.maps.CustomOverlay({yAnchor: 2, xAnchor:0.5}), 
+       	customOverlay2 = new kakao.maps.CustomOverlay({}),
+       	customOverlay3 = new kakao.maps.CustomOverlay({}),
+		infowindow = new kakao.maps.InfoWindow({removable: true});
+			// 맵, 오버레이, 인포윈도우
 				
-			$.getJSON('../resources/json/mokpo_test.json', function(json) {
-			 	var data = json.features;
-				var coordintes = [];   // 좌표 저장
-				var name = '';         // 행정구 이름
-						
-						
-				$.each(data, function(index, val) {
-					coordinates = val.geometry.coordinates;
-					name = val.properties.ADM_NM; // json에 있는 한글이름
-						
-					displayArea2(coordinates, name);
-				})
-			})	// 좌표 저장되어잇는 json 파일 불러오기		
+	$.getJSON('../resources/json/mokpo_test.json', function(json) {
+	 	var data = json.features;
+		var coordintes = [];   // 좌표 저장
+		var name = '';         // 행정구 이름
+											
+		$.each(data, function(index, val) {
+			coordinates = val.geometry.coordinates;
+			name = val.properties.ADM_NM; // json에 있는 한글이름
+				
+			displayArea2(coordinates, name);
+		})
+	})	// 좌표 저장되어잇는 json 파일 불러오기		
 					
-			var polygons = [];
-			var points = [];
+	var polygons = [];
+	var points = [];
 					
-			function displayArea2(coordinates, name) {
-				 var path = [];     // 폴리곤 path
+	function displayArea2(coordinates, name) {
+		 var path = [];     // 폴리곤 path
 						
-				$.each(coordinates[0], function(index, coordinate) {
-					var point = new Object();
-						point.x = coordinate[0];
-						point.y = coordinate[1];
-						points.push(point);
+		$.each(coordinates[0], function(index, coordinate) {
+			var point = new Object();
+				point.x = coordinate[0];
+				point.y = coordinate[1];
+				points.push(point);
 							
-					path.push(new kakao.maps.LatLng(coordinate[0], coordinate[1]));
-				})
+			path.push(new kakao.maps.LatLng(coordinate[0], coordinate[1]));
+		})
 					 
-				var polygon = new kakao.maps.Polygon({
-					map : map, // 다각형을 표시할 지도 객체
-				    path : path,
-				    strokeWeight: 2,
-				    strokeColor: '#004c80',
-				    strokeOpacity: 0.8,
-				    fillColor: '#fff',
-				    fillOpacity: 0.7 
-				});
+		var polygon = new kakao.maps.Polygon({
+			map : map, // 다각형을 표시할 지도 객체
+		    path : path,
+		    strokeWeight: 2,
+		    strokeColor: '#004c80',
+		    strokeOpacity: 0.8,
+		    fillColor: '#fff',
+		    fillOpacity: 0.7 
+		});
 					    
-				polygons.push(polygon);
+		polygons.push(polygon);
 				
-				// 폴리곤 위에 마우스를 올렸을 때
-		        kakao.maps.event.addListener(polygon, 'mouseover',function(mouseEvent){
-		                   
-		           	polygon.setOptions({fillColor: '#09f'});
-		           	customOverlay.setContent('<div id="Region_name">'+name+'</div>');
-		            customOverlay.setPosition(mouseEvent.latLng);
-		            customOverlay.setMap(map);
-		        });
+		// 폴리곤 위에 마우스를 올렸을 때
+	    kakao.maps.event.addListener(polygon, 'mouseover',function(mouseEvent){	                   
+	    	polygon.setOptions({fillColor: '#09f'});
+		    customOverlay.setContent('<div id="Region_name">'+name+'</div>');
+		    customOverlay.setPosition(mouseEvent.latLng);
+		    customOverlay.setMap(map);
+		});
 		        
-				// 폴리곤에서 마우스를 움직일 때
-				kakao.maps.event.addListener(polygon, 'mousemove', function(mouseEvent) {
-		               	
-		        	customOverlay.setPosition(mouseEvent.latLng); 
-		        });
+		// 폴리곤에서 마우스를 움직일 때
+		kakao.maps.event.addListener(polygon, 'mousemove', function(mouseEvent) {
+		   	customOverlay.setPosition(mouseEvent.latLng); 
+		});
 
-		        // 맵을 드래그 했을 때
-				kakao.maps.event.addListener(map, 'drag', function(mouseEvent){
-		            	   
-		        	customOverlay2.setMap(null);
-		            polygon.setOptions({fillColor: '#fff'});
-		            customOverlay.setMap(null);
-		        });
+		// 맵을 드래그 했을 때
+		kakao.maps.event.addListener(map, 'drag', function(mouseEvent){
+		   	customOverlay2.setMap(null);
+		    polygon.setOptions({fillColor: '#fff'});
+		    customOverlay.setMap(null);
+		});
 		               
-		        // 폴리곤에서 마우스가 벗어났을 때
-		        kakao.maps.event.addListener(polygon, 'mouseout', function() {
-		            	   
-		        	polygon.setOptions({fillColor: '#fff'});
-		            customOverlay.setMap(null);
-		        });
+		// 폴리곤에서 마우스가 벗어났을 때
+		kakao.maps.event.addListener(polygon, 'mouseout', function() {
+			polygon.setOptions({fillColor: '#fff'});
+			customOverlay.setMap(null);
+		});
 					
-				// 폴리곤을 클릭했을 때
-		        kakao.maps.event.addListener(polygon, 'click', function (mouseEvent) {
+		// 폴리곤을 클릭했을 때
+		kakao.maps.event.addListener(polygon, 'click', function (mouseEvent) {
 						
-					addr = name;
-				    var content = '<div id="customOverlay">' +
-				            '<div id="titleText">' + name + '</div>' +
-				            '<ul id="customList">' +
-				            '<li class="customListItem"><button class="customButton" onclick="detail_map()">지역상세보기</button></li>' +
-				            '<li class="customListItem"><form action="notice_Board.do"><button class="customButton" name="loc" value="' + name + '">지역게시판</button></form></li>' +
-				            /* '<li class="customListItem"><form action=""><button class="customButton">지역채팅</button></form></li>' + */
-				            '</ul>' +
-				            '</div>';
-				    customOverlay2.setContent(content);
-				    customOverlay2.setPosition(mouseEvent.latLng);
-				    customOverlay2.setMap(map);
-				});
-			} // displayarea2 끝나는 부분
-
-			// 상세정보보기 눌렀을 때
-			function detail_map(){ 
-				customOverlay2.setMap(null);
-				getData();// 데이터 가져오는 함수
-						
-				map.setLevel(2, {anchor: zoomin_map(), animate:true});
-						
-				for(var i = 0; i < polygons.length; i++){
-					polygons[i].setMap(null);		
-				}
-				customOverlay.setMap(null);
-				polygons = [];
-						
-			}
+			addr = name;
 					
-			// 폴리곤 눌러서 클릭 했을 때 확대되는 좌표값
-			function zoomin_map(){ 
-				if(addr == "하당동"){
-					return new kakao.maps.LatLng(34.808948346503676, 126.42033035076065);
-				}else if(addr="옥암동"){
-					return new kakao.maps.LatLng(34.81032236853858, 126.42877975042865);
-				}
-			}
-				
-				
-			let geocoder = new kakao.maps.services.Geocoder();
-			let infoapart = '';
-			var currentOverlay; // 전역 변수로 현재 오버레이를 저장하는 변수
+			var content = '<div id="customOverlay">' +
+			            '<div id="titleText">' + name + '</div>' +
+			            '<ul id="customList">' +
+			            '<li class="customListItem"><button class="customButton" onclick="detail_map()">지역상세보기</button></li>' +
+			            '<li class="customListItem"><form action="notice_Board.do"><button class="customButton" name="loc" value="' + name + '">지역게시판</button></form></li>' +
+			            '</ul>' +
+			            '</div>';
+			customOverlay2.setContent(content);
+			customOverlay2.setPosition(mouseEvent.latLng);
+			customOverlay2.setMap(map);
+		});
+	} // displayarea2 끝나는 부분
 
-			function getData() { // 상세정보보기 눌렀을 때 가져오는 동 아파트 주소 정보
-				$.ajax({
-					url: 'http://localhost:8083/GitTest1/getApart.do?name=' + addr,
-				    contentType: 'text/plain; charset=UTF-8',
-				    success: function (result) {
-				        var itemList = result.split(';');
-					            
-				        for (let i = 0; i < itemList.length - 1; i += 2) {
-				            let j = i + 1;
-
-				            geocoder.addressSearch(itemList[i], function (result, status) {
-				                if (status === kakao.maps.services.Status.OK) {
-				                    var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
-
-				                    let marker = new kakao.maps.Marker({
-				                        map: map,
-				                        position: coords
-				                    });
-
-				                    let content = document.createElement('div');
-				                    content.innerHTML = '<div id="menu_wrap">'
-								                        +'<h1 id="apt_name"></h1>'
-								                        +'<h3 id="apt_loc"></h3>'
-								                        +'<div class="sizecontiainer">'
-								                        +'<ul class="tabs">'
-								                        +'<li id="tab_1" class="tab-link current" data-tab="tab-1"></li>'
-								                        +'<li id="tab_2" class="tab-link" data-tab="tab-2"></li>'
-								                        +'<li id="tab_3" class="tab-link" data-tab="tab-3"></li></ul>'
-								                        +'<div id="tab-1" class="tab-content current">'
-								                        +'<h3 id="realprice1"></h3>'
-								                        +'<img id="apt_img1" class="apt_img" alt="구조도 사진 없음"></div>'
-								                        +'<div id="tab-2" class="tab-content">'
-								                        +'<h3 id="realprice2"></h3>'
-								                        +'<img id="apt_img2" class="apt_img" alt="구조도 사진 없음"></div>'
-								                        +'<div id="tab-3" class="tab-content">'
-								                        +'<h3 id="realprice3"></h3>'
-								                        +'<img id="apt_img3" class="apt_img" alt="구조도 사진 없음">'
-								                        +'</div></div><div id="temp_review"></div>'
-								                        +'<div id="review"><h3>부동산 후기</h3>'
-								                        +'</div></div>';
-					                            
-								    kakao.maps.event.addListener(marker, 'click', function () {
-								    	infoapart = itemList[j]; // 클릭했을 때 이름을 변수에 넣음
-								        getapartallinfo();
-
-								        var existingContent = document.getElementById('content');
-
-								        // 중복 방지를 위해 이미 추가된 엘리먼트인지 확인
-								        if (!existingContent) {
-								        	existingContent = document.createElement('div');
-								            existingContent.id = 'content'; 
-								            document.getElementById('mid_div').appendChild(existingContent);
-								        }
-
-								        existingContent.innerHTML = ''; // 기존 내용 지우기
-								        existingContent.appendChild(content); // 내용 추가
-
-								        // 맵 클릭 시 팝업 제거
-								        kakao.maps.event.addListener(map, 'click', function () {
-								        	existingContent = document.getElementById('content'); // 다시 가져오기
-								        	if (existingContent) {
-								        		existingContent.innerHTML = ''; // 엘리먼트의 내용을 지우고
-								            	existingContent.parentNode.removeChild(existingContent); // 부모에서 제거
-								        	}
-								    	});
-									});					                    
-				                }
-				            });
-				        }
-				    },
-				    error: function () { // 통신 실패했을 때
-				        console.error('실패애~~~~~~~');
-				    }
-				});
-			} // getData 끝
-				
-				
-			function getapartallinfo(){
-				$.ajax({
-					url: 'http://localhost:8083/GitTest1/getapartallinfo.do?aptname=' + infoapart,
-								
-					success: function (result) {
-						let infoList = result.split(';');
-						console.log("tteesstt : ",infoList);
-							
-						console.log("test : ",infoList.length);
-						let temp1 = infoList.length/5; // 같은 이름 다른 평수 몇개인지 구분하기 위해서
-						console.log("길이 : ",temp1)
+	// 상세정보보기 눌렀을 때
+	function detail_map(){ 
+		removeMarkers();
+		customOverlay2.setMap(null);
+		getData();// 데이터 가져오는 함수
+					
+		map.setLevel(2, {anchor: zoomin_map(), animate:true});
+					
+		for(var i = 0; i < polygons.length; i++){
+			polygons[i].setMap(null);		
+		}
+		customOverlay.setMap(null);
+		polygons = [];
 						
-						document.getElementById('apt_name').innerText = infoList[0];
-							
-						document.getElementById('apt_loc').innerText = infoList[1];
-							
-						document.getElementById('tab_1').innerText = infoList[3];
-						document.getElementById('realprice1').innerText = infoList[2];
-						document.getElementById('apt_img1').src = infoList[4];
-						document.getElementById('apt_img1').onerror = function() {
-	        			    this.src = '../resources/images/img_logo.png';
-	        			};
-	        			
-	        			if(temp1 > 2 && temp1 < 3){
-							document.getElementById('tab_2').innerText = infoList[8];
-							document.getElementById('realprice2').innerText = infoList[7];
-							document.getElementById('apt_img2').src = infoList[9];
-							document.getElementById('apt_img2').onerror = function() {
-		        			    this.src = '../resources/images/img_logo.png';
-		        			};
-						}
-	        			
-						if(temp1 > 3){
-							document.getElementById('tab_2').innerText = infoList[8];
-							document.getElementById('realprice2').innerText = infoList[7];
-							document.getElementById('apt_img2').src = infoList[9];
-							document.getElementById('apt_img2').onerror = function() {
-		        			    this.src = '../resources/images/img_logo.png';
-		        			};
-							document.getElementById('tab_3').innerText = infoList[13];
-							document.getElementById('realprice3').innerText = infoList[12];
-							document.getElementById('apt_img3').src = infoList[14];
-							document.getElementById('apt_img3').onerror = function() {
-		        			    this.src = '../resources/images/img_logo.png';
-		        			};
-						}
-							
-						let reviewList = infoList[infoList.length-1].split("|");
-							
-						const review = document.getElementById('review');
-							
-						for(let d = 0; d < reviewList.length; d++){
-							const reviews = document.createElement('div');
-							reviews.className="review_contents";
-							reviews.innerText = reviewList[d];
-							review.appendChild(reviews);
-						}
-												
-						//infoList 
-						/*  0,5 : 아파트 이름 
-							1,6 : 주소
-							2,7 : 실거래가
-							3,8 : 평수
-							4,9 : 이미지
-							10 ~ :리뷰
-						*/
-					},
-					error: function(){
-							
-					}
-				});
-			} // getapartallinfo 끝
-
+	}
+					
+	// 폴리곤 눌러서 클릭 했을 때 확대되는 좌표값
+	function zoomin_map(){
+		if(addr == "하당동"){
+			return new kakao.maps.LatLng(34.808948346503676, 126.42033035076065);
+		}else if(addr=="옥암동"){
+			return new kakao.maps.LatLng(34.81032236853858, 126.42877975042865);
+		}else if(addr=="신흥동"){
+			return new kakao.maps.LatLng(34.80073454515796, 126.42368802081405);
+		}else if(addr=="하당동"){
+			return new kakao.maps.LatLng(34.80893668896109, 126.42166920829253);
+		}else if(addr=="상동"){
+			return new kakao.maps.LatLng(34.8162030484548, 126.41530104485805);
+		}else if(addr=="부흥동"){
+			return new kakao.maps.LatLng(34.80363500052842, 126.43381456301658);
+		}else if(addr=="부주동"){
+			return new kakao.maps.LatLng(34.80794832924792, 126.44658253172632);
+		}else if(addr=="삼향동"){
+			return new kakao.maps.LatLng(34.82631113863141, 126.42931977338388);
+		}
+	}
 				
-				function searchPlaces() { // 검색데이터 가져오기
-	            	var searchValue = $('#keyword').val();
-	            	
-	            	$.ajax({
-	           	 		url : 'http://localhost:8083/GitTest1/getApartSearch.do?name='+ searchValue,
-	                	contentType : 'text/plain; charset=UTF-8', // Specify UTF-8
-	                	data: { name: searchValue },
-	                	
-	                	success : function(result) {
-	                		console.log("test : ",result);	
-	                		
-	                    	var Compare = result.split(';');
-	                   		
-	                   		
-	                    	for (let i = 0; i < Compare.length - 1; i += 3) {
-	                        	let j = i + 1;
-	                        
-	                        	geocoder.addressSearch(Compare[i],function(result, status) {
+				
+	let geocoder = new kakao.maps.services.Geocoder();
+	let infoapart = '';
+	var currentOverlay; // 전역 변수로 현재 오버레이를 저장하는 변수
 
-	                            	if (status === kakao.maps.services.Status.OK) {
-	                                	var coords = new kakao.maps.LatLng(
-	                                    	result[0].y,
-	                                        result[0].x
-	                                    );
+	function getData() { // 상세정보보기 눌렀을 때 가져오는 동 아파트 주소 정보
+		$.ajax({
+			url: 'http://localhost:8083/GitTest1/getApart.do?name=' + addr,
+		    contentType: 'text/plain; charset=UTF-8',
+		    success: function (result) {
+		        var itemList = result.split(';');
+				            
+		        for (let i = 0; i < itemList.length - 1; i += 2) {
+		            let j = i + 1;
+		            geocoder.addressSearch(itemList[i], function (result, status) {
+		                if (status === kakao.maps.services.Status.OK) {
+		                    var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
 
-	                                    var marker = new kakao.maps.Marker({
-	                                    	map : map,
-	                                        position : coords
-	                                    });
-	                                }
-								})
-							}
-	                    },
-						error : function() {
-		                	console.log("실패");
-						}
-	            	})
+		                    let marker = new kakao.maps.Marker({
+		                        map: map,
+		                        position: coords
+		                    });
+
+		                    let content = document.createElement('div');
+		                    content.innerHTML = '<div id="menu_wrap">'
+						                        +'<h1 id="apt_name"></h1>'
+						                        +'<h3 id="apt_loc"></h3>'
+						                        +'<div class="sizecontiainer">'
+						                        +'<ul class="tabs">'
+						                        +'<li id="tab_1" class="tab-link current" data-tab="tab-1"></li>'
+						                        +'<li id="tab_2" class="tab-link" data-tab="tab-2"></li>'
+						                        +'<li id="tab_3" class="tab-link" data-tab="tab-3"></li></ul>'
+						                        +'<div id="tab-1" class="tab-content current">'
+						                        +'<h3 id="realprice1"></h3>'
+						                        +'<img id="apt_img1" class="apt_img" alt="구조도 사진 없음"></div>'
+						                        +'<div id="tab-2" class="tab-content">'
+						                        +'<h3 id="realprice2"></h3>'
+						                        +'<img id="apt_img2" class="apt_img" alt="구조도 사진 없음"></div>'
+						                        +'<div id="tab-3" class="tab-content">'
+						                        +'<h3 id="realprice3"></h3>'
+						                        +'<img id="apt_img3" class="apt_img" alt="구조도 사진 없음">'
+						                        +'</div></div><div id="temp_review"></div>'
+						                        +'<div id="review"><h3>부동산 후기</h3>'
+						                        +'</div></div>';
+				                            
+						    kakao.maps.event.addListener(marker, 'click', function () {
+						    	infoapart = itemList[j]; // 클릭했을 때 이름을 변수에 넣음
+						        getapartallinfo();
+
+						        var existingContent = document.getElementById('content');
+
+						        // 중복 방지를 위해 이미 추가된 엘리먼트인지 확인
+						        if (!existingContent) {
+						        	existingContent = document.createElement('div');
+						            existingContent.id = 'content'; 
+						            document.getElementById('mid_div').appendChild(existingContent);
+						        }
+
+						        existingContent.innerHTML = ''; // 기존 내용 지우기
+						        existingContent.appendChild(content); // 내용 추가
+						        // 맵 클릭 시 팝업 제거
+						        kakao.maps.event.addListener(map, 'click', function () {
+						        	existingContent = document.getElementById('content'); // 다시 가져오기
+						        	if (existingContent) {
+						        		existingContent.innerHTML = ''; // 엘리먼트의 내용을 지우고
+						            	existingContent.parentNode.removeChild(existingContent); // 부모에서 제거
+						        	}
+						    	});
+							});					                    
+		                }
+		            });
 		        }
+		    },
+		    error: function () { // 통신 실패했을 때
+		        console.error('실패애~~~~~~~');
+		    }
+		});
+	} // getData 끝
 				
-				function PriceCompare(){ //결과보기
-					var income = $('#income').val();
-					var money = $('#money').val();
-					
-	            	$.ajax({
-	           	 		url : 'http://localhost:8083/GitTest1/getCompare.do?income='+income+'&'+'money='+money,
-	                	contentType : 'text/plain; charset=UTF-8', // Specify UTF-8
-	                	data: { income: income },
-	                	
-	                	success : function(result) {
-	                		console.log("test : ", result);
-	                		
-	                		var searchList = result.split(';');
-	                		
-	                		for (let i = 2; i < searchList.length - 1; i += 3) {
-	                        	let j = i + 1;
-	                    		var geocoder = new kakao.maps.services.Geocoder();
-	                        
-	                        	geocoder.addressSearch(searchList[i],function(result, status) {
-
-	                            	if (status === kakao.maps.services.Status.OK) {
-	                                	var coords = new kakao.maps.LatLng(
-	                                    	result[0].y,
-	                                        result[0].x
-	                                    );
-
-	                                    var marker = new kakao.maps.Marker({
-	                                    	map : map,
-	                                        position : coords
-	                                    });
-	                                }
-								})
-							}
-	                	},
-	                	error : function() {
-	                		console.log("error");
-	                	}
-	            	})
-
+	function getapartallinfo(){
+		$.ajax({
+			url: 'http://localhost:8083/GitTest1/getapartallinfo.do?aptname=' + infoapart,
+						
+			success: function (result) {
+				let infoList = result.split(';');
+	
+				let temp1 = infoList.length/5; // 같은 이름 다른 평수 몇개인지 구분하기 위해서
+						
+				document.getElementById('apt_name').innerText = infoList[0];
+							
+				document.getElementById('apt_loc').innerText = infoList[1];
+							
+				document.getElementById('tab_1').innerText = infoList[3]+"㎡";
+				document.getElementById('realprice1').innerText = infoList[2]+"만원";
+				document.getElementById('apt_img1').src = infoList[4];
+				document.getElementById('apt_img1').onerror = function() {
+	        	    this.src = '../resources/images/img_logo.png';
+	        	};
+	        			
+	        	if(temp1 > 2 && temp1 < 3){
+					document.getElementById('tab_2').innerText = infoList[8]+"㎡";
+					document.getElementById('realprice2').innerText = infoList[7]+"만원";
+					document.getElementById('apt_img2').src = infoList[9];
+					document.getElementById('apt_img2').onerror = function() {
+		        	    this.src = '../resources/images/img_logo.png';
+		        	};
 				}
+	        			
+				if(temp1 > 3){
+					document.getElementById('tab_2').innerText = infoList[8]+"㎡";
+					document.getElementById('realprice2').innerText = infoList[7]+"만원";
+					document.getElementById('apt_img2').src = infoList[9];
+					document.getElementById('apt_img2').onerror = function() {
+		        	    this.src = '../resources/images/img_logo.png';
+		        	};
+					document.getElementById('tab_3').innerText = infoList[13]+"㎡";
+					document.getElementById('realprice3').innerText = infoList[12]+"만원";
+					document.getElementById('apt_img3').src = infoList[14];
+					document.getElementById('apt_img3').onerror = function() {
+		        	    this.src = '../resources/images/img_logo.png';
+		        	};
+				}
+							
+				let reviewList = infoList[infoList.length-1].split("|");
+							
+				const review = document.getElementById('review');
+							
+				for(let d = 0; d < reviewList.length; d++){
+					const reviews = document.createElement('div');
+					reviews.className="review_contents";
+					reviews.innerText = reviewList[d];
+					review.appendChild(reviews);
+				}
+												
+			},
+			error: function(){
+							
+			}
+		});
+	} // getapartallinfo 끝
 				
-			// 상세정보 출력하는 부분에서 평수에 따른 탭이동
-			$(document).on('click', 'ul.tabs li', function(){
-			    console.log("탭이동!")
-			    var tab_id = $(this).attr('data-tab');
-
-			    $('ul.tabs li').removeClass('current');
-			    $('.tab-content').removeClass('current');
-
-			    $(this).addClass('current');
-			    $("#" + tab_id).addClass('current');
-			});
-
-				
-			function searchPlaces() { // 검색데이터 가져오기
-	           	var searchValue = $('#keyword').val();
-	            	
-	           	$.ajax({
-	        		url : 'http://localhost:8083/GitTest1/getApartSearch.do?name='+ searchValue,
-	               	contentType : 'text/plain; charset=UTF-8', // Specify UTF-8
-	               	data: { name: searchValue },
+	function PriceCompare(){ //결과보기
+		var income = $('#income').val();
+		var money = $('#money').val();
+					
+	    $.ajax({
+	    	url : 'http://localhost:8083/GitTest1/getCompare.do?income='+income+'&'+'money='+money,
+	        contentType : 'text/plain; charset=UTF-8', // Specify UTF-8
+	        data: { income: income },
 	                	
-	               	success : function(result) {
-	               		console.log("test : ",result);
-	                   	var searchList = result.split(';');
+	        success : function(result) {
+	                		
+	        	var searchList = result.split(';');
+	                		
+	            for (let i = 2; i < searchList.length - 1; i += 3) {
+	            	let j = i + 1;
+	                var geocoder = new kakao.maps.services.Geocoder();
+	                        
+	                geocoder.addressSearch(searchList[i],function(result, status) {
+	                	if (status === kakao.maps.services.Status.OK) {
+	                    	var coords = new kakao.maps.LatLng(
+	                        	result[0].y,
+	                            result[0].x
+	                        );
+
+	                        var marker = new kakao.maps.Marker({
+	                        	map : map,
+	                            position : coords
+	                        });
+	                    }
+					})
+				}
+	        },
+	        error : function() {
+	        	console.log("error");
+	        }
+		})
+	}
+				
+	// 상세정보 출력하는 부분에서 평수에 따른 탭이동
+	$(document).on('click', 'ul.tabs li', function(){
+		console.log("탭이동!")
+		var tab_id = $(this).attr('data-tab');
+
+		$('ul.tabs li').removeClass('current');
+		$('.tab-content').removeClass('current');
+
+		$(this).addClass('current');
+		$("#" + tab_id).addClass('current');
+	});
+
+				
+	function searchPlaces() { // 검색데이터 가져오기
+		var searchValue = $('#keyword').val();
+	            	
+	    $.ajax({
+	    	url : 'http://localhost:8083/GitTest1/getApartSearch.do?name='+ searchValue,
+	        contentType : 'text/plain; charset=UTF-8', // Specify UTF-8
+	        data: { name: searchValue },
+	                	
+	        success : function(result) {
+	            var searchList = result.split(';');
 	                   		
 	                   	for (let i = 0; i < searchList.length - 1; i += 3) {
 	                       	let j = i + 1;
@@ -702,10 +639,11 @@
 	                                   	result[0].y,
 	                                    result[0].x
 	                            	);
-
+									markers.push(coords);
+									
 	                             	var marker = new kakao.maps.Marker({
 	                                   	map : map,
-	                                       position : coords
+	                                    position : coords
 	                                });
 	                            }
 							})
@@ -723,11 +661,11 @@
     		$(".chat").on({"click": function () {
                 
     			// 눌렀을 때 이미지 변경
-                if ($(this).attr("src") == "../resources/images/고양이말풍선white.png" && chatId !== '') {
-                    $(this).attr("src", "../resources/images/고양이말풍선black.png");
+                if ($(this).attr("src") == "../resources/images/고양이말풍선white2.png" && chatId !== '') {
+                    $(this).attr("src", "../resources/images/고양이말풍선black2.png");
                     $("#_chatbox").css("display", "block");
-                } else if ($(this).attr("src") == "../resources/images/고양이말풍선black.png") {
-                    $(this).attr("src", "../resources/images/고양이말풍선white.png");
+                } else if ($(this).attr("src") == "../resources/images/고양이말풍선black2.png") {
+                    $(this).attr("src", "../resources/images/고양이말풍선white2.png");
                     $("#_chatbox").css("display", "none");
                 } else if (chatId === '') {
                     // 비로그인이면 로그인페이지로 보내버림
@@ -884,6 +822,14 @@
 				}
   		    });
 		});
+		
+		function removeMarkers() {
+		    for (var i = 0; i < markers.length; i++) {
+		        markers[i].setMap(null);
+		    }
+		    // 배열 비우기
+		    markers = [];
+		}
 		
 		</script>
 

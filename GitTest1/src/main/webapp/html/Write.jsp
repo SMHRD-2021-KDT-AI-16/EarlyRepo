@@ -32,6 +32,86 @@
 <script type="text/javascript">
 </script>
 </head>
+<style>
+.campland-N15 {
+  background-color: #f2f2f2;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+.contents-inner {
+  margin: 0 auto;
+  max-width: 800px;
+}
+
+.contents-container {
+  background-color: #ffffff;
+  border: 1px solid #dddddd;
+ /* padding: 20px;  */
+}
+
+.container-md {
+  margin: 0 auto;
+  max-width: 600px;
+}
+
+h2 {
+  font-size: 24px;
+  margin: 0;
+  padding: 0;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+td {
+  padding: 10px;
+}
+
+th {
+  background-color: #f2f2f2;
+  padding: 10px;
+  font-weight: bold;
+}
+
+input[type="text"],
+textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #dddddd;
+  border-radius: 4px;
+  resize: vertical;
+}
+
+select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #dddddd;
+  border-radius: 4px;
+}
+
+.btn2 {
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.btn2:hover {
+  background-color: #45a049;
+}
+.textset-tit {
+    color: white;
+}
+</style>
 
 <body>
 	<!-- [S]campland-N1 -->
@@ -46,16 +126,16 @@
 		</div>
 		<div class="header-center">
 			<ul class="header-gnblist">
-				<li class="header-gnbitem"></li>
-				<li class="header-gnbitem"><a class="header-gnblink"
-					href="MainPage.jsp"> <span>홈</span>
-				</a></li>
-				<li class="header-gnbitem"><a class="header-gnblink"
-					href="board.jsp"> <span>부동산 게시판</span>
-				</a></li>
-				<li class="header-gnbitem"><a class="header-gnblink"
-					href="Chat.jsp"> <span>동네 채팅</span>
-				</a></li>
+				<li class="header-gnbitem">
+					<a class="header-gnblink" href="MainPage.jsp">
+						<span>홈</span>
+					</a>
+				</li>
+				<li class="header-gnbitem">
+					<a class="header-gnblink" href="AllgetBoardService.do">
+						<span>부동산 게시판</span>
+					</a>
+				</li>
 			</ul>
 		</div>
 		<div class="header-right">
@@ -76,31 +156,29 @@
 						<a href="SelectAll.do">회원관리</a>
 					</c:if>
 				</c:if>
-				<button class="btn-search header-utils-btn">
-					<a href="Profile.jsp"><img
-						src="../resources/icons/ico_search_black.svg"></a>
-				</button>
 	</header>
-	<!-- [E]campland-N1 -->
-	<main class="th-layout-main "> <!-- [S]campland-N8 -->
+	<main class="th-layout-main ">
 	<div class="campland-N8" data-bid="fGLQ6DNtyW">
 		<div class="contents-container">
 			<img class="contents-visual img-pc"
-				src="../resources/images/img_subvisual_1.png" alt="서브 비주얼 PC 이미지">
+				src="../resources/images/board.png" alt="서브 비주얼 PC 이미지">
 			<img class="contents-visual img-mobile"
-				src="../resources/images/img_subvisual_mobile_1.png"
+				src="../resources/images/board.png"
 				alt="서브 비주얼 모바일 이미지">
+				<div class="contents-body container-md">
+               <div class="textset textset-visual">
+                  <h6 class="textset-tit">게시판 글쓰기</h6>
+               </div>
+            </div>
 		</div>
 	</div>
-	<!-- [E]campland-N8 --> 
-	<!-- [S]campland-N17 -->
 	<div class="campland-N15" data-bid="crlQNCwqYB">
 		<div class="contents-inner" align="center">
 			<div class="contents-container container-md" align="center">
 				<table width="600" border="2" cellpadding="0" cellspacing="0"
 					bordercolor="#d6d4a6" align="center">
 					<tr height="40">
-						<td style="padding-left: 20px;"><b><h2>게시판</h2></b></td>
+						<td style="padding-left: 20px;"><b><h2>글쓰기</h2></b></td>
 					</tr>
 				</table>
 				<form action="writeboard.do" method="post" enctype="multipart/form-data">
@@ -114,10 +192,12 @@
 								<select name="loc">
 									<option>옥암동</option>
 									<option>하당동</option>
-									<option>??동</option>
-									<option>???동</option>
+									<option>부주동</option>
+									<option>부흥동</option>
+									<option>삼향동</option>
+									<option>신흥동</option>
+									<option>상동</option>
 								</select>
-								<!-- <input type="text" name="subject" size="35" maxlength="20" class="boxTF" /></td> -->
 						</tr>
 						<tr>
 							<td colspan="2" height="1" bgcolor="#dbdbdb" align="center"></td>
@@ -151,7 +231,6 @@
 		</div>
 	</div>
 	</main>
-	<!-- [S]campland-N2 -->
 	<footer class="campland-N2" data-bid="GjLQ6dNu06" id="">
 	<div class="footer-container container-lg">
 		<div class="footer-bottom">

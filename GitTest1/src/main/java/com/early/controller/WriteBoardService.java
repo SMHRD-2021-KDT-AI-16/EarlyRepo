@@ -25,7 +25,12 @@ public class WriteBoardService implements Command{
 		
 		MultipartRequest multi = new MultipartRequest(request,savePath,sizeLimit,"UTF-8", new DefaultFileRenamePolicy());
 		
-		String f_file = multi.getFilesystemName("upload");
+		String f_file;
+		if(multi.getFilesystemName("upload") != null) {
+			f_file = multi.getFilesystemName("upload");
+	    }else {
+	        f_file="사진없음이없음이없으먇ㅂㄴㅍasdasdwqdvk";
+	    }
 		String f_content = multi.getParameter("board");
 		String loc = multi.getParameter("loc");
 		MemberVO user = (MemberVO)session.getAttribute("member");

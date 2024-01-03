@@ -26,7 +26,7 @@
 	<link rel="stylesheet" href="../resources/css/common.css">
 	<link rel="stylesheet" href="../resources/css/style.css">
 	<style>
-.container {
+	.container {
 	display: flex;
 	justify-content: center;
 	/*align-items: center;*/
@@ -39,6 +39,7 @@
 }
 
 .color-change {
+	text-align: center;
 	color: blue;
 	font-weight: bold;
 }
@@ -75,9 +76,17 @@ tr:nth-child(even) {
 tr:hover {
 	background-color: #e6e6e6;
 }
-</style>
-
-
+result_loan{
+	text-align: center;
+}
+.campland-N25 .contents-confirm {
+	margin-top: 50px;
+	margin-bottom: 3rem;
+}
+.select_loan{
+	font-size: x-large;
+}
+	</style>
 </head>
 
 <body>
@@ -94,20 +103,13 @@ tr:hover {
 			<div class="header-center">
 				<ul class="header-gnblist">
 					<li class="header-gnbitem">
-					</li>
-					<li class="header-gnbitem">
 						<a class="header-gnblink" href="MainPage.jsp">
 							<span>홈</span>
 						</a>
 					</li>
 					<li class="header-gnbitem">
-						<a class="header-gnblink" href="board.jsp">
+						<a class="header-gnblink" href="AllgetBoardService.do">
 							<span>부동산 게시판</span>
-						</a>
-					</li>
-					<li class="header-gnbitem">
-						<a class="header-gnblink" href="Chat.jsp">
-							<span>동네 채팅</span>
 						</a>
 					</li>
 				</ul>
@@ -128,13 +130,8 @@ tr:hover {
                               <a href="SelectAll.do">회원관리</a>
                            </c:if>   
                      </c:if>
-					<button class="btn-search header-utils-btn">
-						<a href ="Profile.jsp"><img src="../resources/icons/ico_search_black.svg"></a>
-					</button>
 	</header>
-	<!-- [E]campland-N1 -->
 	<main class="th-layout-main ">
-		<!-- [S]campland-N25 -->
 		<div class="campland-N25" data-bid="EJlQ6DHEUz" id="">
 			<div class="contents-inner">
 				<div class="contents-container">
@@ -142,7 +139,7 @@ tr:hover {
 						<h2 class="textset-tit">판단 결과​<br></h2>
 						<h4>당신이 대출받을 수 있는 금액은... </h4>
 					</div>	
-					<form action="Result.do" method="post">			
+					<form id="result_loan" action="Result.do" method="post">			
      				<div class="container">
      					<img src="../resources/icons/check-icon.png" alt="체크마크">
      				</div>
@@ -151,62 +148,185 @@ tr:hover {
      				int loan_money = (int) session.getAttribute("loan_money");
      				
      				if(vo.size() ==1){ %>
-     				<p class="text_result"><span class="color-change">${loanVOs.get(0).getLOAN_NAME() }</span>상품을 이용하시면</p>     <!-- 대출상품이름 적용하기 -->
-					<p class="text_result">최대&nbsp;<span class="color-change"> ${loanVOs.get(0).getLOAN_LIMIT() }원&nbsp; </span> 이고,</p>      <!-- profile에서 판단한 대출 금액으로 바꾸기 -->
+     				<p class="text_result"><span class="color-change">${loanVOs.get(0).getLOAN_NAME() }</span>상품을 이용하시면</p>
+					<p class="text_result">최대&nbsp;<span class="color-change"> ${loanVOs.get(0).getLOAN_LIMIT() }만원&nbsp; </span> 이고,</p>      <!-- profile에서 판단한 대출 금액으로 바꾸기 -->
 					<p class="text_result">본인의 자산과 합한 금액은 최대&nbsp;<span class="color-change">${loanVOs.get(0).getLOAN_LIMIT()+loan_money}원&nbsp; </span> 입니다.</p>
-					<input type="radio" name="loan_select" value="${loanVOs.get(0).getLOAN_LIMIT()+loan_money}"> ${loanVOs.get(0).getLOAN_NAME()}
+					<input class="select_loan" type="radio" name="loan_select" value="${loanVOs.get(0).getLOAN_LIMIT()+loan_money}"> <span class="select_loan" >${loanVOs.get(0).getLOAN_NAME()}</span>
 					<br>
      				<%} else if(vo.size()==2){ %>
-     					<p class="text_result"><span class="color-change">${loanVOs.get(0).getLOAN_NAME()} + ${loanVOs.get(1).getLOAN_NAME() }</span>상품을 이용하시면</p>     <!-- 대출상품이름 적용하기 -->
-    					<p class="text_result">각각 최대&nbsp;<span class="color-change"> ${loanVOs.get(0).getLOAN_LIMIT()}원, ${loanVOs.get(1).getLOAN_LIMIT()}원&nbsp; </span> 이고</p>
-    					<p class="text_result">본인의 자산과 합한 금액은 최대&nbsp;<span class="color-change"> ${loanVOs.get(0).getLOAN_LIMIT()+loan_money}원 , ${loanVOs.get(1).getLOAN_LIMIT()+loan_money}원&nbsp; </span> 입니다.</p>
-    					<input type="radio" name="loan_select" value="${loanVOs.get(0).getLOAN_LIMIT()+loan_money}"> ${loanVOs.get(0).getLOAN_NAME()}
+     					<p class="text_result"><span class="color-change">${loanVOs.get(0).getLOAN_NAME()}, ${loanVOs.get(1).getLOAN_NAME() }</span>상품을 이용하시면</p>     <!-- 대출상품이름 적용하기 -->
+    					<p class="text_result">각각 최대&nbsp;<span class="color-change"> ${loanVOs.get(0).getLOAN_LIMIT()}만원, ${loanVOs.get(1).getLOAN_LIMIT()}만원&nbsp; </span> 이고</p>
+    					<p class="text_result">본인의 자산과 합한 금액은 최대&nbsp;<span class="color-change"> ${loanVOs.get(0).getLOAN_LIMIT()+loan_money}만원 , ${loanVOs.get(1).getLOAN_LIMIT()+loan_money}만원&nbsp; </span> 입니다.</p>
+    					<input type="radio" name="loan_select" value="${loanVOs.get(0).getLOAN_LIMIT()+loan_money}"> <span class="select_loan" >${loanVOs.get(0).getLOAN_NAME()}</span>
     					<br>
-    					<input type="radio" name="loan_select" value="${loanVOs.get(1).getLOAN_LIMIT()+loan_money}"> ${loanVOs.get(1).getLOAN_NAME()}
+    					<input type="radio" name="loan_select" value="${loanVOs.get(1).getLOAN_LIMIT()+loan_money}"> <span class="select_loan" >${loanVOs.get(1).getLOAN_NAME()}</span>
     					<br>
-     				<%}%>
+     				<%} else if(vo.size()==0){%>
+                    <input type="radio" name="loan_select" value='0'><span class="select_loan" >받을 수 있는 대출이 없습니다.</span>
+                    <%} %>
+                    <br>
      				<span class="color-change">대출에 관한 금액은 세부적으로 상이할 수 있습니다.</span>
+     				<div class="contents-confirm">
+						<a href="Profile.jsp" class="btnset btnset-round">다시하기</a>
+						<input type="submit" value="결과보기" class="btnset btnset-round" >
+					</div>
+					</form>
 					<table>
 						<thead>
 							<tr>
-								<th></th>
-								<th>대출상품에 따른 금리</th>
-								<th></th>
-								<th></th>
-								<th></th>
+								<th colspan="5">내 집 마련 디딤돌 대출 금리</th>
 							</tr>
 						</thead>
 						<tbody>
 							<tr>
-								<td>행 1, 열 1</td>
-								<td>행 1, 열 2</td>
-								<td>행 1, 열 3</td>
-								<td>행 1, 열 4</td>
-								<td>행 1, 열 5</td>
+								<th>대출만기\연소득</th>
+								<th>~ 2000</th>
+								<th>2000 ~ 4000</th>
+								<th>4000 ~ 7000</th>
+								<th>8500 ~</th>
 							</tr>
 							<tr>
-								<td>행 2, 열 1</td>
-								<td>행 2, 열 2</td>
-								<td>행 2, 열 3</td>
-								<td>행 2, 열 4</td>
-								<td>행 2, 열 5</td>
+								<th>10</th>
+								<td>2.45%</td>
+								<td>2.80%</td>
+								<td>3.05%</td>
+								<td>3.30%</td>
 							</tr>
-							
+							<tr>
+								<th>15</th>
+								<td>2.55%</td>
+								<td>2.90%</td>
+								<td>3.15%</td>
+								<td>3.40%</td>
+							</tr>
+							<tr>
+								<th>20</th>
+								<td>2.65%</td>
+								<td>3.00%</td>
+								<td>3.25%</td>
+								<td>3.50%</td>
+							</tr>
+							<tr>
+								<th>30</th>
+								<td>2.70%</td>
+								<td>3.05%</td>
+								<td>3.30%</td>
+								<td>3.55%</td>
+							</tr>							
+						</tbody>
+						<thead>
+							<tr>
+								<th colspan="5">신생아 특례대출 금리</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<th>대출만기\연소득</th>
+								<th>8500이하</th>
+								<th>8500초과</th>
+								<th></th>
+								<th></th>
+							</tr>
+							<tr>
+								<th>10</th>
+								<td>1.60%</td>
+								<td>2.70%</td>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr>
+								<th>15</th>
+								<td>1.90%</td>
+								<td>2.90%</td>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr>
+								<th>20</th>
+								<td>2.30%</td>
+								<td>3.10%</td>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr>
+								<th>30</th>
+								<td>2.70%</td>
+								<td>3.30%</td>
+								<td></td>
+								<td></td>
+							</tr>							
+						</tbody>
+						<thead>
+							<tr>
+								<th colspan="5">신혼부부전용 구입자금대출 금리</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<th>대출만기\연소득</th>
+								<th>~ 2000</th>
+								<th>2000 ~ 4000</th>
+								<th>4000 ~ 7000</th>
+								<th>8500 ~</th>
+							</tr>
+							<tr>
+								<th>10</th>
+								<td>2.15%</td>
+								<td>2.50%</td>
+								<td>2.75%</td>
+								<td>3.00%</td>
+							</tr>
+							<tr>
+								<th>15</th>
+								<td>2.25%</td>
+								<td>2.60%</td>
+								<td>2.85%</td>
+								<td>3.10%</td>
+							</tr>
+							<tr>
+								<th>20</th>
+								<td>2.35%</td>
+								<td>2.70%</td>
+								<td>2.95%</td>
+								<td>3.20%</td>
+							</tr>
+							<tr>
+								<th>30</th>
+								<td>2.40%</td>
+								<td>2.75%</td>
+								<td>3.00%</td>
+								<td>3.25%</td>
+							</tr>					
+						</tbody>
+						<thead>
+							<tr>
+								<th colspan="5">희망전용타운전용 주택담보장기대출 금리</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<th>대출만기\연소득</th>
+								<th>-</th>
+								<th></th>
+								<th></th>
+								<th></th>
+							</tr>
+							<tr>
+								<th>20</th>
+								<td>1.60%</td>
+								<td colspan="3">특이사항</td>
+							</tr>
+							<tr>
+								<th>30</th>
+								<td>1.60%</td>
+								<td colspan="3">LH희망전용타운 당첨</td>
+							</tr>		
 						</tbody>
 					</table>
-
-
-
-					<div class="contents-confirm">
-						<a href="Profile.jsp" class="btnset btnset-round">다시하기</a>
-						<input type="submit" value="결과보기" class="btnset btnset-round" >
-						
-					</div>
 				</div>
 			</div>
 		</div>
-					</form>
-		<!-- [E]campland-N25 -->
+					
 	</main>
 	<footer class="campland-N2" data-bid="oolq6dhEvp">
 		<div class="footer-container container-lg">
@@ -232,14 +352,3 @@ tr:hover {
 	<script src="../resources/js/script.js"></script>
 </body>
 </html>
-<!-- 
-	<h1>결과</h1>
-	<br>
-	<%for(int i=0;i<4;i++){%>
-		
-	<h3>${loanVOs[i]}</h3>
-		
-	
-	
-	<%} %>
- -->

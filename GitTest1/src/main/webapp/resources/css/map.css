@@ -30,6 +30,13 @@
 	margin-right: 5%;
 	margin-left: 50px;
 }
+#messageWindow{
+	width: 500px;
+	font-size: x-large;
+}
+#inputMessage{
+	width: 350px;
+}
 
 #mid_div {
 	width: 100%;
@@ -75,7 +82,6 @@
 .overlaybox {
 	width: 70px;
 	background-color: whitesmoke;
-
 }
 
 .title_text {
@@ -226,13 +232,12 @@ ul.tabs li.current {
 	bottom: 10px;
 }
 #_chatbox {
-	
     position: fixed;
     background-color: white;
     z-index: 10000;
     right: 10px;
     max-height: 250px;
-    bottom: 100px; /* 이미지 아래에 띄우기 위한 여유값 */
+    bottom: 130px;
     display: none;
     overflow-y: scroll;
 }
