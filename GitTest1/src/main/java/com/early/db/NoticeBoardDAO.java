@@ -83,10 +83,10 @@ public class NoticeBoardDAO {
 
 	public int deleteboard(String user_id) {
 		SqlSession session = factory.openSession(true);
-		System.out.println("test2 : "+user_id);
+		System.out.println("게시글삭제 : "+user_id);
 		
 		int cnt = session.delete("deleteboard", user_id);
-		System.out.println("암ㄴ어ㅏㅁㄴㅇ");
+		
 		System.out.println("cnt출력:" + cnt);
 
 		session.close();
@@ -97,10 +97,10 @@ public class NoticeBoardDAO {
 
 	public int deletecomment(String user_id) {
 		SqlSession session = factory.openSession(true);
-		System.out.println("test2 : "+user_id);
+		System.out.println("게시글댓글삭제 : "+user_id);
 		
-		int cnt = session.delete("deleteboard", user_id);
-		System.out.println("암ㄴ어ㅏㅁㄴㅇ");
+		int cnt = session.delete("deletecomment", user_id);
+		
 		System.out.println("cnt출력:" + cnt);
 
 		session.close();
