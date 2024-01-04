@@ -92,7 +92,7 @@
 		<div id="total_div">
 			<div id="left_div">       <!-- 왼쪽 자산정보 입력창 -->
 		       <div class="textset textset-sub textset-center">
-				  <h5 class="textset-tit">당신의 능력으로 살 수있는 집을 알려드려요​<br></h5>
+				  <h5 class="textset-tit" id = "MainSerch">당신의 능력으로 살 수있는 집을 알려드려요​<br></h5>
 			   <form>
 			   </div>
 		   		<ul class="contents-list">
@@ -193,7 +193,7 @@
 					<div class="contents-confirm" align=center>
 						<button id="result_btn" class="btnset btnset-round" type="button" onclick="PriceCompare()">결과보기</button>
 						<br>
-						<button id="final_btn" class="btnset btnset-round" type="button" onclick="">더보기</button>
+						<button id="final_btn" class="btnset btnset-round" type="button" onclick="">상세입력</button>
 					</div>
 				</ul>	
 			</div>      <!-- 왼쪽 자산정보 입력창 닫기 -->

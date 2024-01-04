@@ -21,7 +21,7 @@ public class WriteBoardService implements Command{
 		HttpSession session = request.getSession();
 		String savePath = "C:\\Users\\user\\git\\EarlyRepo\\GitTest1\\src\\main\\webapp\\uploadimg";
 		 
-		int sizeLimit = 1024*1024*5;
+		int sizeLimit = 4096*4096*15;
 		
 		MultipartRequest multi = new MultipartRequest(request,savePath,sizeLimit,"UTF-8", new DefaultFileRenamePolicy());
 		

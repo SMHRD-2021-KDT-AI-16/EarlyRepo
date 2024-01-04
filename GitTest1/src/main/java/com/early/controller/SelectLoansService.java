@@ -34,8 +34,7 @@ public class SelectLoansService implements Command{
 		vo.setDUPLICATE_YN(DUPLICATE_YN);
 		vo.setMARRIAGE_YEARS(MARRIAGE_YEARS);
 		vo.setINCOME(INCOME);
-		
-		//System.out.println("vo : "+vo.getFIRST_HOUSE_YN()+vo.getDUPLICATE_YN()+vo.getMARRIAGE_YEARS());
+
 		ApartDAO dao = new ApartDAO();		
 		List<LoanNameVO> loanVOs = dao.SelectLoans(vo);
 		System.out.println("loanVOs : "+loanVOs);

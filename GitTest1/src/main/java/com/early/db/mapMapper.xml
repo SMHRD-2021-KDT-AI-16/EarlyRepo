@@ -48,6 +48,7 @@
 		MARRIAGE_YEARS >= #{MARRIAGE_YEARS}
 		AND INCOME >= #{INCOME}
 		]]>
+
 	</select>
 
 	<select id="SelectPrice" resultType="com.early.model.ApartVO">
