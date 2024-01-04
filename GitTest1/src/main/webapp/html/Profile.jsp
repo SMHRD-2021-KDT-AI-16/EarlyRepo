@@ -86,12 +86,12 @@
 
 							<li class="contents-item">
 								<h6 class="form-tit form-tit-deco">
-									<span></span>집 사본적
+									<span></span>첫주택구매가
 								</h6>
 								<div class="form-wrap">
 									<div class="inputset inputset-round" align=left>
-										<input type="radio" name="FIRST_HOUSE_YN" value="N">있어요
-										<input type="radio" name="FIRST_HOUSE_YN" value="Y">없어요
+										<input type="radio" name="FIRST_HOUSE_YN" value="Y">맞아요
+										<input type="radio" name="FIRST_HOUSE_YN" value="N">아니에요
 									</div>
 								</div>
 							</li>
@@ -196,16 +196,15 @@
 								<div class="form-wrap">
 									<div class="selectset selectset-round selectset-md">
 										<select name="income" class="selectset-toggle btn">
-											<option value="income1">2억원 이상</option>
-											<option value="income1">1억 ~ 1억5천만원</option>
-											<option value="income1">1억3천 ~ 1억5천만원</option>
-											<option value="income1">1억 ~ 1억3천만원</option>
-											<option value="income2">8천 ~ 1억원</option>
-											<option value="income3">6천 ~ 8천만원</option>
-											<option value="income4">4천 ~ 6천만원</option>
-											<option value="income5">2천 ~ 4천만원</option>
-											<option value="income6">2천만원 이하</option>
-
+											<option value="9">2억원 이상</option>
+											<option value="8">1억 ~ 1억5천만원</option>
+											<option value="7">1억3천 ~ 1억5천만원</option>
+											<option value="6">1억 ~ 1억3천만원</option>
+											<option value="5">8천 ~ 1억원</option>
+											<option value="4">6천 ~ 8천만원</option>
+											<option value="3">4천 ~ 6천만원</option>
+											<option value="2">2천 ~ 4천만원</option>
+											<option value="1">2천만원 이하</option>
 										</select>
 									</div>
 								</div>
@@ -230,8 +229,8 @@
 				</li>
 				<div class="contents-confirm">
 					<a href="MainPage.jsp"
-						class="btnset btnset-round btnset-line btnset-black">돌아가기</a> <input
-						type="submit" class="btnset btnset-round" value="결과">
+						class="btnset btnset-round btnset-line btnset-black">돌아가기</a>
+						<button type="button" class="btnset btnset-round" onclick="submitForm()">결과</button>
 				</div>
 
 
@@ -241,7 +240,48 @@
 			</div>
 		</div>
 		</div>
-		<!-- [E]campland-N25 -->
+<script>
+function submitForm() {
+    // 첫주택구매가, 현재 집이, 현재 대출이 라디오박스 체크 여부 확인
+    if (!isChecked("FIRST_HOUSE_YN") || !isChecked("now_home") || !isChecked("DUPLICATE_YN")) {
+        var uncheckedRadios = [];
+
+        if (!isChecked("FIRST_HOUSE_YN")) {
+            uncheckedRadios.push("첫 주택 구매");
+        }
+
+        if (!isChecked("now_home")) {
+            uncheckedRadios.push("현재 집");
+        }
+
+        if (!isChecked("DUPLICATE_YN")) {
+            uncheckedRadios.push("현재 대출");
+        }
+
+        var errorMsg = uncheckedRadios.join(", ")+"을(를) 선택해주세요. ";
+        alert(errorMsg);
+        return false; // 폼 전송을 막음
+    }
+
+    window.location.href = "SelectLoans.do";
+
+    // 폼을 제출하도록 허용
+    document.querySelector('form').submit();
+}
+
+function isChecked(name) {
+    // 라디오박스 체크 여부 확인
+    var radioBoxes = document.getElementsByName(name);
+    for (var i = 0; i < radioBoxes.length; i++) {
+        if (radioBoxes[i].checked) {
+            return true;
+        }
+    }
+    return false;
+}
+</script>
+
+
 	</main>
 	<footer class="campland-N2" data-bid="oolq6dhEvp">
 		<div class="footer-container container-lg">

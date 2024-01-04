@@ -22,6 +22,7 @@ public class SelectLoansService implements Command{
 		String FIRST_HOUSE_YN = request.getParameter("FIRST_HOUSE_YN");
 		String DUPLICATE_YN = request.getParameter("DUPLICATE_YN");
 		int MARRIAGE_YEARS = Integer.parseInt( request.getParameter("MARRIAGE_YEARS"));
+		int INCOME = Integer.parseInt( request.getParameter("income"));
 		
 		HttpSession session = request.getSession();
 		int loan_money = (int) session.getAttribute("loan_money");
@@ -32,8 +33,9 @@ public class SelectLoansService implements Command{
 		vo.setFIRST_HOUSE_YN(FIRST_HOUSE_YN);
 		vo.setDUPLICATE_YN(DUPLICATE_YN);
 		vo.setMARRIAGE_YEARS(MARRIAGE_YEARS);
+		vo.setINCOME(INCOME);
 		
-		System.out.println("vo : "+vo.getFIRST_HOUSE_YN()+vo.getDUPLICATE_YN()+vo.getMARRIAGE_YEARS());
+		//System.out.println("vo : "+vo.getFIRST_HOUSE_YN()+vo.getDUPLICATE_YN()+vo.getMARRIAGE_YEARS());
 		ApartDAO dao = new ApartDAO();		
 		List<LoanNameVO> loanVOs = dao.SelectLoans(vo);
 		System.out.println("loanVOs : "+loanVOs);

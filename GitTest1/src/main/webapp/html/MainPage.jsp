@@ -206,7 +206,7 @@
 						<div>
 							<form>
                         		<label for="keyword" style="font-size: 20px;">키워드 :</label> <input type="text" value="" id="keyword" size="15" >
-                        		<button type="button" onclick="searchPlaces()">검색</button>
+                        		<button id = "search_btn" type="button" onclick="searchPlaces()">검색</button>
                         		<span style="font-size: 20px; text-align: left;"><br><br>↑ 주소 검색 가능<br><br> ← 왼쪽에 입력하면 살 수 있는 집이 표시됩니다.<br><br> → 지도에서 직접 집보기,지역게시판 <br><br> ↓ 게시판 인기글 <br><br>↘ 접속한 사람들과 채팅<br><br><br>시연회계정<br>id:test<br>pw:12345<br></span>
                      		</form>
 						</div>
@@ -629,122 +629,128 @@
 	        success : function(result) {
 	            var searchList = result.split(';');
 	                   		
-	                   	for (let i = 0; i < searchList.length - 1; i += 3) {
-	                       	let j = i + 1;
+	           	for (let i = 0; i < searchList.length - 1; i += 3) {
+	               	let j = i + 1;
 	                        
-	                       	geocoder.addressSearch(searchList[i],function(result, status) {
+	                geocoder.addressSearch(searchList[i],function(result, status) {
 
-	                           	if (status === kakao.maps.services.Status.OK) {
-	                               	var coords = new kakao.maps.LatLng(
-	                                   	result[0].y,
-	                                    result[0].x
-	                            	);
-									markers.push(coords);
+	                   	if (status === kakao.maps.services.Status.OK) {
+	                      	var coords = new kakao.maps.LatLng(
+	                           	result[0].y,
+	                            result[0].x
+	                        );
 									
-	                             	var marker = new kakao.maps.Marker({
-	                                   	map : map,
-	                                    position : coords
-	                                });
-	                            }
-							})
-						}
-	                },
-					error : function() {
-		               	console.log("실패");
-					}
-	            })
-		    } // searchPlaces 끝
+	                        var marker = new kakao.maps.Marker({
+	                          	map : map,
+	                            position : coords
+	                        });
+							markers.push(marker);
+	                    }
+					})
+				}
+	        },
+			error : function() {
+		    	console.log("실패");
+			}
+	    })
+	} // searchPlaces 끝
 
 				
-		var chatId = "${chatId}";
-			// 이미지 클릭 이벤트 처리
-    		$(".chat").on({"click": function () {
+	var chatId = "${chatId}";
+	// 이미지 클릭 이벤트 처리
+    $(".chat").on({"click": function () {
                 
-    			// 눌렀을 때 이미지 변경
-                if ($(this).attr("src") == "../resources/images/고양이말풍선white2.png" && chatId !== '') {
-                    $(this).attr("src", "../resources/images/고양이말풍선black2.png");
-                    $("#_chatbox").css("display", "block");
-                } else if ($(this).attr("src") == "../resources/images/고양이말풍선black2.png") {
-                    $(this).attr("src", "../resources/images/고양이말풍선white2.png");
-                    $("#_chatbox").css("display", "none");
-                } else if (chatId === '') {
-                    // 비로그인이면 로그인페이지로 보내버림
-                    alert("로그인이 필요합니다.");
-                    window.location.href = "login.jsp";
-                }
-            }});
+    // 눌렀을 때 이미지 변경
+        if ($(this).attr("src") == "../resources/images/고양이말풍선white2.png" && chatId !== '') {
+            $(this).attr("src", "../resources/images/고양이말풍선black2.png");
+            $("#_chatbox").css("display", "block");
+        } else if ($(this).attr("src") == "../resources/images/고양이말풍선black2.png") {
+            $(this).attr("src", "../resources/images/고양이말풍선white2.png");
+            $("#_chatbox").css("display", "none");
+        } else if (chatId === '') {
+            // 비로그인이면 로그인페이지로 보내버림
+            alert("로그인이 필요합니다.");
+            window.location.href = "login.jsp";
+        }
+    }});
 
 
-			var textarea = document.getElementById("messageWindow");
-			var webSocket = new WebSocket('ws://192.168.219.111:8083/GitTest1/broadcasting');
-			var inputMessage = document.getElementById('inputMessage');
-			webSocket.onerror = function(event) {
-			    onError(event)
-			};
-			webSocket.onopen = function(event) {
-			    onOpen(event)
-			};
-			webSocket.onmessage = function(event) {
-			    onMessage(event)
-			};
+	var textarea = document.getElementById("messageWindow");
+	var webSocket = new WebSocket('ws://192.168.219.111:8083/GitTest1/broadcasting');
+	var inputMessage = document.getElementById('inputMessage');
+	
+	// 에러났을 때
+	webSocket.onerror = function(event) {
+		onError(event)
+	};
+	// 접속했을 때
+	webSocket.onopen = function(event) {
+		onOpen(event)
+	};
+	// 메세지 올때
+	webSocket.onmessage = function(event) {
+		onMessage(event)
+	};
 			
-			//메세지 받은거
-			function onMessage(event) {
-			    var message = event.data.split("|");
-			    var sender = message[0];
-			    var content = message[1];
-			    if (content == "") {
-			            
-			    } else {
-			        if (content.match("/")) {
-			            if (content.match(("/" + chatId))) {
-			                var temp = content.replace("/" + chatId, "(귓속말) :").split(":");
-			                if (temp[1].trim() == "") {
-			                } else {
-			                    $("#messageWindow").html($("#messageWindow").html() + "<p class='whisper'>"
+	//메세지 받은거
+	function onMessage(event) {
+	    var message = event.data.split("|"); // 메세지를 보낼때 닉네임 | 내용으로 보내기 때문에
+	    var sender = message[0]; // 보낸사람 닉네임
+	    var content = message[1]; // 내용
+	    if (content == "") {
+			// 아무것도 안오면 아무것도 하지않음	            
+		} else {
+			// 내용이 들어왔다면
+			if (content.match("/")) { // /가 포함되어있다면
+				if (content.match(("/" + chatId))) { // /닉네임으로 들어왔다면
+			    	var temp = content.replace("/" + chatId, "(귓속말) :").split(":"); // /닉네임을 (귓속말): 로 바꾸고 :를 기준으로 짜른다
+			        if (temp[1].trim() == "") {
+			        	// 내용의 공백을 지운것이 아무것도 없다면 아무것도 안함
+					} else {
+			        	$("#messageWindow").html($("#messageWindow").html() + "<p class='whisper'>"
 			                        + sender + content.replace("/" + chatId, "(귓속말) :") + "</p>");
-			                }
-			            } else {
-			            }
-			        } else {
-			            if (content.match("!")) {
-			                $("#messageWindow").html($("#messageWindow").html()
-			                    + "<p class='chat_content'><b class='impress'>" + sender + " : " + content + "</b></p>");
-			            } else {
-			                $("#messageWindow").html($("#messageWindow").html()
-			                    + "<p class='chat_content'>" + sender + " : " + content + "</p>");
-			            }
 			        }
-			    }
-			}// onMessage(event) 끝
-			    
-			// 입장할때
-			function onOpen(event) {
-			    $("#messageWindow").html("<p class='chat_content'>채팅에 참여하였습니다.</p>");
-			}
-			
-			// 에러낫을때
-			function onError(event) {
-			    alert(event.data);
-			}
-			
-			// 메세지 보내는 부분
-			function send() {
-			    if (inputMessage.value == "") {
 			    } else {
-			        $("#messageWindow").html($("#messageWindow").html()
-			            + "<p class='chat_content'>나 : " + inputMessage.value + "</p>");
 			    }
-			    webSocket.send(chatId + "|" + inputMessage.value);
-			    inputMessage.value = "";
+			} else {
+			    if (content.match("!")) {
+			    	$("#messageWindow").html($("#messageWindow").html()
+			                    + "<p class='chat_content'><b class='impress'>" + sender + " : " + content + "</b></p>");
+			    } else {
+			    	$("#messageWindow").html($("#messageWindow").html()
+			                    + "<p class='chat_content'>" + sender + " : " + content + "</p>");
+			    }
 			}
+		}
+	}// onMessage(event) 끝
+			    
+	// 입장할때
+	function onOpen(event) {
+	    $("#messageWindow").html("<p class='chat_content'>채팅에 참여하였습니다.</p>");
+	}
 			
-			//엔터키를 통해 send함
-			function enterkey() {
-			    if (window.event.keyCode == 13) {
-			        send();
-			    }
-			}
+	// 에러낫을때
+	function onError(event) {
+	    alert(event.data);
+	}
+			
+	// 메세지 보내는 부분
+	function send() {
+	    if (inputMessage.value == "") {
+	    } else {
+	        $("#messageWindow").html($("#messageWindow").html()
+		            + "<p class='chat_content'>나 : " + inputMessage.value + "</p>");
+	    }
+	    webSocket.send(chatId + "|" + inputMessage.value);
+	    inputMessage.value = "";
+	}
+			
+	//엔터키를 통해 send함
+	function enterkey() {
+	    if (window.event.keyCode == 13) {
+	        send();
+	    }
+	}
 			
 			// 스크롤 조절
 			window.setInterval(function() {
@@ -830,6 +836,15 @@
 		    // 배열 비우기
 		    markers = [];
 		}
+		
+		function preventEnterKey(event) {
+		    if (event.keyCode === 13) {
+		    	event.preventDefault();
+			}
+		}
+		window.onload = function() {
+		      document.onkeydown = preventEnterKey;
+		};
 		
 		</script>
 

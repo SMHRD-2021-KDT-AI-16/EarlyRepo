@@ -36,6 +36,7 @@
 
 	<select id="SelectLoans" parameterType="com.early.model.LoanVO"
 		resultType="com.early.model.LoanNameVO">
+		<![CDATA[
 		SELECT a.loan_name, a.loan_limit
 		FROM tb_loan a
 		JOIN
@@ -45,6 +46,8 @@
 		AND DUPLICATE_YN = #{DUPLICATE_YN}
 		AND
 		MARRIAGE_YEARS >= #{MARRIAGE_YEARS}
+		AND INCOME >= #{INCOME}
+		]]>
 	</select>
 
 	<select id="SelectPrice" resultType="com.early.model.ApartVO">

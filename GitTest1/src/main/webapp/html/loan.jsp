@@ -150,7 +150,7 @@ result_loan{
      				if(vo.size() ==1){ %>
      				<p class="text_result"><span class="color-change">${loanVOs.get(0).getLOAN_NAME() }</span>상품을 이용하시면</p>
 					<p class="text_result">최대&nbsp;<span class="color-change"> ${loanVOs.get(0).getLOAN_LIMIT() }만원&nbsp; </span> 이고,</p>      <!-- profile에서 판단한 대출 금액으로 바꾸기 -->
-					<p class="text_result">본인의 자산과 합한 금액은 최대&nbsp;<span class="color-change">${loanVOs.get(0).getLOAN_LIMIT()+loan_money}원&nbsp; </span> 입니다.</p>
+					<p class="text_result">본인의 자산과 합한 금액은 최대&nbsp;<span class="color-change">${loanVOs.get(0).getLOAN_LIMIT()+loan_money}만원&nbsp; </span> 입니다.</p>
 					<input class="select_loan" type="radio" name="loan_select" value="${loanVOs.get(0).getLOAN_LIMIT()+loan_money}"> <span class="select_loan" >${loanVOs.get(0).getLOAN_NAME()}</span>
 					<br>
      				<%} else if(vo.size()==2){ %>
@@ -162,13 +162,13 @@ result_loan{
     					<input type="radio" name="loan_select" value="${loanVOs.get(1).getLOAN_LIMIT()+loan_money}"> <span class="select_loan" >${loanVOs.get(1).getLOAN_NAME()}</span>
     					<br>
      				<%} else if(vo.size()==0){%>
-                    <input type="radio" name="loan_select" value='0'><span class="select_loan" >받을 수 있는 대출이 없습니다.</span>
+                    <input type="radio" name="loan_select" value="loan_money"><span class="select_loan" >받을 수 있는 대출이 없습니다.</span>
                     <%} %>
                     <br>
      				<span class="color-change">대출에 관한 금액은 세부적으로 상이할 수 있습니다.</span>
      				<div class="contents-confirm">
 						<a href="Profile.jsp" class="btnset btnset-round">다시하기</a>
-						<input type="submit" value="결과보기" class="btnset btnset-round" >
+						<button type="button" class="btnset btnset-round" onclick="submitForm()">결과보기</button>
 					</div>
 					</form>
 					<table>
@@ -325,9 +325,39 @@ result_loan{
 					</table>
 				</div>
 			</div>
-		</div>
-					
+		</div>	
 	</main>
+	<script type="text/javascript">
+	function submitForm() {
+		
+		var uncheckedRadios = [];
+
+        
+		if (!isChecked("loan_select")) {
+				uncheckedRadios.push("대출");
+
+				var errorMsg = uncheckedRadios.join(", ")+"을 선택해주세요: ";
+				alert(errorMsg);
+				return false; // 폼 전송을 막음
+		} else {
+			window.location.href = "다음페이지URL";
+
+			// 폼을 제출하도록 허용
+			document.querySelector('form').submit();
+		}
+
+	}
+	function isChecked(name) {
+	    // 라디오박스 체크 여부 확인
+	    var radioBoxes = document.getElementsByName(name);
+	    for (var i = 0; i < radioBoxes.length; i++) {
+	        if (radioBoxes[i].checked) {
+	            return true;
+	        }
+	    }
+	    return false;
+	}
+	</script>
 	<footer class="campland-N2" data-bid="oolq6dhEvp">
 		<div class="footer-container container-lg">
 			<div class="footer-bottom">

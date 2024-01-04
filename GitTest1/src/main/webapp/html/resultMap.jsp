@@ -51,7 +51,7 @@
         <input id="send" type="submit" value="send" onclick="send()" />
     </fieldset>
 </div>
-<img class="chat" src="../resources/images/고양이말풍선white.png" />
+<img class="chat" src="../resources/images/고양이말풍선white2.png" />
 
 	<!-- [S]campland-N1 -->
 	<header class="campland-N1" data-bid="RMlQ6deKn4" id="">
@@ -125,13 +125,12 @@
 		});
 		// 맵, 오버레이, 인포윈도우
 
-		//var points = [];
 		let geocoder = new kakao.maps.services.Geocoder();
 		
 		let list = <%= list %>
 		temp = [];
 		// 주소를 좌표로 변환하고 마커를 생성하는 함수
-		function addMarkerWithAddress(loc, name, description) {
+		function addMarkerWithAddress(loc, name, realprice) {
 		    geocoder.addressSearch(loc, function(result, status) {
 		        if (status === kakao.maps.services.Status.OK) {
 		            let coords = new kakao.maps.LatLng(result[0].y, result[0].x);
@@ -141,9 +140,9 @@
 		                position: coords
 		            });
 
-		            let iwContent = '<div style="padding:5px;"><span>' + name + '</span><br>' + description + '</div>';
+		            let iwContent = '<div style="padding:5px;"><span>' + name + '</span><br>' + realprice + '만원</div>';
 
-		            // 인포윈도우를 생성합니다
+		            // 인포윈도우
 		            let infowindow = new kakao.maps.InfoWindow({
 		                position: coords,
 		                content: iwContent
@@ -271,14 +270,6 @@
 						review.appendChild(reviews);
 					}
 											
-					//infoList 
-					/*  0,5 : 아파트 이름 
-						1,6 : 주소
-						2,7 : 실거래가
-						3,8 : 평수
-						4,9 : 이미지
-						10 ~ :리뷰
-					*/
 				},
 				error: function(){
 						
@@ -308,11 +299,11 @@
     		$(".chat").on({"click": function () {
                 
     			// 눌렀을 때 이미지 변경
-                if ($(this).attr("src") == "../resources/images/고양이말풍선white.png" && chatId !== '') {
-                    $(this).attr("src", "../resources/images/고양이말풍선black.png");
+                if ($(this).attr("src") == "../resources/images/고양이말풍선white2.png" && chatId !== '') {
+                    $(this).attr("src", "../resources/images/고양이말풍선black2.png");
                     $("#_chatbox").css("display", "block");
-                } else if ($(this).attr("src") == "../resources/images/고양이말풍선black.png") {
-                    $(this).attr("src", "../resources/images/고양이말풍선white.png");
+                } else if ($(this).attr("src") == "../resources/images/고양이말풍선black2.png") {
+                    $(this).attr("src", "../resources/images/고양이말풍선white2.png");
                     $("#_chatbox").css("display", "none");
                 } else if (chatId === '') {
                     // 비로그인이면 로그인페이지로 보내버림

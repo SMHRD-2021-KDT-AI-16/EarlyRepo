@@ -150,7 +150,8 @@
 
         			const content = document.createElement('div');
         			content.className = 'content';
-        			content.innerText = temp[1].split(':')[1].replace('"',"").replace('"',""); // 내용
+        			let text = temp[1].split(':')[1].replace('"',"").replace('"',"").replace(/\\r\\n/g,'<br>');
+        			content.innerHTML = text; // 내용
 
         			const img = document.createElement('img');
         			img.className = 'content_img';
@@ -338,7 +339,8 @@
 
         			const content = document.createElement('div');
         			content.className = 'content';
-        			content.innerText = temp[1].split(':')[1].replace('"',"").replace('"',""); // 내용
+        			let text = temp[1].split(':')[1].replace('"',"").replace('"',"").replace(/\\r\\n/g,'<br>');
+        			content.innerHTML = text; // 내용
 
         			const img = document.createElement('img');
         			img.className = 'content_img';

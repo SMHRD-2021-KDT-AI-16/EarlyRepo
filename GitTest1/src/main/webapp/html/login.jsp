@@ -91,13 +91,18 @@
 							</div>
 							<div class="checkset">
 								<input id="checkset-a-1-1"
-									class="checkset-input input-fill input-round" type="checkbox"
-									value="">
+									class="checkset-input input-fill input-round" type="checkbox" value="">
 							</div>
 
-							<input type="button" onclick="logincheck()" class="btnset btnset-round" value="로그인">
+							<input id="login_btn" type="submit" onclick="logincheck()" class="btnset btnset-round" value="로그인">
 						<!-- </form> -->
 						<script type="text/javascript">
+						document.addEventListener("keydown", function(event) {
+							if (event.key === "Enter") {
+						    	logincheck();
+						    }
+						});
+
 							function logincheck() {
 								let user_id = document.getElementById('user_id');
 						        let user_pw = document.getElementById('user_pw');
