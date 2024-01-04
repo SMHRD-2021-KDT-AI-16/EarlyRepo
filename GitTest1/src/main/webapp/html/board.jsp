@@ -194,10 +194,14 @@
         			// 댓글 닫기버튼
         			comment_close_btn.addEventListener('click', function(){
         				cmt_div.innerHTML = '';
+        				comment_btn.style.display = "inline-block";
+        				comment_close_btn.style.display = "none";
         			})
         			
         			// 댓글 버튼
         			comment_btn.addEventListener('click', function() {
+        				comment_btn.style.display = "none";
+        				comment_close_btn.style.display = "inline-block";
         				$.ajax({
         					url: 'http://localhost:8083/GitTest1/getComment.do?f_seq='+likes_btn.value,
         					
@@ -384,10 +388,15 @@
         			// 댓글 닫기버튼
         			comment_close_btn.addEventListener('click', function(){
         				cmt_div.innerHTML = '';
+        				comment_btn.style.display = "inline-block";
+        				comment_close_btn.style.display = "none";
         			})
         			
         			// 댓글 버튼
         			comment_btn.addEventListener('click', function() {
+        				comment_btn.style.display = "none";
+        				comment_close_btn.style.display = "inline-block";
+        				
         				$.ajax({
         					url: 'http://localhost:8083/GitTest1/getComment.do?f_seq='+likes_btn.value,
         					
@@ -417,7 +426,9 @@
         							full_comment.appendChild(comment_comment);
         							
         							cmt_div.appendChild(full_comment);
+        							
         						}
+							
         						
         					},
         					error: function(){
@@ -454,6 +465,7 @@
             							setTimeout(function(){
             								location.reload();
             							},100);
+            							
             							            							
             			  			}else{
             			  				alert("로그인이 필요한 서비스입니다.\n로그인 페이지로 이동합니다.");
