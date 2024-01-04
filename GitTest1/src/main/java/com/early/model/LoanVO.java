@@ -4,8 +4,15 @@ public class LoanVO {
 	private String FIRST_HOUSE_YN;
 	private String DUPLICATE_YN;
 	private int MARRIAGE_YEARS;
+	private int INCOME;
 	
 	
+	public int getINCOME() {
+		return INCOME;
+	}
+	public void setINCOME(int iNCOME) {
+		INCOME = iNCOME;
+	}
 	public String getFIRST_HOUSE_YN() {
 		return FIRST_HOUSE_YN;
 	}
