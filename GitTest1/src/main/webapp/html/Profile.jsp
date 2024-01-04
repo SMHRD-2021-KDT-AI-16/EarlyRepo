@@ -196,15 +196,15 @@
 								<div class="form-wrap">
 									<div class="selectset selectset-round selectset-md">
 										<select name="income" class="selectset-toggle btn">
-											<option value="income1">2억원 이상</option>
-											<option value="income1">1억 ~ 1억5천만원</option>
-											<option value="income1">1억3천 ~ 1억5천만원</option>
-											<option value="income1">1억 ~ 1억3천만원</option>
-											<option value="income2">8천 ~ 1억원</option>
-											<option value="income3">6천 ~ 8천만원</option>
-											<option value="income4">4천 ~ 6천만원</option>
-											<option value="income5">2천 ~ 4천만원</option>
-											<option value="income6">2천만원 이하</option>
+											<option value="9">2억원 이상</option>
+											<option value="8">1억 ~ 1억5천만원</option>
+											<option value="7">1억3천 ~ 1억5천만원</option>
+											<option value="6">1억 ~ 1억3천만원</option>
+											<option value="5">8천 ~ 1억원</option>
+											<option value="4">6천 ~ 8천만원</option>
+											<option value="3">4천 ~ 6천만원</option>
+											<option value="2">2천 ~ 4천만원</option>
+											<option value="1">2천만원 이하</option>
 
 										</select>
 									</div>

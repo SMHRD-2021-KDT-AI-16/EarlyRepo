@@ -1,3 +1,4 @@
+<%@page import="org.apache.ibatis.reflection.SystemMetaObject"%>
 <%@page import="com.early.model.LoanNameVO"%>
 <%@page import="java.util.List"%>
 <%@page import="com.early.model.LoanVO"%>
@@ -146,7 +147,7 @@ result_loan{
      				<% HttpSession sessions = request.getSession();
      				List<LoanNameVO> vo = (List<LoanNameVO>)sessions.getAttribute("loanVOs"); 
      				int loan_money = (int) session.getAttribute("loan_money");
-     				
+     				System.out.println("vo size : "+vo.size());
      				if(vo.size() ==1){ %>
      				<p class="text_result"><span class="color-change">${loanVOs.get(0).getLOAN_NAME() }</span>상품을 이용하시면</p>
 					<p class="text_result">최대&nbsp;<span class="color-change"> ${loanVOs.get(0).getLOAN_LIMIT() }만원&nbsp; </span> 이고,</p>      <!-- profile에서 판단한 대출 금액으로 바꾸기 -->
