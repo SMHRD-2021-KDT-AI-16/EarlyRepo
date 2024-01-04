@@ -568,6 +568,7 @@
 	} // getapartallinfo 끝
 				
 	function PriceCompare(){ //결과보기
+		removeMarkers();
 		var income = $('#income').val();
 		var money = $('#money').val();
 					
@@ -619,6 +620,7 @@
 
 				
 	function searchPlaces() { // 검색데이터 가져오기
+		removeMarkers();
 		var searchValue = $('#keyword').val();
 	            	
 	    $.ajax({

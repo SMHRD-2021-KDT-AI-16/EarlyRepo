@@ -18,6 +18,9 @@
 	<meta property="og:description" content="웹사이트입니다">
 	<meta property="og:image" content="https://웹사이트/images/opengraph.png">
 	<meta property="og:url" content="https://웹사이트">
+	<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+	<meta http-equiv="Pragma" content="no-cache">
+	<meta http-equiv="Expires" content="0">
 	<title>게시판 | 핵심프로젝트</title>
 	<link rel="stylesheet" href="../resources/css/setting.css">
 	<link rel="stylesheet" href="../resources/css/plugin.css">

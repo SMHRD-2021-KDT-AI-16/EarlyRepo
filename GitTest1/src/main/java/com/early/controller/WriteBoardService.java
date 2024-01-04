@@ -1,6 +1,7 @@
 package com.early.controller;
 
 import java.io.IOException;
+import java.util.concurrent.TimeUnit;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -18,6 +19,8 @@ public class WriteBoardService implements Command{
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		response.setCharacterEncoding("UTF-8");
+        response.setContentType("text/html; charset=UTF-8");
 		HttpSession session = request.getSession();
 		String savePath = "C:\\Users\\user\\git\\EarlyRepo\\GitTest1\\src\\main\\webapp\\uploadimg";
 		 
@@ -36,11 +39,6 @@ public class WriteBoardService implements Command{
 		MemberVO user = (MemberVO)session.getAttribute("member");
 		String user_id = user.getUser_id();
 		
-		System.out.println("test : "+f_file);
-		System.out.println("test2 : "+f_content);
-		System.out.println("test4 : "+loc);
-		System.out.println("test5 : "+user_id);
-		
 		NoticeBoardVO nbvo = new NoticeBoardVO();
 		
 		nbvo.setF_content(f_content);
@@ -52,7 +50,14 @@ public class WriteBoardService implements Command{
 		
 		nbdao.insertContent(nbvo);
 		
-		return "AllgetBoardService.do";
+		
+		try { for (int i = 0; i < 2; i++) { TimeUnit.MILLISECONDS.sleep(1800);
+		System.out.println("Sleep " + i); } } catch (Exception e) {
+		System.out.println(e); }
+		
+	
+		//return "AllgetBoardService.do";
+		return "/WriteComplete";
 	}
 
 }
