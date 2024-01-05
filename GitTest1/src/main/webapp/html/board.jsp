@@ -221,7 +221,7 @@
         							comment_created.innerText = comment[e+1].split(' ')[0];
         							
         							const comment_comment = document.createElement('div');
-        							comment_comment.innerText = comment[e+2];
+        							comment_comment.innerText = comment[e+2].replace(/\\r\\n/g,'<br>').replace("\\u0027","'").replace("\\u0026","&").replace("\\u003d","=").replace('\\"','"').replace("\\u003c",'<').replace("\\u003e",'>').replace("EJKTQX", ",").replace("PFLHZR", "}").replace("GMPXRS", '"').replace("LYAHWF", ":").replace("OUQBNZ", "'");
         							
         							up_comment.appendChild(comment_userid);
         							up_comment.appendChild(comment_created);
@@ -411,7 +411,7 @@
         							comment_created.innerText = comment[e+1].split(' ')[0];
         							
         							const comment_comment = document.createElement('div');
-        							comment_comment.innerText = comment[e+2];
+        							comment_comment.innerText = comment[e+2].replace(/\\r\\n/g,'<br>').replace("\\u0027","'").replace("\\u0026","&").replace("\\u003d","=").replace('\\"','"').replace("\\u003c",'<').replace("\\u003e",'>').replace("EJKTQX", ",").replace("PFLHZR", "}").replace("GMPXRS", '"').replace("LYAHWF", ":").replace("OUQBNZ", "'");
         							
         							up_comment.appendChild(comment_userid);
         							up_comment.appendChild(comment_created);
