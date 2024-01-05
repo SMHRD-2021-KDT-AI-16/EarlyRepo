@@ -808,7 +808,6 @@
 		const final_btn = document.getElementById("final_btn");
 
 		result_btn.addEventListener('click', function () {
-    		console.log("ttttt");
     		final_btn.style.display = "block";
 		});
 		
@@ -866,7 +865,6 @@
 			</div>
 		</div>
 	</footer>
-	<!-- [E]campland-N2 -->
 	<script src="../resources/js/setting.js"></script>
 	<script src="../resources/js/plugin.js"></script>
 	<script src="../resources/js/template.js"></script>

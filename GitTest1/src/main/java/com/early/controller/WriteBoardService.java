@@ -34,7 +34,25 @@ public class WriteBoardService implements Command{
 	    }else {
 	        f_file="사진없음이없음이없으먇ㅂㄴㅍasdasdwqdvk";
 	    }
+	
 		String f_content = multi.getParameter("board");
+		if(f_content.contains(",")) {
+			f_content = f_content.replace(",", "EJKTQX");
+		}
+		if(f_content.contains("}")) {
+			f_content = f_content.replace("}", "PFLHZR");
+		}
+		if (f_content.contains("\"")) {
+		    f_content = f_content.replace("\"", "GMPXRS");
+		}
+		if(f_content.contains(":")) {
+			f_content = f_content.replace(":", "LYAHWF");
+		}
+		if(f_content.contains("'")) {
+			f_content = f_content.replace("'", "OUQBNZ");
+		}
+		
+		
 		String loc = multi.getParameter("loc");
 		MemberVO user = (MemberVO)session.getAttribute("member");
 		String user_id = user.getUser_id();

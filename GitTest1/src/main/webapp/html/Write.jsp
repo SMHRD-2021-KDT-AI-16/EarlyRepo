@@ -210,7 +210,7 @@ select {
 						<tr>
 							<td width="140" height="30" bgcolor="#eeeeee" style="padding-left: 20px;">내용</td>
 							<td width="460" style="padding-left: 10px;">
-							<textarea name="board" cols="70" rows="15" style="resize: none;" placeholder="특수문자는 사용을 삼가해주세요."></textarea>
+							<textarea name="board" cols="70" rows="15" style="resize: none;" placeholder="테스트해보실 사진은 바탕화면 게시판용사진폴더에 들어있습니다."></textarea>
 						</tr>
 						<tr>
 							<td colspan="2" height="3" bgcolor="#dbdbdb" align="center"></td>
