@@ -15,7 +15,7 @@
 #### `Back-end`
   - Java
   - oracle database
-  - Apache Tomcat8.0
+  - Apache Tomcat9.0
   - Eclipse
   - Visual Studio Code
   - 
@@ -39,7 +39,7 @@
 <div markdown="1">
 
 ### 4.1. 전체 흐름
-![](![image](https://github.com/SMHRD-2021-KDT-AI-16/EarlyRepo/assets/152265634/e0b9b8e6-b91c-4f57-a2d0-69315886d5ab))
+![](https://github.com/SMHRD-2021-KDT-AI-16/EarlyRepo/assets/152265634/20653eb1-a08a-4f23-b712-0b02d5d0427c)
 
 ### 4.2. 사용자 요청
 ![](https://zuminternet.github.io/images/portal/post/2019-04-22-ZUM-Pilot-integer/flow_vue.png)
