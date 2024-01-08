@@ -1,35 +1,32 @@
-# :pushpin: goQualityㅇㅇㅇ
->고퀄리티 개발 컨텐츠 공유 서비스  
-> 데모사이트 링크
+# :pushpin: 하우스 커퓨니티_하티
+> 내 집 마련 꿈을 위한 SNS
+> 사용자의 정보를 바탕으로 대출 정보와 지역별 주거 환경 정보를 종합적으로 제공하는 부동산SNS
+
 
 </br>
 
 ## 1. 제작 기간 & 참여 인원
-- 2019년 2월 18일 ~ 4월 5일
-- 개인 프로젝트
+- 2023년 12월 1일 ~ 2024년 1월 5일
+-  프로젝트
 
 </br>
 
 ## 2. 사용 기술
 #### `Back-end`
-  - Java 8
-  - Spring Boot 2.3
-  - Gradle
-  - Spring Data JPA
-  - QueryDSL
-  - H2
-  - MySQL 5.7
-  - Spring Security
-  - Jsoup
+  - Java
+  - oracle database
+  - Apache Tomcat8.0
+  - Eclipse
+  - Visual Studio Code
+  - 
 #### `Front-end`
-  - Vue.js 3.0
-  - Element UI
+  - JavaScript
+  - css
 
 </br>
 
 ## 3. ERD 설계
-![](https://zuminternet.github.io/images/portal/post/2019-04-22-ZUM-Pilot-integer/final_erd.png)
-![](https://github.com/JungHyung2/gitio.io/blob/master/assets/images/portfolio/p1.jpg)
+![](![KakaoTalk_20231218_164445519](https://github.com/SMHRD-2021-KDT-AI-16/EarlyRepo/assets/152269537/1649e196-cac7-4591-8412-2c87bc0d0966))
 
 
 ## 4. 핵심 기능
