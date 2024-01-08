@@ -23,5 +23,4 @@ public class CompareVO {
 	public void setApt_loc(String apt_loc) {
 		this.apt_loc = apt_loc;
 	}
-
 }

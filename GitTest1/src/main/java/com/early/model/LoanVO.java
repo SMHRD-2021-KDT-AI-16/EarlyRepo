@@ -6,7 +6,6 @@ public class LoanVO {
 	private int MARRIAGE_YEARS;
 	private int INCOME;
 	
-	
 	public int getINCOME() {
 		return INCOME;
 	}
@@ -31,7 +30,6 @@ public class LoanVO {
 	public void setMARRIAGE_YEARS(int mARRIAGE_YEARS) {
 		MARRIAGE_YEARS = mARRIAGE_YEARS;
 	}
-
 }
 	
 

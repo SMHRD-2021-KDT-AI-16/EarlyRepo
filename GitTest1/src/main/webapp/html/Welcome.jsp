@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
@@ -35,7 +34,6 @@
 </head>
 
 <body>
-	<!-- [S]campland-N1 -->
 	<header class="campland-N1" data-bid="RMlQ6deKn4" id="">
 		<div class="header-container container-lg">
 			<div class="header-left">
@@ -75,10 +73,11 @@
                               <a href="SelectAll.do">회원관리</a>
                            </c:if>   
                      </c:if>
+				</div>
+			</div>
+		</div>
 	</header>
-	<!-- [E]campland-N1 -->
 	<main class="th-layout-main ">
-		<!-- [S]campland-N26 -->
 		<div class="campland-N26" data-bid="zYlQFw2bYu" id="">
 			<div class="contents-inner">
 				<div class="contents-container container-md">
@@ -99,9 +98,7 @@
 				</div>
 			</div>
 		</div>
-		<!-- [E]campland-N26 -->
 	</main>
-	<!-- [S]campland-N2 -->
 	<footer class="campland-N2" data-bid="Ojlq6dgkyD">
 		<div class="footer-container container-lg">
 			<div class="footer-bottom">
@@ -118,7 +115,6 @@
 			</div>
 		</div>
 	</footer>
-	<!-- [E]campland-N2 -->
 	<script src="../resources/js/setting.js"></script>
 	<script src="../resources/js/plugin.js"></script>
 	<script src="../resources/js/template.js"></script>

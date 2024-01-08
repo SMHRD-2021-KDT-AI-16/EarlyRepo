@@ -4,7 +4,6 @@ public class LoanNameVO {
 	private String LOAN_NAME;
 	private int LOAN_LIMIT;
 	
-	
 	public String getLOAN_NAME() {
 		return LOAN_NAME;
 	}
@@ -17,6 +16,4 @@ public class LoanNameVO {
 	public void setLOAN_LIMIT(int lOAN_LIMIT) {
 		LOAN_LIMIT = lOAN_LIMIT;
 	}
-	
-	
 }

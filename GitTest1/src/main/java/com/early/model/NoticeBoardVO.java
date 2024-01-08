@@ -11,7 +11,6 @@ public class NoticeBoardVO {
 	private String loc;
 	private String user_nick;
 	
-	
 	public String getUser_nick() {
 		return user_nick;
 	}
@@ -66,6 +65,4 @@ public class NoticeBoardVO {
 	public void setLoc(String loc) {
 		this.loc = loc;
 	}
-	
-	
 }

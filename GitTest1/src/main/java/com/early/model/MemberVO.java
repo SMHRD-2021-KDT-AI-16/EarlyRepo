@@ -23,7 +23,4 @@ public class MemberVO {
 	public void setUser_nick(String user_nick) {
 		this.user_nick = user_nick;
 	}
-	
-	
-
 }

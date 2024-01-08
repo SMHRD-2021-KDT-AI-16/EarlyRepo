@@ -5,10 +5,7 @@ public class ApartVO {
 	private String apt_name;
 	private String apt_loc;
 	private int apt_realprice;
-	
-	
 
-	
 	public int getApt_realprice() {
 		return apt_realprice;
 	}
@@ -33,7 +30,4 @@ public class ApartVO {
 	public void setApt_loc(String apt_loc) {
 		this.apt_loc = apt_loc;
 	}
-	
-	
-	
 }

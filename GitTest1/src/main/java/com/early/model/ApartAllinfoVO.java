@@ -43,7 +43,4 @@ public class ApartAllinfoVO {
 	public void setReview_content(String review_content) {
 		this.review_content = review_content;
 	}
-	
-	
-	
 }

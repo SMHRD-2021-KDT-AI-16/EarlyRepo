@@ -81,7 +81,6 @@ public class FrontController extends HttpServlet {
 	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		
 		//프론트엔드에서 어떤 요청을 보냈는지 분석
 
 		String uri = request.getRequestURI();
@@ -96,6 +95,7 @@ public class FrontController extends HttpServlet {
 
 		String finalpath = null;
 		Command com = null;
+		
 		// 3. path값이 어떤 요청이냐에 따라서 다른 기능 수행
 		if (path.contains("Go")) {
 			// Go + 파일이름 + .do
@@ -103,12 +103,11 @@ public class FrontController extends HttpServlet {
 		} else {
 
 			com = map.get(path);
-			//System.out.println("1번 :" + finalpath);
+			
 			System.out.println("com : "+com);
 			
-			///요청에 맞는 service를 실행시키겠습니다 
+			//요청에 맞는 service를 실행시키겠습니다 
 			finalpath = com.execute(request, response);
-
 		}
 
 		// 5. 페이지 이동(2가지)
@@ -117,27 +116,17 @@ public class FrontController extends HttpServlet {
 			
 			if (finalpath.contains("redirect:/")) {
 				finalpath = finalpath.replace("redirect:/", "html/");
-				System.out.println("finalpath2 : "+finalpath);
 				
 				if(finalpath.contains(".do")) {
 					finalpath = finalpath.replaceAll(".do", ".jsp");
-					System.out.println("finalpath3 : "+finalpath);
 					
 					if(finalpath.contains("Go")) {
 						finalpath = finalpath.replaceAll("Go", "");
-						System.out.println("finalpath4 : "+finalpath);
 					}
 				}
-				/*
-				 * if(finalpath.contains("html/html/")) { finalpath =
-				 * finalpath.replaceAll("html/html/", "html/");
-				 * System.out.println("finalpath7 : "+finalpath); }
-				 */
-				System.out.println("finalpath5 : "+finalpath);
 				response.sendRedirect(finalpath);
 			}
 			else {
-				System.out.println("finalpath6 : "+finalpath);
 				RequestDispatcher rd = request.getRequestDispatcher(finalpath);
 				rd.forward(request, response);
 			}
