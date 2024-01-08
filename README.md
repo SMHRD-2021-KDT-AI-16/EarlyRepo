@@ -31,7 +31,8 @@
 </br>
 
 ## 3. ERD 설계
-![ERD](https://github.com/SMHRD-2021-KDT-AI-16/EarlyRepo/assets/152269537/665c3fdf-4584-4c2b-bb92-20601f3e8ecd)
+![ERD2](https://github.com/SMHRD-2021-KDT-AI-16/EarlyRepo/assets/152379979/e8b3d332-67c3-44b9-b3b4-1b408d41bc71)
+
 
 
 ## 4. 핵심 기능
