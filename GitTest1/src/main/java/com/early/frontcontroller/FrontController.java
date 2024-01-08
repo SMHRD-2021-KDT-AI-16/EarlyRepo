@@ -88,9 +88,6 @@ public class FrontController extends HttpServlet {
 		String path = uri.substring(cp.length() + 1);
 		
 		
-		System.out.println("uri : "+uri);
-		System.out.println("cp : "+cp);
-		System.out.println("path : "+path);
 		request.setCharacterEncoding("utf-8");
 
 		String finalpath = null;
@@ -103,8 +100,6 @@ public class FrontController extends HttpServlet {
 		} else {
 
 			com = map.get(path);
-			
-			System.out.println("com : "+com);
 			
 			//요청에 맞는 service를 실행시키겠습니다 
 			finalpath = com.execute(request, response);

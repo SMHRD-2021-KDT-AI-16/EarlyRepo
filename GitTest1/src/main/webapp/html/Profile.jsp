@@ -228,8 +228,7 @@
 						class="btnset btnset-round btnset-line btnset-black">돌아가기</a>
 						<button type="button" class="btnset btnset-round" onclick="submitForm()">결과</button>
 				</div>
-
-
+				
 				</ul>
 				</form>
 
