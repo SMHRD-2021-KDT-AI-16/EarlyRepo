@@ -24,9 +24,6 @@ public class SelectLoansService implements Command {
 
 		HttpSession session = request.getSession();
 		int loan_money = (int) session.getAttribute("loan_money");
-
-		System.out.println("loan_money : " + loan_money);
-
 		LoanVO vo = new LoanVO();
 		vo.setFIRST_HOUSE_YN(FIRST_HOUSE_YN);
 		vo.setDUPLICATE_YN(DUPLICATE_YN);
