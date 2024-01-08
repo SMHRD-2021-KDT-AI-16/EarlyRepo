@@ -47,8 +47,7 @@
 .contents-container {
   background-color: #ffffff;
   border: 1px solid #dddddd;
- /* padding: 20px;  */
-}
+ }
 
 .container-md {
   margin: 0 auto;
@@ -114,7 +113,6 @@ select {
 </style>
 
 <body>
-	<!-- [S]campland-N1 -->
 	<header class="campland-N1" data-bid="RMlQ6deKn4" id="">
 	<div class="header-container container-lg">
 		<div class="header-left">
@@ -245,7 +243,6 @@ select {
 		</div>
 	</div>
 	</footer>
-	<!-- [E]campland-N2 -->
 	<script src="../resources/js/setting.js"></script>
 	<script src="../resources/js/plugin.js"></script>
 	<script src="../resources/js/template.js"></script>

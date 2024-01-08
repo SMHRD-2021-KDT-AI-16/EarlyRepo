@@ -123,10 +123,7 @@
 						<!-- id에 맞는 게시판 내용 -->
 							<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 							<script>
-							//console.log('Test')
 							let Idlist = <%= Idlist %>
-							//console.log("test33 : ", Idlist)
-							console.log("test2 : ",Idlist[0])
 							$(document).ready(function() {
 								loadMoreData();			
 					  		});
@@ -148,7 +145,6 @@
 					    		if (Idlist.length > cnt + 10) { // 불러오는 글의 수가 10개 +a보다 많으면
 					      			for (let b = cnt; b < cnt + 10; b++) { // 10개만 출력할꺼야
 					      				temp = Idlist[b].replace("{","").replace("}","").split(',');  //한줄에서 뭉탱이씩 짤라서 넣어줄꺼야
-					      				// console.log("test : ",list)
 					      				const tr = document.createElement('tr');
 					      				const td = document.createElement('td');
 					        			const div1 = document.createElement('div'); // 전체div
@@ -176,7 +172,6 @@
 					        			content.className = 'content';
 					        			let text = temp[1].split(':')[1].replace('"',"").replace('"',"").replace(/\\r\\n/g,'<br>').replace("\\u0027","'").replace("\\u0026","&").replace("\\u003d","=").replace('\\"','"').replace("\\u003c",'<').replace("\\u003e",'>').replace("EJKTQX", ",").replace("PFLHZR", "}").replace("GMPXRS", '"').replace("LYAHWF", ":").replace("OUQBNZ", "'");
 					        			content.innerHTML = text; // 내용
-										console.log("text : ",temp[1].split(':')[1]);
 					        			const img = document.createElement('img');
 					        			img.className = 'content_img';
 					        			const img_src = "../uploadimg/"+((temp[2].split(':')[1]).replace('"','').replace('"',''));
@@ -222,7 +217,6 @@
 
 					        			const userid = document.createElement('div');
 					        			userid.className = 'userid';
-					        			console.log("test11 : ",temp[6]);
 					        			userid.innerText = "작성자 : "+temp[6].split(':')[1].replace('"',"").replace('"',""); // 작성자 id
 					        			
 					        			const date = document.createElement('div');
@@ -274,9 +268,8 @@
 					</div>
 				</div>
 			</div>
-			<!-- [E]campland-N23 -->
 		</main>
-		<!-- [S]campland-N2 -->
+
 		<footer class="campland-N2" data-bid="hAlQFW2O1B">
 			<div class="footer-container container-lg">
 				<div class="footer-bottom">
@@ -293,7 +286,6 @@
 				</div>
 			</div>
 		</footer>
-		<!-- [E]campland-N2 -->
 		<script src="../resources/js/setting.js"></script>
 		<script src="../resources/js/plugin.js"></script>
 		<script src="../resources/js/template.js"></script>
