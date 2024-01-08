@@ -26,8 +26,7 @@
 </br>
 
 ## 3. ERD 설계
-![](![KakaoTalk_20231218_164445519](https://github.com/SMHRD-2021-KDT-AI-16/EarlyRepo/assets/152269537/1649e196-cac7-4591-8412-2c87bc0d0966))
-
+![erd](https://github.com/SMHRD-2021-KDT-AI-16/EarlyRepo/assets/152269537/6cf47a47-9656-47be-9cf2-f7c79d037352)
 
 ## 4. 핵심 기능
 이 서비스의 핵심 기능은 컨텐츠 등록 기능입니다.  
