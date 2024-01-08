@@ -30,7 +30,6 @@
 	.container {
 	display: flex;
 	justify-content: center;
-	/*align-items: center;*/
 	height: 10hv;
 }
 
@@ -54,7 +53,7 @@
 	padding: 20px;
 }
 
-table { /* 테이블 css영역*/
+table {
 	width: 100%;
 	border-collapse: collapse;
 }
@@ -91,7 +90,6 @@ result_loan{
 </head>
 
 <body>
-	<!-- [S]campland-N1 -->
 	<header class="campland-N1" data-bid="RMlQ6deKn4" id="">
 		<div class="header-container container-lg">
 			<div class="header-left">
@@ -147,7 +145,6 @@ result_loan{
      				<% HttpSession sessions = request.getSession();
      				List<LoanNameVO> vo = (List<LoanNameVO>)sessions.getAttribute("loanVOs"); 
      				int loan_money = (int) session.getAttribute("loan_money");
-     				System.out.println("vo size : "+vo.size());
      				if(vo.size() ==1){ %>
      				<p class="text_result"><span class="color-change">${loanVOs.get(0).getLOAN_NAME() }</span>상품을 이용하시면</p>
 					<p class="text_result">최대&nbsp;<span class="color-change"> ${loanVOs.get(0).getLOAN_LIMIT() }만원&nbsp; </span> 이고,</p>      <!-- profile에서 판단한 대출 금액으로 바꾸기 -->
@@ -375,7 +372,6 @@ result_loan{
 			</div>
 		</div>
 	</footer>
-	<!-- [E]campland-N2 -->
 	<script src="../resources/js/setting.js"></script>
 	<script src="../resources/js/plugin.js"></script>
 	<script src="../resources/js/template.js"></script>
