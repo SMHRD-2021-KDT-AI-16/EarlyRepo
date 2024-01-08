@@ -75,18 +75,15 @@
 - **JsonArray / text/plain 방식으로 데이터 변환** :pushpin: [코드 확인]()
   - 데이터 베이스에서 받아온 데이터를 jsp파일에서 사용할 수 있게 하기 위해 데이터를 변환합니다.
 
-### 4.5. Map api
-<img src="https://github.com/SMHRD-2021-KDT-AI-16/EarlyRepo/assets/152379979/b611efc0-7b1a-49b7-8d4a-ae2384e31726" width="450px" height="300px" title="px(픽셀) 크기 설정"></img><br/>
 
-
-### 4.6. DB
+### 4.5. DB
 - **대출소개**
   - 사용자가 입력한 값과 DB에 저장된 값과 비교해서 적합한 대출을 추출 :📌:[코드 확인](https://github.com/SMHRD-2021-KDT-AI-16/EarlyRepo/blob/ca21383ecc3d21a0e8497b68094cb30ecd287e8b/GitTest1/src/main/webapp/html/Profile.jsp#L240)
  
 - **실거래비교**
   - DB에서 받은 대출 값과 사용자가 입력한 재산정보를 합쳐서 DB에 저장된 Apt_Realprice보다 크면 Apt_Loc를 가져옵니다.
     
-    
+<img src="https://github.com/SMHRD-2021-KDT-AI-16/EarlyRepo/assets/152379979/b611efc0-7b1a-49b7-8d4a-ae2384e31726" width="450px" height="300px" title="px(픽셀) 크기 설정"></img><br/>
 </div>
 </details>
 
