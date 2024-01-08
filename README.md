@@ -80,8 +80,7 @@
   - URL 접속 확인결과 유효하면 Jsoup을 사용해서 입력된 URL의 이미지와 제목을 파싱합니다.
   - 이미지는 Open Graphic Tag를 우선적으로 파싱하고, 없을 경우 첫 번째 이미지와 제목을 파싱합니다.
   - 컨텐츠에 이미지가 없을 경우, 미리 설정해둔 기본 이미지를 사용하고, 제목이 없을 경우 생략합니다.
-### 4.5. Map api
-![image](https://github.com/SMHRD-2021-KDT-AI-16/EarlyRepo/assets/152379979/bdd1eb8e-487d-49e1-8d0e-3affa388e096)
+
 
 
 ### 4.5. Map api
