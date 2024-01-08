@@ -85,14 +85,14 @@
 
 
 ### 4.5. Map api
-<img src="https://github.com/SMHRD-2021-KDT-AI-16/EarlyRepo/assets/152379979/b611efc0-7b1a-49b7-8d4a-ae2384e31726" width="450px" height="300px" title="px(픽셀) 크기 설정" alt="RubberDuck"></img><br/>
-![map](https://github.com/SMHRD-2021-KDT-AI-16/EarlyRepo/assets/152379979/b611efc0-7b1a-49b7-8d4a-ae2384e31726)
+<img src="https://github.com/SMHRD-2021-KDT-AI-16/EarlyRepo/assets/152379979/b611efc0-7b1a-49b7-8d4a-ae2384e31726" width="450px" height="300px" title="px(픽셀) 크기 설정"></img><br/>
+
 - ** 사용자가 입력한 값과 DB에 저장된 값과 비교해서 적합한 대출을 추출 ** :📌:[코드 확인](https://github.com/SMHRD-2021-KDT-AI-16/EarlyRepo/blob/ca21383ecc3d21a0e8497b68094cb30ecd287e8b/GitTest1/src/main/webapp/html/Profile.jsp#L240)
   - DB에서 받은 대출 값과 사용자가 입력한 재산정보를 합쳐서 DB에 저장된 Apt_Realprice보다 크면 Apt_Loc를 가져옵니다.
   - 외부api로 적용한 카카오맵api를 통해 ajax를 사용하여 가져온 Apt_Loc의 위치를 지도에 마커로 표시해줍니다.
   - Json을 이용해 아파트세부정보를 저장하고 지도에 표시된 값들 DB에 저장된 Apt_Code와 일치하는 아파트의 세부정보를 보여줍니다.
+<img src="https://github.com/SMHRD-2021-KDT-AI-16/EarlyRepo/assets/152379979/475b7f1f-440e-42f0-9b2b-5dd77d2718b2" width="450px" height="300px" title="px(픽셀) 크기 설정"></img><br/>
 
-![map2](https://github.com/SMHRD-2021-KDT-AI-16/EarlyRepo/assets/152379979/475b7f1f-440e-42f0-9b2b-5dd77d2718b2)
 
 
 ### 4.6. DB
