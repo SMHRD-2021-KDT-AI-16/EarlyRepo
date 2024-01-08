@@ -18,7 +18,7 @@
 	<meta name="description" content="웹사이트입니다.">
 	<meta name="keywords" content="키워드,키워드,키워드">
 	<meta property="og:title" content="웹사이트">
-	<meta property="og:description" content="웹사이트입니다">
+	<meta property="og:description" content="웹사이트입니다">4k4r
 	<meta property="og:image" content="https://웹사이트/images/opengraph.png">
 	<meta property="og:url" content="https://웹사이트">
 	<title>지도 | 핵심프로젝트</title>
@@ -568,6 +568,7 @@
 	} // getapartallinfo 끝
 				
 	function PriceCompare(){ //결과보기
+		removeMarkers();
 		var income = $('#income').val();
 		var money = $('#money').val();
 					
@@ -619,6 +620,7 @@
 
 				
 	function searchPlaces() { // 검색데이터 가져오기
+		removeMarkers();
 		var searchValue = $('#keyword').val();
 	            	
 	    $.ajax({
@@ -806,7 +808,6 @@
 		const final_btn = document.getElementById("final_btn");
 
 		result_btn.addEventListener('click', function () {
-    		console.log("ttttt");
     		final_btn.style.display = "block";
 		});
 		
@@ -864,7 +865,6 @@
 			</div>
 		</div>
 	</footer>
-	<!-- [E]campland-N2 -->
 	<script src="../resources/js/setting.js"></script>
 	<script src="../resources/js/plugin.js"></script>
 	<script src="../resources/js/template.js"></script>

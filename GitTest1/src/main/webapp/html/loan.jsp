@@ -163,7 +163,7 @@ result_loan{
     					<input type="radio" name="loan_select" value="${loanVOs.get(1).getLOAN_LIMIT()+loan_money}"> <span class="select_loan" >${loanVOs.get(1).getLOAN_NAME()}</span>
     					<br>
      				<%} else if(vo.size()==0){%>
-                    <input type="radio" name="loan_select" value="loan_money"><span class="select_loan" >받을 수 있는 대출이 없습니다.</span>
+                    <input type="radio" name="loan_select" value="${loan_money}"><span class="select_loan" >받을 수 있는 대출이 없습니다.</span>
                     <%} %>
                     <br>
      				<span class="color-change">대출에 관한 금액은 세부적으로 상이할 수 있습니다.</span>

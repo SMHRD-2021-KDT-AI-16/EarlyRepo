@@ -175,8 +175,7 @@ select {
 	<div class="campland-N15" data-bid="crlQNCwqYB">
 		<div class="contents-inner" align="center">
 			<div class="contents-container container-md" align="center">
-				<table width="600" border="2" cellpadding="0" cellspacing="0"
-					bordercolor="#d6d4a6" align="center">
+				<table width="600" border="2" cellpadding="0" cellspacing="0" bordercolor="#d6d4a6" align="center">
 					<tr height="40">
 						<td style="padding-left: 20px;"><b><h2>글쓰기</h2></b></td>
 					</tr>
@@ -211,7 +210,7 @@ select {
 						<tr>
 							<td width="140" height="30" bgcolor="#eeeeee" style="padding-left: 20px;">내용</td>
 							<td width="460" style="padding-left: 10px;">
-							<textarea name="board" cols="70" rows="15" style="resize: none;"></textarea>
+							<textarea name="board" cols="70" rows="15" style="resize: none;" placeholder="테스트해보실 사진은 바탕화면 게시판용사진폴더에 들어있습니다."></textarea>
 						</tr>
 						<tr>
 							<td colspan="2" height="3" bgcolor="#dbdbdb" align="center"></td>

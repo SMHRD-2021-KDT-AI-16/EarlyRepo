@@ -128,6 +128,11 @@ public class FrontController extends HttpServlet {
 						System.out.println("finalpath4 : "+finalpath);
 					}
 				}
+				/*
+				 * if(finalpath.contains("html/html/")) { finalpath =
+				 * finalpath.replaceAll("html/html/", "html/");
+				 * System.out.println("finalpath7 : "+finalpath); }
+				 */
 				System.out.println("finalpath5 : "+finalpath);
 				response.sendRedirect(finalpath);
 			}

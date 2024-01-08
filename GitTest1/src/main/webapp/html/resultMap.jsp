@@ -36,6 +36,9 @@
 		width: 95%;
 		height: 100%;
 	}
+	#menu_wrap{
+		height: 100%;
+	}
 
 </style>
 
@@ -148,8 +151,9 @@
 		                content: iwContent
 		            });
 
-		            // 마커 위에 인포윈도우를 표시합니다
 		            infowindow.open(map, marker);
+		            
+		            
 		            let content = document.createElement('div');
                     content.innerHTML = '<div id="menu_wrap">'
 				                        +'<h1 id="apt_name"></h1>'

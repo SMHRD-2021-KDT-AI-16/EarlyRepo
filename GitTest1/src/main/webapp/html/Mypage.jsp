@@ -29,8 +29,10 @@
 		#test{
 			display: inline-block;
 		}
+		#table_content{
+			margin-left: 10px;
+		}
 	</style>
-	
 </head>
 
 <body>
@@ -50,14 +52,12 @@
 			<div class="header-center">
 				<ul class="header-gnblist">
 					<li class="header-gnbitem">
-					</li>
-					<li class="header-gnbitem">
 						<a class="header-gnblink" href="MainPage.jsp">
 							<span>홈</span>
 						</a>
 					</li>
 					<li class="header-gnbitem">
-						<a class="header-gnblink" href="board.jsp">
+						<a class="header-gnblink" href="AllgetBoardService.do">
 							<span>부동산 게시판</span>
 						</a>
 					</li>
@@ -110,7 +110,7 @@
 							</div>
 							</form>
 								<div class="contents-button">
-						<form action="http://localhost:8083/GitTest1/DeleteMember.do">
+								<form action="http://localhost:8083/GitTest1/DeleteMember.do">
 							<input class="btnset btnset-round" type="submit" value="회원탈퇴">
 						</form>
 						
@@ -123,9 +123,9 @@
 						<!-- id에 맞는 게시판 내용 -->
 							<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 							<script>
-							console.log('Test')
+							//console.log('Test')
 							let Idlist = <%= Idlist %>
-							console.log("test33 : ", Idlist)
+							//console.log("test33 : ", Idlist)
 							console.log("test2 : ",Idlist[0])
 							$(document).ready(function() {
 								loadMoreData();			
@@ -140,6 +140,7 @@
 					    			
 					    		}
 					  		});
+					  		
 					  		let temp = [];
 					  		let cnt = 0;
 					  		function loadMoreData() {
@@ -147,7 +148,7 @@
 					    		if (Idlist.length > cnt + 10) { // 불러오는 글의 수가 10개 +a보다 많으면
 					      			for (let b = cnt; b < cnt + 10; b++) { // 10개만 출력할꺼야
 					      				temp = Idlist[b].replace("{","").replace("}","").split(',');  //한줄에서 뭉탱이씩 짤라서 넣어줄꺼야
-					      				// console.log("test : ",Idlist)
+					      				// console.log("test : ",list)
 					      				const tr = document.createElement('tr');
 					      				const td = document.createElement('td');
 					        			const div1 = document.createElement('div'); // 전체div
@@ -155,28 +156,38 @@
 					        			
 					        			const div2 = document.createElement('div'); // 위에 2개
 					        			div2.className = 'up';
-					
+					        			
+					        			const div3 = document.createElement('div'); // 위에 2개
+					        			div2.className = 'bottom';
+
 					        			const userid = document.createElement('div');
 					        			userid.className = 'userid';
-					        			userid.innerText = temp[6].split(':')[1]; // 작성자 id
-					      					
+					        			userid.innerText = "작성자 : "+temp[6].split(':')[1].replace('"',"").replace('"',""); // 작성자 id
+					        			
 					        			const date = document.createElement('div');
 					        			date.className = 'date';
-					        			date.innerText = temp[3].split(':')[1]; // 날짜
-					
+					        			date.innerText = "작성일자 : "+temp[3].split(':')[1].split(' ')[0].replace('"',""); // 날짜
+					        			
+					        			const loc = document.createElement('div');
+					        			loc.className = "loc";
+					        			loc.innerText = "지역 : "+temp[7].split(':')[1].replace('"',"").replace('"',""); // 지역
+
 					        			const content = document.createElement('div');
 					        			content.className = 'content';
-					        			content.innerText = temp[1].split(':')[1]; // 내용
-					
+					        			let text = temp[1].split(':')[1].replace('"',"").replace('"',"").replace(/\\r\\n/g,'<br>').replace("\\u0027","'").replace("\\u0026","&").replace("\\u003d","=").replace('\\"','"').replace("\\u003c",'<').replace("\\u003e",'>').replace("EJKTQX", ",").replace("PFLHZR", "}").replace("GMPXRS", '"').replace("LYAHWF", ":").replace("OUQBNZ", "'");
+					        			content.innerHTML = text; // 내용
+										console.log("text : ",temp[1].split(':')[1]);
 					        			const img = document.createElement('img');
 					        			img.className = 'content_img';
 					        			const img_src = "../uploadimg/"+((temp[2].split(':')[1]).replace('"','').replace('"',''));
-					        			console.log(img_src)
 					        			img.src = img_src; // 이미지
+					        			img.onerror = function() {
+					        			    this.src = '../resources/images/img_logo.png';
+					        			};
 					        			
 					        			const likes = document.createElement('div');
 					        			likes.className = 'likes';
-					        			likes.innerText = temp[5].split(':')[1]; // 좋아요
+					        			likes.innerText = +temp[5].split(':')[1]; // 좋아요
 					
 					        			
 					        			div2.appendChild(userid);
@@ -199,36 +210,46 @@
 										temp = Idlist[b].replace("{","").replace("}","").split(',');  //한줄에서 뭉탱이씩 짤라서 넣어줄꺼야
 					      				
 										const tr = document.createElement('tr');
-										const td = document.createElement('td');
-					        			const div1 = document.createElement('div');
-					        			const div3 = document.createElement('div');
-					        			// 전체div
-					        			console.log(temp)
+					      				const td = document.createElement('td');
+					        			const div1 = document.createElement('div'); // 전체div
 					        			div1.className = 'noticeBoard';
 					        			
 					        			const div2 = document.createElement('div'); // 위에 2개
 					        			div2.className = 'up';
-					
+					        			
+					        			const div3 = document.createElement('div'); // 위에 2개
+					        			div2.className = 'bottom';
+
 					        			const userid = document.createElement('div');
 					        			userid.className = 'userid';
-					        			userid.innerText = temp[6].split(':')[1]; // 작성자 id
-					      					
+					        			console.log("test11 : ",temp[6]);
+					        			userid.innerText = "작성자 : "+temp[6].split(':')[1].replace('"',"").replace('"',""); // 작성자 id
+					        			
 					        			const date = document.createElement('div');
 					        			date.className = 'date';
-					        			date.innerText = temp[3].split(':')[1]; // 날짜
-					
+					        			date.innerText = "작성일자 : "+temp[3].split(':')[1].split(' ')[0].replace('"',""); // 날짜
+					        			
+					        			const loc = document.createElement('div');
+					        			loc.className = "loc";
+					        			loc.innerText = "지역 : "+temp[7].split(':')[1].replace('"',"").replace('"',""); // 지역
+
 					        			const content = document.createElement('div');
 					        			content.className = 'content';
-					        			content.innerText = temp[1].split(':')[1]; // 내용
-					
-					        			// const img = document.createElement('div');
+					        			let text = temp[1].split(':')[1].replace('"',"").replace('"',"").replace(/\\r\\n/g,'<br>').replace("\\u0027","'").replace("\\u0026","&").replace("\\u003d","=").replace('\\"','"').replace("\\u003c",'<').replace("\\u003e",'>').replace("EJKTQX", ",").replace("PFLHZR", "}").replace("GMPXRS", '"').replace("LYAHWF", ":").replace("OUQBNZ", "'");
+					        			content.innerHTML = text; // 내용
+
 					        			const img = document.createElement('img');
 					        			img.className = 'content_img';
-					        			img.src = temp[2].split(':')[1]; // 이미지
+					        			const img_src = "../uploadimg/"+((temp[2].split(':')[1]).replace('"','').replace('"',''));
+					        			img.src = img_src; // 이미지
+					        			img.onerror = function() {
+					        			    this.src = '../resources/images/img_logo.png';
+					        			};
 					        			
 					        			const likes = document.createElement('div');
 					        			likes.className = 'likes';
-					        			likes.innerText = temp[5].split(':')[1]; // 좋아요
+					        			likes.innerText = +temp[5].split(':')[1]; // 좋아요
+					        			
 										div2.appendChild(userid);
 					        			div2.appendChild(date); // 위에꺼 2개 넣고
 					        			
@@ -237,13 +258,10 @@
 					        			div1.appendChild(img);
 					        			div1.appendChild(likes); // 전체 보드에 넣고
 					        			
-					        			div3.appendChild(button);
 					        			div1.appendChild(div3);
 					        			
 					        			td.appendChild(div1); 
 					        			tr.appendChild(td); // tr에 전체 보드 넣고
-					        			
-					        			
 					
 					        			document.getElementById('table_content').appendChild(tr);
 					      			}
@@ -252,9 +270,6 @@
 							</script>	
 						
 						</div>
-
-					
-							
 							
 					</div>
 				</div>

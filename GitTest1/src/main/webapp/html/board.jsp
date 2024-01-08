@@ -18,6 +18,9 @@
 	<meta property="og:description" content="웹사이트입니다">
 	<meta property="og:image" content="https://웹사이트/images/opengraph.png">
 	<meta property="og:url" content="https://웹사이트">
+	<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+	<meta http-equiv="Pragma" content="no-cache">
+	<meta http-equiv="Expires" content="0">
 	<title>게시판 | 핵심프로젝트</title>
 	<link rel="stylesheet" href="../resources/css/setting.css">
 	<link rel="stylesheet" href="../resources/css/plugin.css">
@@ -106,7 +109,6 @@
 		let list = <%= list %>
 				
 		$(document).ready(function() {
-
   			loadMoreData();			
   		});
     		
@@ -118,6 +120,7 @@
       			loadMoreData();
     		}
   		});
+  		
   		let temp = [];
   		let cnt = 0;
   		function loadMoreData() {
@@ -150,13 +153,12 @@
 
         			const content = document.createElement('div');
         			content.className = 'content';
-        			let text = temp[1].split(':')[1].replace('"',"").replace('"',"").replace(/\\r\\n/g,'<br>');
+        			let text = temp[1].split(':')[1].replace('"',"").replace('"',"").replace(/\\r\\n/g,'<br>').replaceAll("\\u0027","'").replaceAll("\\u0026","&").replaceAll("\\u003d","=").replaceAll("\\u003c",'<').replaceAll("\\u003e",'>').replaceAll("EJKTQX", ",").replaceAll("PFLHZR", "}").replaceAll("GMPXRS", '"').replaceAll("LYAHWF", ":").replaceAll("OUQBNZ", "'");
         			content.innerHTML = text; // 내용
-
+					console.log("text : ",temp[1].split(':')[1]);
         			const img = document.createElement('img');
         			img.className = 'content_img';
         			const img_src = "../uploadimg/"+((temp[2].split(':')[1]).replace('"','').replace('"',''));
-        			//console.log(img_src)
         			img.src = img_src; // 이미지
         			img.onerror = function() {
         			    this.src = '../resources/images/img_logo.png';
@@ -191,10 +193,14 @@
         			// 댓글 닫기버튼
         			comment_close_btn.addEventListener('click', function(){
         				cmt_div.innerHTML = '';
+        				comment_btn.style.display = "inline-block";
+        				comment_close_btn.style.display = "none";
         			})
         			
         			// 댓글 버튼
         			comment_btn.addEventListener('click', function() {
+        				comment_btn.style.display = "none";
+        				comment_close_btn.style.display = "inline-block";
         				$.ajax({
         					url: 'http://localhost:8083/GitTest1/getComment.do?f_seq='+likes_btn.value,
         					
@@ -215,7 +221,7 @@
         							comment_created.innerText = comment[e+1].split(' ')[0];
         							
         							const comment_comment = document.createElement('div');
-        							comment_comment.innerText = comment[e+2];
+        							comment_comment.innerText = comment[e+2].replace(/\\r\\n/g,'<br>').replaceAll("\\u0027","'").replaceAll("\\u0026","&").replaceAll("\\u003d","=").replaceAll("\\u003c",'<').replaceAll("\\u003e",'>').replaceAll("EJKTQX", ",").replaceAll("PFLHZR", "}").replaceAll("GMPXRS", '"').replaceAll("LYAHWF", ":").replaceAll("OUQBNZ", "'");
         							
         							up_comment.appendChild(comment_userid);
         							up_comment.appendChild(comment_created);
@@ -275,8 +281,6 @@
         			});
         			
         			likes_btn.addEventListener('click', function() {
-            			// 클릭된 버튼의 value 값을 콘솔에 출력
-            			//console.log('클릭된 버튼의 value:', likes_btn.value, likes.innerText);
             			likes_up(likes_btn.value, likes.innerText);
             			let likesup = parseInt(likes.innerText)+1;
             			likes.innerText = likesup;
@@ -339,13 +343,12 @@
 
         			const content = document.createElement('div');
         			content.className = 'content';
-        			let text = temp[1].split(':')[1].replace('"',"").replace('"',"").replace(/\\r\\n/g,'<br>');
+        			let text = temp[1].split(':')[1].replace('"',"").replace('"',"").replace(/\\r\\n/g,'<br>').replace("\\u0027","'").replace("\\u0026","&").replace("\\u003d","=").replace('\\"','"').replace("\\u003c",'<').replace("\\u003e",'>').replace("EJKTQX", ",").replace("PFLHZR", "}").replace("GMPXRS", '"').replace("LYAHWF", ":").replace("OUQBNZ", "'");
         			content.innerHTML = text; // 내용
 
         			const img = document.createElement('img');
         			img.className = 'content_img';
         			const img_src = "../uploadimg/"+((temp[2].split(':')[1]).replace('"','').replace('"',''));
-        			//console.log(img_src)
         			img.src = img_src; // 이미지
         			img.onerror = function() {
         			    this.src = '../resources/images/img_logo.png';
@@ -359,7 +362,6 @@
         			likes_btn.value = temp[0].split(':')[1];
         			likes_btn.className = "likes_btn";
         			likes_btn.name = "f_seq";
-        			//likes_btn.innerText = "좋아요";
         			
         			const btn_img = document.createElement('img');
         			btn_img.src = '../resources/images/하트.png';
@@ -369,7 +371,6 @@
         			comment_btn.className = "comment_btn";
         			comment_btn.name = "f_seq";
         			comment_btn.innerText = "댓글";
-        			//comment_btn.classList.add('comment-button');
         			
         			const comment_close_btn = document.createElement('button');
         			comment_close_btn.className = "comment_close";
@@ -381,10 +382,15 @@
         			// 댓글 닫기버튼
         			comment_close_btn.addEventListener('click', function(){
         				cmt_div.innerHTML = '';
+        				comment_btn.style.display = "inline-block";
+        				comment_close_btn.style.display = "none";
         			})
         			
         			// 댓글 버튼
         			comment_btn.addEventListener('click', function() {
+        				comment_btn.style.display = "none";
+        				comment_close_btn.style.display = "inline-block";
+        				
         				$.ajax({
         					url: 'http://localhost:8083/GitTest1/getComment.do?f_seq='+likes_btn.value,
         					
@@ -405,7 +411,7 @@
         							comment_created.innerText = comment[e+1].split(' ')[0];
         							
         							const comment_comment = document.createElement('div');
-        							comment_comment.innerText = comment[e+2];
+        							comment_comment.innerText = comment[e+2].replace(/\\r\\n/g,'<br>').replace("\\u0027","'").replace("\\u0026","&").replace("\\u003d","=").replace('\\"','"').replace("\\u003c",'<').replace("\\u003e",'>').replace("EJKTQX", ",").replace("PFLHZR", "}").replace("GMPXRS", '"').replace("LYAHWF", ":").replace("OUQBNZ", "'");
         							
         							up_comment.appendChild(comment_userid);
         							up_comment.appendChild(comment_created);
@@ -414,11 +420,10 @@
         							full_comment.appendChild(comment_comment);
         							
         							cmt_div.appendChild(full_comment);
+        							
         						}
-        						
         					},
         					error: function(){
-        				
         					}
         	  		    });
         				
@@ -451,6 +456,7 @@
             							setTimeout(function(){
             								location.reload();
             							},100);
+            							
             							            							
             			  			}else{
             			  				alert("로그인이 필요한 서비스입니다.\n로그인 페이지로 이동합니다.");
@@ -505,7 +511,6 @@
   		
   		
   		function likes_up(value, likes){
-  			//console.log("test : ",value, likes);
   		    $.ajax({
 				url: 'http://localhost:8083/GitTest1/likes_up.do?f_seq='+value+'&f_likes='+likes,
 							

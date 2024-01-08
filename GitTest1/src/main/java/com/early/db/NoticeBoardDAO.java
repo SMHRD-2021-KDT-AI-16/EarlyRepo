@@ -64,7 +64,7 @@ public class NoticeBoardDAO {
 		SqlSession session = factory.openSession();
 
 		List<NoticeBoardVO> list = session.selectList("getBoardALL");
-
+		System.out.println("특수문자 처리 : "+list.get(0).getF_content());
 		session.close();
 
 		return list;
@@ -74,7 +74,7 @@ public class NoticeBoardDAO {
 		SqlSession session = factory.openSession();
 
 		List<NoticeBoardVO> list = session.selectList("getliketop");
-		// System.out.println(list.get(0).getF_likes());
+
 		session.close();
 
 		return list;
