@@ -19,25 +19,18 @@ public class AllgetBoardService implements Command {
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		HttpSession session = request.getSession();
-		
 		if(session.getAttribute("NoticeAllboard")!=null) {
 			session.removeAttribute("NoticeAllboard");
 		}
-		
 		NoticeBoardDAO nbdao = new NoticeBoardDAO();
-		
 		List<NoticeBoardVO> list = nbdao.getAllBoard();
-		
 		JsonArray jArray = new JsonArray();
 		for (int i=0;i<list.size();i++) {
 			Gson gson = new Gson();
 			jArray.add(gson.toJson(list.get(i)));
 		}
-		
 		session.setAttribute("NoticeAllboard", jArray);
-		
 		return "board.jsp";
-		
 	}
 
 }

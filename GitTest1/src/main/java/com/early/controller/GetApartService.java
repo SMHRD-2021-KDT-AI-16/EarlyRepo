@@ -18,7 +18,6 @@ public class GetApartService implements Command{
 			throws ServletException, IOException {
 		
 		String apart = request.getParameter("name");
-		System.out.println("apart22 : "+ apart);
 		
 		ApartDAO adao = new ApartDAO();
 		

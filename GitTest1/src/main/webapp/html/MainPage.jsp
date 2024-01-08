@@ -18,7 +18,7 @@
 	<meta name="description" content="웹사이트입니다.">
 	<meta name="keywords" content="키워드,키워드,키워드">
 	<meta property="og:title" content="웹사이트">
-	<meta property="og:description" content="웹사이트입니다">4k4r
+	<meta property="og:description" content="웹사이트입니다">
 	<meta property="og:image" content="https://웹사이트/images/opengraph.png">
 	<meta property="og:url" content="https://웹사이트">
 	<title>지도 | 핵심프로젝트</title>
@@ -34,7 +34,6 @@
 <body>
     <c:set var="chatId" value="${not empty sessionScope.member ? sessionScope.member.user_nick : ''}" />
 
-<!-- 채팅창 -->
 <div id="_chatbox" style="display: none">
     <fieldset>
         <div id="messageWindow"></div>
@@ -90,7 +89,7 @@
 	</header>
 	<main class="th-layout-main">
 		<div id="total_div">
-			<div id="left_div">       <!-- 왼쪽 자산정보 입력창 -->
+			<div id="left_div">
 		       <div class="textset textset-sub textset-center">
 				  <h5 class="textset-tit" id = "MainSerch">당신의 능력으로 살 수있는 집을 알려드려요​<br></h5>
 			   <form>
@@ -196,7 +195,7 @@
 						<button id="final_btn" class="btnset btnset-round" type="button" onclick="">상세입력</button>
 					</div>
 				</ul>	
-			</div>      <!-- 왼쪽 자산정보 입력창 닫기 -->
+			</div>
 			</form>
 			
 			<div id="full_mid_div">
@@ -500,7 +499,6 @@
 		        }
 		    },
 		    error: function () { // 통신 실패했을 때
-		        console.error('실패애~~~~~~~');
 		    }
 		});
 	} // getData 끝
@@ -601,14 +599,12 @@
 				}
 	        },
 	        error : function() {
-	        	console.log("error");
 	        }
 		})
 	}
 				
 	// 상세정보 출력하는 부분에서 평수에 따른 탭이동
 	$(document).on('click', 'ul.tabs li', function(){
-		console.log("탭이동!")
 		var tab_id = $(this).attr('data-tab');
 
 		$('ul.tabs li').removeClass('current');
@@ -652,7 +648,6 @@
 				}
 	        },
 			error : function() {
-		    	console.log("실패");
 			}
 	    })
 	} // searchPlaces 끝
@@ -765,8 +760,6 @@
 			url: 'http://localhost:8083/GitTest1/getmainforum.do',
 			dataType: 'json',
 			success:function(result){
-				console.log("result : ",result);
-				console.log("result : ",result[0].f_seq);
 				
 				let top1_img = document.getElementById("top1_img");
 				top1_img.src = "../uploadimg/"+result[0].f_file;
@@ -816,7 +809,6 @@
 				url: 'http://localhost:8083/GitTest1/logincheck.do',
 				
 				success: function (result) {
-					console.log("결과 : ",result);
 					if (result === 'success') {
 						window.location.href = "Profile.jsp";
 		  			}else{

@@ -24,7 +24,6 @@ public class GetmainforumService implements Command {
 		Gson gson = new Gson();
         String jsonList = gson.toJson(list);
 
-        // JSON 문자열을 응답으로 전송
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
         response.getWriter().write(jsonList);

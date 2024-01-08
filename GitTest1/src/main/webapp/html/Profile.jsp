@@ -25,7 +25,6 @@
 </head>
 
 <body>
-	<!-- [S]campland-N1 -->
 	<header class="campland-N1" data-bid="RMlQ6deKn4" id="">
 		<div class="header-container container-lg">
 			<div class="header-left">
@@ -68,9 +67,7 @@
 						</c:if>
 					</c:if>
 	</header>
-	<!-- [E]campland-N1 -->
 	<main class="th-layout-main ">
-		<!-- [S]campland-N25 -->
 		<div class="campland-N25" data-bid="EJlQ6DHEUz" id="">
 			<div class="contents-inner">
 				<div class="contents-container">
@@ -81,7 +78,6 @@
 						<h4>더 정확한 대출금액을 알려드립니다.</h4>
 					</div>
 					<ul class="contents-list">
-						<!-- 자산정보 입력창 시작 -->
 						<form action="SelectLoans.do" method="post">
 
 							<li class="contents-item">
@@ -298,7 +294,6 @@ function isChecked(name) {
 			</div>
 		</div>
 	</footer>
-	<!-- [E]campland-N2 -->
 	<script src="../resources/js/setting.js"></script>
 	<script src="../resources/js/plugin.js"></script>
 	<script src="../resources/js/template.js"></script>

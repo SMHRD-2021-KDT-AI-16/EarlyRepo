@@ -14,20 +14,17 @@ public class LikesUpService implements Command {
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
+
 		int f_seq = Integer.parseInt(request.getParameter("f_seq"));
-		System.out.println("f_seq : "+f_seq);
-		int f_likes = Integer.parseInt(request.getParameter("f_likes"))+1;
-		System.out.println("f_likes : "+f_likes);
-		
+		int f_likes = Integer.parseInt(request.getParameter("f_likes")) + 1;
+
 		NoticeBoardDAO nbdao = new NoticeBoardDAO();
 		NoticeBoardVO nvo = new NoticeBoardVO();
-		
+
 		nvo.setF_seq(f_seq);
 		nvo.setF_likes(f_likes);
-		
 		nbdao.likesUp(nvo);
-		
+
 		return null;
 	}
 
