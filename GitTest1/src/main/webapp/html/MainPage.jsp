@@ -302,7 +302,7 @@
        	customOverlay2 = new kakao.maps.CustomOverlay({}),
        	customOverlay3 = new kakao.maps.CustomOverlay({}),
 		infowindow = new kakao.maps.InfoWindow({removable: true});
-			// 맵, 오버레이, 인포윈도우
+	// 맵, 오버레이, 인포윈도우
 				
 	$.getJSON('../resources/json/mokpo_test.json', function(json) {
 	 	var data = json.features;
@@ -319,7 +319,7 @@
 					
 	var polygons = [];
 	var points = [];
-					
+
 	function displayArea2(coordinates, name) {
 		 var path = [];     // 폴리곤 path
 						
@@ -333,14 +333,14 @@
 		})
 					 
 		var polygon = new kakao.maps.Polygon({
-			map : map, // 다각형을 표시할 지도 객체
+			map : map, 
 		    path : path,
 		    strokeWeight: 2,
 		    strokeColor: '#004c80',
 		    strokeOpacity: 0.8,
 		    fillColor: '#fff',
 		    fillOpacity: 0.7 
-		});
+		});// 다각형을 표시할 지도 객체
 					    
 		polygons.push(polygon);
 				
@@ -621,7 +621,7 @@
 	            	
 	    $.ajax({
 	    	url : 'http://localhost:8083/GitTest1/getApartSearch.do?name='+ searchValue,
-	        contentType : 'text/plain; charset=UTF-8', // Specify UTF-8
+	        contentType : 'text/plain; charset=UTF-8',
 	        data: { name: searchValue },
 	                	
 	        success : function(result) {
@@ -708,12 +708,13 @@
 			                        + sender + content.replace("/" + chatId, "(귓속말) :") + "</p>");
 			        }
 			    } else {
+			    	// /닉네임이 다르다면 아무것도 하지 않음
 			    }
-			} else {
-			    if (content.match("!")) {
+			} else { // 내용은 들어왔으나 /가 붙어서 온 경우가 아닌경우
+			    if (content.match("!")) { // !가 붙어서 오면 b태그를 이용하여 강조체로 출력
 			    	$("#messageWindow").html($("#messageWindow").html()
 			                    + "<p class='chat_content'><b class='impress'>" + sender + " : " + content + "</b></p>");
-			    } else {
+			    } else { // 귓속말도 아니고 강조체도 아니라면 그냥 출력
 			    	$("#messageWindow").html($("#messageWindow").html()
 			                    + "<p class='chat_content'>" + sender + " : " + content + "</p>");
 			    }
@@ -749,97 +750,99 @@
 	    }
 	}
 			
-			// 스크롤 조절
-			window.setInterval(function() {
-			    var elem = document.getElementById('messageWindow');
-				    elem.scrollTop = elem.scrollHeight;
-			}, 0);
+	// 스크롤 조절
+	window.setInterval(function() {
+		var elem = document.getElementById('messageWindow');
+			elem.scrollTop = elem.scrollHeight;
+	}, 0);
 		
+	// 좋아요 순 상위 6개 첫페이지에 가져와서 출력해주는 부분
+	$.ajax({
+		url: 'http://localhost:8083/GitTest1/getmainforum.do',
+		dataType: 'json',
+		success:function(result){
+				
+			let top1_img = document.getElementById("top1_img");
+			top1_img.src = "../uploadimg/"+result[0].f_file;
+			let top1_p = document.getElementById("top1_p");
+			top1_p.innerText = result[0].f_content;
 			
+			let top2_img = document.getElementById("top2_img");
+			top2_img.src = "../uploadimg/"+result[1].f_file;
+			let top2_p = document.getElementById("top2_p");
+			top2_p.innerText = result[1].f_content;
+				
+			let top3_img = document.getElementById("top3_img");
+			top3_img.src = "../uploadimg/"+result[2].f_file;
+			let top3_p = document.getElementById("top3_p");
+			top3_p.innerText = result[2].f_content;
+				
+			let top4_img = document.getElementById("top4_img");
+			top4_img.src = "../uploadimg/"+result[3].f_file;
+			let top4_p = document.getElementById("top4_p");
+			top4_p.innerText = result[3].f_content;
+				
+			let top5_img = document.getElementById("top5_img");
+			top5_img.src = "../uploadimg/"+result[4].f_file;
+			let top5_p = document.getElementById("top5_p");
+			top5_p.innerText = result[4].f_content;
+				
+			let top6_img = document.getElementById("top6_img");
+			top6_img.src = "../uploadimg/"+result[5].f_file;
+			let top6_p = document.getElementById("top6_p");
+			top6_p.innerText = result[5].f_content;
+				
+		},
+		error:function(){		
+		}
+	})
+		
+	const result_btn = document.getElementById("result_btn");
+	const final_btn = document.getElementById("final_btn"); // 간단조회 다음에 상세조회 버튼
+	
+	// 간단 조회 버튼을 누르면 상세조회 버튼 보여짐
+	result_btn.addEventListener('click', function () { 
+    	final_btn.style.display = "block";
+	});
+	
+	// 상세조회 버튼눌렀을 때 로그인 체크
+	final_btn.addEventListener('click', function () {
 		$.ajax({
-			url: 'http://localhost:8083/GitTest1/getmainforum.do',
-			dataType: 'json',
-			success:function(result){
+			url: 'http://localhost:8083/GitTest1/logincheck.do',
 				
-				let top1_img = document.getElementById("top1_img");
-				top1_img.src = "../uploadimg/"+result[0].f_file;
-				let top1_p = document.getElementById("top1_p");
-				top1_p.innerText = result[0].f_content;
-				
-				let top2_img = document.getElementById("top2_img");
-				top2_img.src = "../uploadimg/"+result[1].f_file;
-				let top2_p = document.getElementById("top2_p");
-				top2_p.innerText = result[1].f_content;
-				
-				let top3_img = document.getElementById("top3_img");
-				top3_img.src = "../uploadimg/"+result[2].f_file;
-				let top3_p = document.getElementById("top3_p");
-				top3_p.innerText = result[2].f_content;
-				
-				let top4_img = document.getElementById("top4_img");
-				top4_img.src = "../uploadimg/"+result[3].f_file;
-				let top4_p = document.getElementById("top4_p");
-				top4_p.innerText = result[3].f_content;
-				
-				let top5_img = document.getElementById("top5_img");
-				top5_img.src = "../uploadimg/"+result[4].f_file;
-				let top5_p = document.getElementById("top5_p");
-				top5_p.innerText = result[4].f_content;
-				
-				let top6_img = document.getElementById("top6_img");
-				top6_img.src = "../uploadimg/"+result[5].f_file;
-				let top6_p = document.getElementById("top6_p");
-				top6_p.innerText = result[5].f_content;
-				
+			success: function (result) {
+				if (result === 'success') {
+					window.location.href = "Profile.jsp";
+	  			}else{
+	  				alert("로그인이 필요한 서비스입니다.\n로그인 페이지로 이동합니다.");
+	  				window.location.href = "login.jsp";
+	  			}
 			},
-			error:function(){
-				
+			error: function(){		
 			}
-		})
+  		});
+	});
+	
+	// 출력되어있는 마커들 지우는 함수
+	function removeMarkers() {
+	    for (var i = 0; i < markers.length; i++) {
+	        markers[i].setMap(null);
+	    }
+	    // 배열 비우기
+	    markers = [];
+	}
 		
-		const result_btn = document.getElementById("result_btn");
-		const final_btn = document.getElementById("final_btn");
-
-		result_btn.addEventListener('click', function () {
-    		final_btn.style.display = "block";
-		});
-		
-		final_btn.addEventListener('click', function () {
-			$.ajax({
-				url: 'http://localhost:8083/GitTest1/logincheck.do',
-				
-				success: function (result) {
-					if (result === 'success') {
-						window.location.href = "Profile.jsp";
-		  			}else{
-		  				alert("로그인이 필요한 서비스입니다.\n로그인 페이지로 이동합니다.");
-		  				window.location.href = "login.jsp";
-		  			}
-				},
-				error: function(){
-			
-				}
-  		    });
-		});
-		
-		function removeMarkers() {
-		    for (var i = 0; i < markers.length; i++) {
-		        markers[i].setMap(null);
-		    }
-		    // 배열 비우기
-		    markers = [];
+	function preventEnterKey(event) {
+	    if (event.keyCode === 13) {
+	    	event.preventDefault();
 		}
+	}
+	
+	window.onload = function() {
+		document.onkeydown = preventEnterKey;
+	};
 		
-		function preventEnterKey(event) {
-		    if (event.keyCode === 13) {
-		    	event.preventDefault();
-			}
-		}
-		window.onload = function() {
-		      document.onkeydown = preventEnterKey;
-		};
-		
-		</script>
+</script>
 
 	<footer class="campland-N2" data-bid="mMlq6dEKQC">
 		<div class="footer-container container-lg">

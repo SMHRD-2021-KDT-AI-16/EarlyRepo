@@ -1,48 +1,51 @@
-# :pushpin: goQuality
->고퀄리티 개발 컨텐츠 공유 서비스  
-> 데모사이트 링크
+# :pushpin: 하우스 커퓨니티_하티
+> 내 집 마련 꿈을 위한 SNS
+>> 사용자의 정보를 바탕으로 대출 정보와 지역별 주거 환경 정보를 종합적으로 제공하는 부동산SNS
+
 
 </br>
 
 ## 1. 제작 기간 & 참여 인원
-- 2019년 2월 18일 ~ 4월 5일
-- 개인 프로젝트
+- 2023년 12월 1일 ~ 2024년 1월 5일
+- 팀 프로젝트
 
 </br>
 
 ## 2. 사용 기술
 #### `Back-end`
-  - Java 8
-  - Spring Boot 2.3
-  - Gradle
-  - Spring Data JPA
-  - QueryDSL
-  - H2
-  - MySQL 5.7
-  - Spring Security
-  - Jsoup
+  - Java
+  - Python
+  - oracle database
+  - Apache Tomcat9.0
+  - 
 #### `Front-end`
-  - Vue.js 3.0
-  - Element UI
+  - JavaScript
+  - css
+
+#### `IDE`
+  - Eclipse
+  - Visual Studio Code
+  - Jupyter NoteBook
+
 
 </br>
 
 ## 3. ERD 설계
-![](https://zuminternet.github.io/images/portal/post/2019-04-22-ZUM-Pilot-integer/final_erd.png)
-![](https://github.com/JungHyung2/gitio.io/blob/master/assets/images/portfolio/p1.jpg)
+![ERD](https://github.com/SMHRD-2021-KDT-AI-16/EarlyRepo/assets/152269537/665c3fdf-4584-4c2b-bb92-20601f3e8ecd)
 
 
 ## 4. 핵심 기능
-이 서비스의 핵심 기능은 컨텐츠 등록 기능입니다.  
-사용자는 단지 컨텐츠의 카테고리를 선택하고, URL만 입력하면 끝입니다.  
-이 단순한 기능의 흐름을 보면, 서비스가 어떻게 동작하는지 알 수 있습니다.  
+사용자 맞춤 부동산 정보 제공 
+게시판과 채팅을 통한 실시간 정보 공유  
+맞춤 대출 서비스 소개
+
 
 <details>
 <summary><b>핵심 기능 설명 펼치기</b></summary>
 <div markdown="1">
 
 ### 4.1. 전체 흐름
-![](https://zuminternet.github.io/images/portal/post/2019-04-22-ZUM-Pilot-integer/flow1.png)
+![](https://github.com/SMHRD-2021-KDT-AI-16/EarlyRepo/assets/152265634/20653eb1-a08a-4f23-b712-0b02d5d0427c)
 
 ### 4.2. 사용자 요청
 ![](https://zuminternet.github.io/images/portal/post/2019-04-22-ZUM-Pilot-integer/flow_vue.png)
@@ -83,6 +86,17 @@
   - URL 접속 확인결과 유효하면 Jsoup을 사용해서 입력된 URL의 이미지와 제목을 파싱합니다.
   - 이미지는 Open Graphic Tag를 우선적으로 파싱하고, 없을 경우 첫 번째 이미지와 제목을 파싱합니다.
   - 컨텐츠에 이미지가 없을 경우, 미리 설정해둔 기본 이미지를 사용하고, 제목이 없을 경우 생략합니다.
+
+
+
+### 4.5. Map api
+![map](https://github.com/SMHRD-2021-KDT-AI-16/EarlyRepo/assets/152379979/b611efc0-7b1a-49b7-8d4a-ae2384e31726)
+- ** 사용자가 입력한 값과 DB에 저장된 값과 비교해서 적합한 대출을 추출 ** :📌:[코드 확인](https://github.com/SMHRD-2021-KDT-AI-16/EarlyRepo/blob/ca21383ecc3d21a0e8497b68094cb30ecd287e8b/GitTest1/src/main/webapp/html/Profile.jsp#L240)
+  - DB에서 받은 대출 값과 사용자가 입력한 재산정보를 합쳐서 DB에 저장된 Apt_Realprice보다 크면 Apt_Loc를 가져옵니다.
+  - 외부api로 적용한 카카오맵api를 통해 ajax를 사용하여 가져온 Apt_Loc의 위치를 지도에 마커로 표시해줍니다.
+  - Json을 이용해 아파트세부정보를 저장하고 지도에 표시된 값들 DB에 저장된 Apt_Code와 일치하는 아파트의 세부정보를 보여줍니다.
+
+![map2](https://github.com/SMHRD-2021-KDT-AI-16/EarlyRepo/assets/152379979/475b7f1f-440e-42f0-9b2b-5dd77d2718b2)
 
 
 ### 4.5. Repository

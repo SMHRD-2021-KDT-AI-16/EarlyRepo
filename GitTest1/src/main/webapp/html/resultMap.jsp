@@ -55,8 +55,6 @@
     </fieldset>
 </div>
 <img class="chat" src="../resources/images/고양이말풍선white2.png" />
-
-	<!-- [S]campland-N1 -->
 	<header class="campland-N1" data-bid="RMlQ6deKn4" id="">
 		<div class="header-container container-lg">
 			<div class="header-left">
@@ -222,12 +220,8 @@
 							
 				success: function (result) {
 					let infoList = result.split(';');
-					console.log("tteesstt : ",infoList);
-						
-					console.log("test : ",infoList.length);
 					let temp1 = infoList.length/5; // 같은 이름 다른 평수 몇개인지 구분하기 위해서
-					console.log("길이 : ",temp1)
-					
+
 					document.getElementById('apt_name').innerText = infoList[0];
 						
 					document.getElementById('apt_loc').innerText = infoList[1];
@@ -281,14 +275,12 @@
 			});
 		} // getapartallinfo 끝
 
-
 			function closeOverlay() { // 오버레이 닫기
 				CustomOverlay2.setMap(null);
 			}
 
 			// 상세정보 출력하는 부분에서 평수에 따른 탭이동
 			$(document).on('click', 'ul.tabs li', function(){
-			    console.log("탭이동!")
 			    var tab_id = $(this).attr('data-tab');
 
 			    $('ul.tabs li').removeClass('current');
@@ -395,15 +387,8 @@
 			}, 0);
 		</script>
 
+</main>
 
-		</div>
-		</div>
-		</div>
-
-
-	</main>
-
-	<!-- [S]campland-N2 -->
 	<footer class="campland-N2" data-bid="mMlq6dEKQC">
 		<div class="footer-container container-lg">
 			<div class="footer-bottom">
@@ -419,7 +404,7 @@
 			</div>
 		</div>
 	</footer>
-	<!-- [E]campland-N2 -->
+
 	<script src="../resources/js/setting.js"></script>
 	<script src="../resources/js/plugin.js"></script>
 	<script src="../resources/js/template.js"></script>

@@ -25,7 +25,6 @@
 </head>
 
 <body>
-	<!-- [S]campland-N1 -->
 	<header class="campland-N1" data-bid="RMlQ6deKn4" id="">
 		<div class="header-container container-lg">
 			<div class="header-left">
@@ -66,10 +65,7 @@
                            </c:if>   
                      </c:if>
 	</header>
-	<!-- [E]campland-N1 -->
 	<main class="th-layout-main ">
-		<!-- [S]campland-N24 -->
-		
 		<div class="campland-N24" data-bid="oULq6dgKXB">
 			<div class="contents-inner">
 				<div class="contents-container">
@@ -77,8 +73,6 @@
 						<div class="textset textset-center">
 							<h2 class="textset-tit">일반 로그인</h2>
 						</div>
-						<!-- <form method="post"
-							action="http://localhost:8083/GitTest1/Login.do"> -->
 							<div class="inputset inputset-round">
 								<input id="user_id" name="user_id" type="text"
 									class="inputset-input form-control" aria-label="내용"
@@ -95,7 +89,6 @@
 							</div>
 
 							<input id="login_btn" type="submit" onclick="logincheck()" class="btnset btnset-round" value="로그인">
-						<!-- </form> -->
 						<script type="text/javascript">
 						document.addEventListener("keydown", function(event) {
 							if (event.key === "Enter") {
@@ -111,8 +104,6 @@
 									user_id : user_id.value,
 									pw : user_pw.value
 								};
-								console.log("정보 : ",logininfo);
-								
 								$.ajax({
 									url: 'http://localhost:8083/GitTest1/Login.do',
 									method: 'POST',
@@ -134,12 +125,6 @@
 							}
 						</script>
 						<ul class="contents-list">
-							<!-- <li class="contents-item">
-								<a href="javascipt:void(0);">아이디 찾기</a>
-							</li> -->
-							<!-- <li class="contents-item">
-								<a href="javascipt:void(0);">비밀번호 찾기</a>
-							</li> -->
 							<li class="contents-item">
 								<a href="Join.jsp">회원가입</a>
 							</li>
@@ -167,7 +152,6 @@
 			</div>
 		</div>
 	</footer>
-	<!-- [E]campland-N2 -->
 	<script src="../resources/js/setting.js"></script>
 	<script src="../resources/js/plugin.js"></script>
 	<script src="../resources/js/template.js"></script>

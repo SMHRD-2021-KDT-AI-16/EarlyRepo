@@ -99,16 +99,17 @@
 		<div class="myButton">
 			<button id = "cmt_inst" onclick="loginCheck()" type="button">게시글 작성</button>
 		</div>
-		<table id="table_content">
-		</table>
+		<table id="table_content"></table>
 		<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 		<script>
 			let list = <%= list %>
-					
+			
+			// 페이지 시작되자마자
 			$(document).ready(function() {
 	  			loadMoreData();			
 	  		});
-	    		
+	    	
+			// 스크롤 내리면 다음 데이터가 있을 경우 자동으로 스크롤 늘려줌
 	  		$(document).scroll(function () {
 	    		var documentHeight = $(document).height();
 	    		var scrollPosition = $(window).height() + $(window).scrollTop();
@@ -119,9 +120,13 @@
 	  		});
 	  		
 	  		let temp = [];
-	  		let cnt = 0;
+	  		let cnt = 0; // 데이터 갯수 세는 변수
+	  		
+	  		// 데이터를 가져오는 부분
 	  		function loadMoreData() {
+	  			// 남은 데이터의 갯수가 10개 이상인 경우
 	    		if (list.length > cnt + 10) {
+	    			// 10개까지 가져와서 출력
 	      			for (let b = cnt; b < cnt + 10; b++) {
 	      				temp = list[b].replace("{","").replace("}","").split(',');
 	      				const tr = document.createElement('tr');
@@ -307,6 +312,7 @@
 	      			}
 	      			cnt += 10;
 	    		} else {
+	    			// 10개보다 적다면 남은 갯수만큼
 	      			for (let b = cnt; b < list.length; b++) {
 	      				cnt += list.length;
 	      				temp = list[b].replace("{","").replace("}","").split(',');  //한줄에서 뭉탱이씩 짤라서 넣어줄꺼야
@@ -497,8 +503,7 @@
 	    		}
 	  		}
 	  		
-	  		
-	  		
+	  		// 좋아요 수 늘리는 부분
 	  		function likes_up(value, likes){
 	  		    $.ajax({
 					url: 'http://localhost:8083/GitTest1/likes_up.do?f_seq='+value+'&f_likes='+likes,
@@ -511,6 +516,8 @@
 					}
 	  		    });
 	  		}
+	  		
+	  		// 댓글 작성하는 부분
 	  		function insert_comment(comment, num){
 	  			$.ajax({
 					url: 'http://localhost:8083/GitTest1/insertComment.do?cmt_content='+comment+'&f_seq='+num,
@@ -523,7 +530,8 @@
 					}
 	  		    });
 	  		}
-	
+	  		
+			// 게시글 작성 눌렀을 때 로그인 체크
 	  		function loginCheck(){
 	  			$.ajax({
 					url: 'http://localhost:8083/GitTest1/logincheck.do',
@@ -540,7 +548,6 @@
 				
 					}
 	  		    });
-	  			
 	  		}
 		</script>
 	</main>

@@ -28,7 +28,6 @@
 </head>
 
 <body>
-		<!-- [S]campland-N1 -->
 	<header class="campland-N1" data-bid="RMlQ6deKn4" id="">
 		<div class="header-container container-lg">
 			<div class="header-left">
@@ -69,9 +68,7 @@
                            </c:if>   
                      </c:if>
 	</header>
-	<!-- [E]campland-N1 -->
 	<main class="th-layout-main ">
-		<!-- [S]campland-N25 -->
 		<!-- 회원 가입 페이지-->
 		<form method="post" action="http://localhost:8083/GitTest1/Join.do">
 			
@@ -100,7 +97,6 @@
 						
 							function checkE() {
 							var inputE = $("#inputE").val();
-							console.log(inputE);
 					
 							$.ajax( {
 								// 어디로 요청할건지?
@@ -141,11 +137,7 @@
 							    }
 							
 							</script>
-						
-						
-			
-			
-			
+		
 						<li class="contents-item">
 							<h6 class="form-tit form-tit-deco">
 								<span></span>비밀번호
@@ -211,7 +203,6 @@
 		      }
 		    }</script>
 	</main>
-	<!-- [S]campland-N2 -->
 	<footer class="campland-N2" data-bid="oolq6dhEvp">
 		<div class="footer-container container-lg">
 			<div class="footer-bottom">	
@@ -228,7 +219,6 @@
 			</div>
 		</div>
 	</footer>
-	<!-- [E]campland-N2 -->
 	<script src="../resources/js/setting.js"></script>
 	<script src="../resources/js/plugin.js"></script>
 	<script src="../resources/js/template.js"></script>
