@@ -100,13 +100,14 @@
 커넥션 관리와 예외 처리 등에 불편함이 있어 MyBatis를 사용하여 이를 보완하고자 했습니다.
 
 - 그런데 쿼리를 작성하다 비교연산자인(>,<)를 사용하게 되면 XML파일에서는 부등호가 태그의 시작과 끝을 알리는 특수부호로
-인식되기 때문에 아래의 **기존 코드** 를 사용했을때 발생하는 오류를 해결해야 했습니다.
+인식되기 때문에 아래의 **기존 코드**를 사용했을때 발생하는 오류를 해결해야 했습니다.
 
 <details>
 <summary><b>기존 코드</b></summary>
 <div markdown="1">
 
 ~~~java
+
 /**
  * 대출 추천
  * @tb_loan 대출 정보
@@ -167,9 +168,8 @@
 </div>
 </details>
 
-- 이 때 카테고리(tag)로 게시물을 필터링 하는 경우,  
-각 게시물은 최대 3개까지의 카테고리(tag)를 가질 수 있어 해당 카테고리를 포함하는 모든 게시물을 질의해야 했기 때문에  
-- 아래 **개선된 코드**와 같이 QueryDSL을 사용하여 다소 복잡한 Query를 작성하면서도 페이징 처리를 할 수 있었습니다.
+- 이 때 사용자에게 필요한 부동산 정보를 제공해주기 위해 불가피하게 쿼리에 부등호를 사용해야 했기 때문에 
+- 아래 **개선된 코드**와 같이 <![CDATA] ]>태그를 사용하여 아래의 개선된 코드와 같이 쿼리 작성시 부등호를 사용했을때 발생하는 오류를 해결하면서 MyBatis로 간편하게 DB에 접근할 수 있었습니다.
 
 <details>
 <summary><b>개선된 코드</b></summary>
@@ -177,24 +177,47 @@
 
 ~~~java
 /**
- * 게시물 필터 (Tag Name)
+ * 대출 추천
  */
-@Override
-public Page<Post> findAllByTagName(String tagName, Pageable pageable) {
+	<select id="SelectLoans" parameterType="com.early.model.LoanVO"
+		resultType="com.early.model.LoanNameVO">
+		<![CDATA[
+		SELECT a.loan_name, a.loan_limit
+		FROM tb_loan a
+		JOIN
+		tb_loan_criteria b ON a.loan_seq = b.loan_seq
+		WHERE FIRST_HOUSE_YN =
+		#{FIRST_HOUSE_YN}
+		AND DUPLICATE_YN = #{DUPLICATE_YN}
+		AND
+		MARRIAGE_YEARS >= #{MARRIAGE_YEARS}
+		AND INCOME <= #{INCOME}
+		]]>
+	</select>
 
-    QueryResults<Post> results = queryFactory
-            .selectFrom(post)
-            .innerJoin(postTag)
-                .on(post.idx.eq(postTag.post.idx))
-            .innerJoin(tag)
-                .on(tag.idx.eq(postTag.tag.idx))
-            .where(tag.name.eq(tagName))
-            .orderBy(post.idx.desc())
-                .limit(pageable.getPageSize())
-                .offset(pageable.getOffset())
-            .fetchResults();
+/**
+ * 부동산 추천
+ */
+	<select id="getCompare" parameterType="String" resultType="com.early.model.CompareVO">
+		SELECT a.apt_name, b.apt_realprice, a.apt_loc
+		FROM tb_apartment a,
+		tb_apartment_info b
+		WHERE a.apt_code = b.apt_code
+		AND b.apt_realprice <![CDATA[<]]>
+		#{total}
+	</select>
 
-    return new PageImpl<>(results.getResults(), pageable, results.getTotal());
+/**
+ * 부동산 추천2
+ */
+	<select id="getCompare2" parameterType="int" resultType="com.early.model.CompareVO">
+	<![CDATA[
+        SELECT a.apt_name, a.apt_loc, b.apt_realprice
+        FROM tb_apartment a
+        JOIN tb_apartment_info b ON a.apt_code = b.apt_code
+        WHERE b.apt_realprice < #{total_money}
+    ]]>
+	</select>
 }
 ~~~
 
