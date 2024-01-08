@@ -14,14 +14,19 @@
 ## 2. 사용 기술
 #### `Back-end`
   - Java
+  - Python
   - oracle database
   - Apache Tomcat9.0
-  - Eclipse
-  - Visual Studio Code
   - 
 #### `Front-end`
   - JavaScript
   - css
+
+#### `IDE`
+  - Eclipse
+  - Visual Studio Code
+  - Jupyter NoteBook
+
 
 </br>
 
