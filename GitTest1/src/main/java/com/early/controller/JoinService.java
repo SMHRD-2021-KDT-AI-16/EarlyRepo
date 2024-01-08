@@ -12,9 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 import com.early.db.DAO;
 import com.early.model.MemberVO;
 
-
 public class JoinService implements Command {
-		
+
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -22,29 +21,23 @@ public class JoinService implements Command {
 		String user_id = request.getParameter("user_id");
 		String user_pw = request.getParameter("user_pw");
 		String user_nick = request.getParameter("user_nick");
-		
+
 		MemberVO vo = new MemberVO();
-		
+
 		vo.setUser_id(user_id);
 		vo.setUser_pw(user_pw);
 		vo.setUser_nick(user_nick);
-		
+
 		DAO dao = new DAO();
 		int row = dao.join(vo);
-		
-		if(row>0) {
+
+		if (row > 0) {
 			request.setAttribute("user_id", user_id);
-			System.out.println("회원가입 완료");
 			return "redirect:/GoWelcome.do";
-		
-		}else {
-			
+		} else {
 			return "redirect:/GoMainPage.do";
 		}
 
-		
-		
-		
 	}
 
 }

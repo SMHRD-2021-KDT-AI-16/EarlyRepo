@@ -25,10 +25,7 @@ public class ResultService implements Command{
 			throws ServletException, IOException {
 		
 		int total_money = Integer.parseInt(request.getParameter("loan_select"));
-		
-		
 		CompareDAO cdao = new CompareDAO();
-		
 		List<CompareVO> list = cdao.getCompareincome(total_money);
 		
 		JsonArray jArray = new JsonArray();
@@ -36,9 +33,7 @@ public class ResultService implements Command{
 			Gson gson = new Gson();
 			jArray.add(gson.toJson(list.get(i)));
 		}
-		
 		HttpSession session = request.getSession();
-		System.out.println("여기?");
 		session.setAttribute("final_list", jArray);
 		
 		

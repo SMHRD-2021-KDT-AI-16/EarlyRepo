@@ -17,15 +17,8 @@ public class SelectAllService implements Command {
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// 1. DAO생성
 		DAO dao = new DAO();
-
-		// 2. dao.selectAll();
-		// SELECT EMAIL, TEL, ADDRESS
-		// WHERE EMAIL != 'admin'
 		List<MemberVO> resultlist = dao.selectAll();
-
-		// 3. 조회한 결과를 request영역에 list라는 이름으로 담아주기
 		request.setAttribute("list", resultlist);
 
 		return "select.jsp";
