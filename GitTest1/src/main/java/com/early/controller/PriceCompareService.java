@@ -13,45 +13,34 @@ import com.early.model.ApartVO;
 import com.early.model.CompareVO;
 import com.google.gson.Gson;
 
-public class PriceCompareService implements Command{
+public class PriceCompareService implements Command {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
+
 		String income = request.getParameter("income");
 		String money = request.getParameter("money");
-		int loan_money = Integer.parseInt(money)+Integer.parseInt(income);
-		System.out.println("income : "+ income);
-		System.out.println("money : "+ money);
-		
+		int loan_money = Integer.parseInt(money) + Integer.parseInt(income);
+
 		CompareDAO cdao = new CompareDAO();
-		String total =  String.valueOf(Integer.parseInt(money)+Integer.parseInt(income));
-		
+		String total = String.valueOf(Integer.parseInt(money) + Integer.parseInt(income));
+
 		List<CompareVO> list = cdao.getCompareincome(total);
-		
+
 		StringBuilder plainText = new StringBuilder();
-		
+
 		for (CompareVO item : list) {
-	        plainText.append(item.getApt_name()).append(";").append(item.getApt_realprice()).append(";")
-	        .append(item.getApt_loc()).append(";");
-	    }
-		HttpSession session = request.getSession();		
-		
-//	    session.setAttribute("apart_list", plainText.toString());
-//	    response.setCharacterEncoding("UTF-8");
-//	    response.setContentType("text/plain");
-		
-//		Gson gson  = new Gson();
-//	    response.getWriter().write(gson.toJson(list).toString());
-		
+			plainText.append(item.getApt_name()).append(";").append(item.getApt_realprice()).append(";")
+					.append(item.getApt_loc()).append(";");
+		}
+		HttpSession session = request.getSession();
 		session.setAttribute("loan_money", loan_money);
-		
 		session.setAttribute("priceCompare_list", plainText.toString());
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("text/plain");
 		response.getWriter().write(plainText.toString());
-	    
+
 		return null;
 	}
 

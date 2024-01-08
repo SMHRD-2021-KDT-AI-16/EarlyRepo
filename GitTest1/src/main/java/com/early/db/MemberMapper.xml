@@ -1,11 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- 1. 문법 정의(어떤 태그 사용할 건지 정의) : mapper태그 사용하겠다. -->
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<!-- 2. mapper : 안쪽에 sql구문을 작성할 수 있는 공간 namespace : 중복이 되지 않게 선언 >> DAO와 
-	이름 일치시키자 -->
 <mapper namespace="com.early.db.MemberMapper">
 
 	<insert id="join" parameterType="com.early.model.MemberVO">

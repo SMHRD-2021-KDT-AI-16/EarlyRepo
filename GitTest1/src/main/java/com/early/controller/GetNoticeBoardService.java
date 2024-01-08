@@ -26,12 +26,10 @@ public class GetNoticeBoardService implements Command {
 		}
 		
 		String loc = request.getParameter("loc");
-		System.out.println("loc : "+loc);
 		
 		NoticeBoardDAO nbdao = new NoticeBoardDAO();
 		
 		List<NoticeBoardVO> list = nbdao.getContents(loc);
-		System.out.println("test : "+list.get(0).getF_content());
 		
 		JsonArray jArray = new JsonArray();
 		for (int i=0;i<list.size();i++) {

@@ -22,11 +22,9 @@ public class CompareDAO {
 		return list;
 	}
 	public List<CompareVO> getCompareincome(int total_money){
-		System.out.println("여기?#33");
 		SqlSession sqlSession = factory.openSession(true);
 		
 		List<CompareVO> list = sqlSession.selectList("getCompare2", total_money);
-		System.out.println("여기가?"+list);
 		sqlSession.close();
 		return list;
 	}

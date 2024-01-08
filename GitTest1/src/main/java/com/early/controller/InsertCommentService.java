@@ -23,7 +23,7 @@ public class InsertCommentService implements Command {
 		String user_id = user.getUser_id();
 		String cmt_content = request.getParameter("cmt_content");
 		int f_seq = Integer.parseInt(request.getParameter("f_seq"));
-		System.out.println("f_seq : "+f_seq);
+		
 		CommentVO cvo = new CommentVO();
 		
 		cvo.setUser_id(user_id);
