@@ -17,7 +17,6 @@ public class GetCommentService implements Command{
 			throws ServletException, IOException {
 		
 		int f_seq = Integer.parseInt(request.getParameter("f_seq"));
-		System.out.println("f_seq : "+f_seq);
 		
 		CommentDAO cdao = new CommentDAO();
 		
