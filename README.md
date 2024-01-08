@@ -17,7 +17,7 @@
   - Python
   - oracle database
   - Apache Tomcat9.0
-  - 
+    
 #### `Front-end`
   - JavaScript
   - css
