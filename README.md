@@ -92,15 +92,15 @@
 </br>
 
 ## 5. 핵심 트러블 슈팅
-### 5.1. 컨텐츠 필터와 페이징 처리 문제
-- 저는 이 서비스가 페이스북이나 인스타그램 처럼 가볍게, 자주 사용되길 바라는 마음으로 개발했습니다.  
-때문에 페이징 처리도 무한 스크롤을 적용했습니다.
+### 5.1. MyBatis 쿼리 오류 해결 문제
+- 프로젝트를 기획하며 사용자에게 필요한 부동산 정보만 제공해주고 싶었습니다.
+그래서 사용자의 정보를 입력 받고 입력 받은 정보와 DB에 저장된 데이터를 비교해야했습니다.
 
-- 하지만 [무한스크롤, 페이징 혹은 “더보기” 버튼? 어떤 걸 써야할까](https://cyberx.tistory.com/82) 라는 글을 읽고 무한 스크롤의 단점들을 알게 되었고,  
-다양한 기준(카테고리, 사용자, 등록일, 인기도)의 게시물 필터 기능을 넣어서 이를 보완하고자 했습니다.
+- 하지만 이전에 DB에 접근하기 위해 사용했던 JDBC는 쿼리를 실행하기 전과 후에 연결 생성, 명령문 등 많은 코드를 작성해야 하고
+커넥션 관리와 예외 처리 등에 불편함이 있어 MyBatis를 사용하여 이를 보완하고자 했습니다.
 
-- 그런데 게시물이 필터링 된 상태에서 무한 스크롤이 동작하면,  
-필터링 된 게시물들만 DB에 요청해야 하기 때문에 아래의 **기존 코드** 처럼 각 필터별로 다른 Query를 날려야 했습니다.
+- 그런데 쿼리를 작성하다 비교연산자인(>,<)를 사용하게 되면 XML파일에서는 부등호가 태그의 시작과 끝을 알리는 특수부호로
+인식되기 때문에 아래의 **기존 코드** 를 사용했을때 발생하는 오류를 해결해야 했습니다.
 
 <details>
 <summary><b>기존 코드</b></summary>
@@ -108,45 +108,60 @@
 
 ~~~java
 /**
- * 게시물 Top10 (기준: 댓글 수 + 좋아요 수)
- * @return 인기순 상위 10개 게시물
+ * 대출 추천
+ * @tb_loan 대출 정보
+ * @tb_loan_criteria 비교할 대출 정보
+ * @loan_name 대출 명
+ * @loan_limit 대출 한도
+ * @loan_seq 대출 코드
+ * #{FIRST_HOUSE_YN} 최초 주택 구입 여부
+ * #{DUPLICATE_YN} 중복 대출 여부
+ * #{MARRIAGE_YEARS} 결혼 기간
+ * #{INCOME} 연소득
  */
-public Page<PostResponseDto> listTopTen() {
 
-    PageRequest pageRequest = PageRequest.of(0, 10, Sort.Direction.DESC, "rankPoint", "likeCnt");
-    return postRepository.findAll(pageRequest).map(PostResponseDto::new);
-}
+	<select id="SelectLoans" parameterType="com.early.model.LoanVO"
+		resultType="com.early.model.LoanNameVO">
+		SELECT a.loan_name, a.loan_limit
+		FROM tb_loan a
+		JOIN
+		tb_loan_criteria b ON a.loan_seq = b.loan_seq
+		WHERE FIRST_HOUSE_YN =
+		#{FIRST_HOUSE_YN}
+		AND DUPLICATE_YN = #{DUPLICATE_YN}
+		AND
+		MARRIAGE_YEARS >= #{MARRIAGE_YEARS}
+		AND INCOME <= #{INCOME}
+	</select>
 
 /**
- * 게시물 필터 (Tag Name)
- * @param tagName 게시물 박스에서 클릭한 태그 이름
- * @param pageable 페이징 처리를 위한 객체
- * @return 해당 태그가 포함된 게시물 목록
+ * 부동산 추천
+ * @tb_apartment 아파트
+ * @tb_apartment_info 아파트 상세정보
+ * @apt_name 아파트 명
+ * @apt_realprice 실거래가
+ * @apt_loc 아파트 주소
+ * @apt_code 아파트 코드
+ * #{total} 자산정보
  */
-public Page<PostResponseDto> listFilteredByTagName(String tagName, Pageable pageable) {
 
-    return postRepository.findAllByTagName(tagName, pageable).map(PostResponseDto::new);
-}
-
-// ... 게시물 필터 (Member) 생략 
+	<select id="getCompare" parameterType="String" resultType="com.early.model.CompareVO">
+		SELECT a.apt_name, b.apt_realprice, a.apt_loc
+		FROM tb_apartment a,
+		tb_apartment_info b
+		WHERE a.apt_code = b.apt_code
+		AND b.apt_realprice <#{total}
+	</select>
 
 /**
- * 게시물 필터 (Date)
- * @param createdDate 게시물 박스에서 클릭한 날짜
- * @return 해당 날짜에 등록된 게시물 목록
+ * 부동산 추천2
+ * #{total_money} 자산정보
  */
-public List<PostResponseDto> listFilteredByDate(String createdDate) {
-
-    // 등록일 00시부터 24시까지
-    LocalDateTime start = LocalDateTime.of(LocalDate.parse(createdDate), LocalTime.MIN);
-    LocalDateTime end = LocalDateTime.of(LocalDate.parse(createdDate), LocalTime.MAX);
-
-    return postRepository
-                    .findAllByCreatedAtBetween(start, end)
-                    .stream()
-                    .map(PostResponseDto::new)
-                    .collect(Collectors.toList());
-    }
+	<select id="getCompare2" parameterType="int" resultType="com.early.model.CompareVO">
+        SELECT a.apt_name, a.apt_loc, b.apt_realprice
+        FROM tb_apartment a
+        JOIN tb_apartment_info b ON a.apt_code = b.apt_code
+        WHERE b.apt_realprice < #{total_money}
 ~~~
 
 </div>
