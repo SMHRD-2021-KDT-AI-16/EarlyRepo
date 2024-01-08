@@ -46,7 +46,8 @@
 <div markdown="1">
 
 ### 4.1. 전체 흐름
-![](https://github.com/SMHRD-2021-KDT-AI-16/EarlyRepo/assets/152265634/20653eb1-a08a-4f23-b712-0b02d5d0427c)
+![](https://github.com/SMHRD-2021-KDT-AI-16/EarlyRepo/assets/152265634/1bcd4450-d787-4794-b7b4-049210de72dd)
+
 
 ### 4.2. 사용자 요청
 
