@@ -42,7 +42,7 @@
 <div markdown="1">
 
 ### 4.1. 전체 흐름
-![](https://zuminternet.github.io/images/portal/post/2019-04-22-ZUM-Pilot-integer/flow1.png)
+![](![image](https://github.com/SMHRD-2021-KDT-AI-16/EarlyRepo/assets/152265634/e0b9b8e6-b91c-4f57-a2d0-69315886d5ab))
 
 ### 4.2. 사용자 요청
 ![](https://zuminternet.github.io/images/portal/post/2019-04-22-ZUM-Pilot-integer/flow_vue.png)
