@@ -22,6 +22,9 @@
 	<link rel="stylesheet" href="../resources/css/template.css">
 	<link rel="stylesheet" href="../resources/css/common.css">
 	<link rel="stylesheet" href="../resources/css/style.css">
+	<style>
+	
+	</style>
 </head>
 
 <body>
@@ -85,8 +88,8 @@
 							</h6>
 							<div class="form-wrap">
 								<div class="inputset inputset-round">
-									<input name="user_id"  id="inputE" type="text" class="inputset-input form-control" aria-label="내용"
-										placeholder="아이디를 입력해주세요." >
+									<input name="user_id" maxlength="20" id="inputE" type="text" class="inputset-input form-control" aria-label="내용"
+										placeholder="아이디를 입력해주세요." oninput="checkInputLength()">
 								</div>
 								<input type="button"  class="btnset btnset-round" onclick="checkE()" value="중복확인">
 							</div>
@@ -122,6 +125,21 @@
 						
 							});
 							}
+							function checkInputLength() {
+							      var inputElement = document.getElementById("inputE");
+							      var inputValue = inputElement.value;
+
+							      // 문자열을 UTF-8로 인코딩하여 바이트 수 계산
+							      var byteLength = new TextEncoder().encode(inputValue).length;
+
+							      // 예를 들어, 6글자 이상을 허용하지 않도록 설정
+							      if (byteLength > 3 * 6) {
+							        alert("한글은 6글자 이상 입력할 수 없습니다.");
+							        // 입력 값을 초기화하거나 다른 조치를 취할 수 있습니다.
+							        inputElement.value = "";
+							      }
+							    }
+							
 							</script>
 						
 						
@@ -156,8 +174,8 @@
 							</h6>
 							<div class="form-wrap">
 								<div class="inputset inputset-round">
-									<input name="user_nick" type="text" class="inputset-input form-control" aria-label="내용"
-										placeholder="닉네임을 입력해주세요.">
+									<input id="user_nick" name="user_nick" type="text" class="inputset-input form-control" aria-label="내용"
+										placeholder="닉네임을 입력해주세요." oninput="checkInputLength2()">
 								</div>
 							</div>
 						</li>
@@ -177,7 +195,21 @@
 		</div>
 		
 		</form>
-		<!-- [E]campland-N25 -->
+		<script type="text/javascript">
+		function checkInputLength2() {
+		      var inputElement = document.getElementById("user_nick");
+		      var inputValue = inputElement.value;
+
+		      // 문자열을 UTF-8로 인코딩하여 바이트 수 계산
+		      var byteLength = new TextEncoder().encode(inputValue).length;
+
+		      // 예를 들어, 6글자 이상을 허용하지 않도록 설정
+		      if (byteLength > 3 * 6) {
+		        alert("한글은 6글자 이상 입력할 수 없습니다.");
+		        // 입력 값을 초기화하거나 다른 조치를 취할 수 있습니다.
+		        inputElement.value = "";
+		      }
+		    }</script>
 	</main>
 	<!-- [S]campland-N2 -->
 	<footer class="campland-N2" data-bid="oolq6dhEvp">

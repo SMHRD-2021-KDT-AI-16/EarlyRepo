@@ -18,7 +18,7 @@
 	<meta name="description" content="웹사이트입니다.">
 	<meta name="keywords" content="키워드,키워드,키워드">
 	<meta property="og:title" content="웹사이트">
-	<meta property="og:description" content="웹사이트입니다">
+	<meta property="og:description" content="웹사이트입니다">4k4r
 	<meta property="og:image" content="https://웹사이트/images/opengraph.png">
 	<meta property="og:url" content="https://웹사이트">
 	<title>지도 | 핵심프로젝트</title>
