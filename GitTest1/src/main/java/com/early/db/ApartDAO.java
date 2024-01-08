@@ -17,9 +17,7 @@ public class ApartDAO {
 	
 	public List<ApartVO> getApart(String name) {
 		
-		//sqlSession --> DB와 연결 되는 통로를 만들 것이다!
 		SqlSession sqlSession = factory.openSession(true);
-		//통로를통해  "com.early.db.mapMapper.getApart"에 있는 쿼리문을  실행 시키겠다!
 		List<ApartVO> list = sqlSession.selectList("com.early.db.mapMapper.getApart", name);
 		
 		sqlSession.close();
@@ -38,7 +36,6 @@ public class ApartDAO {
 	
 	public List<LoanNameVO> SelectLoans(LoanVO vo) {
 		SqlSession sqlSession = factory.openSession();
-		System.out.println("test222 : "+vo);
 		List<LoanNameVO> loans = sqlSession.selectList("com.early.db.mapMapper.SelectLoans", vo);
 		
 		sqlSession.close();
@@ -57,11 +54,8 @@ public class ApartDAO {
 
 	public int deletereview(String user_id) {
 		SqlSession session = factory.openSession(true);
-		System.out.println("test2 : "+user_id);
 		
 		int cnt = session.delete("deletereview", user_id);
-		System.out.println("암ㄴ어ㅏㅁㄴㅇ");
-		System.out.println("cnt출력:" + cnt);
 
 		session.close();
 
