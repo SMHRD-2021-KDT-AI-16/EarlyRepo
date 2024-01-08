@@ -55,6 +55,8 @@
   - 사용자가 입력한 정보에 따라 조건에 부합하는 대출목록을 보여줍니다.   
 ![image](https://github.com/SMHRD-2021-KDT-AI-16/EarlyRepo/assets/152265634/e7371fd4-87b5-4d85-9517-cb07cc870176)
 
+- **카카오맵api를 활용하여 시각화화
+
 ### 4.3. Controller
 
 - **요청 처리**
