@@ -57,7 +57,7 @@
 - **카카오Map API를 활용하여 시각화
   - 카카오맵api에서 주소를 입력하면 주소에 해당하는 좌표를 마킹해주는 로직을 이용하여 시각화
   - 외부api로 적용한 카카오맵api를 통해 ajax를 사용하여 가져온 Apt_Loc의 위치를 지도에 마커로 표시해줍니다.
-  - Json을 이용해 아파트세부정보를 저장하고 지도에 표시된 값들 DB에 저장된 Apt_Code와 일치하는 아파트의 세부정보를 보여줍니다.
+  - Json을 이용해 아파트세부정보를 저장하고 지도에 표시된 값들 DB에 저장된 Apt_Code와 일치하는 아파트의 세부정보를 보여줍니다.   
 <img src="https://github.com/SMHRD-2021-KDT-AI-16/EarlyRepo/assets/152379979/475b7f1f-440e-42f0-9b2b-5dd77d2718b2" width="450px" height="300px" title="px(픽셀) 크기 설정"></img><br/>
 
 
