@@ -83,7 +83,7 @@
 - **실거래비교**
   - DB에서 받은 대출 값과 사용자가 입력한 재산정보를 합쳐서 DB에 저장된 Apt_Realprice보다 크면 Apt_Loc를 가져옵니다.
     
-<img src="https://github.com/SMHRD-2021-KDT-AI-16/EarlyRepo/assets/152379979/b611efc0-7b1a-49b7-8d4a-ae2384e31726" width="450px" height="300px" title="px(픽셀) 크기 설정"></img><br/>
+
 </div>
 </details>
 
