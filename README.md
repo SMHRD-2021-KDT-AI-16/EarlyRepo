@@ -1,97 +1,90 @@
-# :pushpin: goQuality
->고퀄리티 개발 컨텐츠 공유 서비스  
-> 데모사이트 링크
+# :pushpin: 하우스 커니티_하티
+> 내 집 마련 꿈을 위한 SNS
+>> 사용자의 정보를 바탕으로 대출 정보와 지역별 주거 환경 정보를 종합적으로 제공하는 부동산SNS
+
 
 </br>
 
 ## 1. 제작 기간 & 참여 인원
-- 2019년 2월 18일 ~ 4월 5일
-- 개인 프로젝트
+- 2023년 12월 1일 ~ 2024년 1월 5일
+- 팀 프로젝트
 
 </br>
 
 ## 2. 사용 기술
 #### `Back-end`
-  - Java 8
-  - Spring Boot 2.3
-  - Gradle
-  - Spring Data JPA
-  - QueryDSL
-  - H2
-  - MySQL 5.7
-  - Spring Security
-  - Jsoup
+  - Java
+  - Python
+  - oracle database
+  - Apache Tomcat9.0
+    
 #### `Front-end`
-  - Vue.js 3.0
-  - Element UI
+  - JavaScript
+  - css
+
+#### `IDE`
+  - Eclipse
+  - Visual Studio Code
+  - Jupyter NoteBook
+
 
 </br>
 
 ## 3. ERD 설계
-![](https://zuminternet.github.io/images/portal/post/2019-04-22-ZUM-Pilot-integer/final_erd.png)
-![](https://github.com/JungHyung2/gitio.io/blob/master/assets/images/portfolio/p1.jpg)
+![ERD2](https://github.com/SMHRD-2021-KDT-AI-16/EarlyRepo/assets/152379979/e8b3d332-67c3-44b9-b3b4-1b408d41bc71)
+
 
 
 ## 4. 핵심 기능
-이 서비스의 핵심 기능은 컨텐츠 등록 기능입니다.  
-사용자는 단지 컨텐츠의 카테고리를 선택하고, URL만 입력하면 끝입니다.  
-이 단순한 기능의 흐름을 보면, 서비스가 어떻게 동작하는지 알 수 있습니다.  
+사용자 맞춤 부동산 정보 제공 
+게시판과 채팅을 통한 실시간 정보 공유  
+맞춤 대출 서비스 소개
+
 
 <details>
 <summary><b>핵심 기능 설명 펼치기</b></summary>
 <div markdown="1">
 
 ### 4.1. 전체 흐름
-![](https://zuminternet.github.io/images/portal/post/2019-04-22-ZUM-Pilot-integer/flow1.png)
+
+![](https://github.com/SMHRD-2021-KDT-AI-16/EarlyRepo/assets/152265634/47587d45-ae45-4e34-9874-b52474d02193)
+
+
 
 ### 4.2. 사용자 요청
-![](https://zuminternet.github.io/images/portal/post/2019-04-22-ZUM-Pilot-integer/flow_vue.png)
 
-- **URL 정규식 체크** :pushpin: [코드 확인](https://github.com/JungHyung2/gitio.io/blob/95b4c4f06a2a5a74a00f81a3c3fcc003c994725f/index.html#L15C8-L15C26)
-  - Vue.js로 렌더링된 화면단에서, 사용자가 등록을 시도한 URL의 모양새를 정규식으로 확인합니다.
-  - URL의 모양새가 아닌 경우, 에러 메세지를 띄웁니다.
+- **자산정보 입력 및 대출 서비스 소개
+  - 사용자가 입력한 정보에 따라 조건에 부합하는 대출목록을 보여줍니다.   
+<img src="https://github.com/SMHRD-2021-KDT-AI-16/EarlyRepo/assets/152265634/e7371fd4-87b5-4d85-9517-cb07cc870176" width="450px" height="300px" title="px(픽셀) 크기 설정"></img><br/>
+- **카카오Map API를 활용하여 시각화
+  - 카카오맵api에서 주소를 입력하면 주소에 해당하는 좌표를 마킹해주는 로직을 이용하여 시각화
+  - 외부api로 적용한 카카오맵api를 통해 ajax를 사용하여 가져온 Apt_Loc의 위치를 지도에 마커로 표시해줍니다.
+  - Json을 이용해 아파트세부정보를 저장하고 지도에 표시된 값들 DB에 저장된 Apt_Code와 일치하는 아파트의 세부정보를 보여줍니다.   
+<img src="https://github.com/SMHRD-2021-KDT-AI-16/EarlyRepo/assets/152379979/475b7f1f-440e-42f0-9b2b-5dd77d2718b2" width="450px" height="300px" title="px(픽셀) 크기 설정"></img><br/>
 
-- **Axios 비동기 요청** :pushpin: [코드 확인]()
-  - URL의 모양새인 경우, 컨텐츠를 등록하는 POST 요청을 비동기로 날립니다.
 
-### 4.3. Controller
+### 4.3. FrontController
 
-![](https://zuminternet.github.io/images/portal/post/2019-04-22-ZUM-Pilot-integer/flow_controller.png)
-
-- **요청 처리** :pushpin: [코드 확인](https://github.com/JungHyung2/gitio.io/blob/d35d29b64c0e8b9653862bdcc1e6b997d2436ec9/index.html#L57C1-L57C202)
-  - Controller에서는 요청을 화면단에서 넘어온 요청을 받고, Service 계층에 로직 처리를 위임합니다.
+- **요청 처리**
+  - 화면에서 요청된 데이터 값을 Service로 전달해줍니다.
 
 - **결과 응답** :pushpin: [코드 확인]()
-  - Service 계층에서 넘어온 로직 처리 결과(메세지)를 화면단에 응답해줍니다.
+  - Service 계층에서 넘어온 로직 처리 결과를 jsp로 전달해줍니다.
+
 
 ### 4.4. Service
 
-![](https://zuminternet.github.io/images/portal/post/2019-04-22-ZUM-Pilot-integer/flow_service1.png)
-
-- **Http 프로토콜 추가 및 trim()** :pushpin: [코드 확인]()
-  - 사용자가 URL 입력 시 Http 프로토콜을 생략하거나 공백을 넣은 경우,  
-  올바른 URL이 될 수 있도록 Http 프로토콜을 추가해주고, 공백을 제거해줍니다.
-
-- **URL 접속 확인** :pushpin: [코드 확인]()
-  - 화면단에서 모양새만 확인한 URL이 실제 리소스로 연결되는지 HttpUrlConnection으로 테스트합니다.
-  - 이 때, 빠른 응답을 위해 Request Method를 GET이 아닌 HEAD를 사용했습니다.
-  - (HEAD 메소드는 GET 메소드의 응답 결과의 Body는 가져오지 않고, Header만 확인하기 때문에 GET 메소드에 비해 응답속도가 빠릅니다.)
-
-  ![](https://zuminternet.github.io/images/portal/post/2019-04-22-ZUM-Pilot-integer/flow_service2.png)
-
-- **Jsoup 이미지, 제목 파싱** :pushpin: [코드 확인]()
-  - URL 접속 확인결과 유효하면 Jsoup을 사용해서 입력된 URL의 이미지와 제목을 파싱합니다.
-  - 이미지는 Open Graphic Tag를 우선적으로 파싱하고, 없을 경우 첫 번째 이미지와 제목을 파싱합니다.
-  - 컨텐츠에 이미지가 없을 경우, 미리 설정해둔 기본 이미지를 사용하고, 제목이 없을 경우 생략합니다.
+- **JsonArray / text/plain 방식으로 데이터 변환** :pushpin: [코드 확인]()
+  - 데이터 베이스에서 받아온 데이터를 jsp파일에서 사용할 수 있게 하기 위해 데이터를 변환합니다.
 
 
-### 4.5. Repository
-
-![](https://zuminternet.github.io/images/portal/post/2019-04-22-ZUM-Pilot-integer/flow_repo.png)
-
-- **컨텐츠 저장** :pushpin: [코드 확인]()
-  - URL 유효성 체크와 이미지, 제목 파싱이 끝난 컨텐츠는 DB에 저장합니다.
-  - 저장된 컨텐츠는 다시 Repository - Service - Controller를 거쳐 화면단에 송출됩니다.
+### 4.5. DB
+- **대출소개**
+  - 사용자가 입력한 값과 DB에 저장된 값과 비교해서 적합한 대출을 추출 :📌:[코드 확인](https://github.com/SMHRD-2021-KDT-AI-16/EarlyRepo/blob/ca21383ecc3d21a0e8497b68094cb30ecd287e8b/GitTest1/src/main/webapp/html/Profile.jsp#L240)
+ 
+- **실거래비교**
+  - DB에서 받은 대출 값과 사용자가 입력한 재산정보를 합쳐서 DB에 저장된 Apt_Realprice보다 크면 Apt_Loc를 가져옵니다.
+    
 
 </div>
 </details>
@@ -99,69 +92,84 @@
 </br>
 
 ## 5. 핵심 트러블 슈팅
-### 5.1. 컨텐츠 필터와 페이징 처리 문제
-- 저는 이 서비스가 페이스북이나 인스타그램 처럼 가볍게, 자주 사용되길 바라는 마음으로 개발했습니다.  
-때문에 페이징 처리도 무한 스크롤을 적용했습니다.
+### 5.1. MyBatis 쿼리 오류 해결 문제
+- 프로젝트를 기획하며 사용자에게 필요한 부동산 정보를 제공해주고 싶었고
+그래서 사용자의 정보를 입력 받고 입력 받은 정보와 DB에 저장된 데이터를 비교해야 했습니다.
 
-- 하지만 [무한스크롤, 페이징 혹은 “더보기” 버튼? 어떤 걸 써야할까](https://cyberx.tistory.com/82) 라는 글을 읽고 무한 스크롤의 단점들을 알게 되었고,  
-다양한 기준(카테고리, 사용자, 등록일, 인기도)의 게시물 필터 기능을 넣어서 이를 보완하고자 했습니다.
+- 하지만 이전에 DB에 접근하기 위해 사용했던 JDBC는 쿼리를 실행하기 전과 후에 연결 생성, 명령문 등 많은 코드를 작성해야 하고
+커넥션 관리와 예외 처리 등에 불편함이 있어 MyBatis를 사용하여 이를 보완하고자 했습니다.
 
-- 그런데 게시물이 필터링 된 상태에서 무한 스크롤이 동작하면,  
-필터링 된 게시물들만 DB에 요청해야 하기 때문에 아래의 **기존 코드** 처럼 각 필터별로 다른 Query를 날려야 했습니다.
+- 그런데 쿼리를 작성하다 비교연산자인(>,<)를 사용하게 되면 XML파일에서는 부등호가 태그의 시작과 끝을 알리는 특수부호로
+인식되기 때문에 아래의 **기존 코드**를 사용했을때 발생하는 오류를 해결해야 했습니다.
 
 <details>
 <summary><b>기존 코드</b></summary>
 <div markdown="1">
 
 ~~~java
-/**
- * 게시물 Top10 (기준: 댓글 수 + 좋아요 수)
- * @return 인기순 상위 10개 게시물
- */
-public Page<PostResponseDto> listTopTen() {
-
-    PageRequest pageRequest = PageRequest.of(0, 10, Sort.Direction.DESC, "rankPoint", "likeCnt");
-    return postRepository.findAll(pageRequest).map(PostResponseDto::new);
-}
 
 /**
- * 게시물 필터 (Tag Name)
- * @param tagName 게시물 박스에서 클릭한 태그 이름
- * @param pageable 페이징 처리를 위한 객체
- * @return 해당 태그가 포함된 게시물 목록
+ * 대출 추천
+ * @tb_loan 대출 정보
+ * @tb_loan_criteria 비교할 대출 정보
+ * @loan_name 대출 명
+ * @loan_limit 대출 한도
+ * @loan_seq 대출 코드
+ * #{FIRST_HOUSE_YN} 최초 주택 구입 여부
+ * #{DUPLICATE_YN} 중복 대출 여부
+ * #{MARRIAGE_YEARS} 결혼 기간
+ * #{INCOME} 연소득
  */
-public Page<PostResponseDto> listFilteredByTagName(String tagName, Pageable pageable) {
 
-    return postRepository.findAllByTagName(tagName, pageable).map(PostResponseDto::new);
-}
-
-// ... 게시물 필터 (Member) 생략 
+	<select id="SelectLoans" parameterType="com.early.model.LoanVO"
+		resultType="com.early.model.LoanNameVO">
+		SELECT a.loan_name, a.loan_limit
+		FROM tb_loan a
+		JOIN
+		tb_loan_criteria b ON a.loan_seq = b.loan_seq
+		WHERE FIRST_HOUSE_YN =
+		#{FIRST_HOUSE_YN}
+		AND DUPLICATE_YN = #{DUPLICATE_YN}
+		AND
+		MARRIAGE_YEARS >= #{MARRIAGE_YEARS}
+		AND INCOME <= #{INCOME}
+	</select>
 
 /**
- * 게시물 필터 (Date)
- * @param createdDate 게시물 박스에서 클릭한 날짜
- * @return 해당 날짜에 등록된 게시물 목록
+ * 부동산 추천
+ * @tb_apartment 아파트
+ * @tb_apartment_info 아파트 상세정보
+ * @apt_name 아파트 명
+ * @apt_realprice 실거래가
+ * @apt_loc 아파트 주소
+ * @apt_code 아파트 코드
+ * #{total} 사용자 자산정보
  */
-public List<PostResponseDto> listFilteredByDate(String createdDate) {
 
-    // 등록일 00시부터 24시까지
-    LocalDateTime start = LocalDateTime.of(LocalDate.parse(createdDate), LocalTime.MIN);
-    LocalDateTime end = LocalDateTime.of(LocalDate.parse(createdDate), LocalTime.MAX);
+	<select id="getCompare" parameterType="String" resultType="com.early.model.CompareVO">
+		SELECT a.apt_name, b.apt_realprice, a.apt_loc
+		FROM tb_apartment a,
+		tb_apartment_info b
+		WHERE a.apt_code = b.apt_code
+		AND b.apt_realprice <#{total}
+	</select>
 
-    return postRepository
-                    .findAllByCreatedAtBetween(start, end)
-                    .stream()
-                    .map(PostResponseDto::new)
-                    .collect(Collectors.toList());
-    }
+/**
+ * 부동산 추천2
+ * #{total_money} 사용자 자산정보
+ */
+	<select id="getCompare2" parameterType="int" resultType="com.early.model.CompareVO">
+        SELECT a.apt_name, a.apt_loc, b.apt_realprice
+        FROM tb_apartment a
+        JOIN tb_apartment_info b ON a.apt_code = b.apt_code
+        WHERE b.apt_realprice < #{total_money}
 ~~~
 
 </div>
 </details>
 
-- 이 때 카테고리(tag)로 게시물을 필터링 하는 경우,  
-각 게시물은 최대 3개까지의 카테고리(tag)를 가질 수 있어 해당 카테고리를 포함하는 모든 게시물을 질의해야 했기 때문에  
-- 아래 **개선된 코드**와 같이 QueryDSL을 사용하여 다소 복잡한 Query를 작성하면서도 페이징 처리를 할 수 있었습니다.
+- 이 때 사용자에게 필요한 부동산 정보를 제공해주기 위해 불가피하게 쿼리에 부등호를 사용해야 했기 때문에 
+- 아래 **개선된 코드**와 같이 <![CDATA] ]>태그를 사용하여 아래의 개선된 코드와 같이 쿼리 작성시 부등호를 사용했을때 발생하는 오류를 해결하면서 MyBatis로 간편하게 DB에 접근할 수 있었습니다.
 
 <details>
 <summary><b>개선된 코드</b></summary>
@@ -169,24 +177,47 @@ public List<PostResponseDto> listFilteredByDate(String createdDate) {
 
 ~~~java
 /**
- * 게시물 필터 (Tag Name)
+ * 대출 추천
  */
-@Override
-public Page<Post> findAllByTagName(String tagName, Pageable pageable) {
+	<select id="SelectLoans" parameterType="com.early.model.LoanVO"
+		resultType="com.early.model.LoanNameVO">
+		<![CDATA[
+		SELECT a.loan_name, a.loan_limit
+		FROM tb_loan a
+		JOIN
+		tb_loan_criteria b ON a.loan_seq = b.loan_seq
+		WHERE FIRST_HOUSE_YN =
+		#{FIRST_HOUSE_YN}
+		AND DUPLICATE_YN = #{DUPLICATE_YN}
+		AND
+		MARRIAGE_YEARS >= #{MARRIAGE_YEARS}
+		AND INCOME <= #{INCOME}
+		]]>
+	</select>
 
-    QueryResults<Post> results = queryFactory
-            .selectFrom(post)
-            .innerJoin(postTag)
-                .on(post.idx.eq(postTag.post.idx))
-            .innerJoin(tag)
-                .on(tag.idx.eq(postTag.tag.idx))
-            .where(tag.name.eq(tagName))
-            .orderBy(post.idx.desc())
-                .limit(pageable.getPageSize())
-                .offset(pageable.getOffset())
-            .fetchResults();
+/**
+ * 부동산 추천
+ */
+	<select id="getCompare" parameterType="String" resultType="com.early.model.CompareVO">
+		SELECT a.apt_name, b.apt_realprice, a.apt_loc
+		FROM tb_apartment a,
+		tb_apartment_info b
+		WHERE a.apt_code = b.apt_code
+		AND b.apt_realprice <![CDATA[<]]>
+		#{total}
+	</select>
 
-    return new PageImpl<>(results.getResults(), pageable, results.getTotal());
+/**
+ * 부동산 추천2
+ */
+	<select id="getCompare2" parameterType="int" resultType="com.early.model.CompareVO">
+	<![CDATA[
+        SELECT a.apt_name, a.apt_loc, b.apt_realprice
+        FROM tb_apartment a
+        JOIN tb_apartment_info b ON a.apt_code = b.apt_code
+        WHERE b.apt_realprice < #{total_money}
+    ]]>
+	</select>
 }
 ~~~
 
@@ -197,196 +228,90 @@ public Page<Post> findAllByTagName(String tagName, Pageable pageable) {
 
 ## 6. 그 외 트러블 슈팅
 <details>
-<summary>npm run dev 실행 오류</summary>
+<summary>GitHub File 복제시 서버 오류 문제</summary>
 <div markdown="1">
 
-- Webpack-dev-server 버전을 3.0.0으로 다운그레이드로 해결
-- `$ npm install —save-dev webpack-dev-server@3.0.0`
+- TomcatServer 삭제 후 Server 재설정으로 해결
 
 </div>
 </details>
 
 <details>
-<summary>vue-devtools 크롬익스텐션 인식 오류 문제</summary>
+<summary>ID중복확인시 통신 오류</summary>
 <div markdown="1">
-  
-  - main.js 파일에 `Vue.config.devtools = true` 추가로 해결
-  - [https://github.com/vuejs/vue-devtools/issues/190](https://github.com/vuejs/vue-devtools/issues/190)
-  
-</div>
-</details>
 
-<details>
-<summary>ElementUI input 박스에서 `v-on:keyup.enter="메소드명"`이 정상 작동 안하는 문제</summary>
-<div markdown="1">
-  
-  - `v-on:keyup.enter.native=""` 와 같이 .native 추가로 해결
-  
-</div>
-</details>
-
-<details>
-<summary> Post 목록 출력시에 Member 객체 출력 에러 </summary>
-<div markdown="1">
-  
-  - 에러 메세지(500에러)
-    - No serializer found for class org.hibernate.proxy.pojo.javassist.JavassistLazyInitializer and no properties discovered to create BeanSerializer (to avoid exception, disable SerializationConfig.SerializationFeature.FAIL_ON_EMPTY_BEANS)
-  - 해결
-    - Post 엔티티에 @ManyToOne 연관관계 매핑을 LAZY 옵션에서 기본(EAGER)옵션으로 수정
-  
-</div>
-</details>
-    
-<details>
-<summary> 프로젝트를 git init으로 생성 후 발생하는 npm run dev/build 오류 문제 </summary>
-<div markdown="1">
-  
-  ```jsx
-    $ npm run dev
-    npm ERR! path C:\Users\integer\IdeaProjects\pilot\package.json
-    npm ERR! code ENOENT
-    npm ERR! errno -4058
-    npm ERR! syscall open
-    npm ERR! enoent ENOENT: no such file or directory, open 'C:\Users\integer\IdeaProjects\pilot\package.json'
-    npm ERR! enoent This is related to npm not being able to find a file.
-    npm ERR! enoent
-
-    npm ERR! A complete log of this run can be found in:
-    npm ERR!     C:\Users\integer\AppData\Roaming\npm-cache\_logs\2019-02-25T01_23_19_131Z-debug.log
-  ```
-  
-  - 단순히 npm run dev/build 명령을 입력한 경로가 문제였다.
+- ID 입력하는 곳에 값을 부여하고 url재매칭으로 해결
    
 </div>
-</details>    
+</details>
 
 <details>
-<summary> 태그 선택후 등록하기 누를 때 `object references an unsaved transient instance - save the transient instance before flushing` 오류</summary>
+<summary>Eclips에 Kakao지도 삽입이 안되는 문제</summary>
 <div markdown="1">
-  
-  - Post 엔티티의 @ManyToMany에 영속성 전이(cascade=CascadeType.ALL) 추가
-    - JPA에서 Entity를 저장할 때 연관된 모든 Entity는 영속상태여야 한다.
-    - CascadeType.PERSIST 옵션으로 부모와 자식 Enitity를 한 번에 영속화할 수 있다.
-    - 참고
-        - [https://stackoverflow.com/questions/2302802/object-references-an-unsaved-transient-instance-save-the-transient-instance-be/10680218](https://stackoverflow.com/questions/2302802/object-references-an-unsaved-transient-instance-save-the-transient-instance-be/10680218)
-   
+
+- localhost와 함께 포트번호 설정으로 해결
+
 </div>
-</details>    
+</details>
 
 <details>
-<summary> JSON: Infinite recursion (StackOverflowError)</summary>
+<summary>CSS수정 후 적용이 안되는 문제</summary>
 <div markdown="1">
-  
-  - @JsonIgnoreProperties 사용으로 해결
-    - 참고
-        - [http://springquay.blogspot.com/2016/01/new-approach-to-solve-json-recursive.html](http://springquay.blogspot.com/2016/01/new-approach-to-solve-json-recursive.html)
-        - [https://stackoverflow.com/questions/3325387/infinite-recursion-with-jackson-json-and-hibernate-jpa-issue](https://stackoverflow.com/questions/3325387/infinite-recursion-with-jackson-json-and-hibernate-jpa-issue)
-        
+
+- Browser cookie삭제로 해결
+- Browser가 이전에 사용한 CSS를 캐시에 보관해 사용하기 때문
+ 
 </div>
-</details>  
-    
-<details>
-<summary> H2 접속문제</summary>
-<div markdown="1">
-  
-  - H2의 JDBC URL이 jdbc:h2:~/test 으로 되어있으면 jdbc:h2:mem:testdb 으로 변경해서 접속해야 한다.
-        
-</div>
-</details> 
-    
-<details>
-<summary> 컨텐츠수정 모달창에서 태그 셀렉트박스 드랍다운이 뒤쪽에 보이는 문제</summary>
-<div markdown="1">
-  
-   - ElementUI의 Global Config에 옵션 추가하면 해결
-     - main.js 파일에 `Vue.us(ElementUI, { zIndex: 9999 });` 옵션 추가(9999 이하면 안됌)
-   - 참고
-     - [https://element.eleme.io/#/en-US/component/quickstart#global-config](https://element.eleme.io/#/en-US/component/quickstart#global-config)
-        
-</div>
-</details> 
+</details>
 
 <details>
-<summary> HTTP delete Request시 개발자도구의 XHR(XMLHttpRequest )에서 delete요청이 2번씩 찍히는 이유</summary>
+<summary>회원탈퇴 기능 구현 문제</summary>
 <div markdown="1">
-  
-  - When you try to send a XMLHttpRequest to a different domain than the page is hosted, you are violating the same-origin policy. However, this situation became somewhat common, many technics are introduced. CORS is one of them.
 
-        In short, server that you are sending the DELETE request allows cross domain requests. In the process, there should be a **preflight** call and that is the **HTTP OPTION** call.
-
-        So, you are having two responses for the **OPTION** and **DELETE** call.
-
-        see [MDN page for CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/Access_control_CORS).
-
-    - 출처 : [https://stackoverflow.com/questions/35808655/why-do-i-get-back-2-responses-of-200-and-204-when-using-an-ajax-call-to-delete-o](https://stackoverflow.com/questions/35808655/why-do-i-get-back-2-responses-of-200-and-204-when-using-an-ajax-call-to-delete-o)
-        
+- Session에 있던 값을 불러오고 저장된 ID와 맞는 값을 삭제해주었음. Session값 역시 제거후 해결
+ 
 </div>
-</details> 
+</details>
 
 <details>
-<summary> 이미지 파싱 시 og:image 경로가 달라서 제대로 파싱이 안되는 경우</summary>
+<summary>Crawling중 랜덤하게 멈추는 오류(1)</summary>
 <div markdown="1">
-  
-  - UserAgent 설정으로 해결
-        - [https://www.javacodeexamples.com/jsoup-set-user-agent-example/760](https://www.javacodeexamples.com/jsoup-set-user-agent-example/760)
-        - [http://www.useragentstring.com/](http://www.useragentstring.com/)
-        
+
+- 1) 아이콘이 겹쳐서 해당현상이 발생하는 것으로 추측 후 페이지의 배율을 올림
+- 2) 해당페이지의 구조가 페이지를 겹쳐서 계속 보여주는 방식이기에 다시 뒤로 되돌리는 로직을 추가
+ 
 </div>
-</details> 
-    
+</details>
+
 <details>
-<summary> 구글 로그인으로 로그인한 사용자의 정보를 가져오는 방법이 스프링 2.0대 버전에서 달라진 것</summary>
+<summary>Crawling중 랜덤하게 멈추는 오류(2)</summary>
 <div markdown="1">
-  
-  - 1.5대 버전에서는 Controller의 인자로 Principal을 넘기면 principal.getName(0에서 바로 꺼내서 쓸 수 있었는데, 2.0대 버전에서는 principal.getName()의 경우 principal 객체.toString()을 반환한다.
-    - 1.5대 버전에서 principal을 사용하는 경우
-    - 아래와 같이 사용했다면,
 
-    ```jsx
-    @RequestMapping("/sso/user")
-    @SuppressWarnings("unchecked")
-    public Map<String, String> user(Principal principal) {
-        if (principal != null) {
-            OAuth2Authentication oAuth2Authentication = (OAuth2Authentication) principal;
-            Authentication authentication = oAuth2Authentication.getUserAuthentication();
-            Map<String, String> details = new LinkedHashMap<>();
-            details = (Map<String, String>) authentication.getDetails();
-            logger.info("details = " + details);  // id, email, name, link etc.
-            Map<String, String> map = new LinkedHashMap<>();
-            map.put("email", details.get("email"));
-            return map;
-        }
-        return null;
-    }
-    ```
-
-    - 2.0대 버전에서는
-    - 아래와 같이 principal 객체의 내용을 꺼내 쓸 수 있다.
-
-    ```jsx
-    UsernamePasswordAuthenticationToken token =
-                    (UsernamePasswordAuthenticationToken) SecurityContextHolder
-                            .getContext().getAuthentication();
-            Map<String, Object> map = (Map<String, Object>) token.getPrincipal();
-
-            String email = String.valueOf(map.get("email"));
-            post.setMember(memberRepository.findByEmail(email));
-    ```
-        
+- 1) 다음 데이터에 접근하여 값을 가져온 뒤 다시 처음으로 돌아가 탐색
+- 2) 데이터에 새로 접근할 때 마다 주변 요소 리시트를 새롭게 갱신하여 받은 후 중복검사 실행 
+ 
 </div>
-</details> 
-    
+</details>
+
 <details>
-<summary> 랭킹 동점자 처리 문제</summary>
+<summary>selecList를 사용할 때 null값만 받아오는 문제</summary>
 <div markdown="1">
-  
-  - PageRequest의 Sort부분에서 properties를 "rankPoint"를 주고 "likeCnt"를 줘서 댓글수보다 좋아요수가 우선순위 갖도록 설정.
-  - 좋아요 수도 똑같다면..........
-        
+
+- VO모델의 변수값과 DB의 컬럼명을 일치시킨 후 해결
+ 
 </div>
-</details> 
+</details>
+
+<details>
+<summary>repo에서 데이터 데이터 삭제 후 GitHub에서 pull을 실행했는데 servlet이 동작하는 문제</summary>
+<div markdown="1">
+
+- lib에서 cos.zar파일을 제대로 import시킨뒤 해결
+ 
+</div>
+</details>
     
 </br>
 
 ## 6. 회고 / 느낀점
->프로젝트 개발 회고 글: https://zuminternet.github.io/ZUM-Pilot-integer/
+

@@ -166,6 +166,7 @@ result_loan{
 						<a href="Profile.jsp" class="btnset btnset-round">다시하기</a>
 						<button type="button" class="btnset btnset-round" onclick="submitForm()">결과보기</button>
 					</div>
+					
 					</form>
 					<table>
 						<thead>
