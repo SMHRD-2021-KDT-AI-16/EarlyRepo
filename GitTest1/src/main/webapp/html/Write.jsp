@@ -16,10 +16,6 @@
 <meta name="title" content="웹사이트">
 <meta name="description" content="웹사이트입니다.">
 <meta name="keywords" content="키워드,키워드,키워드">
-<meta property="og:title" content="웹사이트">
-<meta property="og:description" content="웹사이트입니다">
-<meta property="og:image" content="https://웹사이트/images/opengraph.png">
-<meta property="og:url" content="https://웹사이트">
 <title>게시판 | 핵심프로젝트</title>
 <link rel="stylesheet" href="../resources/css/setting.css">
 <link rel="stylesheet" href="../resources/css/plugin.css">
@@ -114,46 +110,53 @@ select {
 
 <body>
 	<header class="campland-N1" data-bid="RMlQ6deKn4" id="">
-	<div class="header-container container-lg">
-		<div class="header-left">
-			<h1 class="header-title">
-				<a href="MainPage.jsp"> <img
-					src="../resources/images/img_logo.png" alt="로고">
-				</a>
-			</h1>
-		</div>
-		<div class="header-center">
-			<ul class="header-gnblist">
-				<li class="header-gnbitem">
-					<a class="header-gnblink" href="MainPage.jsp">
-						<span>홈</span>
+		<div class="header-container container-lg">
+			<div class="header-left">
+				<h1 class="header-title">
+					<a href="MainPage.jsp">
+						<img src="../resources/images/img_logo.png" alt="로고">
 					</a>
-				</li>
-				<li class="header-gnbitem">
-					<a class="header-gnblink" href="AllgetBoardService.do">
-						<span>부동산 게시판</span>
-					</a>
-				</li>
-			</ul>
+				</h1>
+			</div>
+			<div class="header-center">
+				<ul class="header-gnblist">
+					<li class="header-gnbitem">
+						<a class="header-gnblink" href="MainPage.jsp">
+							<span>홈</span>
+						</a>
+					</li>
+					<li class="header-gnbitem">
+						<a class="header-gnblink" href="AllgetBoardService.do">
+							<span>부동산 게시판</span>
+						</a>
+					</li>
+				</ul>
+			</div>
+			<div class="header-right">
+				<div class="header-utils">
+					<c:if test="${member==null }">
+						<a href="login.jsp">
+							<img src="../resources/icons/LOGIN.png">
+						</a>
+					</c:if>
+					<c:if test="${member!=null }">
+						<c:if test="${member.user_id!='admin' }">
+							<a href="Mypage.jsp">
+								<img src="../resources/icons/ico_profile_black.png">
+							</a>
+						</c:if>
+						<c:if test="${member.user_id!='admin' }">
+							<a href="http://localhost:8083/GitTest1/Logout.do">
+								<img src="../resources/icons/LOGOUT.png">
+							</a>
+						</c:if>
+						<c:if test="${member.user_id=='admin' }">
+							<a href="SelectAll.do">회원관리</a>
+						</c:if>
+					</c:if>
+				</div>
+			</div>
 		</div>
-		<div class="header-right">
-			<div class="header-utils">
-				<c:if test="${member==null }">
-					<a href="login.jsp"><img src="../resources/icons/LOGIN.png"></a>
-				</c:if>
-				<c:if test="${member!=null }">
-					<c:if test="${member.user_id!='admin' }">
-						<a href="Mypage.jsp"><img
-							src="../resources/icons/ico_profile_black.png"></a>
-					</c:if>
-					<c:if test="${member.user_id!='admin' }">
-						<a href="http://localhost:8083/GitTest1/Logout.do"><img
-							src="../resources/icons/LOGOUT.png"></a>
-					</c:if>
-					<c:if test="${member.user_id=='admin' }">
-						<a href="SelectAll.do">회원관리</a>
-					</c:if>
-				</c:if>
 	</header>
 	<main class="th-layout-main ">
 	<div class="campland-N8" data-bid="fGLQ6DNtyW">

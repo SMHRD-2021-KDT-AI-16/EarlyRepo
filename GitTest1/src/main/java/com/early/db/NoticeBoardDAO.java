@@ -30,14 +30,6 @@ public class NoticeBoardDAO {
 		return cnt;
 	}
 
-	public void delectContent() { // 삭제
-
-	}
-
-	public void updateContent() { // 글 수정
-
-	}
-
 	public List<NoticeBoardVO> getIdContents(String user_id) { // ID에 맞는 조회
 		SqlSession session = factory.openSession();
 
@@ -104,7 +96,7 @@ public class NoticeBoardDAO {
 	public boolean deleteeach(int f_seq) {
 		SqlSession session = factory.openSession(true);
 		
-		int cnt = session.delete("deleteboard", f_seq);
+		session.delete("deleteboard", f_seq);
 
 		session.close();
 		return true;

@@ -23,9 +23,7 @@ public class SelectLoansService implements Command {
 		int INCOME = Integer.parseInt(request.getParameter("income"));
 
 		HttpSession session = request.getSession();
-		int loan_money = (int) session.getAttribute("loan_money");
-
-		System.out.println("loan_money : " + loan_money);
+		session.getAttribute("loan_money");
 
 		LoanVO vo = new LoanVO();
 		vo.setFIRST_HOUSE_YN(FIRST_HOUSE_YN);

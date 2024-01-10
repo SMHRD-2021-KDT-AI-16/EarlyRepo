@@ -17,10 +17,6 @@
 	<meta name="title" content="웹사이트">
 	<meta name="description" content="웹사이트입니다.">
 	<meta name="keywords" content="키워드,키워드,키워드">
-	<meta property="og:title" content="웹사이트">
-	<meta property="og:description" content="웹사이트입니다">
-	<meta property="og:image" content="https://웹사이트/images/opengraph.png">
-	<meta property="og:url" content="https://웹사이트">
 	<title>지도 | 핵심프로젝트</title>
 	<link rel="stylesheet" href="../resources/css/setting.css">
 	<link rel="stylesheet" href="../resources/css/plugin.css">
@@ -34,15 +30,15 @@
 <body>
     <c:set var="chatId" value="${not empty sessionScope.member ? sessionScope.member.user_nick : ''}" />
 
-<div id="_chatbox" style="display: none">
-    <fieldset>
-        <div id="messageWindow"></div>
-        <br /> 
-        <input id="inputMessage" type="text" onkeyup="enterkey()" />
-        <input id="send" type="submit" value="send" onclick="send()" />
-    </fieldset>
-</div>
-<img class="chat" src="../resources/images/고양이말풍선white2.png" />
+	<div id="_chatbox" style="display: none">
+    	<fieldset>
+        	<div id="messageWindow"></div>
+        	<br /> 
+        	<input id="inputMessage" type="text" onkeyup="enterkey()" />
+        	<input id="send" type="submit" value="send" onclick="send()" />
+    	</fieldset>
+	</div>
+	<img class="chat" src="../resources/images/고양이말풍선white2.png" />
 
 	<header class="campland-N1" data-bid="RMlQ6deKn4" id="">
 		<div class="header-container container-lg">
@@ -90,11 +86,11 @@
 	<main class="th-layout-main">
 		<div id="total_div">
 			<div id="left_div">
-		       <div class="textset textset-sub textset-center">
-				  <h5 class="textset-tit" id = "MainSerch">당신의 능력으로 살 수있는 집을 알려드려요​<br></h5>
-			   <form>
-			   </div>
-		   		<ul class="contents-list">
+		    	<div class="textset textset-sub textset-center">
+					<h5 class="textset-tit" id = "MainSerch">당신의 능력으로 살 수있는 집을 알려드려요​<br></h5>
+				</div>
+				<form>
+		   			<ul class="contents-list">
 		   				<li class="contents-item">
 							<h6 class="form-tit form-tit-deco">
 								<span></span>집 사본적?
@@ -117,7 +113,6 @@
 								</div>
 							</div>
 						</li>
-		   		
 						<li class="contents-item">
 							<h6 class="form-tit form-tit-deco">
 								<span></span>나이
@@ -138,14 +133,14 @@
 								<span></span>부양가족수
 							</h6>
 							<div class="form-wrap">
-								  <div class="selectset selectset-round selectset-md">
-                  					  <select name="family" class="selectset-toggle btn" >
-                						    <option value="family1">혼자살아요</option>
-                             				<option value="family2">2인</option>
-                      					    <option value="family3">3인</option>
-                      					    <option value="family4">4인이상</option>
-             						 </select>
-               					  </div>
+								<div class="selectset selectset-round selectset-md">
+                  					<select name="family" class="selectset-toggle btn" >
+                						<option value="family1">혼자살아요</option>
+                             			<option value="family2">2인</option>
+                      					<option value="family3">3인</option>
+                      					<option value="family4">4인이상</option>
+             						</select>
+               					</div>
                				</div>	  
 						</li>
 						<li class="contents-item">
@@ -174,29 +169,28 @@
 							</h6>
 							<div class="form-wrap">
 								<div class="form-wrap">
-								  <div class="selectset selectset-round selectset-md">
-                  					  <select name="spare_funds" class="selectset-toggle btn" id="money">
-                						    <option value="2000">2000만원</option>
+									<div class="selectset selectset-round selectset-md">
+                  						<select name="spare_funds" class="selectset-toggle btn" id="money">
+                							<option value="2000">2000만원</option>
                              				<option value="3000">2000만원~3000만원</option>
                       					    <option value="4000">3000만원~4000만원</option>
                       					    <option value="5000">4000만원~5000만원</option>
                       					    <option value="6000">5000만원~6000만원</option>
                       					    <option value="7000">6000만원~7000만원</option>
                       					    <option value="7001">7000만원 이상</option>
-             						 </select>
-               					  </div>
-               				  </div>	  
-						 </div>
+             						 	</select>
+               					  	</div>
+               				  	</div>	  
+						 	</div>
 						</li>
-					<br>
+					</ul>	
 					<div class="contents-confirm" align=center>
 						<button id="result_btn" class="btnset btnset-round" type="button" onclick="PriceCompare()">결과보기</button>
 						<br>
 						<button id="final_btn" class="btnset btnset-round" type="button" onclick="">상세입력</button>
 					</div>
-				</ul>	
+				</form>
 			</div>
-			</form>
 			
 			<div id="full_mid_div">
 				<div id="mid_div"></div>

@@ -12,10 +12,6 @@
 	<meta name="title" content="웹사이트">
 	<meta name="description" content="웹사이트입니다.">
 	<meta name="keywords" content="키워드,키워드,키워드">
-	<meta property="og:title" content="웹사이트">
-	<meta property="og:description" content="웹사이트입니다">
-	<meta property="og:image" content="https://웹사이트/images/opengraph.png">
-	<meta property="og:url" content="https://웹사이트">
 	<title>로그인 | 핵심프로젝트</title>
 	<link rel="stylesheet" href="../resources/css/setting.css">
 	<link rel="stylesheet" href="../resources/css/plugin.css">
@@ -64,6 +60,9 @@
                               <a href="SelectAll.do">회원관리</a>
                            </c:if>   
                      </c:if>
+                </div>
+            </div>
+        </div>
 	</header>
 	<main class="th-layout-main ">
 		<div class="campland-N24" data-bid="oULq6dgKXB">
@@ -84,46 +83,10 @@
 									placeholder="비밀번호를 입력해주세요.">
 							</div>
 							<div class="checkset">
-								<input id="checkset-a-1-1"
-									class="checkset-input input-fill input-round" type="checkbox" value="">
+								<input id="checkset-a-1-1" class="checkset-input input-fill input-round" type="checkbox" value="">
 							</div>
-
 							<input id="login_btn" type="submit" onclick="logincheck()" class="btnset btnset-round" value="로그인">
-						<script type="text/javascript">
-						document.addEventListener("keydown", function(event) {
-							if (event.key === "Enter") {
-						    	logincheck();
-						    }
-						});
-
-							function logincheck() {
-								let user_id = document.getElementById('user_id');
-						        let user_pw = document.getElementById('user_pw');
-						        
-								let logininfo = {
-									user_id : user_id.value,
-									pw : user_pw.value
-								};
-								$.ajax({
-									url: 'http://localhost:8083/GitTest1/Login.do',
-									method: 'POST',
-									data: logininfo,
-									success: function (result) {
-										if (result === 'success') {
-							                window.location.href = "MainPage.jsp";
-							            } else {
-							                alert("아이디 혹은 비밀번호를 확인해주세요.");
-							                window.location.href = "login.jsp";
-							            }
-
-									},
-									error: function(){
-								
-									}
-					  		    });
-
-							}
-						</script>
+						
 						<ul class="contents-list">
 							<li class="contents-item">
 								<a href="Join.jsp">회원가입</a>
@@ -134,6 +97,38 @@
 			</div>
 		</div>
 	</main>
+	<script type="text/javascript">
+		document.addEventListener("keydown", function(event) {
+			if (event.key === "Enter") {
+				logincheck();
+			}
+		});
+
+		function logincheck() {
+			let user_id = document.getElementById('user_id');
+			let user_pw = document.getElementById('user_pw');
+						        
+			let logininfo = {
+				user_id : user_id.value,
+				pw : user_pw.value
+			};
+			$.ajax({
+				url: 'http://localhost:8083/GitTest1/Login.do',
+				method: 'POST',
+				data: logininfo,
+				success: function (result) {
+					if (result === 'success') {
+						window.location.href = "MainPage.jsp";
+					} else {
+						alert("아이디 혹은 비밀번호를 확인해주세요.");
+						window.location.href = "login.jsp";
+					}
+				},
+				error: function(){
+				}
+			});
+		}
+	</script>
 	<footer class="campland-N2" data-bid="Ojlq6dgkyD">
 		<div class="footer-container container-lg">
 			<div class="footer-bottom">

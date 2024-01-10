@@ -9,9 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.early.db.CompareDAO;
-import com.early.model.ApartVO;
 import com.early.model.CompareVO;
-import com.google.gson.Gson;
 
 public class PriceCompareService implements Command {
 

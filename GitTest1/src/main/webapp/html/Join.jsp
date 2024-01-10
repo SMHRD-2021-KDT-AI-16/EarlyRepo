@@ -12,19 +12,12 @@
 	<meta name="title" content="웹사이트">
 	<meta name="description" content="웹사이트입니다.">
 	<meta name="keywords" content="키워드,키워드,키워드">
-	<meta property="og:title" content="웹사이트">
-	<meta property="og:description" content="웹사이트입니다">
-	<meta property="og:image" content="https://웹사이트/images/opengraph.png">
-	<meta property="og:url" content="https://웹사이트">
 	<title>회원정보 | 핵심프로젝트</title>
 	<link rel="stylesheet" href="../resources/css/setting.css">
 	<link rel="stylesheet" href="../resources/css/plugin.css">
 	<link rel="stylesheet" href="../resources/css/template.css">
 	<link rel="stylesheet" href="../resources/css/common.css">
 	<link rel="stylesheet" href="../resources/css/style.css">
-	<style>
-	
-	</style>
 </head>
 
 <body>
@@ -67,6 +60,9 @@
                               <a href="SelectAll.do">회원관리</a>
                            </c:if>   
                      </c:if>
+                </div>
+           </div>
+       </div>
 	</header>
 	<main class="th-layout-main ">
 		<!-- 회원 가입 페이지-->
@@ -91,53 +87,6 @@
 								<input type="button"  class="btnset btnset-round" onclick="checkE()" value="중복확인">
 							</div>
 						</li>
-						
-						<script src="jquery-3.7.1.min.js"></script>
-						<script>
-						
-							function checkE() {
-							var inputE = $("#inputE").val();
-					
-							$.ajax( {
-								// 어디로 요청할건지?
-								url :'http://localhost:8083/GitTest1/IdCheckService.do',		
-								// 요청할 데이터(json,{key : value})
-					
-					    		data : {'inputE': inputE},
-					   		 // 요청방식
-					   		 type : 'get',
-					    		// 요청 성공할 경우 무엇을할지?
-					    		success : function (data) {
-									if(data=='true'){
-										alert("사용 할 수 없는 아이디입니다")
-									}else if(data=='false'){
-										alert("사용 할 수 있는 아이디입니다")
-									}
-								},
-								// 요청 실패시
-								error : function () {
-									alert("통신 실패");
-								}
-						
-							});
-							}
-							function checkInputLength() {
-							      var inputElement = document.getElementById("inputE");
-							      var inputValue = inputElement.value;
-
-							      // 문자열을 UTF-8로 인코딩하여 바이트 수 계산
-							      var byteLength = new TextEncoder().encode(inputValue).length;
-
-							      // 예를 들어, 6글자 이상을 허용하지 않도록 설정
-							      if (byteLength > 3 * 6) {
-							        alert("한글은 6글자 이상 입력할 수 없습니다.");
-							        // 입력 값을 초기화하거나 다른 조치를 취할 수 있습니다.
-							        inputElement.value = "";
-							      }
-							    }
-							
-							</script>
-		
 						<li class="contents-item">
 							<h6 class="form-tit form-tit-deco">
 								<span></span>비밀번호
@@ -171,6 +120,7 @@
 								</div>
 							</div>
 						</li>
+					</ul>
 						<div class="contents-bottom">
 							<div class="checkset">
 								<input id="checkset-a-1-1" class="checkset-input input-fill input-round" type="checkbox"
@@ -187,7 +137,48 @@
 		</div>
 		
 		</form>
+		<script src="jquery-3.7.1.min.js"></script>
 		<script type="text/javascript">
+		function checkE() {
+			var inputE = $("#inputE").val();
+	
+			$.ajax( {
+				// 어디로 요청할건지?
+				url :'http://localhost:8083/GitTest1/IdCheckService.do',		
+				// 요청할 데이터(json,{key : value})
+	
+	    		data : {'inputE': inputE},
+	   		 // 요청방식
+	   		 type : 'get',
+	    		// 요청 성공할 경우 무엇을할지?
+	    		success : function (data) {
+					if(data=='true'){
+						alert("사용 할 수 없는 아이디입니다")
+					}else if(data=='false'){
+						alert("사용 할 수 있는 아이디입니다")
+					}
+				},
+				// 요청 실패시
+				error : function () {
+					alert("통신 실패");
+				}
+		
+			});
+			}
+			function checkInputLength() {
+			      var inputElement = document.getElementById("inputE");
+			      var inputValue = inputElement.value;
+
+			      // 문자열을 UTF-8로 인코딩하여 바이트 수 계산
+			      var byteLength = new TextEncoder().encode(inputValue).length;
+
+			      // 예를 들어, 6글자 이상을 허용하지 않도록 설정
+			      if (byteLength > 3 * 6) {
+			        alert("한글은 6글자 이상 입력할 수 없습니다.");
+			        // 입력 값을 초기화하거나 다른 조치를 취할 수 있습니다.
+			        inputElement.value = "";
+			      }
+			    }
 		function checkInputLength2() {
 		      var inputElement = document.getElementById("user_nick");
 		      var inputValue = inputElement.value;

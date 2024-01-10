@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
@@ -12,10 +11,6 @@
 <meta name="title" content="웹사이트">
 <meta name="description" content="웹사이트입니다.">
 <meta name="keywords" content="키워드,키워드,키워드">
-<meta property="og:title" content="웹사이트">
-<meta property="og:description" content="웹사이트입니다">
-<meta property="og:image" content="https://웹사이트/images/opengraph.png">
-<meta property="og:url" content="https://웹사이트">
 <title>회원정보 | 핵심프로젝트</title>
 <link rel="stylesheet" href="../resources/css/setting.css">
 <link rel="stylesheet" href="../resources/css/plugin.css">
@@ -66,6 +61,9 @@
 							<a href="SelectAll.do">회원관리</a>
 						</c:if>
 					</c:if>
+				</div>
+			</div>
+		</div>>
 	</header>
 	<main class="th-layout-main ">
 		<div class="campland-N25" data-bid="EJlQ6DHEUz" id="">
@@ -77,9 +75,8 @@
 						</h2>
 						<h4>더 정확한 대출금액을 알려드립니다.</h4>
 					</div>
-					<ul class="contents-list">
-						<form action="SelectLoans.do" method="post">
-
+					<form action="SelectLoans.do" method="post">
+						<ul class="contents-list">
 							<li class="contents-item">
 								<h6 class="form-tit form-tit-deco">
 									<span></span>첫주택구매가
@@ -159,7 +156,6 @@
 											<option value="2">7년미만</option>
 											<option value="3">7년이상</option>
 											<option value="4">미혼</option>
-
 										</select>
 									</div>
 								</div>
@@ -221,64 +217,57 @@
 										</select>
 									</div>
 								</div>
+							</li>
+						</ul>
+						<div class="contents-confirm">
+							<a href="MainPage.jsp" class="btnset btnset-round btnset-line btnset-black">돌아가기</a>
+							<button type="button" class="btnset btnset-round" onclick="submitForm()">결과</button>
+						</div>
+					</form>
 				</div>
-				</li>
-				<div class="contents-confirm">
-					<a href="MainPage.jsp"
-						class="btnset btnset-round btnset-line btnset-black">돌아가기</a>
-						<button type="button" class="btnset btnset-round" onclick="submitForm()">결과</button>
-				</div>
-
-
-				</ul>
-				</form>
-
 			</div>
 		</div>
-		</div>
-<script>
-function submitForm() {
-    // 첫주택구매가, 현재 집이, 현재 대출이 라디오박스 체크 여부 확인
-    if (!isChecked("FIRST_HOUSE_YN") || !isChecked("now_home") || !isChecked("DUPLICATE_YN")) {
-        var uncheckedRadios = [];
-
-        if (!isChecked("FIRST_HOUSE_YN")) {
-            uncheckedRadios.push("첫 주택 구매");
-        }
-
-        if (!isChecked("now_home")) {
-            uncheckedRadios.push("현재 집");
-        }
-
-        if (!isChecked("DUPLICATE_YN")) {
-            uncheckedRadios.push("현재 대출");
-        }
-
-        var errorMsg = uncheckedRadios.join(", ")+"을(를) 선택해주세요. ";
-        alert(errorMsg);
-        return false; // 폼 전송을 막음
-    }
-
-    window.location.href = "SelectLoans.do";
-
-    // 폼을 제출하도록 허용
-    document.querySelector('form').submit();
-}
-
-function isChecked(name) {
-    // 라디오박스 체크 여부 확인
-    var radioBoxes = document.getElementsByName(name);
-    for (var i = 0; i < radioBoxes.length; i++) {
-        if (radioBoxes[i].checked) {
-            return true;
-        }
-    }
-    return false;
-}
-</script>
-
-
 	</main>
+	<script>
+		function submitForm() {
+    		// 첫주택구매가, 현재 집이, 현재 대출이 라디오박스 체크 여부 확인
+    		if (!isChecked("FIRST_HOUSE_YN") || !isChecked("now_home") || !isChecked("DUPLICATE_YN")) {
+        		var uncheckedRadios = [];
+
+        		if (!isChecked("FIRST_HOUSE_YN")) {
+            		uncheckedRadios.push("첫 주택 구매");
+        		}
+
+        		if (!isChecked("now_home")) {
+            		uncheckedRadios.push("현재 집");
+        		}
+
+        		if (!isChecked("DUPLICATE_YN")) {
+            		uncheckedRadios.push("현재 대출");
+        		}
+
+        	var errorMsg = uncheckedRadios.join(", ")+"을(를) 선택해주세요. ";
+        	alert(errorMsg);
+        	return false; // 폼 전송을 막음
+    		}
+
+    		window.location.href = "SelectLoans.do";
+
+    		// 폼을 제출하도록 허용
+    		document.querySelector('form').submit();
+		}
+
+	function isChecked(name) {
+    	// 라디오박스 체크 여부 확인
+    	var radioBoxes = document.getElementsByName(name);
+    	for (var i = 0; i < radioBoxes.length; i++) {
+        	if (radioBoxes[i].checked) {
+            	return true;
+        	}
+    	}
+    	return false;
+	}
+	</script>
 	<footer class="campland-N2" data-bid="oolq6dhEvp">
 		<div class="footer-container container-lg">
 			<div class="footer-bottom">

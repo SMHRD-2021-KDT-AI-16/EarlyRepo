@@ -28,8 +28,8 @@ public class DelMemberService implements Command {
 		String user_id = user.getUser_id();
 		NoticeBoardDAO dao = new NoticeBoardDAO();
 		ApartDAO dao2 = new ApartDAO();
-		int num2 = dao.deletecomment(user_id);
-		int num1 = dao.deleteboard(user_id);
+		dao.deletecomment(user_id);
+		dao.deleteboard(user_id);
 		dao2.deletereview(user_id);
 		int cnt = new DAO().deleteMember(user_id);
 		if (cnt > 0) {

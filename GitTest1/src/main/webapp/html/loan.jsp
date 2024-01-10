@@ -2,8 +2,7 @@
 <%@page import="com.early.model.LoanNameVO"%>
 <%@page import="java.util.List"%>
 <%@page import="com.early.model.LoanVO"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
@@ -16,10 +15,6 @@
 	<meta name="title" content="웹사이트">
 	<meta name="description" content="웹사이트입니다.">
 	<meta name="keywords" content="키워드,키워드,키워드">
-	<meta property="og:title" content="웹사이트">
-	<meta property="og:description" content="웹사이트입니다">
-	<meta property="og:image" content="https://웹사이트/images/opengraph.png">
-	<meta property="og:url" content="https://웹사이트">
 	<title>대출결과</title>
 	<link rel="stylesheet" href="../resources/css/setting.css">
 	<link rel="stylesheet" href="../resources/css/plugin.css">
@@ -129,6 +124,9 @@ result_loan{
                               <a href="SelectAll.do">회원관리</a>
                            </c:if>   
                      </c:if>
+                 </div>
+             </div>
+		</div>
 	</header>
 	<main class="th-layout-main ">
 		<div class="campland-N25" data-bid="EJlQ6DHEUz" id="">
@@ -329,7 +327,6 @@ result_loan{
 	function submitForm() {
 		
 		var uncheckedRadios = [];
-
         
 		if (!isChecked("loan_select")) {
 				uncheckedRadios.push("대출");
@@ -338,7 +335,7 @@ result_loan{
 				alert(errorMsg);
 				return false; // 폼 전송을 막음
 		} else {
-			window.location.href = "다음페이지URL";
+			window.location.href = "";
 
 			// 폼을 제출하도록 허용
 			document.querySelector('form').submit();

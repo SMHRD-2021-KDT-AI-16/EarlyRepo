@@ -21,6 +21,9 @@
 #final_btn{
 	display: none;
 }
+.contents-confirm{
+	padding-top: 20px;
+}
 
 #full_mid_div {
 	display: inline-block;

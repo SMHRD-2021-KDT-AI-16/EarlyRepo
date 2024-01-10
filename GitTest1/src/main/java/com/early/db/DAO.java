@@ -5,8 +5,6 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
-
-import com.early.db.SqlSessionManager;
 import com.early.model.MemberVO;
 
 public class DAO {

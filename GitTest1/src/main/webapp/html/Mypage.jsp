@@ -1,6 +1,5 @@
 <%@page import="com.google.gson.JsonArray"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
@@ -13,10 +12,6 @@
 	<meta name="title" content="웹사이트">
 	<meta name="description" content="웹사이트입니다.">
 	<meta name="keywords" content="키워드,키워드,키워드">
-	<meta property="og:title" content="웹사이트">
-	<meta property="og:description" content="웹사이트입니다">
-	<meta property="og:image" content="https://웹사이트/images/opengraph.png">
-	<meta property="og:url" content="https://웹사이트">
 	<title>마이페이지 | 핵심프로젝트</title>
 	<link rel="stylesheet" href="../resources/css/setting.css">
 	<link rel="stylesheet" href="../resources/css/plugin.css">
@@ -39,7 +34,6 @@
 <%
 	JsonArray Idlist = (JsonArray)session.getAttribute("NoticeIdboard");
 %>
-		<!-- [S]campland-N1 -->
 	<header class="campland-N1" data-bid="RMlQ6deKn4" id="">
 		<div class="header-container container-lg">
 			<div class="header-left">
@@ -79,6 +73,9 @@
                               <a href="SelectAll.do">회원관리</a>
                            </c:if>   
                      </c:if>
+				</div>
+            </div>
+        </div>
 	</header>
 		<!-- [E]campland-N1 -->
 		<main class="th-layout-main ">
